@@ -7,6 +7,7 @@ The following information is very important and can help to streamline the proje
 ## Veeam ONE Monitor
 ### Alerts tab
 Check in the Alerts tab of Veeam ONE Monitor if there are specific errors that need to be addressed before you bring extra load to the environment with backup processing that can cause business critical situations.
+Use "All Deployment Projects" area in the Reporter tool when planning to add extra resource into the environment, this will give a good indicator of the effect the new systems will make to the current setup
 
 ## Veeam ONE Reporter
 ### Storage Latency

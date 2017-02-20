@@ -11,6 +11,18 @@ It is possible to carry out a Veeam Backup & Replication POC in such environment
 
 Customers often drive this POC themselves. To assist customers with this task, Veeam has published a good Evaluator's Guide that includes configuration screenshots with minimal required background information.
 
+One thing to remember when running a POC with Veeam is that you want to test something with meaning, testing a backup because it backs up is important however having a goal is also important.
+
+Even for a small POC a plan is essential, write up can be as simple as:
+
+* How many machines, set a specific number and record their names.
+* What applications are you testing and why.
+* What types of recovery are you going to test and why (Veeam has 57 way to recover).
+* What are your expectations form the testing process.
+* What functionality do you want to see in action.
+
+We all know Veeam will protect virtual machines, the aim of your POC should be to see how well it lives up to your expectation at doing specific types of protection and recovery.
+
 See Veeam Helpcenter for Evaluator's Guide:
 * [VMware vSphere environments](http://helpcenter.veeam.com/evaluation/backup/vsphere/en/)
 * [Microsoft Hyper-V environments](http://helpcenter.veeam.com/evaluation/backup/hyperv/en/)
