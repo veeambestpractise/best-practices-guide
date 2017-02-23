@@ -1,6 +1,6 @@
 # Enhanced Evaluation - Workshop Example
 
-This section describes how to conduct an infrastructure discovery and assessment session with a customer. Below is an example of how Veeam Architects hold such meetings this with customers. The example below is just one example of many possible ways of the meeting implementation; please have a look at other chapters of this guide to prepare for such meeting.
+This section describes how to conduct an infrastructure discovery and assessment session with a customer. Below is an example of how Veeam Architects hold such meetings this with customers. The example below is just one example of many possible ways of the meeting content; please have a look at other chapters of this guide to prepare for such meeting.
 
 ## Infrastructure Discovery
 1.	Start with the first main customer datacenter. Figure out the following:
@@ -8,7 +8,7 @@ This section describes how to conduct an infrastructure discovery and assessment
   2.	Main storage system, type, connection
   3.	Is storage virtualization used (between the storage arrays and hypervisor)?
 
-2.	Depict the second main customer datacenter (if available)
+2.	Next would be the second customer datacenter (if available)
   1. Is this the same platform as the main datacenter, if not what is it?
   2. Are there any storage replication/mirroring involved?
   3. Is Active/Active cluster used?
@@ -33,10 +33,10 @@ This section describes how to conduct an infrastructure discovery and assessment
 
 5.	Create the first Veeam implementation draft/sample scenario:
 
-  1. Start with the repository, discussing customer demands. In the example, customer wanted to have the backup data in both datacenters. If so, you could decide to implement repositories on both sides (half of the data on each side) and use the backup copy job for replicating data to the second site.  
+  1. Start with the repository, discussing customer demands. In the example, customer wanted to have the backup data in both datacenters. If so, you could decide to implement repositories on both sides (half of the data on each side) and use the backup copy job to move data to the second site.  
   2. Discuss proxy implementation. The customer agreed to implement physical proxy servers connected to their Fibre Channel network. As the customer used thick-provisioned VMware VM disks, this ensured a fast and reliable backup and restore. Check out the “Backup Proxy” section of this guide to determine the best proxy implementation and select a transport mode for the environment.
   3. Plan for the backup server.
-  In this example, it was placed on a VM and replicated to the second datacenter. (The underlying datastore of the VM was not replicated /mirrored to the second site.)
+  In this example, it was placed on a VM and replicated to the second datacenter. (The underlying datastore of the VM was not replicated to the second site, only the VM.)
   4. Add other required components.
   The customer was already using two IBM TS3500 libraries for long-term retention with the existing backup software (agents). They prepared a partition on each library with 4x LTO6 drives for use with Veeam. You would proceed and connect them to the 2 physical servers (having the proxy and repository roles assigned), and additionally assign the tape server role to these servers.
 
