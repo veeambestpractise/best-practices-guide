@@ -74,7 +74,7 @@ The backup infrastructure for this sample scenario would look as follows:
 
 ## Veeam ONE
 
-Veeam ONE components should be placed next to the vCenter Server and should be able to read from the backup server and ESXi hosts (over the CIM protocol) as well. See Veeam ONE documentation for more information: http://helpcenter.veeam.com/one/80/deployment/index.html?introduction.html.
+Veeam ONE components should be placed next to the vCenter Server and should be able to read from the backup server and ESXi hosts (over the CIM protocol) as well. See Veeam ONE documentation for more information: [Veeam ONE Deployment Guide](https://helpcenter.veeam.com/docs/one/deployment/about.html?ver=95).
 
 ## Enterprise Manager
 
@@ -90,4 +90,4 @@ In many architecture meetings, planning for the retention policies is the most t
 
 **Important!** Remember to agree on backing up Microsoft SQL Server transaction logs with Veeam Backup & Replication.
 
-If speaking about the storage sizing, the tool at http://vee.am/rps can help to illustrate the retention chains on disk and estimate the required capacity.
+If speaking about the storage sizing, the tool at [Veeam Restore Calculator](http://vm-up.ch/2016/11/07/official-veeam-backup-size-calculator/) can help to illustrate the retention chains on disk and estimate the required capacity.
