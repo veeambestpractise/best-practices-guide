@@ -8,34 +8,26 @@ Veeam Backup & Replication takes advantage of multiple techniques for optimizing
 
 ### What does it do?
 
-The primary purpose of deduplication is to reduce the amount of data that has
-to be stored on disk by detecting redundant data within the backup and storing
-it only once. Veeam deduplication is based on identifying duplicate blocks
-inside a single VM disk or across multiple VMs in a job. This is primarily
-beneficial when VMs are deployed from the same template since the base image
-is identical, but is less useful for incremental data.
+The primary purpose of deduplication is to reduce the amount of data that has to be stored on disk by detecting redundant data within the backup and storing it only once. Veeam deduplication is based on identifying duplicate blocks inside a single VM disk or across multiple VMs in a job. This is primarily beneficial when VMs are deployed from the same template since the base image is identical, but is less useful for incremental data.
 
 ### How does it work?
 
-Deduplication is performed both by the source proxy (only for virtual disk currently being processed) and the target repository (for all virtual disks of all VMs in the job).
+Deduplication is performed both by the source proxy (only for virtual disk currently being processed) and the target repository. Target repository deduplication is applied to the current backup chain only so the effect depends on whether [per-VM chains](../resource_planning/repository_planning_pervm.md) are enabled or not. For per-VM chains virtual disks belonging to the same VM only will be deduplicated while for regular chains virtual disks of all VMs in the same job will be deduplicated.
 
-Veeam reads data blocks during the backup, calculates a unique hash for those blocks, and stores all identical blocks into the backup file for that session only once. By default, Veeam offers 4 different storage optimization settings that impact the size of read blocks and hash calculation for deduplication:
+Veeam reads data blocks during the backup, calculates a unique hash for those blocks, and stores all identical blocks into the backup file for that session only once. Veeam offers 4 different storage optimization settings that impact the size of read blocks and hash calculation for deduplication:
 
 -   **Local** – this is the default setting and is recommended when using a true disk-based repository. With this setting selected, Veeam reads data and calculates hashes in 1 MB chunks.
-
 -   **LAN** – this value is recommended when using a file-based repository such as SMB share. With this setting selected, Veeam reads data and calculates hashes in 512 KB chunks.
-
 -   **WAN** – this value is recommended when backing up directly over a slow link or for replication as it creates the smallest backups files at the cost of memory and backup performance. With this setting selected, Veeam reads data and calculates hashes in 256 KB chunks.
-
 -   **Local (>16 TB)** – this setting is recommended for large backup jobs with more than 16 TB of source data in the job. With this setting selected, Veeam reads data hashes and calculates data on 4 MB blocks.
+
+Smaller the block size is used more CPU cycles will be spent on hash calculation and more RAM will be used to store hashes.
 
 **Note:** Local (>16TB) underlying block size has changed in v9, from 8 MB to 4 MB. If you upgrade to Veeam Backup & Replication 9.0 from the previous product version, this option will be displayed as "Local Target (legacy 8MB block size)" in the list and will still use blocks size of 8 MB. It is recommended that you switch to an option that uses a smaller block size and create an active full backup to apply the new setting.
 
 ### When to use it?
 
-Veeam deduplication should be enabled in almost all cases, _except_
-when backing up to deduplication devices. Disabling in-line deduplication
-in such cases significantly increases restore performance.
+Veeam deduplication should be enabled in almost all cases, _except_ when backing up to deduplication devices. Disabling in-line deduplication in such cases significantly increases restore performance.
 
 However, there are a few special cases where a user might consider disabling this option:
 
@@ -81,18 +73,13 @@ There are multiple compression options available:
 -   **Dedupe-friendly** – this option uses the very simple RLE compression algorithm that needs very little CPU. It creates somewhat predictable data patterns, which is useful if users want to leverage 3rd party WAN accelerators with Veeam and/or a deduplication appliance (without the ‘decompress before storing’ setting). This allows the network stream to be moderately compressed while still being effectively cached.
 -   **Optimal** – this is the default compression used on Veeam jobs that leverages LZ4 compression. It provides typical compression ratios around 2:1 with fairly light CPU overhead. This light CPU overhead allows for excellent throughput with rates up to 150 MB/s per core and even faster decompression rates. This is a most commonly used practice that allows achieving excellent balance between performance and compression savings.
 -   **High** – this option uses `zlib` compression tuned for low to moderate CPU overhead. This setting provides for around 10% higher compression ratios compared to optimal, but uses over 50% more CPU horsepower with rates up to 100 MB/core. If proxies are not otherwise CPU bound, this extra savings may still be very much worth it, especially for larger repositories or if the bandwidth available is less than the 100 MB/s limit (i.e., 1 Gb links or less).
--   **Extreme** – this option uses `zlib` compression tuned for high CPU overhead. This setting uses even more CPU and lowered through even further- to around 50 MB/core, with typically only around 3-5% additional savings. It is quite rarely used, however, in cases where bandwidth between the proxy and repository is limited, for example, when you backup directly through WAN links and are not able to backup on first side and use backup copy jobs for this.
+-   **Extreme** – this option uses `zlib` compression tuned for high CPU overhead. This setting uses even more CPU and lowered through even further- to around 50 MB/core, with typically only around 3-5% additional savings. It is quite rarely used, however, in cases where bandwidth between the proxy and repository is limited, for example, when you backup directly through WAN links and are not able to backup on source site and use backup copy jobs for this.
 
 ### When to use it?
 
 Veeam compression should almost always be enabled. However, when using a deduplicating storage system as a repository for storing Veeam backups, it might be desirable to disable Veeam compression at the repository level by using the **Decompress backup data blocks before storing** advanced option in repository configuration.
 
-Enabling compression at the job level, and decompressing once sent to the
-repository will reduce the traffic between proxy server and backup
-repository by approximately 50% on average. If proxy and repository runs
-on the same server, the compression engine is automatically bypassed to
-prevent spending CPU for applying compression. The uncompressed
-traffic is sent between local data movers using shared memory instead.
+Enabling compression at the job level, and decompressing once sent to the repository will reduce the traffic between proxy server and backup repository by approximately 50% on average. If proxy and repository runs on the same server, the compression engine is automatically bypassed to prevent spending CPU for applying compression. The uncompressed traffic is sent between local data movers using shared memory instead.
 
 ### When do I change the defaults?
 
@@ -109,19 +96,13 @@ Compression settings can be changed on the job at any time and any new backup se
 
 ## BitLooker
 
-The option "Exclude deleted file blocks" is the third configurable
-option in job settings. In several places you will see references to
-this feature under the name "BitLooker".
+The option "Exclude deleted file blocks" is the third configurable option in job settings. In several places you will see references to this feature under the name "BitLooker".
 
 ![BitLooker](./deduplication_and_compression_bitlooker.png)
 
-When enabled, the proxy server will perform
-inline analysis of the Master File Table (MFT) on NTFS file systems
-and automatically skip blocks that have been marked as deleted.
+When enabled, the proxy server will perform inline analysis of the Master File Table (MFT) on NTFS file systems and automatically skip blocks that have been marked as deleted.
 
-When upgrading from versions prior to 9.0, the setting is disabled
-for existing backup jobs. To enable it for existing jobs, use the
-following PowerShell commands.
+When upgrading from versions prior to 9.0, the setting is disabled for existing backup jobs. To enable it for existing jobs, use the following PowerShell commands.
 
 ~~~
 Add-PSSnapIn VeeamPSSnapin;
@@ -132,5 +113,4 @@ Foreach ($job in Get-VBRJob) {
 }
 ~~~
 
-It is always recommended to leave BitLooker enabled, as it will reduce
-the amount of storage space required.
+It is always recommended to leave BitLooker enabled, as it will reduce the amount of backup storage space required.
