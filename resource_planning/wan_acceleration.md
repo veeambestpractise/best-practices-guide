@@ -7,7 +7,7 @@ To determine whether WAN acceleration is necessary in an environment, it is impo
 
 ## Determining Required Bandwidth
 
-When using WAN acceleration on links with very poor bandwidth, you may have to manually seed the initial copy to the target. For more information, refer to the [WAN Acceleration](https://helpcenter.veeam.com/docs/backup/vsphere/wan_acceleration.html?ver=95) section of the Veeam Backup & Replication User Guide.
+When using WAN acceleration on links with very poor bandwidth, you may have to manually seed the initial copy to the target. For more information, refer to the [WAN Acceleration](https://helpcenter.veeam.com/backup/vsphere/wan_acceleration.html) section of the Veeam Backup & Replication User Guide.
 
 The WAN accelerator uses its own digests based on the hashes of the blocks inside a VM disk, which means that it reads data from the backup files and re-hydrating them on the fly, or it reads directly from the source VM in case of replication. The WAN accelerator
 component will then process those data blocks with much more efficient data deduplication and compression algorithms. This is the reason why the WAN
@@ -44,7 +44,7 @@ Consider that the savings rate (18.5x) displayed in the GUI is based on **Proces
 
 **Note**: Approximate savings ratio can be assumed as of 10x.
 
-To calculate possible savings and needed bandwidth you may use the following calculator [Bandwidth Calculator](http://vee.am/bandwidth).
+To calculate possible savings and needed bandwidth you may use the following calculator <http://vee.am/bandwidth>.
 
 ## Backup Mode Effect
 
@@ -128,7 +128,7 @@ time for the initial data transfer to begin.
 ##### VeeamWAN\Digests
 On the source WAN accelerator there are the VM disk digests that take up disk space. For each processed VM disk, a disk digest file is created and placed in `\VeeamWAN\Digests\<JobId>_<VMId>_<DiskId>_<RestorePointID>`.
 
-**Note**: Traffic throttling rules should be created in both directions. See [Network Traffic Throttling and Multithreaded Data Transfer](https://helpcenter.veeam.com/docs/backup/vsphere/setting_network_traffic_throttling.html?ver=95) for more information.
+**Note**: Traffic throttling rules should be created in both directions. See [Network Traffic Throttling and Multithreaded Data Transfer](https://helpcenter.veeam.com/backup/vsphere/traffic_throttling.html) for more information.
 
 ### Target WAN Accelerator
 
@@ -138,7 +138,7 @@ The following recommendations apply to configuring a target WAN accelerator:
 
 -   It is recommended to configure the cache size at 10 GB for each operating system[^2] processed by the WAN accelerator. 
 
--   Once the target WAN accelerator is deployed, it is recommended to use the cache population feature (see [this section](https://helpcenter.veeam.com/docs/backup/vsphere/wan_population.html?ver=95) of the User Guide for details). When using this feature, the WAN accelerator service will scan through selected repositories for protected operating system types.
+-   Once the target WAN accelerator is deployed, it is recommended to use the cache population feature (see [this section](https://helpcenter.veeam.com/backup/vsphere/wan_population.html) of the User Guide for details). When using this feature, the WAN accelerator service will scan through selected repositories for protected operating system types.
 
 -   It is also possible to seed the initial copy of data to the target repository to further reduce the amount of data that needs to be transferred during the first run.
 
@@ -195,13 +195,13 @@ When connecting a new source WAN accelerator, the `temp` folder will temporarily
 ## How Many WAN Accelerators to Deploy?
 As the source WAN accelerator can only process one task at a time (one VM disk in a backup copy job or replication job), you may need to deploy multiple WAN accelerator pairs to meet the performance demands.
 
-As the target WAN accelerator can handle multiple incoming streams (as described in the [Many-to-One WAN Acceleration](https://helpcenter.veeam.com/docs/backup/vsphere/wan_acceleration_many.html?ver=95) section of the User Guide), it is recommended to maintain a 4:1 ratio
+As the target WAN accelerator can handle multiple incoming streams (as described in the [Many-to-One WAN Acceleration](https://helpcenter.veeam.com/backup/vsphere/wan_acceleration_many.html) section of the User Guide), it is recommended to maintain a 4:1 ratio
 between the number of source WAN accelerators per target WAN accelerator.
 
 This guideline is very much dependent on the WAN link speed. Many source sites with low bandwidth will create little pressure on the target WAN accelerator. So, for instance, in multiple ROBO configurations a 10:1 ratio can be considered.
 
 If there are sites with very high bandwidth (such as
-datacenter-to-datacenter replication), they will produce a much more significant load on both the target WAN accelerator and the target repository due to the second data block lookup (for more information, refer to the [User Guide](https://helpcenter.veeam.com/docs/backup/vsphere/wan_acceleration_sources.html?ver=95)).
+datacenter-to-datacenter replication), they will produce a much more significant load on both the target WAN accelerator and the target repository due to the second data block lookup (for more information, refer to the [User Guide](https://helpcenter.veeam.com/backup/vsphere/wan_acceleration_sources.html)).
 
 **Note:** The secondary data block lookup is used, when a data block is not available in the WAN accelerator cache. When there is a WAN cache “miss”, the secondary lookup for the same data block is performed on the target repository. If it is found here, it is read back to the WAN accelerator instead of re-transmitting over WAN.
 

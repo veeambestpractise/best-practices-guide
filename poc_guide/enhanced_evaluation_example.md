@@ -1,6 +1,8 @@
 # Enhanced Evaluation - Workshop Example
 
-This section describes how to conduct an infrastructure discovery and assessment session with a customer. Below is an example of how Veeam Architects hold such meetings this with customers. The example below is just one example of many possible ways of the meeting content; please have a look at other chapters of this guide to prepare for such meeting.
+This section describes how to conduct an infrastructure discovery and assessment session with a customer. Below is an example of how Veeam Architects hold such meetings this with customers. The example below is just one example of many possible ways of the meeting implementation; please have a look at other chapters of this guide to prepare for such meeting.
+
+This section describes how to conduct an infrastructure discovery and assessment session with a customer. Below is an example of how Veeam Architects hold such meetings this with customers. The example below is just one example of many possible ways of the meeting implementation; please have a look at other chapters of this guide to prepare for such meeting.
 
 ## Infrastructure Discovery
 1.	Start with the first main customer datacenter. Figure out the following:
@@ -8,10 +10,10 @@ This section describes how to conduct an infrastructure discovery and assessment
   2.	Main storage system, type, connection
   3.	Is storage virtualization used (between the storage arrays and hypervisor)?
 
-2.	Next would be the second customer datacenter (if available)
-  1. Is this the same platform as the main datacenter, if not what is it?
-  2. Are there any storage replication/mirroring involved?
-  3. Is Active/Active cluster used?
+2.	Depict the second main customer datacenter (if available)
+  1.	Are there any storage replication/mirroring involved?
+
+  2.	Is Active/Active cluster used?
 
     For proper backup proxy implementation and backup mode selection, it is important to know where the data that you want to back up is located, and whether you can access all data from a single site.
 
@@ -22,6 +24,7 @@ This section describes how to conduct an infrastructure discovery and assessment
   4.	Is vCenter Server physical or virtual? Where is it located?
 
   This is necessary to know if you plan to use the Virtual Appliance or Network backup mode.
+
   10GbE gives you faster processing for the Network mode. To learn more, see the “Backup Proxy” chapter.
 
 4.	Define the amount of production data:
@@ -33,12 +36,12 @@ This section describes how to conduct an infrastructure discovery and assessment
 
 5.	Create the first Veeam implementation draft/sample scenario:
 
-  1. Start with the repository, discussing customer demands. In the example, customer wanted to have the backup data in both datacenters. If so, you could decide to implement repositories on both sides (half of the data on each side) and use the backup copy job to move data to the second site.  
+  1. Start with the repository, discussing customer demands. In the example, customer wanted to have the backup data in both datacenters. If so, you could decide to implement repositories on both sides (half of the data on each side) and use the backup copy job for replicating data to the second site.  
   2. Discuss proxy implementation. The customer agreed to implement physical proxy servers connected to their Fibre Channel network. As the customer used thick-provisioned VMware VM disks, this ensured a fast and reliable backup and restore. Check out the “Backup Proxy” section of this guide to determine the best proxy implementation and select a transport mode for the environment.
   3. Plan for the backup server.
-  In this example, it was placed on a VM and replicated to the second datacenter. (The underlying datastore of the VM was not replicated to the second site, only the VM.)
+  In thie example, it was placed on a VM and replicated to the second datacenter. (The underlying datastore of the VM was not replicated /mirrored to the second site.)
   4. Add other required components.
-  The customer was already using two IBM TS3500 libraries for long-term retention with the existing backup software (agents). They prepared a partition on each library with 4x LTO6 drives for use with Veeam. You would proceed and connect them to the 2 physical servers (having the proxy and repository roles assigned), and additionally assign the tape server role to these servers.
+  The customer was already useing two IBM TS3500 libraries for long-term retention with the existing backup software (agents). They prepared a partition on each library with 4x LTO6 drives for use with Veeam. You would proceed and connect them to the 2 physical servers (having the proxy and repository roles assigned), and additionally assign the tape server role to these servers.
 
 6.	Define OS/applications:
   1. Create a list of used operating systems.
@@ -52,7 +55,7 @@ Planning for backup is very important for them, as this mainly influence the RPO
 
 In this example, the customer used a third small datacenter with a single storage system (Quorum) for the storage virtualization. During the discussion the customer identified 50 VMs that were business-critical and needed full performance even at disaster recovery. Thus, in the next step, you would add 2 ESXi hosts to that Quorum datacenter and replicate these 50 VMs every hour to that datacenter. The connection speed is to be 10 GbE. So, in case of disaster recovery the customer could just boot up all VMs with full speed.
 
-**Important!** It is very important to use all available Veeam possibilities to implement the best RTO and RPO times in customer’s environment.
+**Important!** It is very important to use all available Veeam possibilities to implement the best RTO and RPO times in customer’s environment. 
 
 For the VM recovery scenario, you can mix classic VM restore (best for small VMs), Instant VM Recovery (best for huge data servers) and VM replica failover (best for database systems with extreme I/O requirements).
 Together with the customer, check the “possible failure areas” (single storage system/ whole datacenter/ 1 datastore) and decide if the designed Veeam implementation fits into these needs and is in line with the budget.
@@ -74,7 +77,7 @@ The backup infrastructure for this sample scenario would look as follows:
 
 ## Veeam ONE
 
-Veeam ONE components should be placed next to the vCenter Server and should be able to read from the backup server and ESXi hosts (over the CIM protocol) as well. See Veeam ONE documentation for more information: [Veeam ONE Deployment Guide](https://helpcenter.veeam.com/docs/one/deployment/about.html?ver=95).
+Veeam ONE components should be placed next to the vCenter Server and should be able to read from the backup server and ESXi hosts (over the CIM protocol) as well. See Veeam ONE documentation for more information: http://helpcenter.veeam.com/one/80/deployment/index.html?introduction.html.
 
 ## Enterprise Manager
 
@@ -90,4 +93,4 @@ In many architecture meetings, planning for the retention policies is the most t
 
 **Important!** Remember to agree on backing up Microsoft SQL Server transaction logs with Veeam Backup & Replication.
 
-If speaking about the storage sizing, the tool at [Veeam Restore Calculator](http://vm-up.ch/2016/11/07/official-veeam-backup-size-calculator/) can help to illustrate the retention chains on disk and estimate the required capacity.
+If speaking about the storage sizing, the tool at http://vee.am/rps can help to illustrate the retention chains on disk and estimate the required capacity.
