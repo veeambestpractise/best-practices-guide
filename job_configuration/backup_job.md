@@ -72,16 +72,13 @@ In addition to using SureBackup for restore validation, storage-level corruption
 
 **When to avoid?** It is highly discouraged to use storage-level corruption guard on any storage that performs native "scrubbing" to detect silent data corruptions. Such storage will automatically heal silent data corruptions from parity disks or using erasure coding. This is the case for most deduplication appliances.
 
-For more information, please see Veeam Helpcenter:
-[Health Check for Backup Files](https://helpcenter.veeam.com/backup/vsphere/backup_health_check.html).
+For more information, please see Veeam Helpcenter: [Health Check for Backup Files](https://helpcenter.veeam.com/backup/vsphere/backup_health_check.html).
 
 ## Job Chaining
 
 Chaining backup jobs is convenient in certain circumstances, but should be used with caution. For example, if a job in such chain fails or stops responding, the entire job chain delivers poor backup success rate.
 
-A common way to handle multiple jobs is to let the built-in Intelligent Load Balancing (ILB) handle the
-proxy/repository resources by starting multiple jobs in parallel by using all available proxy/repository
-resources. This allows optimal task scheduling and provides the shortest backup window.
+A common way to handle multiple jobs is to let the built-in Intelligent Load Balancing (ILB) handle the proxy/repository resources by starting multiple jobs in parallel by using all available proxy/repository resources. This allows optimal task scheduling and provides the shortest backup window.
 
 ## Load Balancing
 When planning jobs schedule, you should consider balancing the load on source and target disks. Too many jobs accessing the same disk will load the storage significantly; this makes the job run slower or may have a negative impact on the VMs performance. To mitigate this problem, you can utilize [Storage Latency Control](../resource_planning/interaction_with_vsphere.md#storage-latency-control) (or Backup I/O Control) settings.
@@ -102,6 +99,6 @@ Dedicated proxies can be also very helpful if you use a stretched cluster and do
 
 See the illustration below as a good starting point to reach and keep control on high backup throughput. In this example, administrator wants to keep network traffic as much as possible inside the chassis; only the proxy-to-repository traffic goes via an external link.
 
-![](../media/image34.png)
+![](backup_job_1.png)
 
 **Tip:** To optimize load balancing in a distributed environment where backup proxies are rolled out to multiple sites, it is recommended to select all proxies from the same site in the job.
