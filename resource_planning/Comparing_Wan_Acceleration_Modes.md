@@ -1,3 +1,11 @@
+### Comparing Direct Mode with WAN Accelerated Mode
+
+Consider that the savings rate (18.5x) displayed in the GUI is based on **Processed** data ("re-hydrated" data blocks). In the example above, 283 MB would have been transferred over the WAN link in Direct Transfer mode, while only 72.8 MB were transferred after enabling WAN acceleration. The actual savings rate equals 3.9x in this relatively static demo infrastructure, whilst it would typically be significantly higher in real-life scenarios.
+
+**Note**: Approximate savings ratio can be assumed as of 10x.
+
+To calculate possible savings and needed bandwidth you may use the following calculator [Bandwidth Calculator](http://vee.am/bandwidth).
+
 ## Backup Mode Effect
 
 When planning for WAN acceleration, review the backup mode used on the primary backup job. Some backup methods produce a random I/O workload on the source repository (as opposed to sequential I/O patterns in other backup modes). The methods of reading from source is illustrated by the figure below:
@@ -18,8 +26,8 @@ When configuring the WAN accelerator, not all configuration parameters affect bo
 ### Source WAN Accelerator
 
 At the first step of the WAN accelerator configuration wizard, you can change the default setting of five TCP threads. This setting applies to
-the source WAN accelerator only and is automatically replicated to the target WAN accelerator at the beginning of each job. This ensures different source
-WAN accelerators can have different settings even when using the same target WAN accelerator. The maximum setting is 100 simultaneous threads for throughput optimization and compensation for high latency or packet loss.
+the source WAN accelerator only and is automatically configured to mirror the number on the target WAN accelerator at the beginning of each job. This ensures different source
+WAN accelerators can have different settings when using the same target WAN accelerator at different times. The maximum setting is 100 simultaneous threads for throughput optimization and compensation for high latency or packet loss.
 
 ![](../media/image22.png)
 
