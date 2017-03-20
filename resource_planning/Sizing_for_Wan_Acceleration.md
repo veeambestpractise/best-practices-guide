@@ -89,9 +89,6 @@ If the cache is pre-populated, an additional temporary cache is created. The tem
   - Configured cache size: `(4 operating systems * 10 GB) + 20 GB = 60 GB`
   - Used disk space: `(5 sources * 60 GB) = 300 GB`
 
-
-![Wan Accelerator relationships](./Wan-Accel_Sizing.png)
-
 For understanding how the disk space is consumed, please see the following sections.
 
 ##### VeeamWAN\GlobalCache\trg
