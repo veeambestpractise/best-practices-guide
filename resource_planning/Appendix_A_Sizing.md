@@ -80,4 +80,3 @@ If any of the below apply consider using SQL standard or Enterprise editions
 *	When using Files to Tape jobs extensively
 *	When unable to configure an external staging server
 *	When databases are using advanced features of Microsoft SQL Server
-﻿
