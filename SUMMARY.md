@@ -37,7 +37,7 @@
     * [Anaysing Wan Acceleration Workload](resource_planning/Analysing_Wan_Acceleration_Workload.md)
  * [Comparing WAN Acceleration Modes](resource_planning/Comparing_Wan_Acceleration_Modes.md)
     * [Sizing For WAN Acceleration](resource_planning/Sizing_for_Wan_Acceleration.md)
-    * [Sizing Targets for WAN Accereration  Relationship](resourc_planning/Sizing_Targets_for_relationships.md)
+    * [Sizing Targets for WAN Accereration  Relationship](resource_planning/Sizing_Targets_for_relationships.md)
     * [Deployments For WAN Acceleration](resource_planning/Deployments_for_Wan_Acceleration.md)
     * [Is WAN Acceleration Right For me](resource_planning/Is_Wan_Acceleration_right_for_my_environment.md)
    * [Tape Support](resource_planning/tape_support.md)
