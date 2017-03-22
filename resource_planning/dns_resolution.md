@@ -1,17 +1,15 @@
 # DNS Resolution
 
 Domain Name System (DNS) resolution is critical for Veeam Backup & Replication deployment (VBR)
-and configuration. VMware components must be accessible via both forward (A) and reverse (PTR)
-lookups. If not some Veeam components may not work correctly.
+and configuration. All infrastructure components should be resolvable through a fully qualified domain name (FQDN). This is especially important for vSphere/Hyper-V hosts and clusters. FQDN means that components are being accessible through both forward (A) and reverse (PTR) lookups.
 
-If DNS resolution is not available you may add VMware vCenter, ESXi and managed Veeam servers to the local `hosts` file on _all_ managed Veeam servers. When using this workaround it is recommended to add both short name and fully qualified domain name in the `hosts` file. DNS should be the preferred option.
+Ensure that the Veeam Backup & Replication server is installed on a machine that has a resolvable fully qualified domain name (FQDN). To check that the FQDN is resolvable, type _nslookup your-vbr-server-fqdn_ at a command line prompt. If the FQDN is resolvable, the nslookup command returns the IP and name of the Veeam Backup & replication server.
 
-When ESXi hosts are added to vCenter it is recommended to use FQDN. When backing up using "network"
-transport mode (NBD), the FQDN
-is returned via VMware API for Data Protection (VADP) so the backup proxy server must be able to
-resolve the FQDN via DNS. Using the `hosts` file the data transport path can be altered for NBD transfers.
+Only if DNS resolution is __not__ available you may add the infrastructure components like e.g. VMware vCenter, ESXi and managed Veeam servers to the local `hosts` file on _all_ managed Veeam servers. When using this workaround it is recommended to add both short name and fully qualified domain name in the `hosts` file.
 
-Please see the below example.
+When ESXi hosts are added to vCenter it is recommended to use FQDN. When backing up through the network with the Network Block Device (NBD) transport mode, the FQDN is returned via VMware API for Data Protection (VADP) so the backup proxy server must be able to resolve the FQDN via DNS. Using the `hosts` file the data transport path can be altered for NBD transfers.
+
+Please see the example below.
 
 ## Example `hosts` file
 
