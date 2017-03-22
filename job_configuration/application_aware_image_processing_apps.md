@@ -1,5 +1,11 @@
 # Application Specific Configuration
 
+## Microsoft Exchange
+
+Veeam Backup and Replication supports variety of Exchange configuration including DAG deployments. For more details refer to the corresponding section of the User Guide.
+
+** Note:** DAG clustered configurations may require adjusting cluster timeouts to avoid failovers during backup as per [KB1744](https://www.veeam.com/kb1744).
+
 ## Microsoft SQL Server
 
 In addition to the image level backup of a VM that will include full backup of the SQL databases Veeam Backup and Replication can perform additional backup of transaction logs. This process is described in the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/sql_backup_hiw.html?ver=95) of the User Guide in details.
