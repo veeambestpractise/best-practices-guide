@@ -2,7 +2,13 @@
 
 ## Microsoft SQL Server
 
-When backing up AlwaysOn availability group make sure all cluster nodes are processed by the same backup job for transaction logs processing and restores to work properly.
+In addition to the image level backup of a VM that will include full backup of the SQL databases Veeam Backup and Replication can perform additional backup of transaction logs. This process is described in the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/sql_backup_hiw.html?ver=95) of the User Guide in details.
+
+**Tip:** When backing up AlwaysOn availability group make sure all cluster nodes are processed by the same backup job for transaction logs processing and restores to work properly. Consider increasing cluster timeouts in case failover occurs during the backup, similar to Exchange DAG as per [KB1744](https://www.veeam.com/kb1744).
+
+**Note:** Transaction logs are processed periodically and stored in temporary folder inside of the VM before shipping to repository/shipping server. Default location of the temporary folder is %allusersprofile%\Veeam\Backup. To change temporary folder use SqlTempLogPath (STRING) registry value as described at https://helpcenter.veeam.com/backup/howtosql/how2_sql_hiw_log_backup.html.
+
+For the list of all registry keys responsible to fine-tuning MS SQL server backup (for example excluding certain databases from processing) refer to [KB2182](https://www.veeam.com/kb2182).
 
 ## Oracle
 

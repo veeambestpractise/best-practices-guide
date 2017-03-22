@@ -23,6 +23,8 @@ For Microsoft Active Directory, also check the tombstone lifetime settings, as d
 
 ## Explorer for SQL Server
 
+In certain scenarios use of staging server is necessary (see https://helpcenter.veeam.com/docs/backup/explorers/vesql_staging_server.html?ver=95). When staging server is used transaction logs from the backup are transported to staging server and replayed there. For that to work ensure that staging server has enough disk space in ADMIN$ share to store all log files.
+
 If you have special features/enhancements/configuration settings on the production Microsoft SQL and/or Microsoft SharePoint server to be protected with Veeam, these custom settings should be implemented on the staging SQL Server, too.
 
 One special case of custom settings that must be configured on staging server is encryption. When performing restore/export of encrypted database please refer to [KB2006](https://www.veeam.com/kb2006) for details on configuring the staging server.
