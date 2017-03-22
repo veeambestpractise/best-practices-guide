@@ -1,9 +1,9 @@
 # DNS Resolution
 
 Domain Name System (DNS) resolution is critical for Veeam Backup & Replication deployment (VBR)
-and configuration. All infrastructure components should be resolvable through a fully qualified domain name (FQDN). This is especially important for vSphere/Hyper-V hosts and clusters. FQDN means that components are being accessible through both forward (A) and reverse (PTR) lookups.
+and configuration. All infrastructure components should be resolvable through a fully qualified domain name (FQDN). This is especially important for vSphere/Hyper-V hosts and clusters. resolvable means that components are accessible through both forward (A) and reverse (PTR) lookups.
 
-Ensure that the Veeam Backup & Replication server is installed on a machine that has a resolvable fully qualified domain name (FQDN). To check that the FQDN is resolvable, type _nslookup your-vbr-server-fqdn_ at a command line prompt. If the FQDN is resolvable, the nslookup command returns the IP and name of the Veeam Backup & replication server.
+Ensure that the Veeam Backup & Replication server is installed on a machine that has a resolvable fully qualified domain name (FQDN). To check that the FQDN is resolvable, type `nslookup your-vbr-server-fqdn.domain.local` at a command line prompt. If the FQDN is resolvable, the nslookup command returns the IP and name of the Veeam Backup & replication server.
 
 Only if DNS resolution is __not__ available you may add the infrastructure components like e.g. VMware vCenter, ESXi and managed Veeam servers to the local `hosts` file on _all_ managed Veeam servers. When using this workaround it is recommended to add both short name and fully qualified domain name in the `hosts` file.
 
