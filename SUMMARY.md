@@ -59,6 +59,7 @@
       * [Workshop Example](poc_guide/enhanced_evaluation_example.md)
       * [Preparation](poc_guide/enhanced_evaluation_preparation.md)
       * [Automation](poc_guide/automation.md)
+* [Infrastructure Hardening](infrastructure_hardening/infrastructure_hardening.md)
 * [Backup & Replication Anatomy](anatomy/readme.md)
    * [Backup](anatomy/backup.md)
    * [VM Restore](anatomy/vm_restore.md)
