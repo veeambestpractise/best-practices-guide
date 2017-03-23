@@ -17,7 +17,7 @@ Depending on storage protocols utilized, the proxy can be deployed as follows:
 
 Both options can be used for [Backup from Storage Snapshots](./backup_from_storage_snapshots.md). When used with NFS
 datastores or Backup from Storage Snapshots, Direct Storage Access mode will
-also utilize the [Advanced Data Fetcher](./transport_modes.md#advanced-data-fetcher).
+also utilize the [Advanced Data Fetcher](./proxy_server_and_transport_modes.md#storage-optimizations).
 
 ## Virtual appliance mode
 
