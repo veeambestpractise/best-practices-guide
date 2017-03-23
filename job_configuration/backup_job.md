@@ -8,6 +8,8 @@ This screen also provides an advanced object exclusion tool that allows you to s
 
 More guidelines on object selection are listed below.
 
+**Important:** Veeam Backup and Replication supports encrypted VMs (in vSphere 6.5) but the resulting backups will contain unencrypted data. Thus it is strongly recommended to enable in transit and at rest job level encryption to ensure safety of the data. When using network (NBD) transport mode consider enabling NBD encryption as well. For more details on requirements and limitations of the backup of encrypted VMs refer to the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/encrypted_vms_backup.html?ver=95) of the User Guide.
+
 ### Increasing Deduplication Rate
 
 If the target repository is not configured to use per VM backup files, deduplication across all VMs within a single job is available. When using per VM backup files, deduplication is only available within a single VM backup chain, which reduces it's efficiency but still makes it relevant. The following recommendation applies to job level deduplication only.

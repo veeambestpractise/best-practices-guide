@@ -6,7 +6,7 @@ Replication jobs are used to replicate specified VMs to another or the same virt
 
 Like backup, replication is a job-driven process. In many ways, it works similarly to forward incremental backup:
 
--   During the first run of a replication job, Veeam Backup & Replication copies a whole VM image and registers the replicated VM on the target ESXi host.
+-   During the first run of a replication job, Veeam Backup & Replication copies a whole VM image and registers the replicated VM on the target ESXi host. In case of replicating to a cluster a host with least VMs registered at the moment will be used.
 -   During subsequent runs, the replication job copies only incremental changes, and creates restore points for the VM replica — so the VM can be recovered to the necessary state. Every restore point is in fact a usual VMware snapshot.
 -   When you perform incremental replication, data blocks that have changed since the last replication cycle are written to the snapshot delta file next to the full VM replica. The number of restore points in the chain depends on the retention policy settings.
 
@@ -43,6 +43,10 @@ If the [Virtual Appliance](https://helpcenter.veeam.com/backup/vsphere/virtual_a
 If the backup proxy is deployed on a physical server, or the Virtual Appliance or Direct NFS mode cannot be used for other reasons, Veeam Backup & Replication will use the [Network](https://helpcenter.veeam.com/backup/vsphere/network_mode.html) transport mode to populate replica disk files. For information on the Network mode, see <https://helpcenter.veeam.com/backup/vsphere/network_mode.html>.
 
 The Direct SAN mode (as part of Direct Storage Access) can only be used together with replication targets in case of transferring thick-provisioned VM disks at the first replication run. As replication restore points are based on VMware snapshots, that are thin provisioned by definition, Veeam will failback to Virtual Appliance (HotAdd) mode or Network mode, if configured at proxy transport settings. Direct SAN mode or backup from storage snapshots can be used on the source side in any scenario.
+
+**Note:** Veeam Backup and Replication supports replicating VMs residing on VVOLs but VVOLs are not supported as replication target datastore.
+
+**Note:** Replication of encrypted VMs is supported but comes with requirements and limitations outlined in the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/encrypted_vms_replication.html?ver=95) of the User Guide.
 
 ### Onsite Replication
 

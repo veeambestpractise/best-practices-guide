@@ -24,7 +24,7 @@ Only databases in ARCHIVELOG mode will be backed up online, databases in NOARCHI
 
     ALTER DATABASE END BACKUP
 
-**Note:** 32-bit Oracle instances on 64-bit Linux are not supported.
+**Note:** 32-bit Oracle instances on 64-bit Linux, and Oracle RAC are not supported.
 
 **Tip:** Avoid using aggressive logs truncation settings for databases protected with Data Guard as it may affect logs synchronization to secondary server. Data Guard should have enough time to transport logs remotely before they are truncated thus generally having "Delete logs older than" option less than 24 hours is not recommended.
 
