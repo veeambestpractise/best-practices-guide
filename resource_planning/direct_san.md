@@ -95,7 +95,7 @@ Ensure that a connection between the storage and backup proxy can be established
     NIC capacity of each proxy server. A 2 CPU System with 2x 12 cores is
     considered a good configuration balanced between throughput and costs.
 
-## Security Considerations for Direct SAN mode with FibreChannel or iSCSI
+## Security Considerations for Direct SAN
 
 During deployment of the proxy role to a Windows VM, Backup &
 Replication uses the following security mechanisms to protect them:
