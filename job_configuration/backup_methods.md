@@ -17,6 +17,8 @@ As a generic overview for I/O impact of the backup modes, please see this table:
 | Reversed incremental                       | 3x I/O (1x read, 2x write) for incremental backup size |
 | Synthetic full with transform to rollbacks | 4x I/O (2x read, 2x write) for entire backup chain     |
 
+While changing backup mode is one way of reducing amount og I/O on backup repository it is also possible to leverage features of the filesystem to avoid extra I/O. Currently Veeam Backup and Replication supports advanced features of one filesystem, Microsoft ReFS 3.0, to completely eliminate unnecessary read/write operations in certain configurations. For more details refer to the corresponding section of this guide. //FIXME
+
 ## Forward Incremental
 
 The forward incremental backup method is the simplest and easiest to understand; it generally works well with all storage devices although it requires more storage space than other backup methods due to the fact that it requires the creation of periodic full backups (either using active or synthetic backups), typically scheduled weekly. This is necessary because the incremental backups are dependent on the initial full backup; thus, older backups cannot be removed from retention chain until a newer backup chain is created. When a new full backup arrives, a new chain is started, and the old backups can be removed once the new chain meets the retention requirements.
