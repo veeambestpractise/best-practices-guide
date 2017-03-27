@@ -3,16 +3,21 @@
 Network mode is by far the easiest backup mode to implement as it
 requires no additional configuration. Veeam uses the same interface
 to backup and restore VMware configuration files and to read
-Change Block Tracking (CBT) information.
+Change Block Tracking (CBT) information, and download virtual machine
+configuration files.
 
-When in this mode the backup proxy will connect to ESXi hosts on
-VMkernel interfaces by DNS name resolution and use this connection to
-transport data utilizing Veeam’s file copy technology (also known as
-FastSCP). Remember that the backup proxy requires several ports to be
-open, as described in the User Guide:
-<https://helpcenter.veeam.com/backup/vsphere/used_ports.html>.
+In this mode, the backup proxy will query vCenter for the name of the ESXi host on which
+the VM scheduled for backup resides. Typically, hosts are added to vCenter using
+FQDN, which means NBD relies heavily on functioning DNS. Regardless if the ESXi hosts are
+connected to vCenter using a VMkernel interface on an isolated management network,
+VADP backup solutions will attempt to connect to this same interface. Please see
+the section on [DNS Resolution](./dns_resolution.md) for more information on how
+to override the default interface used for NBD backups.
 
-**Note:** It is highly recommended to maintain a good network connection
+As the only prerequisite, the backup server and proxy server requires
+ports 443/tcp and 902/tcp being open to the ESXi hosts.
+
+**Note**: It is highly recommended to maintain a good network connection
 between the VMware ESXi VMKernel port and Veeam Backup & Replication as
 it will be used by many other features like Instant VM Recovery, Virtual
 Lab and SureBackup, Linux FLR appliance, config files backups etc.
@@ -20,75 +25,77 @@ Lab and SureBackup, Linux FLR appliance, config files backups etc.
 For load balancing Veeam uses a selection of proxy servers based on the
 network subnet:
 
--   Backup proxies in the same subnets as the VMKernel interfaces (the Interface IP that is bound to the FQDN Name of ESXi hosts) are selected if you have the **Automatic Selection** proxy setting configured in the backup jobs.
+-   Backup proxies in the same subnets as the VMKernel interfaces are selected
+    if you have the **Automatic Selection** proxy setting configured in the
+    backup jobs.
 
-> ![](../media/image10.png)
+    ![](../media/image10.png)
 
--   If proxy servers do not run in same subnets as the VMKernel
-    interfaces of the ESXi hosts you will have to manually select the
-    proxies that will process your backup jobs, otherwise it is possible
-    that proxies from other sites will be used to transport data.
-    You can select all proxies from the same site to enable load
-    balancing in that case.
+-   If no proxy servers are available within same subnet as the VMKernel
+    interface of the ESXi host, you may have to manually select the
+    proxies that are most suitable to process the backup job. If **Automatic selection**
+    is still used, proxies from going through many network hops, even in other
+    sites may be used to transport data. You can manually select all eligible
+    proxies to enable load balancing.
 
-> ![](../media/image11.png)
+    ![](../media/image11.png)
 
 -   In case you work with several branches or datacenter environments
     it is also recommended that you manually choose the proxies
-    (per site) in the job settings to streamline and speed up the
-    load balancing.
+    (per site) in the job settings to reduce the time spent by the
+    Real Time Scheduler to determine eligible backup proxies.
 
 ## Pros
 
 -   Network mode can be used for both backup and restore with same speed.
 
--   Can work with both physical and virtual backup proxies.
+-   Works with both physical and virtual backup proxies.
 
 -   Being the most mature of all transport modes it supports all types
     of storage.
 
--   Is recommended for use in virtual deployments with NFS-based storage
-    systems in cases where Direct NFS is unavailable as it helps to minimize VM stunning. See also the “Considerations for NFS Datastores“ section of this guide.
+-   Is recommended for NFS based storage in cases where Direct NFS is unavailable.
+    Using NBD will minimize VM stunning. See also the
+    "[Considerations for NFS Datastores](./interaction_with_vsphere.md#considerations-for-nfs-datastores)"
+    section of this guide.
 
--   Performance on 10 Gb Ethernet is highly positive specifically as
-	the load is spread across all ESXi hosts.
+-   Performance on 10 GbE VMkernel interfaces typically provide around 4-500 MB/s
+    of throughput per host.
 
--   As data transfers initiate very quickly the Network mode is
+-   As data transfers initiate very quickly, network mode is
     preferable for processing incremental backups on relatively static
-    servers (that is VMs with small amount of changes).
+    virtual machines (VMs generating a small amount of change).
 
--   It can be helpful when you have plenty of clusters with individual
-    storage configurations (e.g., at hosting providers). In such
-    deployments using the Network mode for data transfer can help to
-    reduce Veeam footprint and costs as well as to increase the
+-   It can be helpful when dealing with many clusters with individual
+    storage configurations (e.g. hosting providers). In such
+    deployments, using network mode for data transfer can help
+    reducing Veeam footprint and costs as well as to increase
     security (if compared to other modes and storage configuration).
 
 ## Cons
 
--   Typically, Network mode uses only ~40% of the physical available
-    bandwidth of the external VMKernel Interface connection due to
-    throttling mechanisms implemented on the management interfaces of
-    VMware vSphere 4.x-6.x. Sometime less.
+-   Typically, network mode uses only up to 40% of the available
+    bandwidth of the external VMKernel interface due to
+    throttling mechanisms implemented on the management interfaces.
 
--   It can be rather slow on 1 Gb Ethernet (about 10-20 MB/s) due to
-    throttling mechanisms so restores via the Network mode can take
-    quite a long time with 1GbE.
+-   It can be even slower on 1 Gb Ethernet (about 10-20 MB/s) due to
+    throttling mechanisms, so especially restores via network mode can
+    take very long.
 
-**Tip:** You can influence the usage of the specific VMKernel interface
-by modifying the DNS name resolution for the ESXi hosts on the Backup
-& Replication Sever and on all Proxy Servers, for example, by adding
-entries in the *hosts* file of the Windows OS or by using special DNS
-configuration. See section on DNS at the start of this documented.
+**Tip**: Please see the section on [DNS Resolution](./dns_resolution.md) for
+information on how to override the network interface used for NBD backups e.g.
+when both 1 GbE and 10 GbE VMkernel interfaces are available, it is preferred
+to force usage of 10 GbE for highest possible throughput.
 
 ## Recommendations
 
-When you choose the network mode, you entirely avoid dealing with hot-add
-vCenter and ESXi overhead or physical SAN configuration. The network
-mode (NBD) is a very fast and reliable way to perform backups. In emergency
+When you choose network mode (NBD), you entirely avoid dealing with hot-add
+vCenter and ESXi overhead or physical SAN configuration. NBD is a very fast
+and reliable way to perform backups. In emergency
 situations when you need fast restore the following tips can be helpful:
 
 -   Consider setting up at least one virtual backup proxy
-    for hot-add based restores then it will be possible to achieve
+    for hot-add based restores. Then it will be possible to achieve
     higher throughput and thus lower RTO.
 
 -   You can also restore to a thin disk format and later use standard
@@ -96,18 +103,18 @@ situations when you need fast restore the following tips can be helpful:
 	  Thin disk restores have to transport less data.
 
 -   Another way to overcome this limitation is to use Instant VM
-    Recovery with Storage vMotion (if licensed on the VMware
-    vSphere side) as it is not affected by any throughput limitations of VMware.
+    Recovery with Storage vMotion (if license is available) as it is not
+    affected by the same throughput limitations as the VMkernel interfaces.
 
 When using NBD for backup, please consider the following:
 
--   As there is no overhead (like SCSI disk Hot-Add, or search for the
-    right volumes in Direct SAN) on backup proxies the Network mode can
+-   As there is no overhead (like SCSI hot-add, or search for the
+    right volumes in Direct Storage Access) on backup proxies, network mode can
     be recommended for scenarios with high-frequency backups or
     replication jobs, as well as for environments with very low overall
     data and change rate (VDI).
 
 - 	To protect VMware, Veeam reduces the number of permitted NBD connections
-    to 7. Please see the corresponding section in [Interaction with vSphere](./interaction_with_vsphere.md#vcenter-server-connection-count)
-    for more information on how to alter the configuration using registry 
-    keys.
+    to 28. Please see the corresponding section in
+    [Interaction with vSphere](./interaction_with_vsphere.md#vcenter-server-connection-count)
+    for more information on how to alter the configuration using registry keys.
