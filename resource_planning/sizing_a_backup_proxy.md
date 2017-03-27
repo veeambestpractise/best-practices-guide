@@ -22,39 +22,82 @@ Please see related chapters for each components for further details.
 
 **Tip:** Doubling the proxy server task count will - in general - reduce the backup window by 2x.
 
-##Total needed Task Slot Numbers
-A general sizing rule of thumb is, to use 1 physical CPU core or vCPU and 2 GB RAM
-for each 30 VMs within an 8 hour backup window. Depending on the infrastructure and mainly the storage
-performance, these number can turn out to be too conservative, we recommend to do a POC and find out the
-specific numbers for the environment.
+## Calculating required proxy tasks
 
-## Calculating Overall Task Count Examples
+Depending on the infrastructure and source storage performance, these numbers
+may turn out being too conservative. We recommend to performing a POC to
+examine the specific numbers for the environment.
 
-Sample infrastructure has the following configuration:
+$$ D = \text{Source data in MB} $$
+$$ W = \text{Backup window in seconds} $$
+$$ T = \text{Throughput} = \frac{D}{W} $$
+$$ CR = \text{Change rate} $$
+$$ CF = \text{Cores required for full backup} = \frac{T}{100} $$
+$$ CI = \text{Cores required for incremental backup} = \frac{T \cdot CR}{25} $$
 
--   480 VMs
--   48 TB used data
--   Backup window: 8 hours
--   Change rate: 5%
+### Example
 
-For that, the following calculation can be used as a starting point.
+Our sample infrastructure has the following characteristics:
 
-Using the "30 VMs per CPU core" rule, we get following result:
+- 1,000 VMs
+- 100 TB of consumed storage
+- 8 hours backup window
+- 10% change rate
 
-* 480 VMs / 30 VMs per core = 16 CPU cores
+By inserting these numbers into the equations above, we get the following
+results.
 
-Each CPU core must have 2 GB RAM:
+$$ D = 100\text{ TB} \cdot 1024 \cdot 1024 = 104\,857\,600 \text { MB}$$
+$$ W = 8\text{ hours} \cdot 3600 \text{ seconds} = 28\,800 \text{ seconds}$$
+$$ T = \frac{104857600}{28800} = 3\,641 \text{ MB/s}$$
 
-* 16 CPU cores x 2 GB RAM = 32 GB RAM.
+We use the average throughput to predict how many cores are required
+to meet the defined SLA.
 
-Result:
-**16 CPU cores and 32 GB RAM**.
-- For a physical server, it is recommended to install dual CPUs with 8 cores each.
-- For virtual proxy servers, it is recommended to configure multiple proxies with maximum 8 vCPUs to avoid co-stop scheduling issues.
+$$ CF = \frac{T}{100} \approx 36 \text{ cores} $$
 
-If you need to achieve a 2x smaller backup window (4 hours), then you may double the resources for a total of **32 CPU cores and 64 GB RAM** - 2x the amount of compute power (possibly split across multiple servers).
+The equation is modified to account for decreased performance for incremental
+backups in the following result:
 
-The same rule applies if the change rate is 2x higher (10% change rate). To process a 2x increase in amount of changed data, it is also required to double the proxy resources.
+$$ CI = \frac{T \cdot CR}{25} \approx 14 \text{ cores} $$
+
+As seen above, incremental backups typically have lower compute requirements,
+on the proxy servers.
+
+Considering each task consumes up to 2 GB RAM, we get the following result:
+
+**36 cores and 72 GB RAM**
+
+- For a physical server, it is recommended to install dual CPUs with 10 cores each.
+  2 physical servers are required.
+- For virtual proxy servers, it is recommended to configure multiple proxies
+  with maximum 8 vCPUs to avoid co-stop scheduling issues. 5 virtual proxy
+  servers are required.
+
+If we instead size only for incremental backups rather than
+full backups, we can predict alternative full backup window with less compute:
+
+$$ WS = \frac{104857600}{14 \cdot 100} $$
+$$ W = \frac{WS}{3600} \approx 21\text{ hours} $$
+
+If the business can accept this increased backup window for periodical full
+backups, it is possible to lower the compute requirement by more than 2x and
+get the following result:
+
+**14 cores and 28 GB RAM**
+
+- For a physical server, it is recommended to install dual CPUs with 10 cores each.
+  1 physical server is required.
+- For virtual proxy servers, it is recommended to configure multiple proxies
+  with maximum 8 vCPUs to avoid co-stop scheduling issues. 2 virtual proxy
+  servers are required.
+
+If you need to achieve a 2x smaller backup window (4 hours), then you may double
+the resources - 2x the amount of compute power (split across multiple servers).
+
+The same rule applies if the change rate is 2x higher (20% change rate).
+To process a 2x increase in amount of changed data, it is also required to double
+the proxy resources.
 
 **Note:** Performance largely depends on the underlying storage
 and network infrastructure.
@@ -63,25 +106,25 @@ Required processing resources may seem too high if compared with
 traditional agent-based solutions. However, consider that instead of
 using all VMs as processing power for all backup operations (including
 data transport, source deduplication and compression), Veeam Backup &
-Replication uses its central proxy and repository resources. Overall,
-required CPU and RAM resources are normally below 5% (and in many cases
-below 3%) of all virtualization resources utilized by backup and
-replication jobs.
+Replication uses its proxy and repository resources to offload the virtual
+infrastructure. Overall, required CPU and RAM resources utilized by backup
+and replication jobs are typically below 5% (and in many cases below 3%) of
+all virtualization resources.
 
-## How Many VMs per Job?
+## How many VMs per job?
 
 * For per job backup files: 30 VMs per job
 * For per VM backup files: 300 VMs per job
 
 Consider that some tasks within a job are still
-sequential processes. For example a merge process that write the oldest
+sequential processes. For example, a merge process that write the oldest
 incremental file into the full file is started after the last VM finishes
 backup processing. If you split the VMs into multiple jobs these background
 processes are parallelized and overall backup window can be lower.
-Be as well carefull with big jobs when you use Storage Snapshots at Backup
+Be as well careful with big jobs when you use Storage Snapshots at Backup
 from Storage Snapshots. Guest processing and Scheduling of jobs that contain
 multiple snapshots can lead into difficult scheduling situation and Jobs
-that spend time waiting for (free) ressources. A good size for Jobs that
+that spend time waiting for (free) resources. A good size for jobs that
 write to per VM chain enabled repositories is 50-200 VMs per Job.
 
 Also, remember that the number of running backup jobs should not exceed
