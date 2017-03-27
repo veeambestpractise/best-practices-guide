@@ -29,10 +29,15 @@ may turn out being too conservative. We recommend to performing a POC to
 examine the specific numbers for the environment.
 
 $$ D = \text{Source data in MB} $$
+
 $$ W = \text{Backup window in seconds} $$
+
 $$ T = \text{Throughput} = \frac{D}{W} $$
+
 $$ CR = \text{Change rate} $$
+
 $$ CF = \text{Cores required for full backup} = \frac{T}{100} $$
+
 $$ CI = \text{Cores required for incremental backup} = \frac{T \cdot CR}{25} $$
 
 ### Example
@@ -48,7 +53,9 @@ By inserting these numbers into the equations above, we get the following
 results.
 
 $$ D = 100\text{ TB} \cdot 1024 \cdot 1024 = 104\,857\,600 \text { MB}$$
+
 $$ W = 8\text{ hours} \cdot 3600 \text{ seconds} = 28\,800 \text{ seconds}$$
+
 $$ T = \frac{104857600}{28800} = 3\,641 \text{ MB/s}$$
 
 We use the average throughput to predict how many cores are required
@@ -78,6 +85,7 @@ If we instead size only for incremental backups rather than
 full backups, we can predict alternative full backup window with less compute:
 
 $$ WS = \frac{104857600}{14 \cdot 100} $$
+
 $$ W = \frac{WS}{3600} \approx 21\text{ hours} $$
 
 If the business can accept this increased backup window for periodical full
