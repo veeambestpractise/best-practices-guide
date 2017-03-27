@@ -10,10 +10,6 @@ arrays are currently supported:
 * Nimble Storage[^2]
 * Cisco HyperFlex[^3]
 
-[^1]: EMC Unity is supported starting Veeam Backup & Replication 9.0 Update 2 ([KB2147](https://www.veeam.com/kb2147))
-[^2]: Nimble Storage is supported starting Veeam Backup & Replication 9.5
-[^3]: Cisco HyperFlex is supported starting Veeam Backup & Replication 9.5 Update 2
-
 Licensing and system requirements are described in the Veeam User Guide:
 [Backup from Storage Snapshots](https://helpcenter.veeam.com/backup/vsphere/backup_from_storage_snapshots.html).
 
@@ -137,3 +133,7 @@ report in Veeam Availability Suite, you may quickly identify such VMs.
 VMs with either virtual or physical Raw Device Mapping (RDM)
 are not supported with BfSS. Such VMs will failover to backing up via
 standard methods if allowed in the job settings.
+
+[^1]: EMC Unity is supported starting Veeam Backup & Replication 9.0 Update 2 ([KB2147](https://www.veeam.com/kb2147))
+[^2]: Nimble Storage is supported starting Veeam Backup & Replication 9.5
+[^3]: Cisco HyperFlex is supported starting Veeam Backup & Replication 9.5 Update 2. Cisco HX utilizes VAAI offloaded storage snapshots, so restores using Veeam Explorer for Storage Snapshots are not supported.
