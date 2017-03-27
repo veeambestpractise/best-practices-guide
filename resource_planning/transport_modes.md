@@ -49,7 +49,7 @@ Direct Storage Access or Virtual Appliance backup modes fail.
 The only requirement is for the proxy to be able to access ESXi hosts on port
 902/tcp. NBD backup throughput is typically limited to using up to 40% of the
 bandwidth available on the corresponding VMkernel interfaces. If NBD-SSL is
-enabled, the throughput is typically 5x slower than regular NBD. NBD-SSL is
+enabled, the throughput is typically 10% slower than regular NBD. NBD-SSL is
 _enforced_ for ESXi 6.5 hosts. Read more about this in
 [Virtual Appliance Mode section - vSphere 6.5 and encryption](./virtual_appliance_mode.md#vsphere-65-and-encryption).
 

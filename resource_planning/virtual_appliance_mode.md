@@ -113,11 +113,16 @@ Operations” section of this guide.
 ## vSphere 6.5 and encryption
 
 Virtual appliance mode is typically the best choice to ensure data
-availability for vSphere 6.5 clusters, where features such as virtual machine
-encryption may be enabled. Both Direct Storage Access and NBD will be unavailable for
-encrypted virtual machines. vSphere 6.5 also enforces SSL/TLS encryption for
+availability for vSphere 6.5 clusters with encrypted virtual machines.
+In order to support backup of encrypted virtual
+machines, the virtual backup proxy must be encrypted within the same encryption
+domain (using the same KMIP server).
+
+Backup modes Direct Storage Access and Backup from Storage Snapshots
+are unavailable for encrypted virtual machines, and NBD will not be as performant.
+vSphere 6.5 also enforces SSL/TLS encryption for
 network mode (NBD), rendering virtual appliance mode a much more performant
-alternative, and will reduce host CPU usage significantly.
+alternative, and will reduce host CPU usage.
 
 ## Recommendations
 
