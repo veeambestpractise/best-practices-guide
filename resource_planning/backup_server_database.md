@@ -1,7 +1,7 @@
 # Veeam Backup & Replication Database
 
-Veeam Availability Suite which includes Veeam Backup & Replication and Enterprise Manager stores all information about backup infrastructure, jobs settings, job history, sessions and other
-configuration data in an instance of SQL Server.
+Veeam Availability Suite, which includes Veeam Backup & Replication and Enterprise Manager, stores all information about backup infrastructure, jobs settings, job history, sessions and other
+configuration data in an SQL server instance.
 
 When planning the Veeam Backup & Replication deployment you must choose the
 placement of the configuration database. It may be either a local or remote SQL Server with several licensing options available. Please see the
@@ -10,8 +10,7 @@ scale to the size of your infrastructure.
 
 ## SQL Server Edition
 
-Microsoft SQL Server 2012 Express Edition is included in the Veeam
-Backup & Replication setup which is a convenient option for most smaller deployments. It does however have several limitations[^1] which may affect performance:
+Microsoft SQL Server 2012 SP3 Express Edition is included in the Veeam Backup & Replication setup which is a convenient option for most smaller deployments. It does however have several limitations[^1] which may affect performance:
 
 -   Each instance uses only up to 1 GB of RAM
 -   Each instance uses only up to 4 cores of the first CPU
@@ -26,31 +25,30 @@ It is recommended to install Standard or Enterprise Edition if any of the follow
 
 If none of the above apply it is recommended to use Microsoft SQL Server Express Edition for the sake of simplicity.
 
-**Tip:** Veeam Backup & Replication leverages Microsoft SQL Server 2014 enhancements (cardinality estimator has proved to show significant improvements for large queries), it is recommended where possible to update the database server to Microsoft SQL Server 2014 or Microsoft SQL Server
-Express 2014.
+**Tip:** Veeam Backup & Replication supports Microsoft SQL Server 2008 or higher. To leverage Microsoft SQL Server 2014 enhancements (cardinality estimator has proved to show significant improvements for large queries), it is highly recommended to update the database server to Microsoft SQL Server (Express) 2014 or higher.
 
 ## Database Placement
 It is possible to leverage a remote SQL Server as staging server during restores
-in Veeam Explorer products. There are no specific edition requirements for neither SQL Express,  Standard or Enterprise instance of SQL Server installed locally on the backup server. It is still recommended to run the SQL Server locally (when resource and planning allow) on the backup server for lowest latency and highest performance.
+in Veeam Explorer products. There are no specific edition requirements for neither SQL Express, Standard or Enterprise instance of SQL Server installed locally on the backup server. It is still recommended to run the SQL Server locally (when resource and planning allow) on the backup server for lowest latency and highest performance.
 
 There may still be scenarios where a remote SQL Server is the better choice:
 
--   SQL Clustering and AlwaysOn Availability Group on external SQL
+-   **High Availability** - SQL Clustering and AlwaysOn Availability Group on external SQL
     Servers can be used for configuration database high availability
 
--   Failover to a standby backup server can be simplified by connecting to
+-   **Fast Recovery** - Failover to a standby backup server can be simplified by connecting to
     the configuration database directly without the need for restoring from
     a configuration backup
 
--   Some enterprises have dedicated virtual clusters for SQL Server due
+-   **Licensing** - Some enterprises have dedicated virtual clusters for SQL Server due
     to licensing constraints. In such cases, you may place the Veeam
     configuration database on existing instances to lower the overall TCO
 
 ## Sizing
 Veeam Backup & Replication may consume high amounts of CPU and RAM while
-processing backup or replication jobs. To achieve better performance and load balancing it is necessary to provide sufficient RAM and CPU resources to Veeam components.  Remember to add additional resources, if the backup server is responsible for multiple roles, such as repository or backup proxy.
+processing backup or replication jobs. To achieve better performance and load balancing it is necessary to provide sufficient RAM and CPU resources to Veeam components.  Remember to add additional resources, if the backup server is responsible for multiple roles, such as repository server or backup proxy.
 
-If possible follow these guidelines:
+Please follow these guidelines:
 
 | Number of concurrently running jobs | CPU | RAM   |
 | ------------------------------------|---- | ------|
@@ -60,20 +58,17 @@ If possible follow these guidelines:
 
 **Note:** Concurrently running jobs include any job type with a continuous schedule such as Backup Copy Jobs.
 
-When running more than 100 jobs concurrently increase compute
-resources in line with the table above to meet the resource need of the workload.
+When running more than 100 jobs concurrently increase compute resources in line with the table above to meet the resource need of the workload.
 
-It is recommended to place the configuration database on fast, resilient
-storage subsystem. Performant storage for backing the configuration database will result in overall increased processing performance. Jobs with a lot of metadata such as very large SharePoint farms with thousands of sites,
-SQL Server instances with many databases or Files to Tape jobs may increase
+It is recommended to place the configuration database on fast, resilient storage subsystem. Performant storage for backing the configuration database will result in overall increased processing performance. Jobs with a lot of metadata such as very large SharePoint farms with thousands of sites, SQL Server instances with many databases or Files to Tape jobs may increase
 the I/O requirements for the configuration database.
 
 ## SQL Server Configuration Tips
 Veeam Backup & Replication does not require any specific settings[^2] on the SQL Server in order to utilize the capabilities of Veeam Explorer for SharePoint or SQL. Both local and remote SQL Servers can be used for staging purposes, the corresponding requirements are detailed on
-[Veeam Helpcenter](https://helpcenter.veeam.com) should be met:
+[Veeam Helpcenter](https://helpcenter.veeam.com) and can be found through the following links:
 
--   [Veeam Explorer for Microsoft SharePoint](https://helpcenter.veeam.com/backup/explorers/vesp_staging_microsoft_sql_server.html)
--   [Veeam Explorer for Microsoft SQL Server](https://helpcenter.veeam.com/backup/explorers/vesql_systemreqs.html)
+-   [Veeam Explorer for Microsoft SharePoint](https://helpcenter.veeam.com/docs/backup/explorers/vesp_staging_microsoft_sql_server.html?ver=95)
+-   [Veeam Explorer for Microsoft SQL Server](https://helpcenter.veeam.com/docs/backup/explorers/vesql_systemreqs.html?ver=95)
 
 **Tip:**
 - Enable and configure all features used by production databases.
@@ -90,7 +85,7 @@ Follow Microsoft general recommendations for optimal SQL performance, for exampl
 To modify database connection settings or connect to another Veeam
 configuration database use the `DBConfig` utility as described in
 the product documentation at
-<https://helpcenter.veeam.com/backup/vsphere/dbconfig_utility.html>.
+<https://helpcenter.veeam.com/docs/backup/vsphere/dbconfig_utility.html?ver=95>.
 
 If using SQL authentication consider that all Veeam UI and Veeam
 PowerShell changes are communicated using this authentication.
@@ -105,7 +100,7 @@ the recommendations provided in these Veeam Knowledge Base articles:
 
 [^1]: Features Supported by the Editions of SQL Server 2012 <https://msdn.microsoft.com/en-us/library/cc645993(v=SQL.110).aspx#CrossBoxScale>
 
-[^2]: Generic requirements for SQL Server can be found here: <https://helpcenter.veeam.com/backup/vsphere/system_requirements.html#backup_server>
+[^2]: Generic requirements for SQL Server can be found here: <https://helpcenter.veeam.com/docs/backup/vsphere/system_requirements.html?ver=95>
 
 [^3]: For restoring encrypted databases, please see: <http://www.veeam.com/kb2006>
 
