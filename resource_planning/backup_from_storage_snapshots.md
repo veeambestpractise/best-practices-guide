@@ -7,11 +7,15 @@ arrays are currently supported:
 * HPE StoreServ (3PAR)
 * NetApp Data ONTAP (FAS, V-Series and IBM N series)
 * EMC VNX, VNXe and Unity[^1]
+* Nimble Storage[^2]
+* Cisco HyperFlex[^3]
 
 Licensing and system requirements are described in the Veeam User Guide:
 [Backup from Storage Snapshots](https://helpcenter.veeam.com/backup/vsphere/backup_from_storage_snapshots.html).
 
 The storage integration covered in this section is VMware only and does not apply for Hyper-V.
+Any protocol supported by Backup from Storage Snapshots will utilize the Advanced
+Data Fetcher to optimize for retrieving data on enterprise grade storage.
 
 Backup from Storage Snapshots (BfSS) is a feature included in the deep storage
 array integrations and a way to optimize and enhance VM backups in a very
@@ -131,3 +135,5 @@ are not supported with BfSS. Such VMs will failover to backing up via
 standard methods if allowed in the job settings.
 
 [^1]: EMC Unity is supported starting Veeam Backup & Replication 9.0 Update 2 ([KB2147](https://www.veeam.com/kb2147))
+[^2]: Nimble Storage is supported starting Veeam Backup & Replication 9.5
+[^3]: Cisco HyperFlex is supported starting Veeam Backup & Replication 9.5 Update 2. Cisco HX utilizes VAAI offloaded storage snapshots, so restores using Veeam Explorer for Storage Snapshots are not supported.

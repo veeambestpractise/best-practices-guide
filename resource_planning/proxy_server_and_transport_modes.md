@@ -3,58 +3,78 @@
 With backup proxies you can easily scale Veeam backup infrastructure
 based on the organization demands:
 
--   In a basic installation (simple deployment scenario for smaller
-    environments or Proof of Concepts) the backup proxy is
+-   In a **simple deployment** scenario for smaller
+    environments or POC, the backup proxy is
     automatically installed on the Veeam backup server as part of the
-    Veeam Backup & Replication installation process.
+    Veeam Backup & Replication installation.
 
--   In advanced deployment scenarios, the backup proxy role is usually
+-   In **advanced deployments**, the backup proxy role is manually
     assigned to one or more Windows servers. This approach allows
     for offloading the Veeam backup server, achieving better performance
-    and a minimal backup window. Backup proxies can be deployed both
-    in the primary site and in remote sites on any managed Microsoft
-    Windows server in the infrastructure. Depending on the data
-    transport mode you plan to use a backup proxy can be installed on a
-    physical server or on a VM as explained later in this section.
+    and reducing the backup window.
 
-A backup proxy handles data traffic between the VMware vSphere
+Backup proxies can be deployed both
+in the primary site, where the backup server is located, or in a remote site
+where additional infrastructure needs being backed up. A proxy server is
+installed on any managed Microsoft Windows server added to the backup
+infrastructure. Depending on whether the proxy server is installed on a
+physical or virtual machine, different transport modes are available.
+
+A backup proxy handles data traffic between the vSphere or Hyper-V
 infrastructure and Backup & Replication during backup,
 replication (at source and target), VM copy, VM migration jobs or VM restore.
 They are also used to detect and scan snapshots to enable Veeam
-Explorer for Storage Snapshot features if a compatible storage system
-was added to the Backup & Replication Server.
+Explorer for Storage Snapshots features when any supported primary storage
+is added to the backup server.
 
 Backup proxy operations include the following:
 
--   Retrieving VM data from production storage, compressing and sending
-    it to the backup repository (for a backup job) or another backup
-    proxy (for a replication job).
+-   Retrieving VM data from production storage
+
+-   In-line source side data deduplication to skip whitespace and redundant
+    blocks reported by vSphere Change Block Tracking (CBT) or Veeam File
+    Change Tracking (FCT) for Hyper-V.
+
+-   Performing in-line compression and deduplication before sending
+    it to the backup repository (for backup) or another backup
+    proxy (for replication)
 
 -   BitLooker: Applies to VMs running Windows OS and using NTFS. For more information, see the corresponding section of this guide > [Deduplication and Compression - BitLooker](../job_configuration/deduplication_and_compression.md#bitlooker)
 
--   Inline source side data deduplication to optimize information received by vSphere Change Block Tracking (CBT)
-
-- 	Inline compression
-
-- 	AES256 encryption if the corresponding option is selected in
-    the data transportation or backup data settings.
+- 	AES256 encryption, if enabled.
 
 Technically a backup proxy runs a light-weight transport service that
 takes a few seconds to deploy. When you add a Windows-based server to
-Veeam backup management console assigning the proxy role to it
-Backup & Replication installs the necessary components starting the
-required services on that server. When a job is started the Veeam
-Backup & Replication server becomes the point of control for dispatching
-tasks to proxy servers using its built-in load balancing algorithm.
+Veeam backup management console assigning the proxy role to it,
+Backup & Replication installs the necessary components, and starts the
+required services on that server. Any host in a Hyper-V cluster is automatically
+enabled as proxy server, when it is added to the infrastructure.
+When a job is started the backup server manages dispatch of
+tasks to proxy servers using its built-in [Intelligent Load Balancer](#intelligent-load-balancing) (ILB).
 
-Like any backup vendor using VMware VADP, Backup & Replication integrates
-VMware VDDK in the Veeam Transport Service. This is necessary for management
-interaction with vCenter and ESXi hosts, while in some scenarios, VDDK is bypassed to
-optimize performance.
+Like any backup vendor using VMware vStorage API for Data Protection (VADP),
+Backup & Replication integrates VMware Virtual Disk Development Kit (VDDK) in
+the Veeam Transport Service. This is necessary for management interaction with
+vCenter and ESXi hosts, while in some scenarios, VDDK is bypassed in favor of
+Veeam [Advanced Data Fetcher](#advanced-data-fetcher) for performance reasons.
 
-Backup data VDDK based transport modes underlay some limitations so Veeam developed it´s own more advanced communication protocols to address
-them. For example Veeam can backup multiple disks of the same VM at same time with HotAdd mode or can read data with Direct NFS mode directly out of
-NFS based storage systems.
+### Storage optimizations
+Stock VDDK transport modes have some limitations, such as being unable to process
+multiple disks in parallel, when using [virtual appliance transport mode](./virtual_appliance_mode.md) (hot-add), introducing excessive VMFS metadata updates,
+when performing replication, or being unable to backup from NFS based datastores.
+To overcome these limitations, Veeam introduced logic to bypass VDDK, when it is
+more optimal to do so.
+
+Veeam Advanced Data Fetcher (ADF) adds increased queue depth for >2x read
+performance on enterprise storage arrays. ADF is supported for Backup from
+Storage Snapshots, Direct NFS and virtual appliance mode.
+
+Other enhancements include:
+- a proprietary NFS client for backing up VMs on NFS datastores
+- parallel processing of multiple VM disks, when backing up via hot-add
+- parallel processing of multiple VM disks during restore
+- bypass VDDK when performing replication or VM restores via hot-add, to avoid excessive VMFS metadata updates
+- allow restore via Direct SAN
 
 ### Intelligent Load Balancing
 
@@ -73,50 +93,53 @@ in the configuration database, and is used at backup time to automatically selec
 the best transport mode depending on the type of connection between the backup proxy and datastore.
 
 First Backup & Replication checks if data processing can be
-assigned to a backup proxy with the Direct Storage mode (which includes
-Direct SAN Access and Veeam's own special Direct NFS Access), then it checks
-whether a Virtual Appliance or Hot-Add proxy can be used. Then it looks
-for a Network Mode(NBD) proxy. For more details, see the “Transport Modes”
-section of this guide.
+assigned to a backup proxy with the following preference:
 
-After the algorithm identifies all existing backup proxies it spreads
-the load across them in an optimal way:
+1. Direct Storage Access (which includes VDDK based Direct SAN or Veeam proprietary Direct NFS).
+2. Virtual appliance mode (hot-add)
+3. Network Block Device (NBD)
+
+For more details, see the [Transport Modes](./transport_modes.md) section of this guide.
+
+After the algorithm identifies all existing backup proxies it distributes tasks
+via the built-in Real-time Scheduler (RTS):
 
 1.  It discovers the number of tasks being processed at the moment by
     each proxy and looks for the server with the lowest load and the
     best connection.
 
-2.  All tasks are standing in a “VM to process” queue,  when a
-    proxy’s task slot becomes free Backup & Replication will
-    automatically fill it up with the next VM disk backup task.
+2.  All tasks are added to a "VMs to process" queue. When a
+    proxy task slot becomes available, RTS will
+    automatically assign the next VM disk backup task to it.
 
 3.  Priority goes to the disk that belongs to an already
     processed VM, after that VMs of already running jobs have next higher
-    priority. 
+    priority.
 
 **Tip:** At the repository, which writes the backup data, only one
 thread is writing to the backup storage _per running job_. If few jobs
 with a high number of VMs are processed simultaneously, you may experience
-that these threads are not sufficient to fully utilize backup storage 
+that these threads are cannot fully utilize the available backup storage
 performance. If throughput per I/O stream is a bottleneck, consider
-enabling "Per VM backup chains".
+enabling [per VM backup files](./repository_planning_pervm.md).
 
 **Tip:** Default recommended value is **1** task per core/vCPU, with at least
 2 CPUs. To optimize the backup window, you can cautiously oversubscribe the
 **Max concurrent tasks** count, but monitor CPU and RAM usage carefully.
 
-**Veeam Backup & Replication supports parallel processing of VMs/VM disks:**
+### Parallel Processing
+Veeam Backup & Replication supports parallel processing of VMs/VM disks:
 
--   It can process multiple VMs within a Job simultaneously increasing
-    data processing efficiency.
+-   It can process multiple VMs within a job simultaneously, increasing
+    data processing rates.
 
--   If a VM was created with multiple disks Veeam will try to process
-    these disks simultaneously to reduce VM backup time to minimize
+-   If a VM was created with multiple disks, Veeam will process
+    these disks simultaneously to reduce backup time and minimize
     VMware snapshot lifetime.
 
-- 	Priority goes to already running parallel processes for VM disks backups.
+- 	RTS gives priority to currently running parallel processes for VM disk backups.
 
-To achieve the best backup window it is recommended to slightly oversubscribe the tasks slots and start more jobs. This allow Veeam to leverage the maximum of the task slots and lead into an optimal backup window.
+To achieve the best backup window it is recommended to slightly oversubscribe the tasks slots, and start more jobs simultaneously. This allow Veeam to leverage the maximum of the task slots and lead into an optimal backup window.
 
 **Note:** Parallel processing is a global setting that is turned on by default.
 If you had upgraded from older versions please check and enable this setting.
