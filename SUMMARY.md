@@ -41,8 +41,7 @@
     * [Sizing Targets for WAN Accereration  Relationship](resource_planning/Sizing_Targets_for_relationships.md)
     * [Deployments For WAN Acceleration](resource_planning/Deployments_for_Wan_Acceleration.md)
     * [Is WAN Acceleration Right For me](resource_planning/Is_Wan_Acceleration_right_for_my_environment.md)
-* Tape Support
-     * [Tape Support Overview](resource_planning/tape_support-intro.md)
+* [Tape Support](resource_planning/tape_support-intro.md)
      * [Tape Support Deployments](resource_planning/tape_support-deploy.md)
      * [Tape Support Media Information](resource_planning/tape_support-media.md)
 * [Veeam Explorers](resource_planning/veeam_explorers.md)
