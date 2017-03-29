@@ -21,7 +21,13 @@ restores. For these Explorers, special attention should be paid to planning netw
 
 For Microsoft Active Directory, also check the tombstone lifetime settings, as described in Veeam Explorers User Guide at Veeam Help Center (https://helpcenter.veeam.com/backup/explorers/vead_recommendations.html).
 
+## Explorer for Microsoft Exchange
+
+When mounting Exchange database Veeam Explorer for Exchange replays relevant log files which may significantly increase time needed for mount operation in case there is a lot of logs to replay. As lagged DAG technology relies on keeping lots of Exchange logs expect Veeam Explorer taking significant amount of time to mount EDBs when performing item restore from lagged DAG mailbox servers.
+
 ## Explorer for SQL Server
+
+In certain scenarios use of staging server is necessary (see https://helpcenter.veeam.com/docs/backup/explorers/vesql_staging_server.html?ver=95). When staging server is used transaction logs from the backup are transported to staging server and replayed there. For that to work ensure that staging server has enough disk space in ADMIN$ share to store all log files.
 
 If you have special features/enhancements/configuration settings on the production Microsoft SQL and/or Microsoft SharePoint server to be protected with Veeam, these custom settings should be implemented on the staging SQL Server, too.
 

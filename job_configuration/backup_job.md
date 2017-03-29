@@ -8,6 +8,8 @@ This screen also provides an advanced object exclusion tool that allows you to s
 
 More guidelines on object selection are listed below.
 
+**Important:** Veeam Backup and Replication supports encrypted VMs (in vSphere 6.5) but the resulting backups will contain unencrypted data. Thus it is strongly recommended to enable in transit and at rest job level encryption to ensure safety of the data. For more details on requirements and limitations of the backup of encrypted VMs refer to the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/encrypted_vms_backup.html?ver=95) of the User Guide.
+
 ### Increasing Deduplication Rate
 
 If the target repository is not configured to use per VM backup files, deduplication across all VMs within a single job is available. When using per VM backup files, deduplication is only available within a single VM backup chain, which reduces it's efficiency but still makes it relevant. The following recommendation applies to job level deduplication only.
@@ -66,7 +68,7 @@ Full backup file maintenance will address two issues: VBK file fragmentation cau
 ### Storage-level corruption guard
 In addition to using SureBackup for restore validation, storage-level corruption guard was introduced to provide a greater level of confidence for the total dataset.
 
-**How does it work?** When a job has finished, storage-level corruption guard will perform a CRC verification for the entire backup chain. It will validate whether the contents of the backup chain blocks match the contents described within the backup file metadata. If a mismatch is discovered, it will attempt to repair the data block from production storage, assuming the block still exists and has not been overwritten. If it exists, the backup file will be repaired. If not, storage-level corruption guard will fail and make the user aware that a new full backup is required, and that the backup chain must be recovered from a secondary copy of the backup.
+**How does it work?** When a job has finished, storage-level corruption guard will perform a CRC verification for the most recent restore point. It will validate whether the contents of the backup chain blocks match the contents described within the backup file metadata. If a mismatch is discovered, it will attempt to repair the data block from production storage, assuming the block still exists and has not been overwritten. If it exists, the backup file will be repaired. If not, storage-level corruption guard will fail and make the user aware that a new full backup is required, and that the backup chain must be recovered from a secondary copy of the backup.
 
 **When to use?** It is recommended to use storage-level corruption guard for any backup job with no active full backups scheduled. Synthetic full backups are still "incremental forever" and may suffer from corruption over time.
 

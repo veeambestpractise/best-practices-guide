@@ -1,8 +1,20 @@
 # Application Specific Configuration
 
+## Microsoft Exchange
+
+Veeam Backup and Replication supports variety of Exchange configuration including DAG deployments. For more details refer to the corresponding section of the User Guide.
+
+** Note:** DAG clustered configurations may require adjusting cluster timeouts to avoid failovers during backup as per [KB1744](https://www.veeam.com/kb1744).
+
 ## Microsoft SQL Server
 
-When backing up AlwaysOn availability group make sure all cluster nodes are processed by the same backup job for transaction logs processing and restores to work properly.
+In addition to the image level backup of a VM that will include full backup of the SQL databases Veeam Backup and Replication can perform additional backup of transaction logs. This process is described in the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/sql_backup_hiw.html?ver=95) of the User Guide in details.
+
+**Tip:** When backing up AlwaysOn availability group make sure all cluster nodes are processed by the same backup job for transaction logs processing and restores to work properly. Consider increasing cluster timeouts in case failover occurs during the backup, similar to Exchange DAG as per [KB1744](https://www.veeam.com/kb1744).
+
+**Note:** Transaction logs are processed periodically and stored in temporary folder inside of the VM before shipping to repository/shipping server. Default location of the temporary folder is %allusersprofile%\Veeam\Backup. To change temporary folder use SqlTempLogPath (STRING) registry value as described at https://helpcenter.veeam.com/backup/howtosql/how2_sql_hiw_log_backup.html.
+
+For the list of all registry keys responsible to fine-tuning MS SQL server backup (for example excluding certain databases from processing) refer to [KB2182](https://www.veeam.com/kb2182).
 
 ## Oracle
 
@@ -12,7 +24,7 @@ Only databases in ARCHIVELOG mode will be backed up online, databases in NOARCHI
 
     ALTER DATABASE END BACKUP
 
-**Note:** 32-bit Oracle instances on 64-bit Linux are not supported.
+**Note:** 32-bit Oracle instances on 64-bit Linux, and Oracle RAC are not supported.
 
 **Tip:** Avoid using aggressive logs truncation settings for databases protected with Data Guard as it may affect logs synchronization to secondary server. Data Guard should have enough time to transport logs remotely before they are truncated thus generally having "Delete logs older than" option less than 24 hours is not recommended.
 
