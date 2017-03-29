@@ -135,7 +135,7 @@ The process goes as follows:
     point for that VM (the one this user authenticated to) on the
     **Files** tab of the web portal.
 
-**Note:** This feature also works for backups from Veeam Agents for Windows stored on a Veeam Backup & Replication repository. 
+**Note:** This feature also works for backups from Veeam Agents for Windows stored on a Veeam Backup & Replication repository.
 
 For more information on using this feature refer to the [Self-Restore of VM Guest Files](https://helpcenter.veeam.com/docs/backup/em/em_self_restore.html?ver=95)
 section of the Veeam Backup Enterprise Manager User Guide.
