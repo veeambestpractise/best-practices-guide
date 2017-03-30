@@ -8,4 +8,4 @@ Generally speaking pre-freeze and post-thaw scripts have to (depending on the ca
 
 Certain applications do not require these steps as they include self-healing mechanics or maintain transactional consistency by other means, application documentation has to be checked and/or application vendor has to be contacted for specifics on achieving this.
 
-Note that in addition to configuring application consistency for such applications, restore process has to be properly planned as additional steps would have to be followed to restore them as well.
+Note that in addition to configuring application consistency for such applications, restore process has to be properly planned as additional steps would have to be followed to restore them as well. Using [U-AIR (Universal Application Item Recovery) functionality](https://www.veeam.com/pdf/guide/veeam_backup_9_5_uair_wizard_user_guide_en.pdf) allows for performing restores of any applications including custom in-house built provided the native application management tools are used.
