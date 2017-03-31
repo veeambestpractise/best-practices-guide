@@ -46,6 +46,7 @@
    * [Replication Job](job_configuration/replication_job.md)
    * [Application-Aware Image Processing](job_configuration/application_aware_image_processing.md)
       * [Application specific](job_configuration/application_aware_image_processing_apps.md)
+* [Hyper-V Concerns](Hyper-V/Hyper-V.md)
 * [POC Guide](poc_guide/README.md)
    * [Assessment](poc_guide/assessment.md)
    * [Accelerated Evaluation](poc_guide/accelerated_evaluation.md)
