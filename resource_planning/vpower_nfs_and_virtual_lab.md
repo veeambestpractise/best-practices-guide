@@ -74,21 +74,21 @@ and verified. Remember that by default 3 VMs are tested at the same time in a Li
 but the following ones will stay in the testing queue. The limit can be adjusted in the SureBackup job configuration wizard,
 and may be increased if the backup repository can handle the load accordingly.
 
-### Common Issues
-When performing SureBackup, there are few common issues you may come across. Most of these issues are described 
-in Veeam knowledge base articles:
+### Guest predefined roles
 
-* When restoring Windows 2008 R2 virtual machines with the VMXNET3 network adapter,
-  the resulting virtual machine obtains a new NIC, and all network settings have to be adjusted manually.
-  The solution is explained in [Veeam KB1570](https://www.veeam.com/kb1570)
+When adding a guest image to the or the linked job, it is possible to assign a predefined role, for which Veeam Backup will automatically configure boot options and run a default set of application test accordingly, following rules described in below table.
 
-* When using DHCP with leases bound to MAC addresses, ensure that the vNIC MAC address is configured as `static`.
-  Otherwise the VM will boot with a MAC in the Virtual Lab, and the VM may get a different IP address >
-  [Setting a static MAC address for a virtual NIC](https://kb.vmware.com/kb/219)
+|Role|Default startup options|Default test script|
+|---|---|---|
+|DNS Server|600s maximum boot time<br>120s application timeout|Connection test on port 53|
+|Domain Controller (authoritative or non authoritative)|1800s maximum boot time<br>120s application timeout|Connection test on port 389|
+|Global Catalog|1800s maximum boot time<br>120s application timeout|Connection test on port 3268|
+|Mail Server|1800s maximum boot time<br>120s application timeout	Connection|test on port 25|
+|SQL server|1800s maximum boot time<br>120s application timeout|Run “USE” SQL command against all defined databases on the server|
+|Veeam Backup for Office 365|1800s maximum boot time<br>120s application timeout|Connection test on port 9191
+|Web Server|600s maximum boot time<br>120s application timeout	Connection|test on port 80|
 
-* Some Linux distributions use `udev` for assigning names to NICs. If the MAC address changes during 
-  replication or Instant VM Recovery, the NIC's configuration file may not be applied. For more
-  information, please see [RHEL6 SureBackup](https://forums.veeam.com/vmware-vsphere-f24/rhel6-surebackup-t11681.html#p63750) 
+**Note :** You will notice that the Domain Controller startup mode (authoritative or not) can now be choosen. Veeam will mark the server accordingly so it boots in the selected mode. This is especially useful if many DC needs to be tested in a single SureBackup job. Please remind that if a single (or the first) Domain Controller is booted, it might use the authoritative mode. Subsequent Domain controllers must then use non-authoritative mode and will then synchronize from the authoritative one.
 
 ### Checking SQL Server Database Availability
 A dedicated Visual Basic script is included to allow for testing whether all databases on a given instance are available. This script is available in the Veeam installation folder as the `Veeam.Backup.SqlChecker.vbs` file.
@@ -130,6 +130,22 @@ SSH private key, you should connect manually (one time) to the VM via SSH using 
 Another option for testing service availability with
 `Veeam.Backup.ConnectionTester.exe` is described in
 <http://www.veeam.com/kb1312>.
+
+### Common Issues
+When performing SureBackup, there are few common issues you may come across. Most of these issues are described
+in Veeam knowledge base articles:
+
+* When restoring Windows 2008 R2 virtual machines with the VMXNET3 network adapter,
+  the resulting virtual machine obtains a new NIC, and all network settings have to be adjusted manually.
+  The solution is explained in [Veeam KB1570](https://www.veeam.com/kb1570)
+
+* When using DHCP with leases bound to MAC addresses, ensure that the vNIC MAC address is configured as `static`.
+  Otherwise the VM will boot with a MAC in the Virtual Lab, and the VM may get a different IP address >
+  [Setting a static MAC address for a virtual NIC](https://kb.vmware.com/kb/219)
+
+* Some Linux distributions use `udev` for assigning names to NICs. If the MAC address changes during
+  replication or Instant VM Recovery, the NIC's configuration file may not be applied. For more
+  information, please see [RHEL6 SureBackup](https://forums.veeam.com/vmware-vsphere-f24/rhel6-surebackup-t11681.html#p63750)
 
 ### Troubleshooting Mode
 
