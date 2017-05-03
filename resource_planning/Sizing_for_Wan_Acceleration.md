@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 ## Sizing For Wan Acceleration
 When configuring the WAN accelerator on the source side, consider that all VM disk data blocks are already in the source backup repository and they can simply be re-read from the source repository when needed. This is the reason why configuring the cache size on a source WAN accelerator is not as important but still must exist as a number. It is never used for caching any data. However, there are other files residing in the source WAN accelerator folder, and the file structure will be described in the following sections.
 

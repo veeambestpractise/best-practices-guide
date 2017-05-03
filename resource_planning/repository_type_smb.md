@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 # SMB Repository
 
 While an SMB repository is often considered to provide less performance than direct attached storage, it still can provide very good results as a repository due to leveraging Veeam’s load-balancing technology for write operations, as explained in the next sections.

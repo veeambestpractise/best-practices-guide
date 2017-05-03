@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 ## Is Wan Acceleration right for your environment?
 
 Wan Acceleration is designed to optimize high latency or low bandwidth links between locations. there is a natural overhead and resource requirement when this is in operation and there will come a break point in regard to does Wan Acceleration work for me.

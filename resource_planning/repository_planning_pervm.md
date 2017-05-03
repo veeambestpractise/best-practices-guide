@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 # Per VM backup files
 It is possible to write one backup file chain per each VM on a repository, compared to the regular chain holding data for all the VMs of a given job. This option greatly eases job management, allowing to create jobs containing much more VMs than jobs with single chains, and also enhances performance thanks to more simultaneous write streams towards a repository, even when running a single job.
 

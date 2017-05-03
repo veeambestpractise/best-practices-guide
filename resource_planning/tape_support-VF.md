@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 ## Virtual Full Backups
 
 Virtual full allows you to backup up forever forward incremental backup chains to tape. The forever forward incremental chain always keeps on disk one full backup followed by a fixed number of increments. The full backup is constantly rebuilt: as new increments appear, the older ones are injected into the full.

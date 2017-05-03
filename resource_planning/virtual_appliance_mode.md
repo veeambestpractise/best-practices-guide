@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 # Virtual Appliance Mode
 
 As the default setting, virtual appliance mode (`hot-add`) has become quite

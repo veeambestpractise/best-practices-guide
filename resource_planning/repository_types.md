@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 # Repository Type
 Being storage-agnostic, Veeam Backup & Replication supports a wide range of repository types, each offering its own set of specific capabilities. So when deciding on repository storage, you might consider the following:
 -   Capacity
@@ -10,7 +11,7 @@ Being storage-agnostic, Veeam Backup & Replication supports a wide range of repo
 As a basic guideline, a repository should be highly resilient, since it is hosting customers data. It also needs to be scalable, allowing the backup to grow as needed.
 
 Organization policies may require different storage types for backups with different
-retention. In such scenarios, you may configure two backup repositories: 
+retention. In such scenarios, you may configure two backup repositories:
 -   A high-performance repository hosting several recent retention points for instant restores and other quick operations
 -   A repository with more capacity, but using a cheaper and slower storage, storing long-term retention points
 

@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 ### Analyzing Backup Job
 During both full and incremental job sessions, three metrics are displayed in the session data: **Processed**, **Read** and **Transferred**. To better understand the difference between direct data transfer and WAN accelerated mode, examine the **Read** and **Transferred** values: 
 
