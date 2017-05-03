@@ -37,7 +37,7 @@
            * [Sizing](resource_planning/repository_planning_sizing.md)
            * [Per VM Backup Files](resource_planning/repository_planning_pervm.md)
            * [Scale-out Backup Repository](resource_planning/repository_sobr.md)
-           * [vPower NFS and Virtual Lab](resource_planning/vpower_nfs_and_virtual_lab.md)
+
    * [WAN Acceleration](resource_planning/wan_acceleration.md)
       * [Anaysing Wan Acceleration Workload](resource_planning/Analysing_Wan_Acceleration_Workload.md)
       * [Comparing WAN Acceleration Modes](resource_planning/Comparing_Wan_Acceleration_Modes.md)
@@ -57,7 +57,7 @@
    * [Interaction with vSphere](resource_planning/interaction_with_vsphere.md)
    * [Hyper-V Concerns](Hyper-V/Hyper-V.md)
 
-##  Operational Guidlines
+##  Operational Guidelines
 
 * [Job Configuration](job_configuration/README.md)
    * [Backup Methods](job_configuration/backup_methods.md)
@@ -67,7 +67,8 @@
    * [Backup Copy Job](job_configuration/backup_copy_job.md)
    * [Replication Job](job_configuration/replication_job.md)
    * [Application-Aware Image Processing](job_configuration/application_aware_image_processing.md)
-* [Applications](applications/README.md)
+   * [Applications](applications/README.md)
+   * [Data Verification Using Virtual Labs](resource_planning/vpower_nfs_and_virtual_lab.md)
    * [Active Directory](applications/active_directory.md)
    * [Microsoft Exchange](applications/exchange.md)
    * [Microsoft SQL Server](applications/sql_server.md)
@@ -77,7 +78,7 @@
    * [IBM Notes/Domino](applications/domino.md)
    * [SAP HANA](applications/sap_hana.md)
 
-## Proof of Concept Guidlines
+## Proof of Concept Guidelines
 
 * [POC Guide](poc_guide/README.md)
    * [Assessment](poc_guide/assessment.md)

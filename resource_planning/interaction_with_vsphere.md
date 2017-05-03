@@ -173,7 +173,7 @@ recommendations:
 
 -   **Consider snapshot impact during job scheduling.**
     When possible, schedule backups and replication job during periods
-    of low activity. Leveraging the [Backup Window](https://helpcenter.veeam.com/backup/vsphere/vm_copy_schedule.html)
+    of low activity. Leveraging the Backup Window
     functionality can keep long-running jobs from running during production.
     See the corresponding setting on the **Schedule** tab of the job wizard
 
@@ -360,7 +360,7 @@ excluded from backup or replication jobs until the orphaned snapshots
 are manually removed.
 
 If you are evaluating Veeam Backup & Replication, use the
-[Infrastructure Assessment Reports](http://helpcenter.veeam.com/one/80/reports/index.html?infrastructure_assessment_report.html)
+[Infrastructure Assessment Reports](https://helpcenter.veeam.com/docs/one/reporter/vmware_infrastructure_dashboard.html?ver=95)
 included in Veeam Availability Suite to identify VMs with snapshots that
 can be affected by automatic snapshot consolidation.
 
@@ -503,7 +503,7 @@ account with full administrative permissions.
 However, in some environments full administrative permissions are not
 desirable or permitted. For those environments, Veeam has identified the
 minimum permissions required for the various software functions. Review
-the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf) and
+the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf) (not changed since V9.0) and
 configure the account used by Veeam Backup & Replication to meet these
 requirements.
 
@@ -517,4 +517,4 @@ top of the vCenter Server tree. Specifically if you access the vCenter over
 a WAN link such scoping can reduce the (management background) WAN traffic.
 
 For a detailed description of accounts, rights and permissions required
-for Veeam Backup & Replication operations, see the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf).
+for Veeam Backup & Replication operations, see the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf) (not changed since V9.0).

@@ -1,4 +1,4 @@
-# vPower NFS and Virtual Lab
+# Data Verification Using Virtual Labs
 
 ## Virtual Lab Appliance Overview
 
@@ -19,9 +19,9 @@ To avoid network reconfiguration of physical components, place the backup server
 
 Check Veeam Backup & Replication documentation for configuration details:
 
--   <https://www.veeam.com/veeam_backup_9_0_evaluators_guide_vpower_vsphere_en_pg.pdf>
+-   [vPower Users Guide](https://www.veeam.com/veeam_backup_9_0_evaluators_guide_vpower_vsphere_en_pg.pdf)
 
--   <https://helpcenter.veeam.com/backup/vsphere/verification_perform.html>
+-   [Recovery Verification help ](https://helpcenter.veeam.com/docs/backup/vsphere/recovery_verification_overview.html?ver=95)
 
 ## How SureBackup Job Works
 SureBackup leverages the capabilities of the Virtual Lab appliance to create an isolated environment where different tests can be executed against VMs. These VMs are powered on directly from the backup files using the vPower technology.

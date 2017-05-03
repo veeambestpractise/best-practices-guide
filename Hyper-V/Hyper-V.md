@@ -1,8 +1,8 @@
 # Hyper-V backup modes #
 
 Veeam Backup and Replication provides two different backup modes to process Hyper-V backups, both relying on the Microsoft VSS framework.
-- **On-Host** backup mode, for which backup data processing is delegated to the Hyper-V servers themselves, leveraging non transportable shadow copies by using software VSS provider.
--	**Off-Host** backup mode, for which backup data processing is offloaded to physical backup proxies, leveraging transportable shadow copies using Hardware VSS provider provided by the SAN storage vendor.
+- **On-Host** backup mode, for which backup data processing is on the Hyper-V node hosting the VM, leveraging non transportable shadow copies by using software VSS provider.
+-	**Off-Host** backup mode, for which backup data processing is offloaded to another non clustered participating Hyper-V node, leveraging transportable shadow copies using Hardware VSS provider provided by the SAN storage vendor.
 
 Backup mode availability is heavily depending on the underlying virtualization infrastructure, leaving Off-Host backup mode available only to protect virtual machines hosted on SAN storage volumes.
 
@@ -13,11 +13,11 @@ Performance wise, since both backup modes are using the exact same Veeam transpo
 |   |PRO|CON|
 |---|---|---|
 |**On-Host**|<ul><li>Simplifies management</li><li>Does not depend on third party VSS provider</li><li>Does not require additional hardware</li><li>Can be used on any Hyper-V infrastructures</li></ul>|<ul><li>Requires additional resources from the hypervisors during the backup window, for IO processing and optimization</li><li>Does not depend on third party VSS provider</li><li>Does not require additional hardware</li></ul>|
-|**Off-Host**|<ul><li>Preserves the computing resources on the hypervisors</li><li>Requires third party VSS hardware provider</li></ul>|<ul><li>Adds additional delay for snapshots transportation</li><li>Available only for virtualization infrastructures based on SAN storage</li></ul>|
+|**Off-Host**|<ul><li>No impact on the compute resources on the hosting hyper-v </li><li>Requires third party VSS hardware provider</li></ul>|<ul><li>Adds additional delay for snapshots transportation</li><li>Available only for virtualization infrastructures based on SAN storage</li></ul>|
 
 ## Limiting the impact of On-Host backup mode on the production infrastructure ##
 
-While consuming production resources for backup purpose, the On-Host backup mode disadvantage that might be mitigated respecting the following guidelines.
+While consuming production resources for backup purpose the On-Host backup mode disadvantages can be mitigated by the following guidelines.
 - **Spreading load across hypervisors**. It should be kept in mind that the backup load, instead of being carried by a limited number of dedicated proxies, will be spread through all the hypervisors. Default Veeam setting is to limit backup to 4 parallel tasks per hypervisor, which will use a maximum of four cores and 8 GB of RAM. This can be modified in the “Managed server” section of the Veeam Console, through the “Task limit” setting. For instance, if the sizing guidelines (please refer to the [resource planning](../resource_planning/resource_planning.md) section of this document) results in a total amount of 24 cores and 48 GB of RAM needed for Veeam transport services, and the infrastructure comprises 12 Hyper-V servers, each server task limit can be set to 2.
 
 ![alt text](./Hyper-V-01.jpg "Setting concurrent tasks for on-host transport mode")
@@ -25,10 +25,10 @@ While consuming production resources for backup purpose, the On-Host backup mode
 - **Leveraging storage latency control**. This feature allows to protect the volumes (globally for enterprise edition, and individually for enterprise plus edition) from high latency, by monitoring and adjusting backup load accordingly. Please refer to [user guide](https://helpcenter.veeam.com/docs/backup/hyperv/options_parallel_processing.html?ver=95) proper section for further information.
 
 # Change block tracking on Hyper-V #
-Depending on the combination of Hyper-V version primary storage type, the change block tracking mechanism involvement might differ.
+Depending on the combination of Hyper-V OS version and the primary storage type, the mechanism for tracking changes may differ.
 
-## Microsoft Resilient Change Tracking ##
-Since version 2016 of Hyper-V, Microsoft has implemented its own change block tracking mechanism, named “Resilient Change Tracking”. To benefit RCT, the following prerequisites must be met, otherwise incremental backups or replication will have to read entirely the source virtual disks to recalculate differences:
+## Microsoft Resilient Change Tracking in Hyper-V 2016 ##
+Since version 2016 of Hyper-V, Microsoft has implemented its own changed block tracking mechanism, named “Resilient Change Tracking”. To benefit RCT, the following prerequisites must be met, otherwise incremental backups or replication will have to read entirely the source virtual disks to recalculate differences:
 - Hyper-V server version 2016
 - Cluster functional level is upgraded to 2016
 - VM configuration version is upgraded to 8.0
