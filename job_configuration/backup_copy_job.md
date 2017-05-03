@@ -6,13 +6,13 @@ Every backup copy job creates its own folder on the target backup repository and
 
 Once created, a backup copy job will immediately start processing the latest existing restore point for all VMs included in the job, as long as it has been created less than one synchronization interval before the start of the backup copy job.
 
-By default, Veeam Backup & Replication keeps 7 restore points on the target backup repository in case of simple retention policy (see the “[Simple Retention Policy](https://helpcenter.veeam.com/backup/vsphere/backup_copy_simple_retention.html)” section of the User Guide for details). If you plan to use Grandfather-Father-Son (GFS) retention, refer to the “[GFS Retention Policy](https://helpcenter.veeam.com/backup/vsphere/backup_copy_gfs.html)” section for details.
+By default, Veeam Backup & Replication keeps 7 restore points on the target backup repository in case of simple retention policy (see the “[Simple Retention Policy](https://helpcenter.veeam.com/docs/backup/vsphere/backup_copy_simple_retention.html?ver=95)” section of the User Guide for details). If you plan to use Grandfather-Father-Son (GFS) retention, refer to the “[GFS Retention Policy](https://helpcenter.veeam.com/docs/backup/vsphere/backup_copy_gfs.html?ver=95)” section for details.
 
 Backup copy jobs file chains layout will depend on the repository option: "Per VM backup files" will generate one file chain per each VM, otherwise a chain will be generated per each job.
 
 If a backup copy job cannot process all requested VMs during an incremental execution interval, the job will still create a backup file on the target backup repository, but some VMs will be left inconsistent or unprotected. This might be caused by precedence of the backup task over the backup copy task. The backup copy process will be paused and resume during the next synchronization interval.
 
-Limitations of backup copy jobs are described in Veeam Backup & Replication User Guide at <https://helpcenter.veeam.com/backup/vsphere/backup_copy_select_point.html>.
+Limitations of backup copy jobs are described in Veeam Backup & Replication User Guide at <https://helpcenter.veeam.com/docs/backup/vsphere/backup_copy_select_point.html?ver=95>.
 
 **Important Note:** Cloud Connect jobs or Backup Copy Jobs with WAN acceleration enabled will process VMs sequentially, in all other scenarios backup copy job will process included VMs in parallel according to free task slots availability on backup repositories.
 
@@ -34,10 +34,10 @@ The backup copy job has the following phases:
 
 2. **Health check** — if scheduled, backup file integrity is verified before the next copy is initiated.
 
-3. **Data transfer (synchronization) phase** — during this phase, the backup copy job checks for a new restore point in the source, creates a file for a new restore point at the target and starts copying the state of the latest restore point of each processed VM to the target repository. The data transfer (synchronization) phase starts at specific time configured in the job properties (see [Synchronization Intervals](https://helpcenter.veeam.com/backup/vsphere/backup_copy_sync_interval.html)). You can define any interval needed in minutes, hours or days. Moreover, you can specify the time slot during which data can and cannot be transferred over the network, thus regulating network usage (see [Backup Copy Window](<https://helpcenter.veeam.com/backup/vsphere/backup_copy_window.html>)).
+3. **Data transfer (synchronization) phase** — during this phase, the backup copy job checks for a new restore point in the source, creates a file for a new restore point at the target and starts copying the state of the latest restore point of each processed VM to the target repository. The data transfer (synchronization) phase starts at specific time configured in the job properties (see [Synchronization Intervals](https://helpcenter.veeam.com/docs/backup/vsphere/backup_copy_sync_interval.html?ver=95)). You can define any interval needed in minutes, hours or days. Moreover, you can specify the time slot during which data can and cannot be transferred over the network, thus regulating network usage (see [Backup Copy Window](<https://helpcenter.veeam.com/docs/backup/vsphere/backup_copy_window.html?ver=95>)).
 
 4. **Transform phase** — copy jobs are by nature running in "forever forward incremental" mode, and perform transform operations on the target backup repository accordingly. Additionally, it is possible to schedule health checks or backup file compacting as described in the [Backup Job](./backup_job.md#storage-maintenance) section. The transform phase begins when all VMs are successfully copied to the target, or if the synchronization interval expires.
-   
+
    **Note:** the transform process itself puts additional pressure on the target repository. In large environments with deduplication storage appliances used as backup repositories or with backup copy jobs processing a large number of VMs or big VMs, the transform process can take a significant amount of time. For non-integrated deduplication appliances, it is recommended to use the "Read entire restore point..." option. This forces the Backup Copy Job to running forward incremental with periodical full backups copied entirely from the source backup repository rather than being synthesized from existing data.
 
 5. **Compact full backups** — if enabled, the recent full backup file is re-created to avoid fragmentation.
@@ -46,7 +46,7 @@ The backup copy job has the following phases:
 
 7. **Idle phase** — for the most time, the backup copy job remains in the *Idle* state, waiting for a new restore point to appear on the source backup repository. When the synchronization interval expires, a new interval starts at step 1.
 
-For more information, refer to the corresponding section of the User Guide > [Backup Copy Job](https://helpcenter.veeam.com/backup/vsphere/backup_copy_job_task.html).
+For more information, refer to the corresponding section of the User Guide > [Backup Copy Job](https://helpcenter.veeam.com/docs/backup/vsphere/backup_copy_job_task.html?ver=95).
 
 ## Job Layout and Object Selection
 
@@ -61,12 +61,12 @@ As you can select any VM to be copied from multiple backups, you can plan for po
 
 ## Initial synchronization
 
-When creating the initial copy to the secondary repository, it is recommended to use backup seeding (see [Creating Seed for Backup Copy Job](https://helpcenter.veeam.com/backup/vsphere/backup_copy_mapping_auxiliary.html))
+When creating the initial copy to the secondary repository, it is recommended to use backup seeding (see [Creating Seed for Backup Copy Job](https://helpcenter.veeam.com/docs/backup/vsphere/backup_copy_mapping_auxiliary.html?ver=95))
 whenever possible. Especially when transferring large amounts of data over less performant WAN links, the seeding approach can help mitigating initial synchronization issues.
 
 While Backup Copy Jobs were designed for WAN resiliency, the initial copy is more error prone, as it is typically transferring data outside the datacenter over less reliable links (high latency, or packet loss).
 
-The most frequent synchronization issues are described in the User Guide > [Handling Backup Copy Job Issues](https://helpcenter.veeam.com/backup/vsphere/backup_copy_issues.html).
+The most frequent synchronization issues are described in the User Guide > [Handling Backup Copy Job Issues](https://helpcenter.veeam.com/docs/backup/vsphere/backup_copy_issues.html?ver=95).
 
 ## Additional Options
 
@@ -102,6 +102,6 @@ Usually, a backup copy is used to send data remotely. If it is necessary to send
 5.  Import the backup on the target. If already imported, perform a rescan.
 6.  Create the final backup copy job on the Veeam console. On the **Target** step of the **Backup copy job** wizard, use the **Map backup** link and select the transported backup — this backup will be used as a “seed”.
 
-If you are using a WAN accelerated transfer, refer to the WAN Accelerator section for proper cache population procedure: <https://helpcenter.veeam.com/backup/vsphere/wan_populate_cache.html>.
+If you are using a WAN accelerated transfer, refer to the [WAN Accelerator section](resource_planning/Sizing_for_Wan_Acceleration.md) for proper cache population procedure.
 
 **Note:** Only the initial first run of a reverse incremental chain can be used with seeding (but any forward incremental chain can be used).
