@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 # WAN Acceleration
 
 By combining multiple technologies such as network compression, multi-threading, dynamic TCP window size,

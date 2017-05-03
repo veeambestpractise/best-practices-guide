@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 # Restores
 
 #### VM Restore from Tape to Infrastructure
@@ -12,7 +13,7 @@ To choose the needed option, select Restore directly to the infrastructure or Re
 ###### Restore Directly to Infrastructure
 When you restore VMs from tape directly to the infrastructure, the restore process publishes the VMs to the virtual infrastructure copying the VM data directly from tape. This option is recommended if you want to restore one VM or a small number of VMs from a large backup that contains a lot of VMs. In this case, you do not need to provide a staging repository for a large amount of data most of which is not needed to you at the moment. This option is slow if you restore many VMs. The VMs are restored one by one: this requires a lot of rewinding of tape as tapes do not provide random access to data.
 
-##### Restore Through Staging Repository 
+##### Restore Through Staging Repository
 When you restore VMs from tape through a staging repository, the restore process temporarily copies the whole restore point to a backup repository or a folder on disk. After that Veeam starts a regular VM restore. This option is recommended if you want to restore a lot of VMs from a backup as the disk provides a much faster access to random data blocks than tape.
 
 

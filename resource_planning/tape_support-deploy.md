@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 ## Tape Devices Deployment
 
 
@@ -21,7 +22,7 @@ The block size is unified for:  All drives in one library (if the drives support
 - Tapes with Veeam backups written by another tape library,
 - Tapes with Veeam backups written on another tape server,
 - Tapes written with other data transfer configuration settings,
-- Tapes written on a 3rd party device. 
+- Tapes written on a 3rd party device.
 
 The tapes must be written with block size that match used for writing such tapes must match the value currently used for the tape device you are using for restore.
 

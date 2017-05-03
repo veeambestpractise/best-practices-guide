@@ -1,3 +1,5 @@
+<!--- Last edited: Luca Dell'Oca on 03-05-2017 --->
+
 # Backup Methods
 
 Veeam Backup & Replication stores backups on disk using a simple, self-contained file based approach. However, there are several methods to create and store those files on the file system. This section will provide an overview of these methods, their pros and cons, as well as recommendations on use cases for each one.

@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 ### Comparing Direct Mode with WAN Accelerated Mode
 
 Consider that the savings rate (18.5x) displayed in the GUI is based on **Processed** data ("re-hydrated" data blocks). In the example above, 283 MB would have been transferred over the WAN link in Direct Transfer mode, while only 72.8 MB were transferred after enabling WAN acceleration. The actual savings rate equals 3.9x in this relatively static demo infrastructure, whilst it would typically be significantly higher in real-life scenarios.

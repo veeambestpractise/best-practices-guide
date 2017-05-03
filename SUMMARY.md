@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 # Summary
 
 * [Veeam Backup & Replication Best Practices](README.md)
@@ -6,7 +7,7 @@
 
 ## Architecture Overview
 
-* [Resource Planning](resource_planning/resource_planning.md)
+
 * [DNS Resolution](resource_planning/dns_resolution.md)
 * [Veeam Backup Server](resource_planning/backup_server_introduction.md)
 * [Deployment Method](resource_planning/backup_server_deployment_method.md)
