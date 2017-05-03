@@ -11,7 +11,7 @@ arrays are currently supported:
 * Cisco HyperFlex[^3]
 
 Licensing and system requirements are described in the Veeam User Guide:
-[Backup from Storage Snapshots](https://helpcenter.veeam.com/backup/vsphere/backup_from_storage_snapshots.html).
+[Backup from Storage Snapshots](https://helpcenter.veeam.com/docs/backup/vsphere/backup_from_storage_snapshots.html?ver=95).
 
 The storage integration covered in this section is VMware only and does not apply for Hyper-V.
 Any protocol supported by Backup from Storage Snapshots will utilize the Advanced
@@ -127,7 +127,7 @@ benefits of using BfSS are minimal.
 
 In most environments, large VMs or highly transactional VMs producing large
 amounts of changed data benefit most from using BfSS. Using the
-[VM Change Rate Estimation](https://helpcenter.veeam.com/one/reporter/vm_change_rate_estimation.html)
+[VM Change Rate Estimation](https://helpcenter.veeam.com/docs/one/reporter/vm_change_rate_estimation.html?ver=95)
 report in Veeam Availability Suite, you may quickly identify such VMs.
 
 VMs with either virtual or physical Raw Device Mapping (RDM)
