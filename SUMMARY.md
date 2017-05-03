@@ -2,8 +2,11 @@
 
 * [Veeam Backup & Replication Best Practices](README.md)
 * [Introduction](introduction/readme.md)
-   * [Contacting Veeam Software](introduction/contacting_veeam_software.md)
-* [Resource Planning](resource_planning/resource_planning.md)
+* [Contacting Veeam Software](introduction/contacting_veeam_software.md)
+
+## Architecture Overiew
+
+   * [Resource Planning](resource_planning/resource_planning.md)
    * [DNS Resolution](resource_planning/dns_resolution.md)
    * [Veeam Backup Server](resource_planning/backup_server_introduction.md)
        * [Deployment Method](resource_planning/backup_server_deployment_method.md)
@@ -12,6 +15,7 @@
    * [Veeam Backup & Replication Database](resource_planning/backup_server_database.md)
    * [Protecting Veeam Backup & Replication Configuration](resource_planning/protecting_veeam_backup_and_replication_config.md)
    * [Veeam Enterprise Manager](resource_planning/veeam_enterprise_manager.md)
+    * [vCloud Director Self Service Portal](resource_planning\veeam_vcloud_director_portal.md)
    * [Search Server and Indexing](resource_planning/search_server_and_indexing.md)
    * [Proxy Servers](resource_planning/proxy_server_and_transport_modes.md)
        * [Transport Modes](resource_planning/transport_modes.md)
@@ -33,7 +37,7 @@
            * [Sizing](resource_planning/repository_planning_sizing.md)
            * [Per VM Backup Files](resource_planning/repository_planning_pervm.md)
            * [Scale-out Backup Repository](resource_planning/repository_sobr.md)
-   * [vPower NFS and Virtual Lab](resource_planning/vpower_nfs_and_virtual_lab.md)
+           * [vPower NFS and Virtual Lab](resource_planning/vpower_nfs_and_virtual_lab.md)
    * [WAN Acceleration](resource_planning/wan_acceleration.md)
       * [Anaysing Wan Acceleration Workload](resource_planning/Analysing_Wan_Acceleration_Workload.md)
       * [Comparing WAN Acceleration Modes](resource_planning/Comparing_Wan_Acceleration_Modes.md)
@@ -51,7 +55,11 @@
       * [Tape Support Restores](resource_planning/tape_support-restore.md)
    * [Veeam Explorers](resource_planning/veeam_explorers.md)
    * [Interaction with vSphere](resource_planning/interaction_with_vsphere.md)
-* [Job Configuration](job_configuration/README.md)
+   * [Hyper-V Concerns](Hyper-V/Hyper-V.md)
+
+##  Operational Guidlines
+
+   * [Job Configuration](job_configuration/README.md)
    * [Backup Methods](job_configuration/backup_methods.md)
    * [Encryption](job_configuration/encryption.md)
    * [Deduplication and Compression](job_configuration/deduplication_and_compression.md)
@@ -68,7 +76,9 @@
    * [MySQL](applications/mysql.md)
    * [IBM Notes/Domino](applications/domino.md)
    * [SAP HANA](applications/sap_hana.md)
-* [Hyper-V Concerns](Hyper-V/Hyper-V.md)
+
+## Proof of Concept Guidlines
+
 * [POC Guide](poc_guide/README.md)
    * [Assessment](poc_guide/assessment.md)
    * [Accelerated Evaluation](poc_guide/accelerated_evaluation.md)
@@ -83,7 +93,11 @@
    * [Instant VM Recovery](anatomy/instant_vm_recovery.md)
    * [Windows File-Level Restore](anatomy/windows_file_level_restore.md)
    * [Replication](anatomy/replication.md)
-* [Networking Diagrams](networking/readme.md)
+
+## Appendices
+
+   * [Sizing Summary](resource_planning\Appendix_A_Sizing.md)
+   * [Networking Diagrams](networking/readme.md)
    * [Backup Server](networking/veeam_backup_server.md)
    * [Proxy Server](networking/proxy_server.md)
    * [Repository Server](networking/repository_server.md)
@@ -91,4 +105,3 @@
    * [Data Validation](networking/data_validation.md)
    * [Application-aware Image Processing](networking/aaip.md)
    * [Enterprise Manager](networking/veeam_backup_enterprise_manager.md)
-* [Sizing Appendix](resource_planning\Appendix_A_Sizing.md)
