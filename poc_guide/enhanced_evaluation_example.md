@@ -90,4 +90,4 @@ In many architecture meetings, planning for the retention policies is the most t
 
 **Important!** Remember to agree on backing up Microsoft SQL Server transaction logs with Veeam Backup & Replication.
 
-If speaking about the storage sizing, the tool at [Veeam Restore Calculator](http://vm-up.ch/2016/11/07/official-veeam-backup-size-calculator/) can help to illustrate the retention chains on disk and estimate the required capacity.
+If speaking about the storage sizing, the tool at [Veeam Restore Points Calculator](http://rps.dewin.me/) can help to illustrate the retention chains on disk and estimate the required capacity.
