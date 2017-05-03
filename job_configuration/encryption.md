@@ -1,3 +1,5 @@
+<!--- Last edited: Luca Dell'Oca on 03-05-2017 --->
+
 # Encryption
 
 ## Overview
