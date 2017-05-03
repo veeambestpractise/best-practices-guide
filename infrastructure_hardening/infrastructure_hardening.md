@@ -30,6 +30,8 @@ More specifically, Veeam Backup & Replication administrators focus on these aspe
 
 Monitor your accounts for suspicious activity
 
+However, in some environments full administrative permissions are not desirable or permitted. For those environments, Veeam has identified the minimum permissions required for the various software functions. Review
+the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf) (not changed since V9.0) and configure the account used by Veeam Backup & Replication to meet these requirements.
 
 ### Service Accounts
 
