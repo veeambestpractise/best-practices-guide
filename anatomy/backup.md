@@ -109,7 +109,7 @@ Block Tracking (CBT).
 Right after the VM snapshot is taken, all quiesced disk I/O activities
 in the guest OS are resumed.
 
-### 5. VM Data Transport 
+### 5. VM Data Transport
 
 To read and transfer data from the VM snapshot, Veeam Backup &
 Replication can use one of the following transport modes:
@@ -122,7 +122,7 @@ Replication can use one of the following transport modes:
 
 For more information about each transport mode, see [Veeam Backup &
 Replication User
-Guide](http://helpcenter.veeam.com/backup/80/vsphere/index.html?transport_modes.html)
+Guide](https://helpcenter.veeam.com/docs/backup/vsphere/transport_modes.html?ver=95)
 or a corresponding section below.
 
 ### 5a. Direct SAN Access Data Transport Mode
