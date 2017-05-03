@@ -4,11 +4,11 @@
 * [Introduction](introduction/readme.md)
 * [Contacting Veeam Software](introduction/contacting_veeam_software.md)
 
-## Architecture Overiew
+## Architecture Overview
 
-   * [Resource Planning](resource_planning/resource_planning.md)
-   * [DNS Resolution](resource_planning/dns_resolution.md)
-   * [Veeam Backup Server](resource_planning/backup_server_introduction.md)
+  * [Resource Planning](resource_planning/resource_planning.md)
+       * [DNS Resolution](resource_planning/dns_resolution.md)
+       * [Veeam Backup Server](resource_planning/backup_server_introduction.md)
        * [Deployment Method](resource_planning/backup_server_deployment_method.md)
        * [Backup Server Placement](resource_planning/backup_server_placement.md)
        * [Sizing and System Requirements](resource_planning/backup_server_sizing.md)
