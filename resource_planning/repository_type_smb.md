@@ -1,6 +1,6 @@
 # SMB Repository
 
-While an SMB repository (also called CIFS, even if this term is technically wrong) is often considered to provide less performance than direct attached storage, it still can provide very good results as a repository due to leveraging Veeam’s load-balancing technology for write operations, as explained in the next sections.
+While an SMB repository is often considered to provide less performance than direct attached storage, it still can provide very good results as a repository due to leveraging Veeam’s load-balancing technology for write operations, as explained in the next sections.
 
 ## Gateway Server
 
@@ -8,7 +8,7 @@ When you set up an SMB share as a repository, the following options are availabl
 -   Automatic selection of the server as the SMB gateway proxy (that is, the server that will host the target-side transport component and thus perform the role of “data writer” towards the SMB share itself).
 -   Specify a specific server (among the available managed Windows servers in Veeam Backup & Replication) as a SMB gateway proxy.
 
-The second option is very helpful in situations where the SMB share is located on a remote location, since it avoids that the automatic selection uses a server that is not local to the SMB share, thus having all synthetic operations or backup copy jobs occuring over the WAN link (which is usually slower than the local link). It's always recommended to use an SMB gateway server as close as possible to the SMB storage. By specifying the SMB gateway you have a better chance of keeping the data flow under control and avoid data crossing the WAN links unnecessarily.
+The second option is very helpful in situations where the SMB share is located on a remote location, since it avoids that the automatic selection uses a server that is not local to the SMB share, thus having all synthetic operations or backup copy jobs occurring over the WAN link (which is usually slower than the local link). It is always recommended to use an SMB gateway server as close as possible to the SMB storage. By specifying the SMB gateway you have a better chance of keeping the data flow under control and avoid data crossing the WAN links unnecessarily.
 
 As single stream performance for SMB repositories may be suboptimal,
 you can potentially increase performance of your SMB storage by configuring

@@ -57,4 +57,4 @@ and
 -   Value: 1 (default: 0)
 
 ### Chain Length Limitation
-Consider that HPE StoreOnce can support only up to 7 restore points. For details, refer to the Veeam Backup & Replication User Guide: [Limitations for HPE StoreOnce](https://helpcenter.veeam.com/backup/vsphere/deduplicating_appliance_storeonce_limitations.html)
+Consider that HPE StoreOnce can support only a limtited number of restore points. For details, refer to the Veeam Backup & Replication User Guide: [Limitations for HPE StoreOnce](https://helpcenter.veeam.com/docs/backup/vsphere/deduplicating_appliance_storeonce_limitations.html?ver=95)
