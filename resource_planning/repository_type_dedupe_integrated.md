@@ -15,7 +15,7 @@ For more details, refer to the DDBoost configuration guide by Rick Vanover:  [Co
 
 ### Chain Length Limitation
 
-Consider that DataDomain can support only up to 60 incremental restore points for a single full backup. For details, refer to the Veeam Backup & Replication User Guide: [Limitations for EMC Data Domain](https://helpcenter.veeam.com/backup/vsphere/emc_limitations.html)
+Consider that DataDomain can support only up to 60 incremental restore points for a single full backup. For details, refer to the Veeam Backup & Replication User Guide: [Limitations for EMC Data Domain](https://helpcenter.veeam.com/docs/backup/vsphere/emc_dd_limitations.html?ver=95)
 
 ## ExaGrid
 
@@ -57,4 +57,4 @@ and
 -   Value: 1 (default: 0)
 
 ### Chain Length Limitation
-Consider that HPE StoreOnce can support only up to 7 restore points. For details, refer to the Veeam Backup & Replication User Guide: [Limitations for HPE StoreOnce](https://helpcenter.veeam.com/backup/vsphere/deduplicating_appliance_storeonce_limitations.html)
+HPE StoreOnce has a limit on the number of concurrently opened files, this limit is important when restoring VM's. The maximum length of a backup chain (Full backup file plus all incremental backup files) depends on which HPE StoreOnce model is used. Lookup your HPE StoreOnce model in: [Limitations for HPE StoreOnce](https://helpcenter.veeam.com/docs/backup/vsphere/deduplicating_appliance_storeonce_limitations.html?ver=95) to find the maximum limit.  
