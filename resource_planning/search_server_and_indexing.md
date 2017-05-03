@@ -27,8 +27,7 @@ advanced file search and one-click file level restore capabilities of
 Enterprise Manager (including delegated restore). While
 indexing is a job-level setting you can use filters to index only a
 subset of files. It is possible to exclude specific VMs from
-indexing as described for example in [this
-section](http://helpcenter.veeam.com/backup/em/index.html?em_indexing_options.html)
+indexing as described for example in [This section](https://helpcenter.veeam.com/backup/em/indexing_hiw.html)
 of the Veeam Backup Enterprise Manager User Guide
 
 ### How Veeam Indexing Works
@@ -60,8 +59,7 @@ During the VM backup job run the following operations are performed If configure
 
 These operations take place in parallel with the backup and do not
 increase the duration of the process. For more details on the indexing
-process refer to the [Veeam Backup Enterprise Manager User
-Guide](http://helpcenter.veeam.com/backup/em/index.html?indexing_hiw.html).
+process refer to the [Veeam Backup Enterprise Manager User Guide](https://helpcenter.veeam.com/docs/backup/em/introduction.html?ver=95).
 
 1.  Veeam Backup & Replication creates a catalog (index) of the VM guest
     OS files and stores index files on the Veeam backup server in the
@@ -79,7 +77,7 @@ Guide](http://helpcenter.veeam.com/backup/em/index.html?indexing_hiw.html).
 **Important To Note!**
 - To search within the index catalog it is necessary to
 deploy Veeam Backup Enterprise Manager, this component is in charge
-of catalog data replication and retention (see [this section](http://helpcenter.veeam.com/backup/em/index.html?veeam_backup_catalog.html) of the User Guide for more details).
+of catalog data replication and retention (see [this section](https://helpcenter.veeam.com/docs/backup/em/veeam_backup_catalog.html?ver=95) of the User Guide for more details).
 - If you enable indexing without configuring Enterprise Manager the indexes in the *VBRCatalog* folder of the backup server will never be collected or deleted and will eventually fill up the disk drive.
 
 
@@ -204,8 +202,7 @@ If you need to use that Veeam Backup Search component (and Microsoft Search Serv
     shared *VBRCatalog* folder on the Veeam Backup Enterprise Manager
     server and to create a content index on the Search Server; this
     content index is used to process search queries. For more details,
-    refer to the [Veeam Backup
-    Search](http://helpcenter.veeam.com/backup/80/em/index.html?installing_veeam_backup_search.html)
+    refer to the [Veeam Backup   Search](https://helpcenter.veeam.com/docs/backup/em/em_appendix_b_install_search.html?ver=95)
     section of the User Guide.
 
 **Note**: Though using content index streamlines the search process the
