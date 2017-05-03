@@ -1,24 +1,20 @@
 # Infrastructure Hardening
 Running your Veeam Backup & Replication infrastructure in a secure configuration is a daunting task even for security professionals. This chapter provides practical advice to help administrators to harden their infrastructure following security best practices so that they can confidently deploy their Veeam services and lower their chances of being compromised.
 
-Security is all about a pre-care balance between protection and usability. While hardening is about securing the availability infrastructure against attacks, detecting when an attack is or has taken place and making sure logs and traces are saved for law-enforcement and security specialists when needed.
+Security is all about a pre-care balance between protection and usability. While hardening is about securing the infrastructure against attacks, detecting when an attack is or has taken place and making sure logs and traces are saved for law-enforcement and security specialists when needed.
 
 When an attack is detected while in progress, it is vital to react as quick as possible by securing the backup data so it stays integer and available in need of restoring to a safe state.
 
 ## Protect
-Protecting is understanding what and whom you are protecting, your availability infrastructure, against. Hardening is the process of securing a system by reducing its attack surface and thus eliminating as many risks as possible. This is typically done by removing all non-essential software programs and utilities from the deployed Veeam components.
+Protecting is understanding what and whom you are protecting, your infrastructure, against. Hardening is the process of securing a system by reducing its attack surface and thus eliminating as many risks as possible. This is typically done by removing all non-essential software programs and utilities from the deployed Veeam components.
 
 While these programs may offer useful features to the administrator, if they provide ‘back-door’ access to the system, they must be removed during the hardening process.
 
 
-**Simplicity is security**, overly complex designs become harder for the IT team to manage and overlook and it makes it easier for an attacker to exploit and stay in the shadows. Simpler designs that can be easily overviewed are more secure.
+**Simplicity is security**, overly complex designs become harder for the IT team to manage and overlook and it makes it easier for an attacker to exploit and stay in the shadows. Simpler designs that can be easily overviewed are in basis more secure.
 
 
 
-
-## Detect
-
-## React
 
 
 
@@ -82,3 +78,10 @@ You can check which ports are in use by which service on a Windows system by usi
 
 
 Note: All software can be exploited. All software has flaws that allow an attacker with enough motivation to exploit it. By hardening you will make it much harder for an attacker to get far fast.
+
+
+## Detect
+
+## React
+
+test ..
