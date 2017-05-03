@@ -1,4 +1,4 @@
-# Search Server and Indexing
+## Indexing
 
 ### Indexing and Search Overview
 
