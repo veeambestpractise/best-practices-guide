@@ -59,7 +59,7 @@
 
 ##  Operational Guidlines
 
-   * [Job Configuration](job_configuration/README.md)
+* [Job Configuration](job_configuration/README.md)
    * [Backup Methods](job_configuration/backup_methods.md)
    * [Encryption](job_configuration/encryption.md)
    * [Deduplication and Compression](job_configuration/deduplication_and_compression.md)
