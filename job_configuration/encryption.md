@@ -44,7 +44,7 @@ Active full backup is required for enabling encryption to take effect if it was 
 -   Use strong passwords for job encryption and develop a policy for changing them regularly. Veeam Backup & Replication helps with this, as it tracks passwords’ age.
 -   Store passwords in a secure location.
 -   Obtain Enterprise or a higher level license for Veeam Backup & Replication, configure Veeam Backup Enterprise Manager and connect backup servers to it to enable Password Loss Protection.
--   Export a copy of the active keyset from Enterprise Manager (see [User Guide](https://helpcenter.veeam.com/backup/em/em_export_import_keys.html) for more information).
+-   Export a copy of the active keyset from Enterprise Manager (see [User Guide](https://helpcenter.veeam.com/docs/backup/em/em_export_import_keys.html?ver=95) for more information).
 -   Back up the Veeam Backup Enterprise Manager configuration database and create an image-level backup of the Veeam Backup Enterprise Manager server. If these backups are also encrypted, make sure that passwords are not lost as there will be no Password Loss Protection for these backups.
 
 ## Tape Job Encryption
