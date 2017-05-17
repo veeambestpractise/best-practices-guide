@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 # Interaction with vSphere
 Veeam Backup & Replication relies heavily on the vSphere
 infrastructure it is protecting. Much of the implementation success depends
@@ -23,37 +24,15 @@ backup environment.
 
 Consider some important factors:
 
--   Problems with connectivity to the vCenter Server is one of the top
-    reasons for failed Veeam jobs. Having a well-performing vCenter
-    Server with reliable connectivity will mitigate this issue and
-    provide a strong backbone for a reliable backup infrastructure.
+* Problems with connectivity to the vCenter Server is one of the top reasons for failed Veeam jobs. Having a well-performing vCenter Server with reliable connectivity will mitigate this issue and provide a strong backbone for a reliable backup infrastructure.
 
--   The vCenter Server must be reliable and always available when backup
-    jobs are running. It must be able to answer queries and perform
-    actions in a reasonable amount of time. If the vCenter Server
-    performs poorly during normal operations, this should be corrected
-    prior to implementing Veeam Backup & Replication.
+* The vCenter Server must be reliable and always available when backup jobs are running. It must be able to answer queries and perform actions in a reasonable amount of time. If the vCenter Server performs poorly during normal operations, this should be corrected prior to implementing Veeam Backup & Replication.
 
--   For larger environments, with many concurrent jobs, especially jobs
-    that run at short intervals, such as near-CDP, the load on the
-    vCenter Server can be significant. The vCenter Server must be able
-    to handle increased transactional workload to prevent random job
-    failures due to command timeouts.
+* For larger environments, with many concurrent jobs, especially jobs that run at short intervals, the load on the vCenter Server can be significant. The vCenter Server must be able to handle increased transactional workload to prevent random job failures due to command timeouts.
 
--   The backup server must have reliable network connectivity to the
-    vCenter Server. It is generally suggested that the backup server is
-    placed in close logical proximity to the vCenter Server, but this is
-    not always the best deployment option. In cases where the backup
-    server and vCenter Server must be deployed across a distance, the
-    only real requirement is that this connection is consistent
-    and reliable.
+* The backup server must have reliable network connectivity to the vCenter Server. It is generally suggested that the backup server is placed in close logical proximity to the vCenter Server, but this is not always the best deployment option. In cases where the backup server and vCenter Server must be deployed across a distance, the only real requirement is that this connection is consistent and reliable.
 
--   When maintenance is being performed on the vCenter Server, best
-    practice would dictate that all Veeam Backup & Replication jobs
-    must be idle, and the Veeam Backup Service should be stopped. This
-    includes applying Windows updates, vCenter Server patches and
-    upgrades, or any maintenance that would require the vCenter service
-    to be restarted or the system rebooted.
++ When maintenance is being performed on the vCenter Server, best practice would dictate that all Veeam Backup & Replication jobs must be idle, and the Veeam Backup Service should be stopped. This includes applying Windows updates (if using the vCenter Server installable version), vCenter Server patches and upgrades, or any maintenance that would require the vCenter service to be restarted or the system rebooted.
 
 ## Impact of Snapshot Operations
 To create VM backups, Veeam Backup & Replication leverages the VMware
@@ -195,7 +174,7 @@ recommendations:
 
 -   **Consider snapshot impact during job scheduling.**
     When possible, schedule backups and replication job during periods
-    of low activity. Leveraging the [Backup Window](https://helpcenter.veeam.com/backup/vsphere/vm_copy_schedule.html)
+    of low activity. Leveraging the Backup Window
     functionality can keep long-running jobs from running during production.
     See the corresponding setting on the **Schedule** tab of the job wizard
 
@@ -295,7 +274,7 @@ processing modes and Veeam Backup from Storage Snapshots on NetApp NFS datastore
 We highly recommend you to use one of these 2 backup modes to avoid problems.
 
 In hyperconverged infrastructures (HCI), it is preferred to keep the datamover
-close the the backed up VM to avoid stressing the storage 
+close the the backed up VM to avoid stressing the storage
 replication network with backup traffic. If the HCI is providing storage via
 the NFS protocol (such as Nutanix or Cisco HyperFlex), it is possible to
 force a Direct NFS data mover on the same host using the following registry key:
@@ -382,7 +361,7 @@ excluded from backup or replication jobs until the orphaned snapshots
 are manually removed.
 
 If you are evaluating Veeam Backup & Replication, use the
-[Infrastructure Assessment Reports](http://helpcenter.veeam.com/one/80/reports/index.html?infrastructure_assessment_report.html)
+[Infrastructure Assessment Reports](https://helpcenter.veeam.com/docs/one/reporter/vmware_infrastructure_dashboard.html?ver=95)
 included in Veeam Availability Suite to identify VMs with snapshots that
 can be affected by automatic snapshot consolidation.
 
@@ -472,7 +451,7 @@ can run into the SOAP session count limitation. For example, in vSphere
 limitation, you can increase the vCenter Server SOAP connection limit
 from 500 to 1000. For details, see <http://kb.vmware.com/kb/2004663>.
 
-In the current version, Veeam’s scheduling component does not keep track
+Veeam’s scheduling component does not keep track
 of the connection count. For this reason, it is recommended to
 periodically check the number of vCenter Server connections within the
 main backup window to see if you can possibly run into a bottleneck in
@@ -493,6 +472,23 @@ Registry setting to add addition Veeam NBD connections:
 Be careful with this setting. If the buffer vs. NFC Connection ratio is
 too aggressive, jobs may fail.
 
+## Veeam Infrastructure cache
+
+A new service in Veeam Backup & Replication v9.5 is **Infrastructure Cache**. With it, Veeam can cache directly into memory an inventory of the objects in a vCenter or even single ESXi hierarchy. The collection is very efficient as it uses memory and it is limited to just the data needed by Veeam Backup & Replication.
+
+This cache is stored into memory, so at each restart of the Veeam services its content is lost; this is not a problem as the initial retrieval of data is done as soon as the Veeam server is restarted. From here on, Veeam "subscribed" to a specific API available in vSphere, so that it can receive in "push" mode any change to the environment, without the need anymore to do a full search on the vCenter hierarchy during every operation.
+
+![](infrastructure_cache_1.png)
+
+The most visible effects of this new service are:
+* The load against vCenter SOAP connection is heavily reduced, as we have now one single connection per Veeam server instead of each job running a new queiry against vCenter;
+* Every navigation operation of the vSphere hierarchy is instantaneous;
+* The initilisation of every job is almost immediate, as now the Infrastructure Cache service creates a copy in memory of its cache dedicated to each job, instead of the Veeam Manager service completing a full search against vCenter:
+
+![](infrastructure_cache_2.png)
+
+No special memory consideration needs to be done for the Infrastructure Cache, as its requirements are really low: as an example, the cache for an environment with 12 hosts and 250 VMs is only 120MB, and this number does not grow linearly since most of the size is fixed even for smaller environments.
+
 ## Security
 When connecting Veeam Backup & Replication to the vCenter Server
 infrastructure, you must supply credentials that the backup server will
@@ -508,7 +504,7 @@ account with full administrative permissions.
 However, in some environments full administrative permissions are not
 desirable or permitted. For those environments, Veeam has identified the
 minimum permissions required for the various software functions. Review
-the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf) and
+the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf) (not changed since V9.0) and
 configure the account used by Veeam Backup & Replication to meet these
 requirements.
 
@@ -522,4 +518,4 @@ top of the vCenter Server tree. Specifically if you access the vCenter over
 a WAN link such scoping can reduce the (management background) WAN traffic.
 
 For a detailed description of accounts, rights and permissions required
-for Veeam Backup & Replication operations, see the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf).
+for Veeam Backup & Replication operations, see the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf) (not changed since V9.0).

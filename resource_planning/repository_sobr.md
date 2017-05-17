@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 # Scale Out Backup Repository
 
 Veeam Scale-out Backup Repository is a logical entity made of multiple “simple” repositories, grouped together into a single abstracted object, that can be used as a target for any backup and backup copy job operation.
@@ -8,7 +9,7 @@ The only requirement is the ownership of a proper license, and that at least two
 
 **NOTE**: the default backup repository created during the installation cannot be used in a Scale-out Backup Repository as long as it’s the target of Configuration Backup, as this type of job is not supported by Scale-out Backup Repository. If the default repository needs to be added to a  Scale-out Backup Repository, consider first to change the target of Configuration Backup.
 
-For additional technical information, the online documentation is available here : https://helpcenter.veeam.com/backup/vsphere/backup_repository_sobr.html.
+For additional technical information, the online documentation is available here : [Helpcentre SoBR](https://helpcenter.veeam.com/docs/backup/vsphere/backup_repository_sobr.html?ver=95).
 
 ## File placement policies
 

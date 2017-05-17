@@ -28,9 +28,9 @@ The book is available in different formats here:
 
 | Format | Link |
 | -------|------|
-| PDF    | [click here](https://www.gitbook.com/download/pdf/book/poulpreben/veeam-backup-replication-best-practices) |
-| ePub   | [click here](https://www.gitbook.com/download/epub/book/poulpreben/veeam-backup-replication-best-practices) | 
-| Mobi   | [click here](https://www.gitbook.com/download/mobi/book/poulpreben/veeam-backup-replication-best-practices) |
+| PDF    | [click here](https://www.gitbook.com/download/pdf/book/veeam/veeam-backup-replication-best-practices) |
+| ePub   | [click here](https://www.gitbook.com/download/epub/book/veeam/veeam-backup-replication-best-practices) |
+| Mobi   | [click here](https://www.gitbook.com/download/mobi/book/veeam/veeam-backup-replication-best-practices) |
 
 
 {% endif %}
@@ -59,3 +59,4 @@ refer to the corresponding
 * Stanislav Simakov ([@ssimakov](https://twitter.com/AndyandtheVMs))
 * Paul Szelesi ([@PSzelesi](https://twitter.com/PSzelesi))
 * Luca Dell'Oca ([@dellock6](https://twitter.com/dellock6))
+* Edwin Weijdema ([@viperian](https://twitter.com/viperian))

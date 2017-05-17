@@ -1,3 +1,4 @@
+<!--- This was last Changed 03-05-17 by PS --->
 # Repository Sizing
 In mid-sized or enterprise environments, the recommended amount of CPU for a repository is 1 core per concurrent job that processes data on a repository server. At least 2 cores allow for the Operating System to be more responsive.
 
