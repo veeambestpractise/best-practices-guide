@@ -3,7 +3,7 @@
 This section provides a step-by-step description of a full virtual
 machine restore process implemented in Veeam Backup & Replication.
 
-### 1. Initialization Phase 
+### 1. Initialization Phase
 
 In the initialization phase, Veeam Backup & Replication prepares the
 resources necessary for full VM recovery. It performs the following
@@ -43,7 +43,7 @@ initiate a VM snapshot creation on the restored VM.
 
 **Important!** A snapshot is not taken if a VM is restored to a VVOL
 datastore due to vSphere VDDK limitations (see
-<https://www.vmware.com/support/developer/vddk/vddk-600-releasenotes.html#compatibility>).
+<http://pubs.vmware.com/Release_Notes/en/developer/vddk/65/vsphere-vddk-650b-release-notes.html>).
 
 ![](../media/image59.png)
 
@@ -63,7 +63,7 @@ Replication can use one of the 3 transport modes:
 
 For more information about each transport mode, see [Veeam Backup &
 Replication User
-Guide](http://helpcenter.veeam.com/backup/80/vsphere/index.html?transport_modes.html)
+Guide](https://helpcenter.veeam.com/docs/backup/vsphere/transport_modes.html?ver=95)
 and the corresponding sections of this document.
 
 ### 4a. Direct SAN Access Data Transport Mode
@@ -79,7 +79,7 @@ metadata to copy VM data blocks to the datastore via SAN.
 
 ![](../media/image60.png)
 
-### 4b. Virtual Appliance Data Transport Mode 
+### 4b. Virtual Appliance Data Transport Mode
 
 In the Virtual Appliance transport mode, VM disks from the backup are
 hot-added to a virtualized Veeam backup proxy. The proxy connects to the
@@ -89,7 +89,7 @@ process is finished, disks are unmapped from the backup proxy.
 
 ![](../media/image61.png)
 
-### 4c. Network Data Transport Mode 
+### 4c. Network Data Transport Mode
 
 In the Network transport mode, Veeam backup proxy connects to the ESXi
 host where the restored VM resides, and writes VM disk data to the

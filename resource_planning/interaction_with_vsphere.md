@@ -66,8 +66,7 @@ performing backups, you should ensure it is possible to snapshot the
 virtual machine disks, since there are certain configurations that do
 not support snapshots. To identify VMs that do not support snapshots,
 see [VMware KB article 1025279](http://kb.vmware.com/kb/1025279) ; you
-can also use [Veeam ONE assessment
-reports](https://helpcenter.veeam.com/one/reports/vm_configuration_assessment.html)
+can also use [Veeam ONE assessment reports](https://helpcenter.veeam.com/docs/one/reporter/vm_configuration_assessment.html?ver=95)
 to automatically detect them before starting Veeam Availability project.
 
 As with many things in technology, although the concept is simple, the
@@ -115,8 +114,7 @@ the datastore. This is generally more noted on systems with significant
 write I/O load.
 
 **Note**: Refer to VMware Knowledge Base article at
-[www.kb.vmware.com/kb/1035550](file:///C:\Users\oslusarenko\Documents\Documents\B&R\In%20progress\8.0\VBR\Best%20Practices\Last%20version\www.kb.vmware.com\kb\1035550) for information on vMotion and Storage vMotion processes performed with
-open snapshots.
+[www.kb.vmware.com/kb/1035550](https://kb.vmware.com/kb/1035550) for information on vMotion and Storage vMotion processes performed with open snapshots.
 
 ### Snapshot Removal
 Snapshot removal is the step with the highest impact from the
@@ -234,7 +232,7 @@ recommendations:
     -   Type: REG_DWORD
     -   Default value (in GB): 2
 
-    **Tip:** Use the [Veeam ONE Configuration Assessment Report](https://helpcenter.veeam.com/one/reporter/vm_configuration_assessment.html) to detect datastores with less than 10% of free disk space available for snapshot processing.
+    **Tip:** Use the [Veeam ONE Configuration Assessment Report](https://helpcenter.veeam.com/docs/one/reporter/vm_configuration_assessment.html?ver=95) to detect datastores with less than 10% of free disk space available for snapshot processing.
 
 -   **Enable parallel processing.**
     Parallel processing tries to backup multiple VM disks that belong to
@@ -343,7 +341,7 @@ Veeam Snapshot Hunter automatically detects any VM with the configuration
 issue “Virtual machine disks consolidation needed”. Prior to performing
 backup of such VMs, Veeam Backup & Replication will trigger disk
 consolidation (provided that the datastore performance threshold
-specified in the [Storage Latency Control](http://helpcenter.veeam.com/backup/80/vsphere/index.html?options_parallel_processing.html)
+specified in the [Storage Latency Control](https://helpcenter.veeam.com/docs/backup/vsphere/options_parallel_processing.html?ver=95)
 settings is not exceeded).
 
 Snapshot Hunter will attempt consolidation eight (8) times. If
