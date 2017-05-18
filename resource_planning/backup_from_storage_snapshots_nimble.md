@@ -24,6 +24,9 @@ orchestration of snapshot creation and replication between Nimble Storage arrays
   used by Veeam.
   6. Associate the desired volume for replication on the Volumes Tab
 
+
+
+
 ## Snapshot only jobs
 
 When a job is configured for using "Nimble snapshot" as the backup repository,
@@ -38,6 +41,10 @@ It is not recommended to rely on storage snapshots as backups, as it violates
 the [3-2-1 rule](https://www.veeam.com/blog/how-to-follow-the-3-2-1-backup-rule-with-veeam-backup-replication.html). It is however a great complement to traditional backups to achieve
 lower RPO, in case the primary storage array is still available, when a restore
 is needed.
+
+##### Note.  
+It is recommended by the vendor that volumes should be in individual Volume Collections.
+  Please verify Nimble Volume Collections configuration before running the snapshot-only job, otherwise it may not operate properly- for example, replicate more data than expected.
 
 ## Snapshot replication
 
