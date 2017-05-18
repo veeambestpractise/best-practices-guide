@@ -67,16 +67,19 @@
    * [Backup Copy Job](job_configuration/backup_copy_job.md)
    * [Replication Job](job_configuration/replication_job.md)
    * [Application-Aware Image Processing](job_configuration/application_aware_image_processing.md)
-   * [Applications](applications/README.md)
    * [Data Verification Using Virtual Labs](resource_planning/vpower_nfs_and_virtual_lab.md)
-   * [Active Directory](applications/active_directory.md)
-   * [Microsoft Exchange](applications/exchange.md)
-   * [Microsoft SQL Server](applications/sql_server.md)
-   * [Microsoft SharePoint Server](applications/sharepoint.md)
-   * [Oracle](applications/oracle.md)
-   * [MySQL](applications/mysql.md)
-   * [IBM Notes/Domino](applications/domino.md)
-   * [SAP HANA](applications/sap_hana.md)
+
+## Applications
+
+* [Applications](applications/README.md)
+* [Active Directory](applications/active_directory.md)
+* [Microsoft Exchange](applications/exchange.md)
+* [Microsoft SQL Server](applications/sql_server.md)
+* [Microsoft SharePoint Server](applications/sharepoint.md)
+* [Oracle](applications/oracle.md)
+* [MySQL](applications/mysql.md)
+* [IBM Notes/Domino](applications/domino.md)
+* [SAP HANA](applications/sap_hana.md)
 
 ## Proof of Concept Guidelines
 
