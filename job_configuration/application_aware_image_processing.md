@@ -26,9 +26,9 @@ When configuring Veeam backup and replication jobs, you can specify how the tran
 
 ## Selecting Guest Processing Options
 
-When on the **Guest Processing** step of the job wizard, you are presented with a variety of options (as described in detail in the [corresponding section of the User Guide](https://helpcenter.veeam.com/backup/vsphere/backup_job_vss_vm.html?ver=95)).
+When on the **Guest Processing** step of the job wizard, you are presented with the variety of options (as described in detail in the User Guide (https://helpcenter.veeam.com/backup/vsphere/backup_job_vss_vm.html).
 
-Note that you can use pre- and post- job scripting to automate job global settings from the Veeam Backup & Replication server itself. It is recommended to use the VM guest processing options for interaction with VMs.
+Note that you can use pre- and post-job scripting to automate job global settings from the Veeam Backup & Replication server itself. It is recommended to use the VM guest processing options for interaction with VMs.
 
 To select the necessary options, refer to the table below.
 
@@ -41,7 +41,7 @@ To select the necessary options, refer to the table below.
 | Enable Veeam Application-Aware Image Processing and InGuest Scripts | N | N | N | Y | N | N |
 | Disable Veeam Application-Aware Image Processing | N | N | N | N | Y | N |
 
-To coordinate proper VSS and indexing activities, Veeam Backup & Replication deploys a small executable component inside a VM. It is executed only during VSS quiescence procedure and removed immediately after the processing is finished, producing very low impact on VM performance and stability. As for connection method for accessing VM guest OS, Veeam first tries to connect to the VM over network using RPC and then by VMware VIX API through VMware Tools (for Windows guest only, for vSphere 6.5 Guest Interaction API are used).
+To coordinate proper VSS and indexing activities, Veeam Backup & Replication deploys a small executable component inside a VM. It is installed only during VSS quiescence procedure and removed immediately after the processing is finished, producing very low impact on VM performance and stability. As for connection method for accessing VM guest OS, Veeam first tries to connect to the VM over network using RPC and then by VMware VIX channel through VMware Tools (for Windows guest only).
 
 ## Guest Interaction Proxy
 
@@ -53,11 +53,11 @@ Depending on the guest VM operating system and/or Veeam Backup and Replication E
 | Enterprise | Guest interaction proxy | Backup server |
 | Enterprise Plus | Guest interaction proxy | Backup server |
 
-Any Windows server managed by Veeam Backup and Replication can be selected to act as guest interaction proxy but the preference would be given to the server that has IP address in the same subnet as the VM it has to interact with. This functionality allows for having only small limited range of ports to allow through the firewalls in restricted environments and for that reason it is recommended to have guest interaction proxies in all VM subnets that are not supposed to be directly accessible from the network where Veeam backup server resides.
+Any Windows server managed by Veeam Backup and Replication can be selected to act as guest interaction proxy but the preference would be given to the server that has IP address in the same subnet as subject VM. This functionality allows for having only small limited range of ports to allow through the firewalls in restricted environments and for that reason it is recommended to have guest interaction proxies in all VM subnets that are not supposed to be directly accessible from the network where Veeam backup server resides.
 
 For details on network configuration refer to the section "Required ports" below.
 
-**Tip:** If the backup server has no network connection to the VMs and deploying additional guest interaction proxies is not practical/possible (for example, service provider environments), the order in which backup server or guest interaction proxy tries to communicate to a VM can be changed using the following registry key:
+**Tip:** If the backup server has no network connection to the VMs and deploying additional guest interaction proxies is not practical/possible (for example, service provider environments), order in which backup server or guest interaction proxy tries to communicate to a VM can be changed using the following registry key:
 
 -   Path: `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication`
 -   Key: `InverseVssProtocolOrder`
@@ -65,7 +65,7 @@ For details on network configuration refer to the section "Required ports" below
 -   Value: **0** - try connection through RPC, failover to VIX (default)
 -   Value: **1** - try connection through VIX, failover to RPC
 
-RPC connections means injecting the file via the "ADMIN$" share on the target VM. See [Veeam Knowledge Base article 1230](http://www.veeam.com/kb1230) for more information. Consider that this is a global setting that will be applied on the Veeam backup server level and affects all jobs with application-aware image processing.
+RPC connections means injecting the file via the "ADMIN$" share on the target VM. See Veeam Knowledge Base article at <http://www.veeam.com/kb1230> for more information. Consider that this is a global setting that will be applied on the Veeam backup server level and affects all jobs with application-aware image processing.
 
 ## Guest Access Credentials
 
@@ -96,10 +96,10 @@ Depending on the VM guest OS processing options selected (enabled or disabled ap
 
 The following ports should be open between the Veeam backup server and VM for guest OS processing:
 
--   For Windows VMs - remote RPC ports, including Dynamic Port Range (TCP ports 1025 to 5000 for Microsoft Windows 2003, 49152-65535 for Microsoft Windows 2008 and newer); TCP\\UDP ports 135, 137-139, 445.
+-   For Windows VMs - remote RPC ports, including Dynamic Port Range (TCP ports 1025 to 5000 - for Microsoft Windows 2003, 49152-65535 - for Microsoft Windows 2008 and newer); TCP\\UDP ports 135, 137-139, 445.
 -   For Linux VMs – SSH port (default is TCP port 22)
 
-For details, refer to the Veeam Backup & Replication User Guide (https://helpcenter.veeam.com/backup/vsphere/used_ports.html?ver=95).
+For details, refer to the Veeam Backup & Replication User Guide (https://helpcenter.veeam.com/backup/vsphere/used_ports.html).
 
 ## Sizing
 
@@ -107,13 +107,14 @@ Since guest processing produces very low impact on VM performance, no special co
 
 ## File exclusions
 
-Another operation Veeam Backup can do on guest OS level (only for the NTFS file system) is excluding certain files or folders from the backup. Alternatively the job can be configured to include only specified files or folders in the backup.
+Another operation Veeam Backup can do on guest OS level (NTFS only) is excluding certain files or folders from the backup. Alternatively the job can be configured to include only specified files or folders in the backup.
 
 This functionality operates very similarly and shares a lot of characteristics with excluding Windows page file and deleted file blocks. It may help reduce size of the backup files or implement additional data protection strategies for specific data. Backups for which this option was enabled remain image-level and hypervisor APIs are used to retrieve VM data. File exclusion feature uses a combination of NTFS MFT data and guest file system indexes collected by in-guest coordination process to determine which virtual disk blocks belong to the excluded files and thus should not be included in the backup.
 
-Full file/folder paths, environment variables or file masks can be used to define exclusions. For more details on configuring exclusions and its limitations refer to the [corresponding User Guide section](https://helpcenter.veeam.com/backup/vsphere/guest_file_exclusion.html?ver=95).
+Full file/folder paths, environment variables or file masks can be used to define exclusions. For more details on configuring exclusions and its limitations refer to the [corresponding User Guide section](https://helpcenter.veeam.com/backup/vsphere/guest_file_exclusion.html).
 
-**Note:** Generic file exclusions (defined for high level folders) are most effective. File masks exclusions require guest file system indexes and generating indexes may put additional stress on guest VM and will increase backup time. For this reason it is recommended to avoid using file system masks especially on fileservers with large number (thousands) of small files and use high level folder exclusions instead. When using include filters, file exclusions are created for everything else and can take significant time.
+**Note:** Generic file exclusions (defined for high level folders) are most effective. File masks exclusions require guest file system indexes and generating indexes may put additional stress on guest VM and will increase backup time. For this reason it is recommended to avoid using file system masks especially on fileservers with large number (thousands) of small files and use high level folder exclusions instead. When using include filters, file exclusions are
+created for everything else and can take significant time.
 
 ### How file exclusion works
 
@@ -121,6 +122,7 @@ For each VM in a job that has exclusions enabled Veeam Backup and Replication pe
 1. Virtual machine NTFS MFT is read into the memory cache on the backup proxy, data blocks that store excluded files are marked as deleted.
 2. When sending data blocks to target repository data is read both from the VM snapshot and memory cache on the backup proxy. Target repository reconstructs VM disks without excluded VM blocks.
 3. Virtual machine NTFS is modified using the data in the cache on the proxy and information about excluded data blocks is saved in the backup file or replica metadata. This information is necessary as CBT is not aware of which blocks were excluded and is used to determine which blocks should be processed during the next backup session.
+
 
 [^1] Only this account is able to
 bypass the UAC prompt for launching processes
