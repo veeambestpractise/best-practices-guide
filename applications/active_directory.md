@@ -4,7 +4,7 @@ Veeam Backup and Replication natively supports backup of Microsoft Active Direct
 
 ## Preparation
 
-For Microsoft Active Directory, check the tombstone lifetime settings, as described in Veeam Explorers User Guide at Veeam Help Center (https://helpcenter.veeam.com/backup/explorers/vead_recommendations.html).
+For Microsoft Active Directory, check the tombstone lifetime settings, as described in Veeam Explorers User Guide at Veeam Help Center (https://helpcenter.veeam.com/docs/backup/explorers/vead_recommendations.html?ver=95).
 
 ## Job configuration
 

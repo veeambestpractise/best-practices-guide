@@ -2,7 +2,7 @@
 # Repository Sizing
 In mid-sized or enterprise environments, the recommended amount of CPU for a repository is 1 core per concurrent job that processes data on a repository server. At least 2 cores allow for the Operating System to be more responsive.
 
-It is recommended to configure 4 GB RAM per core. The same amount of resources are needed for SMB gateway servers. Also, consider that VM recovery processes (Instant Recovery, FLR and others) require sufficient resources (as described [here](https://helpcenter.veeam.com/backup/70/bp_vsphere/index.html?recovery_performance.html)).
+It is recommended to configure 4 GB RAM per core. The same amount of resources are needed for SMB gateway servers. Also, consider that VM recovery processes (Instant Recovery, FLR and others) require sufficient resources (as described [here](https://helpcenter.veeam.com/docs/backup/vsphere/system_requirements.html?ver=95#repo).
 
 ## Estimating Repository Capacity
 When estimating the amount of required disk space, you should know the following:
@@ -23,7 +23,7 @@ Using the numbers above, you can estimate required disk space for any job. Besid
 
 A repository sizing tool that can be used for estimation is available at <http://vee.am/rps>. Note that this tool is not officially supported by Veeam, and it should be used "as is", but it's nonetheless heavily used by Veeam Architects and regularly updated.
 
-**Tip:** With Veeam Availability Suite, you can use Veeam ONE together with Veeam Backup & Replication. Among the many reports, Veeam ONE has the [VM Change Rate Estimation](https://helpcenter.veeam.com/one/reporter/vm_change_rate_history.html) report from the “Infrastructure Assessment” report pack; this can be used as an indicative pre-deployment assessment of the potential amount of space that should be available on the backup repositories. This report is built measuring the number of VM virtual disk write operations supplied by VMware vSphere.
+**Tip:** With Veeam Availability Suite, you can use Veeam ONE together with Veeam Backup & Replication. Among the many reports, Veeam ONE has the [VM Change Rate Estimation](https://helpcenter.veeam.com/docs/one/reporter/vm_change_rate_history.html?ver=95) report from the “Infrastructure Assessment” report pack; this can be used as an indicative pre-deployment assessment of the potential amount of space that should be available on the backup repositories. This report is built measuring the number of VM virtual disk write operations supplied by VMware vSphere.
 
 It is also recommended to periodically run the “Capacity Planning for Backup Repositories” report from the “Veeam Backup & Replication Reports” pack to analyze the amount of free space on backup repositories and estimate the projected growth and consequent space consumption. The report provides recommendations for adjusting the allocated storage resources in order to meet the future demand for backup storage. Furthermore, it calculates the amount of additional space that needs to be provisioned to accommodate the necessary restore points.
 

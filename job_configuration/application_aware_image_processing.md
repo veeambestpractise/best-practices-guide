@@ -26,7 +26,7 @@ When configuring Veeam backup and replication jobs, you can specify how the tran
 
 ## Selecting Guest Processing Options
 
-When on the **Guest Processing** step of the job wizard, you are presented with the variety of options (as described in detail in the User Guide (https://helpcenter.veeam.com/backup/vsphere/backup_job_vss_vm.html).
+When on the **Guest Processing** step of the job wizard, you are presented with the variety of options (as described in detail in the User Guide (https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_vm.html?ver=95).
 
 Note that you can use pre- and post-job scripting to automate job global settings from the Veeam Backup & Replication server itself. It is recommended to use the VM guest processing options for interaction with VMs.
 
@@ -99,7 +99,7 @@ The following ports should be open between the Veeam backup server and VM for gu
 -   For Windows VMs - remote RPC ports, including Dynamic Port Range (TCP ports 1025 to 5000 - for Microsoft Windows 2003, 49152-65535 - for Microsoft Windows 2008 and newer); TCP\\UDP ports 135, 137-139, 445.
 -   For Linux VMs – SSH port (default is TCP port 22)
 
-For details, refer to the Veeam Backup & Replication User Guide (https://helpcenter.veeam.com/backup/vsphere/used_ports.html).
+For details, refer to the Veeam Backup & Replication User Guide (https://helpcenter.veeam.com/docs/backup/vsphere/used_ports.html?ver=95).
 
 ## Sizing
 
@@ -111,7 +111,7 @@ Another operation Veeam Backup can do on guest OS level (NTFS only) is excluding
 
 This functionality operates very similarly and shares a lot of characteristics with excluding Windows page file and deleted file blocks. It may help reduce size of the backup files or implement additional data protection strategies for specific data. Backups for which this option was enabled remain image-level and hypervisor APIs are used to retrieve VM data. File exclusion feature uses a combination of NTFS MFT data and guest file system indexes collected by in-guest coordination process to determine which virtual disk blocks belong to the excluded files and thus should not be included in the backup.
 
-Full file/folder paths, environment variables or file masks can be used to define exclusions. For more details on configuring exclusions and its limitations refer to the [corresponding User Guide section](https://helpcenter.veeam.com/backup/vsphere/guest_file_exclusion.html).
+Full file/folder paths, environment variables or file masks can be used to define exclusions. For more details on configuring exclusions and its limitations refer to the [corresponding User Guide section](https://helpcenter.veeam.com/docs/backup/vsphere/guest_file_exclusion.html?ver=95).
 
 **Note:** Generic file exclusions (defined for high level folders) are most effective. File masks exclusions require guest file system indexes and generating indexes may put additional stress on guest VM and will increase backup time. For this reason it is recommended to avoid using file system masks especially on fileservers with large number (thousands) of small files and use high level folder exclusions instead. When using include filters, file exclusions are
 created for everything else and can take significant time.

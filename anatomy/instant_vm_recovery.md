@@ -3,7 +3,7 @@
 This section provides a step-by-step description of the Instant VM
 Recovery process implemented in Veeam Backup & Replication.
 
-### 1. Initialization Phase 
+### 1. Initialization Phase
 
 In the initialization phase, Veeam Backup & Replication prepares
 resources necessary for Instant VM Recovery. It performs the following
@@ -32,7 +32,7 @@ are written to the cache file.
 
 ![](../media/image65.png)
 
-### 3. Registering and Starting VM 
+### 3. Registering and Starting VM
 
 The VM runs from the Veeam NFS datastore. VMware vSphere treats the
 Veeam NFS datastore as any regular datastore. For this reason, with the
@@ -42,6 +42,6 @@ supports for regular VMs.
 To migrate VM disk data to a production datastore, use VMware Storage
 vMotion or Veeam Quick Migration. For details, see [Veeam Backup &
 Replication User
-Guide](http://helpcenter.veeam.com/backup/80/vsphere/index.html?migration_job.html).
+Guide](https://helpcenter.veeam.com/docs/backup/vsphere/migration_job.html?ver=95).
 
 ![](../media/image66.png)

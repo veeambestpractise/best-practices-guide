@@ -44,11 +44,11 @@ Backup & Replication on a daily basis.
 Most sections of this guide assume you already have hands on experience with
 Backup & Replication, and will serve as an "advanced user guide", meaning
 that more basic usage information, system requirements and the like must be
-found in [User Guide in Veeam Helpcenter](https://helpcenter.veeam.com/backup/vsphere).
+found in [User Guide in Veeam Helpcenter](https://www.veeam.com/documentation-guides-datasheets.html).
 
 Service providers delivering BaaS and DRaaS with Veeam Cloud Connect should
 refer to the corresponding
-[Veeam Cloud Connect Reference Architecture](https://www.veeam.com/wp-cloud-connect-reference-architecture-veeam-backup-replication-v8.html).
+[Veeam Cloud Connect Reference Architecture](https://www.veeam.com/wp-cloud-connect-reference-architecture-v9.html).
 
 ## Authors
 

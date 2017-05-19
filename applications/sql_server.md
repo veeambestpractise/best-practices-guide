@@ -4,7 +4,7 @@ In addition to the image level backup of a VM that will include full backup of t
 
 ## Preparation
 
-Transaction logs are processed periodically and stored in temporary folder inside of the VM before shipping to repository/shipping server. Default location of the temporary folder is %allusersprofile%\Veeam\Backup. To change temporary folder use SqlTempLogPath (STRING) registry value as described at [How It Works: SQL Server and Transaction Log Backup](https://helpcenter.veeam.com/backup/howtosql/how2_sql_hiw_log_backup.html):
+Transaction logs are processed periodically and stored in temporary folder inside of the VM before shipping to repository/shipping server. Default location of the temporary folder is %allusersprofile%\Veeam\Backup. To change temporary folder use SqlTempLogPath (STRING) registry value as described at [How It Works: SQL Server and Transaction Log Backup](https://helpcenter.veeam.com/docs/backup/vsphere/sql_backup_hiw.html?ver=95):
 
 -   Path: `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication`
 -   Key: `SqlTempLogPath`
@@ -13,7 +13,7 @@ Transaction logs are processed periodically and stored in temporary folder insid
 
 For the list of all registry keys responsible to fine-tuning MS SQL server backup (for example excluding certain databases from processing) refer to [KB2182](https://www.veeam.com/kb2182).
 
-As restore is integral part of SQL Server protection, special attention should be paid to planning Veeam Explorer for SQL configuration, specifically network connectivity between mount server and staging servers in restricted environments. Ports used for communication between them are listed in the [Used Ports](https://helpcenter.veeam.com/backup/vsphere/used_ports.html#explorers) section of the User Guide.
+As restore is integral part of SQL Server protection, special attention should be paid to planning Veeam Explorer for SQL configuration, specifically network connectivity between mount server and staging servers in restricted environments. Ports used for communication between them are listed in the [Used Ports](https://helpcenter.veeam.com/docs/backup/vsphere/used_ports.html?ver=95#explorers) section of the User Guide.
 
 ## Job configuration
 

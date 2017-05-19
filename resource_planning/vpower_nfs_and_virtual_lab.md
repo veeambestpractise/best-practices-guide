@@ -69,7 +69,7 @@ proxy appliance.
 
   **Note:** This feature reads the entire backup file, and requires significant time to complete.
 
-If [Linked Jobs](https://helpcenter.veeam.com/backup/vsphere/surebackup_job_joblink_vm.html) are configured for the SureBackup job,
+If [Linked Jobs](https://helpcenter.veeam.com/docs/backup/vsphere/surebackup_job_joblink_vm.html?ver=95) are configured for the SureBackup job,
 linked VMs will start booting once all virtual machines explicitly defined within the Application Group have been successfully booted
 and verified. Remember that by default 3 VMs are tested at the same time in a Linked Job. There may be more than 3 VMs linked,
 but the following ones will stay in the testing queue. The limit can be adjusted in the SureBackup job configuration wizard,
@@ -182,7 +182,7 @@ across multiple hosts within a cluster once they are started.
 
 **Important!** Please check the following help article and the links at the
 bottom of the webpage before you configure Virtual Labs for Distributed vSwitch:
-[Advanced Multi-Host Virtual Labs](https://helpcenter.veeam.com/backup/vsphere/surereplica_advanced_mutihost.html).
+[Advanced Multi-Host Virtual Labs](https://helpcenter.veeam.com/docs/backup/vsphere/surereplica_advanced_mutihost.html?ver=95).
 
 Even in environments where Distributed vSwitch is available, make sure that the
 Veeam backup server and the Virtual Lab proxy appliance are placed in the same

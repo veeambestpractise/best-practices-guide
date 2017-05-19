@@ -33,7 +33,7 @@ Tags are very convenient for a policy driven approach to data protection. Howeve
 -   Veeam ONE Business View (OBV) is a very convenient tool for managing vSphere Tags. OBV allows for creating classification rules and update corresponding tags in vCenter. Classifications can be defined from CPU, RAM, VM naming convention, folder, resource pool, datastore etc. OBV can also import VM/host/datastore descriptions from a CSV file. This feature can be useful when refreshing VMware tags, for example, to update a CMDB.
 
 #### Exclusions
-It is recommended to limit the number of exclusions in backup jobs. While exclusions can be very useful, the virtual infrastructure is dynamic and changes rapidly. It is quite possible that a VM gets moved to a folder or resource pool that is excluded which makes it unprotected. Monitoring [Protected VMs](https://helpcenter.veeam.com/one/reporter/protected_vms.html) with Veeam ONE is highly recommended.
+It is recommended to limit the number of exclusions in backup jobs. While exclusions can be very useful, the virtual infrastructure is dynamic and changes rapidly. It is quite possible that a VM gets moved to a folder or resource pool that is excluded which makes it unprotected. Monitoring [Protected VMs](https://helpcenter.veeam.com/docs/one/reporter/protected_vms.html?ver=95) with Veeam ONE is highly recommended.
 
 Also remember that exclusions have higher priority over inclusions in Veeam Backup & Replication.
 
@@ -47,7 +47,7 @@ When using a deduplication appliance for storing backups, please see the [Dedupl
 
 A detailed description of encryption settings and its influence on the backup infrastructure is provided in the [Encryption](./encryption.md) section above in this document.
 
-For general guidelines about encryption, refer to the Veeam User Guide: [Encryption keys](https://helpcenter.veeam.com/backup/vsphere/encryption_keys.html?ver=95).
+For general guidelines about encryption, refer to the Veeam User Guide: [Encryption keys](https://helpcenter.veeam.com/backup/vsphere/encryption_keys.html).
 
 ## Storage maintenance
 While data amount is growing and backup window is decreasing, forward incremental forever backups have become increasingly important in any backup solution. Backup jobs with no scheduled synthetic or active full backups are becoming more widely adopted. Forward incremental with weekly synthetic full backups is however still the default setting.
