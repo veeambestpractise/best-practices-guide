@@ -7,7 +7,7 @@
 
 **WAN Accelerator Cache/Digest Provisioning**
 
-we can have two types of relationship wiht our Source and Target accelerators, One to One and many to One.
+we can have two types of relationship with our Source and Target accelerators, One to One and many to One.
 
 **One to one is the most simplest form**, this is where on e Source Accelerator is mapped to a single Target Accelerator at the other location.
 
