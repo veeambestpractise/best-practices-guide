@@ -35,7 +35,8 @@ time for the initial data transfer to begin.
 ##### VeeamWAN\Digests
 On the source WAN accelerator there are the VM disk digests that take up disk space. For each processed VM disk, a disk digest file is created and placed in `\VeeamWAN\Digests\<JobId>_<VMId>_<DiskId>_<RestorePointID>`.
 
-**Note**: Traffic throttling rules should be created in both directions. See [Network Traffic Throttling and Multithreaded Data Transfer](https://helpcenter.veeam.com/docs/backup/vsphere/setting_network_traffic_throttling.html?ver=95) for more information.
+**Note:** Although the Digest folder is created on the target accelerator no data is stored on the target unless it also acts as a source WAN Accelerator.
+ Traffic throttling rules should be created in both directions. See [Network Traffic Throttling and Multithreaded Data Transfer](https://helpcenter.veeam.com/docs/backup/vsphere/setting_network_traffic_throttling.html?ver=95) for more information.
 
 ### Target WAN Accelerator
 

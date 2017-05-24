@@ -22,8 +22,8 @@ If we assume that we have 3 VMs, each with unique OSes (for instance, Win 2008R2
 
 The Cache itself is wholly independent from the digests required. That is, the Veeam GUI does not make any determination of how much you can allocate for a digest and so on.
 
-The digest is essentially an indexing of what cached blocks go where. For digest size, 1TB of 
-VM disk capacity we are backing up should correspond with 20GB of disk space. That is, for 10VMs we are backing up whose capacity is 2TB, you must account/allocate 40GB for digest data on the Source WAN Accelerator. This limitation is also applied to the Target WAN Accelerator.
+The digest is essentially an index of what cached blocks go where. For digest size, 1TB of 
+VM disk capacity we are backing up should correspond with 20GB of disk space. That is, for 10VMs we are backing up whose capacity is 2TB, you must account/allocate 40GB for digest data on the Source WAN Accelerator. This limitation is not applied to the Target WAN Accelerator.
 
 
 
@@ -36,4 +36,4 @@ In this case the global cache needs to be increased proportionally.
 
 If we use the same VMs in the previous example, the cache is only required to be 30GB. However, since we’re using 3 Source WAN Accelerators, the cache size must be 90GB in response.  
 
-On the Target WAN Accelerator, not only is the cache size dictated by the amount of Source WAN Accelerators, but so is the Digest on the target end—in this example, we require 120GB of Digest space, which added to the cache size (90GB) results in requiring a 210GB volume size at a minimum.
+On the Target WAN Accelerator, cache size is dictated by the amount of Source WAN Accelerators, but the Digest on the target end—in this example can be excluded from the calculation, we may require 120GB of Digest space at source which need not be added to the cache size (90GB) results in requiring only 90GB volume size at a minimum on the target.
