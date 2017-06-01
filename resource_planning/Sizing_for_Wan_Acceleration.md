@@ -35,7 +35,8 @@ time for the initial data transfer to begin.
 ##### VeeamWAN\Digests
 On the source WAN accelerator there are the VM disk digests that take up disk space. For each processed VM disk, a disk digest file is created and placed in `\VeeamWAN\Digests\<JobId>_<VMId>_<DiskId>_<RestorePointID>`.
 
-**Note:** Although the Digest folder is created on the target accelerator no data is stored on the target unless it also acts as a source WAN Accelerator.
+**Note:** Although the Digest folder is created on the target accelerator no data is stored on the target normally, however it must be sized into the target in case the digest on the source becomes corrupt or is missing. In this case the target will calculate its own digests in this location until the source WAN Accelerator comes back online.
+
  Traffic throttling rules should be created in both directions. See [Network Traffic Throttling and Multithreaded Data Transfer](https://helpcenter.veeam.com/docs/backup/vsphere/setting_network_traffic_throttling.html?ver=95) for more information.
 
 ### Target WAN Accelerator
@@ -84,12 +85,23 @@ If the cache is pre-populated, an additional temporary cache is created. The tem
   - `(Number of sources * <formula for configured cache size>)`
 
 **Examples:**
-- Example with one source and 2 operating systems:
+- Example with one source and two operating systems:
   - Configured cache size: `(2 operating systems * 10 GB) + 20 GB = 40 GB`
   - Used disk space: `(1 source * 40 GB) = 40 GB`
-- Example with five sources and 4 operating systems:
+- Example with five sources and four operating systems:
   - Configured cache size: `(4 operating systems * 10 GB) + 20 GB = 60 GB`
   - Used disk space: `(5 sources * 60 GB) = 300 GB`
+
+Digest space must be built into the equation using the same size for each source target:
+
+- Example with one source two operating systems
+  - one source digest space 20GB equates to target digest requiring 20GB
+  - so 20GB + Cache disk space '(2 operating systems * 10 GB) 20GB' is 40GB
+
+
+- Example with 5 source  
+  - Five source with digest space 20GB each equates to target digest requiring 20GB * 5, 100GB
+  - so 100GB + Cache disk space '(2 operating systems * 10 GB * five sources) 100GB' is 200GB
 
 For understanding how the disk space is consumed, please see the following sections.
 
