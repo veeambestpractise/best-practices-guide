@@ -36,6 +36,6 @@ In this case the global cache needs to be increased proportionally.
 
 If we use the same VMs in the previous example, the cache is only required to be 30GB. However, since we’re using 3 Source WAN Accelerators, the cache size must be 90GB in response.  
 
-On the Target WAN Accelerator, cache size is dictated by the amount of Source WAN Accelerators, but the Digest on the target end—in this example can be excluded from the calculation, we may require 120GB of Digest space at source which also needs to be added to the cache size (90GB) results in requiring only 120GB volume size at a minimum on the target.
+On the Target WAN Accelerator, cache size is dictated by the amount of Source WAN Accelerators plus number of operating systems in use, the digests space on the target end in this example cannot be excluded from the calculation even though it may never be used. We may require 120GB of Digest space at source so this needs to be added to the cache size (90GB) at target resulting in a requirement of 210GB of capacity at a minimum on the target.
 
-**Note:** the target accelerator will use the digest capacity in the event the source digest becomes unavailable, is rebuilt or becomes corrupt, the target will use the capacity to create the digests on the target.
+**Note:** The target accelerator will use the digest capacity in the event the source digest becomes unavailable, is rebuilt or becomes corrupt. The target will use the spare capacity to calculate the digests on the target.
