@@ -472,7 +472,7 @@ too aggressive, jobs may fail.
 
 ## Veeam Infrastructure cache
 
-A new service in Veeam Backup & Replication v9.5 is **Infrastructure Cache**. With it, Veeam can cache directly into memory an inventory of the objects in a vCenter or even single ESXi hierarchy. The collection is very efficient as it uses memory and it is limited to just the data needed by Veeam Backup & Replication.
+A new service in Veeam Backup & Replication v9.5 is **Infrastructure Cache**. With it, Veeam can cache directly into memory an inventory of the objects in a vCenter hierarchy. The collection is very efficient as it uses memory and it is limited to just the data needed by Veeam Backup & Replication.
 
 This cache is stored into memory, so at each restart of the Veeam services its content is lost; this is not a problem as the initial retrieval of data is done as soon as the Veeam server is restarted. From here on, Veeam "subscribed" to a specific API available in vSphere, so that it can receive in "push" mode any change to the environment, without the need anymore to do a full search on the vCenter hierarchy during every operation.
 
