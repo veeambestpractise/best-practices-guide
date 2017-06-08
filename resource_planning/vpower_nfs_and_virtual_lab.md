@@ -57,7 +57,7 @@ Tools on a verified VM.
 
 ###  Testing Virtual Machines
 
-1.  **VMware Tools heartbeat** is used for verifying that the VM OS is successfully started.
+1.  **VMware Tools heartbeat** is used for verifying that the VM OS is successfully started. SureBackup will wait a predefined amount of time for the heartbeat to register however if a heartbeat is seen before the timeout period expires the tests continue automatically.
 
 2.  **PING** tests are initiated according to the masqueraded network configuration. The ping is sent from the Veeam backup server using the static routes added during the job execution. Since the masquerade network is not part of the Veeam backup server's own subnet, the packet is sent to the gateway matching the Virtual Lab network (usually the virtual lab appliance).
 
@@ -186,7 +186,7 @@ bottom of the webpage before you configure Virtual Labs for Distributed vSwitch:
 
 Even in environments where Distributed vSwitch is available, make sure that the
 Veeam backup server and the Virtual Lab proxy appliance are placed in the same
-subnet to prevent network packets (sent to the masquerading IP subnets) from being routed.
+VLAN to prevent network packets (sent to the masquerading IP subnets) from being routed.
 
 ![](../media/image17.png)
 

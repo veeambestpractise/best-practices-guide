@@ -35,6 +35,9 @@ the following scenarios:
     helpful in managing licenses across these instances to
     ensure compliance.
 
+-   Searching the Indexes can also be used to find files that
+have been backed up and the indexes stored in the Enterprise Manager database.    
+
 -   Enterprise Manager is required when automation is essential to
     delivering IT services — to provide access to the Veeam RESTful API.
 

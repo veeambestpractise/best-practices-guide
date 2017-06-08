@@ -104,4 +104,4 @@ Usually, a backup copy is used to send data remotely. If it is necessary to send
 
 If you are using a WAN accelerated transfer, refer to the WAN Accelerator section for proper cache population procedure: <https://helpcenter.veeam.com/backup/vsphere/wan_populate_cache.html>.
 
-**Note:** Only the initial first run of a reverse incremental chain can be used with seeding (but any forward incremental chain can be used).
+**Note:** Only the initial first run of a reverse incremental chain can be used with seeding (but any forward incremental chain can be used). See [kb1856](https://www.veeam.com/kb1856) for more information.

@@ -20,17 +20,21 @@ are also stored in the configuration backup files.
 ### Planning for Disaster Recovery of Veeam Backup Server
 Having a solid disaster recovery strategy for your availability components, like the backup server, is key to a successful recovery. For all situations follow these basic guide lines:
 
-1. Make sure the daily configuration backup is **not** placed in the default location on the backup server itself;
-2. Modify the backup configuration backup settings to point to a secure backup repository on a different location/site;
+1. Make sure the daily configuration backup is **not** placed in the default location on the backup server itself
+2. Modify the backup configuration backup settings to point to a secure backup repository on a different location/site
 3. Schedule the configuration backup to run when the backup server is least occupied;
-4. Make sure the configuration backup is encrypted to protect the configuration details. Also all passwords are than stored in the configuration backup files;
-5. Check that you receive notifications about the status of the configuration backup job results;
-6. Think about placement of the backup server, configuration backup and database. This is highly depended on the overall infrastructure design and DR strategy of your organization;
+4. Make sure the configuration backup is encrypted to protect the configuration details. Also all passwords are than stored in the configuration backup files
+5. Check that you receive notifications about the status of the configuration backup job results
+6. Think about placement of the backup server, configuration backup and database. This is highly depended on the overall infrastructure design and DR strategy of your organization
 
 By default, Veeam Backup & Replication is configured to create a daily configuration backup. The resulting configuration backup file is stored in the `\VeeamConfigBackup\%BackupServer%` folder on the default backup repository. However, for security’s sake, it is recommended that you do **not** store configuration backups on the **default backup repository** or in any other folder on the backup server. In this case, if the backup server fails, its configuration data will remain, and you will be able to recover the failed backup server.
 
 When the backup server is in the primary site it is recommended to replicate the Veeam backup server VM to the secondary site (verify network and IP mapping settings before you begin; refer to <https://helpcenter.veeam.com/docs/backup/vsphere/replica_job.html?ver=95>
-for details). Also check the location of the configuration database, when the database is external ensure this server is also replicated to the secondary site. If the server is replicated successfully, in the event of a disaster, you may start its replica in the secondary location without having to reinstall Veeam Backup & Replication. This will help to lower overall Recovery Time Objective (RTO).
+for details).
+
+**Note** you cannot IP map a replica Veeam backup server if the control of the replica is by the same server being replicated, it can only be done using another VBR server to control that replica)
+
+Also check the location of the configuration database, when the database is external ensure this server is also replicated to the secondary site. If the server is replicated successfully, in the event of a disaster, you may start its replica in the secondary location without having to reinstall Veeam Backup & Replication. This will help to lower overall Recovery Time Objective (RTO).
 
 **Tip** Use Veeam's `File Copy Job` to place a copy of the configuration backup at the DR site. You can configure another repository for that purpose.
 

@@ -1,6 +1,6 @@
 # Veeam Backup & Replication Database
 
-Veeam Availability Suite, which includes Veeam Backup & Replication and Enterprise Manager, stores all information about backup infrastructure, jobs settings, job history, sessions and other
+Veeam Availability Suite, which includes Veeam Backup & Replication, Veeam ONE and Enterprise Manager, stores all information about backup infrastructure, jobs settings, job history, sessions and other
 configuration data in an SQL server instance.
 
 When planning the Veeam Backup & Replication deployment you must choose the
