@@ -192,9 +192,6 @@ VLAN to prevent network packets (sent to the masquerading IP subnets) from being
 
 Most DR datacenters are configured with different IP networks from production to allow for “active-active” configurations. In such cases, layer 3 (L3) is used for networking configuration and routing is in place to establish communications between the production site and the DR site.
 
-In these scenarios, it is recommended to deploy a Veeam backup server at the DR site. This will
-help getting the Virtual Lab working and ensure correct "1-Click Failover" and failback if the production site becomes unavailable.
-
 For more information, please see the [Backup Server Placement](backup_server_placement.md)
 section of this guide.
 
