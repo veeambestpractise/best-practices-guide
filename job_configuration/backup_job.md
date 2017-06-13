@@ -8,6 +8,9 @@ Veeam Backup and Replication allows you to flexibly select objects to add to the
 
 This screen also provides an advanced object exclusion tool that allows you to select a parent object and then exclude child objects, or even individual disks within a VM.
 
+**Note** When selecting very high level containers with many virtual machines, such as datacenters, clusters or large folders, it is important to keep in mind that tape archive jobs, or SureBackup jobs with linked jobs cannot exclude certain objects from being processed
+
+
 More guidelines on object selection are listed below.
 
 **Important:** Veeam Backup and Replication supports encrypted VMs (in vSphere 6.5) but the resulting backups will contain unencrypted data. Thus it is strongly recommended to enable in transit and at rest job level encryption to ensure safety of the data. For more details on requirements and limitations of the backup of encrypted VMs refer to the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/encrypted_vms_backup.html?ver=95) of the User Guide.
