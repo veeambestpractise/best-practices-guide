@@ -135,8 +135,9 @@ rules apply:
 	type of media pool used:
 	- **Standard Media Pool:** The tape job will always
 	copy the full backup and ignore any rollback files (VRB)
-	- **GFS Media Pool:** The tape job can synthesize a full backup from VRB
-	files on specified day(s)
+	- **GFS Media Pool:** The tape job will create a full backup from VRB
+	files on specified day(s) as per schedule.
+
 
 -   When archiving forward incremental backups, _with_ active
     or synthetic full scheduled, the backup chain on tape will be
@@ -146,9 +147,11 @@ rules apply:
 -   If you archive forward incremental backups without synthetic or active
     full enabled, or archive Backup Copy Jobs, the full files are synthesized
     from existing restore points on disk. The virtual full
-    backup schedule can be configured on the "Backup to Tape" job. For more
-		information about virtual full to tape, please see
-		[Veeam Help Center](https://helpcenter.veeam.com/docs/backup/vsphere/virtual_full_backup.html?ver=95).
+    backup schedule can be configured on the "Backup to Tape" job.
+
+For more
+		information about virtual full to tape, please see [Veeam Help Center](https://helpcenter.veeam.com/docs/backup/vsphere/virtual_full_backup.html?ver=95
+
 
 If the source backup job contains multiple chains, and the checkbox
 "Process latest full backup chain only" in advanced job settings is unchecked,
@@ -167,7 +170,7 @@ drives and tape servers.
 
 **Note:** Parallel processing for tape is unavailable for GFS media pools.
 
-Install Windows 2012 R2 on the tape server for best performance. Use the
+Install Windows 2012 R2 or above on the tape server for best performance. Use the
 latest Veeam version and patch level as they often contain tape throughput
 optimizations.
 
@@ -203,7 +206,7 @@ an existing backup-to-tape software. Veeam backup files contain all
 information needed for restore (e.g. deduplication information, VM
 metadata, etc.), and you can use the existing backup-to-tape solution to
 bring the Veeam backup files on tape. This approach can also support
-enterprise customer "Segregation of duty" demands as 2 complete different
+enterprise customer "Segregation of duty" demands as two complete different
 teams can handle backups and tape backups. No single person can delete by
 mistake or on purpose the primary and tape chain. Before having two backup
 solutions co-exist on the same server, please verify they do not conflict each
