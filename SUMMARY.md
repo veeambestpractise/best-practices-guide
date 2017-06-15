@@ -71,12 +71,12 @@
 
 ## Applications
 
-* [Applications](applications/README.md)
+* [Overview of Applications Support](applications/README.md)
 * [Active Directory](applications/active_directory.md)
 * [Microsoft Exchange](applications/exchange.md)
 * [Microsoft SQL Server](applications/sql_server.md)
 * [Microsoft SharePoint Server](applications/sharepoint.md)
-* [Oracle](applications/oracle.md)
+* [Oracle Database](applications/oracle.md)
 * [MySQL](applications/mysql.md)
 * [IBM Notes/Domino](applications/domino.md)
 * [SAP HANA](applications/sap_hana.md)
