@@ -37,7 +37,7 @@ It is also recommended to use a journaling file systems (this makes exFAT a less
 A file size limitation can be occasionally reached on NTFS, especially on Windows 2012 R2 with deduplication enabled. This happens due to a hard limit reached on the file records size because of the  high level of file fragmentation. To mitigate the issue, we recommend to format Windows NTFS repositories with the "**/L**" (large files) option.
 
 ### Keeping File Size Under Control
-Try to avoid backup chains growing too much. Remember that very big objects can become unmanageable. Since Veeam allows a backup chain to be moved from one repository to another with nothing more than a copy/paste operation of the files themselves, it is recommended to keep backup chain size (the sum of a single full and linked Incrementals) under 10 TB per job (\~16TB of source data). This will allow for a smooth, simple and effortless repository storage migration.
+Try to avoid backup chains growing too much. Remember that very big objects can become hardly manageable. Since Veeam allows a backup chain to be moved from one repository to another with nothing more than a copy/paste operation of the files themselves, it is recommended to keep backup chain size (the sum of a single full and linked Incrementals) under 10 TB per job (\~16TB of source data). This will allow for a smooth, simple and effortless repository storage migration.
 
 ### Synthetic Backup and Caching
 

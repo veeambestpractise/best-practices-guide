@@ -39,7 +39,7 @@ Users can configure each repository of the group to accept full backups, increme
 Performance policy increases the failure domain — a backup chain is split over at least two repositories, thus the loss of one of the two corrupts the entire backup chain. This is a consideration that Veeam architects need to evaluate carefully. There is a trade-off between the increased performance guaranteed by the performance placement policy, and the increased failure domain.
 
 ## Scale-out Backup repository and network considerations
-Scale-out Backup Repository is, as the name implies, a scale out arhitecture, based on multiple datamovers, with a notion of master and slave repository datamovers.
+Scale-out Backup Repository is, as the name implies, a scale out architecture, based on multiple datamovers, with a notion of master and slave repository datamovers.
 
 During backups, the master datamover is always started where the write is happening. During restore, the master is always started where the VBK is located, as most blocks are likely retrieved from this location.
 
