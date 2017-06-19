@@ -68,7 +68,7 @@ For uninstalling Veeam Backup & Replication Console, first de-install all Veeam 
 
 You can uninstall these components by using: `msiexec /x {ProductCode}`
 
-Example for uninstalling the Veeam Backup & Replication console is: `msiexec /x {D0BCF408-A05D-45AA-A982-5ACC74ADFD8A}` 
+Example for uninstalling the Veeam Backup & Replication console is: `msiexec /x {D0BCF408-A05D-45AA-A982-5ACC74ADFD8A}`
 
 **Enterprise Manager**
 
@@ -96,7 +96,13 @@ A role assigned to the user defines the user activity scope: what operations in 
 https://helpcenter.veeam.com/docs/backup/vsphere/users_roles.html?ver=95)
 
 ### Password management policy
-Use a clever Password management policy, which works for your organization. Enforcing the use of strong passwords across your infrastructure is a valuable control. It’s more challenging for attackers to guess passwords/crack hashes to gain unauthorized access to critical systems. Selecting passwords of 10 characters with a mixture of upper and lowercase letters, numbers and special characters is a good start. Adding 2-factor authentication for Admin accounts is also wise to look at.
+Use a clever Password management policy, which works for your organization. Enforcing the use of strong passwords across your infrastructure is a valuable control. It’s more challenging for attackers to guess passwords/crack hashes to gain unauthorized access to critical systems.
+
+Selecting passwords of 10 characters with a mixture of upper and lowercase letters, numbers and special characters is a good start for user accounts.
+
+For Admin accounts adding 2-factor authentication is also a must to secure the infrastructure.
+
+And for service accounts use 25+ characters combined with a password tool for easier management. An Admin can copy and paste the password when needed, increasing security of the service accounts.
 
 ### Lockout policy
 Use a Lockout policy that complements a clever password management policy. Accounts will be locked after a small number of incorrect attempts. This can stop password guessing attacks dead in the water. But be careful that this can also lock everyone out of the backup & replication system for a period! For service accounts, sometimes it is better just to raise alarms fast. Instead of locking the accounts. This way you gain visibility into suspicious behavior towards your data/infrastructure.
