@@ -9,7 +9,7 @@
 
 we can have two types of relationship with our Source and Target accelerators, One to One and many to One.
 
-**One to one is the most simplest form**, this is where on e Source Accelerator is mapped to a single Target Accelerator at the other location.
+**One to one is the most simplest form**, this is where one Source Accelerator is mapped to a single Target Accelerator at the other location.
 
 The other type is **Many to One** where many source accelerators will map to a single target accelerator in a **fan in** type design. this is a common configuration and best practice is to have no more than 4 source accelerators to a single target for resource reasons.
 

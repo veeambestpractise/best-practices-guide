@@ -7,7 +7,7 @@ File to tape job allows you to back up to tape any Microsoft Windows or Linux fi
 
  
 ##### VM Backup to Tape
-To back up data to tape, you need to create and run tape jobs. The backup to tape job is a dedicated job that archives to tape Veeam backups that were produced by Veeam backup jobs. When a backup to tape job runs, it does not create new backups: it locates already existing backups and copies them from backup repository to tape. You need to set the source of the tape job: jobs and/or backup repositories.
+To back up data to tape, you need to create and run tape jobs dedicated to archive Veeam backups that were produced by Veeam backup jobs to tapes. When a backup to tape job runs, it does not create new backups: it locates already existing backups and copies them from backup repository to tape. You need to set the source of the tape job: jobs and/or backup repositories.
 Jobs as Source The following jobs can be primary for tape jobs:
 -	VMware backup jobs
 -	Hyper-V backup jobs

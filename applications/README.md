@@ -1,3 +1,5 @@
+# Overview of Applications Support
+
 Veeam Backup and Replication features native support for several applications, providing full support for backup and restore. Applications with no native support can be easily protected and subsequently restored as well, sometimes requring additional configuration or manual operations depending on the application. This section is dedicated to covering specifics of implementing protection for some of them.
 
 It is possible to ensure data safety and transactional consistency for applications not covered in this guide using pre-freeze and post-thaw scripts that will execute inside of the virtual machine. Subject application has to provide the way to prepare itself appropriately.

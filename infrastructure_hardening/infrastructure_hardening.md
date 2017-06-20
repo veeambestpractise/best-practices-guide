@@ -20,25 +20,25 @@ Consider the Veeam Backup & Replication server to be the **Number 1** target on 
 Within the hardening process of your Veeam infrastructure there are a few steps everyone should always consider and act upon, namely:
 
 
-1. [Secure by Design](## Secure by Design)
+1. [Secure by Design](#Secure by Design)
 
-2. [Remove Unused Components](## Remove Unused Components)
+2. [Remove Unused Components](#Remove Unused Components)
 
-3. [Console Access](## Console Access)
+3. [Console Access](#Console Access)
 
-4. [Roles and Users](## Roles and Users)
+4. [Roles and Users](#Roles and Users)
 
-5. [Required Permissions](## Required Permissions)
+5. [Required Permissions](#Required Permissions)
 
-6. [Encryption](## Encryption)
+6. [Encryption](#Encryption)
 
-7. [Backup & Replication Database](## Backup & Replication Database)
+7. [Backup & Replication Database](#Backup & Replication Database)
 
-8. [Segmentation](## Segmentation)
+8. [Segmentation](#Segmentation)
 
-9. [Visibility](## Visibility)
+9. [Visibility](#Visibility)
 
-10. [Recovery Strategy](## Recovery Strategy)
+10. [Recovery Strategy](#Recovery Strategy)
 
 
 
@@ -55,9 +55,24 @@ Remove all non-essential software programs and utilities from the deployed Veeam
 * Remove the Backup & Replication Console from the Veeam Backup & Replication server. The console is installed locally on the backup server by default.
 * Switch off the Veeam vPower NFS Service if you do not plan on using the following Veeam features: SureBackup, Instant Recovery, or Other-OS File Level Recovery (FLR) operations.
 
+### How to remove the Veeam Backup & Replication Console
+The Console can not be removed through the installer or by using Add/Remove in Windows.
+Open a `cmd` prompt with administrative access. On the command prompt type: `wmic product list brief > installed.txt` this will create a text document with all installed products and their respective Product Codes.
+
+For uninstalling Veeam Backup & Replication Console, first de-install all Veeam Explorers:
+* Veeam Explorer for Microsoft Exchange
+* Veeam Explorer for Microsoft Sharepoint
+* Veeam Explorer for Microsoft Active Directory
+* Veeam Explorer for Microsoft SQL
+* Veeam Explorer for Oracle
+
+You can uninstall these components by using: `msiexec /x {ProductCode}`
+
+Example for uninstalling the Veeam Backup & Replication console is: `msiexec /x {D0BCF408-A05D-45AA-A982-5ACC74ADFD8A}`
+
 **Enterprise Manager**
 
-When Enterprise Manager is not in use deinstall it and remove it from your environment.
+When Enterprise Manager is not in use de-install it and remove it from your environment.
 
 
 ## Console Access
@@ -81,7 +96,13 @@ A role assigned to the user defines the user activity scope: what operations in 
 https://helpcenter.veeam.com/docs/backup/vsphere/users_roles.html?ver=95)
 
 ### Password management policy
-Use a clever Password management policy, which works for your organization. Enforcing the use of strong passwords across your infrastructure is a valuable control. It’s more challenging for attackers to guess passwords/crack hashes to gain unauthorized access to critical systems. Selecting passwords of 10 characters with a mixture of upper and lowercase letters, numbers and special characters is a good start. Adding 2-factor authentication for Admin accounts is also wise to look at.
+Use a clever Password management policy, which works for your organization. Enforcing the use of strong passwords across your infrastructure is a valuable control. It’s more challenging for attackers to guess passwords/crack hashes to gain unauthorized access to critical systems.
+
+Selecting passwords of 10 characters with a mixture of upper and lowercase letters, numbers and special characters is a good start for user accounts.
+
+For Admin accounts adding 2-factor authentication is also a must to secure the infrastructure.
+
+And for service accounts use 25+ characters combined with a password tool for easier management. An Admin can copy and paste the password when needed, increasing security of the service accounts.
 
 ### Lockout policy
 Use a Lockout policy that complements a clever password management policy. Accounts will be locked after a small number of incorrect attempts. This can stop password guessing attacks dead in the water. But be careful that this can also lock everyone out of the backup & replication system for a period! For service accounts, sometimes it is better just to raise alarms fast. Instead of locking the accounts. This way you gain visibility into suspicious behavior towards your data/infrastructure.

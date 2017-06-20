@@ -17,3 +17,6 @@ When designing your jobs, keep in mind that several operations such as synthetic
 
 ## Performance
 To avoid counter productive effects, attention should be paid on not having too many write threads towards a storage used as a repository. For example, a low range NAS storage will probably not react very well to a high amount of parallel processes created by per VM backup files. To limit this effects, refer to Repository configuration options, especially the **Concurrent tasks** limit.
+
+## Deduplication
+Using Per VM backup file will negatively impact repository space usage since Veeam deduplication is file based. If backup jobs have been created while grouping similar guests to optimize deduplication and if Active Full is used, per VM Backup chain might require additional repository space. 

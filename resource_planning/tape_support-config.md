@@ -14,6 +14,7 @@ Before you configure a backup to tape job, complete the following prerequisites:
 -	You must configure one or more simple media pool with the necessary media set and retention settings.
 
 -	You must load tapes to the tape device and configure the target media pool so that it has access to them. If the media pool has no available tape, the tape job will wait for 72 hours and then terminate.
+
 Mind the following limitations:
 
 - The backup to tape job processes only VBK (full backups) and VIB files (forward incremental backups).  
