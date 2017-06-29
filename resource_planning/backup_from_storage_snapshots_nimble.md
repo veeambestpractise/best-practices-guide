@@ -35,6 +35,8 @@ Instead Veeam will orchestrate the creation of a storage snapshot, and can
 entirely skip VMware snapshot creation, in case application-aware image processing
 is left disabled.
 
+
+
 ![Nimble Snapshot](./backup_from_storage_snapshots_nimble_1.png)
 
 It is not recommended to rely on storage snapshots as backups, as it violates
@@ -42,7 +44,7 @@ the [3-2-1 rule](https://www.veeam.com/blog/how-to-follow-the-3-2-1-backup-rule-
 lower RPO, in case the primary storage array is still available, when a restore
 is needed.
 
-##### Note.  
+###### Note.  
 It is recommended by the vendor that volumes should be in individual Volume Collections.
   Please verify Nimble Volume Collections configuration before running the snapshot-only job, otherwise it may not operate properly- for example, replicate more data than expected.
 
@@ -60,6 +62,8 @@ configure how many snapshots should be retained at the target Nimble Storage arr
 During the job run, Veeam will search for replication settings configured on the
 Volume Collection for the source volume being snapshotted. Please see the initial
 paragraph of this chapter for details on configuring Volume Collections.
+###### Note.
+When configuring replication between Nimble Arrays for integration with Veeam for Snapshot Only Jobs or for backups to Secondary Array, it is recommended by Nimble to have each  volume have its own volume collection group.
 
 ## Backup from secondary storage
 
