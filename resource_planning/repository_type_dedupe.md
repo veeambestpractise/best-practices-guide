@@ -50,6 +50,10 @@ Integrated appliances are:
 * EMC DataDomain - via DDBoost API
 * ExaGrid - via integrated Veeam datamover
 
+Limitations:
+- [Limitations for EMC Data Domain](https://helpcenter.veeam.com/docs/backup/vsphere/emc_dd.html?ver=95)
+- [Limitations for HPE StoreOnce](https://helpcenter.veeam.com/docs/backup/vsphere/deduplicating_appliance_storeonce.html?ver=95)
+
 If the mentioned integration API is unavailable due to licensing restrictions, or if any other deduplication appliance is used, the appliance should be considered *non-integrated*.
 
 In order to optimize throughput for deduplication appliances, please use the following configuration guidelines:
