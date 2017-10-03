@@ -42,10 +42,6 @@ If the [Virtual Appliance](https://helpcenter.veeam.com/docs/backup/vsphere/virt
 
 If the backup proxy is deployed on a physical server, or the Virtual Appliance or Direct NFS mode cannot be used for other reasons, Veeam Backup & Replication will use the [Network](https://helpcenter.veeam.com/docs/backup/vsphere/network_mode.html?ver=95) transport mode to populate replica disk files. For information on the Network mode, see <https://helpcenter.veeam.com/docs/backup/vsphere/network_mode.html?ver=95>.
 
-If the [Virtual Appliance](https://helpcenter.veeam.com/backup/vsphere/virtual_appliance.html?ver=95) mode is applicable, replica virtual disks are mounted to the backup proxy and populated through the ESX I/O stack. This results in increased writing speed and fail-safe replication to ESXi targets. For information on Virtual Appliance mode, see <https://helpcenter.veeam.com/backup/vsphere/virtual_appliance.html?ver=95>.
-
-If the backup proxy is deployed on a physical server, or the Virtual Appliance or Direct NFS mode cannot be used for other reasons, Veeam Backup & Replication will use the [Network](https://helpcenter.veeam.com/backup/vsphere/network_mode.html?ver=95) transport mode to populate replica disk files. For information on the Network mode, see <https://helpcenter.veeam.com/backup/vsphere/network_mode.html?ver=95>.
-
 The Direct SAN mode (as part of Direct Storage Access) can only be used together with replication targets in case of transferring thick-provisioned VM disks at the first replication run. As replication restore points are based on VMware snapshots, that are thin provisioned by definition, Veeam will failback to Virtual Appliance (HotAdd) mode or Network mode, if configured at proxy transport settings. Direct SAN mode or backup from storage snapshots can be used on the source side in any scenario.
 
 **Note:** Veeam Backup and Replication supports replicating VMs residing on VVOLs but VVOLs are not supported as replication target datastore.
@@ -111,11 +107,7 @@ In this case, the data communication link should be mostly used for the critical
 
 ![](replication_job_from_backups.png)
 
-<<<<<<< HEAD
-You can find additional information about replica from backup in the appropriate section of the Veeam Backup & Replication User Guide: <https://helpcenter.veeam.com/docs/backup/vsphere/replica_from_backup.html?ver=95>
-=======
 You can find additional information about replica from backup in the appropriate section of the Veeam Backup & Replication User Guide: <https://helpcenter.veeam.com/backup/vsphere/replica_from_backup.html?ver=95>
->>>>>>> dev
 
 **Tip:** This feature is sometimes named and used as proactive restore. Together with SureReplica, it is a powerful feature for availability.
 
