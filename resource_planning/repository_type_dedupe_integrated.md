@@ -58,4 +58,4 @@ and
 -   Value: 1 (default: 0)
 
 ### Chain Length Limitation
-HPE StoreOnce has a limit on the number of concurrently opened files, this limit is important when restoring VM's. The maximum length of a backup chain (Full backup file plus all incremental backup files) depends on which HPE StoreOnce model is used. Lookup your HPE StoreOnce model in: [Limitations for HPE StoreOnce](https://helpcenter.veeam.com/docs/backup/vsphere/deduplicating_appliance_storeonce_limitations.html?ver=95) to find the maximum limit.  
+HPE StoreOnce has a limit on the number of concurrently opened files, this limit is important when restoring VM's. The maximum length of a backup chain (Full backup file plus all incremental backup files) depends on which HPE StoreOnce model is used. Lookup your HPE StoreOnce model in: [Limitations for HPE StoreOnce](https://helpcenter.veeam.com/docs/backup/vsphere/deduplicating_appliance_storeonce.html?ver=95) to find the maximum limit.  
