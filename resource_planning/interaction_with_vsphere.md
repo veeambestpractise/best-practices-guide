@@ -279,11 +279,17 @@ close the  backed up VM to avoid stressing the storage replication network with 
 -   Type: REG_DWORD
 -   Default value: 0 _(disabled)_
 
-    **Value = 1** - when a proxy is available on the same host, Veeam Backup &
-    Replication will leverage it. If the proxy is busy, Veeam Backup &
-    Replication will wait for its availability; if it becomes
-    unavailable, Veeam Backup & Replication will switch
-    to NBD mode.
+    **0** (default) – Disabled
+
+    **1** – “Preferred same Host” If DirectNFS proxy on same host exist it will wait for a free task slot there. If a proxy on same host do not exist it will use another DirectNFS proxy (on another host or physical server) or fallback to Virtual Appliance(HotAdd) and then to Network(NBD) mode.
+
+    **2** – If there is no DirectNFS proxy on same host as VM, it will fallback to Network mode (NBD)
+
+Overall HCI solutions should use 1 or 2 (recommended)
+“1” should be used with HCI solutions only if the “EnableSameHostHotAddMode” was set to “2”.
+
+_This reg key is not used for the Veeam Cisco HyperFlex integration._
+
 
 If for what ever reason Direct NFS processing can not be used and HotAdd
 is configured, ensure that proxies running in the Virtual
