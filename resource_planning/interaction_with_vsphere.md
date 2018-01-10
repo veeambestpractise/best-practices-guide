@@ -272,7 +272,7 @@ processing modes and Veeam Backup from Storage Snapshots on NetApp NFS datastore
 We highly recommend you to use one of these 2 backup modes to avoid problems.
 
 
-<!--In hyperconverged infrastructures (HCI), it is preferred to keep the datamover
+In hyperconverged infrastructures (HCI), it is preferred to keep the datamover
  close the  backed up VM to avoid stressing the storage replication network with backup traffic. If the HCI is providing storage via the NFS protocol (such as Nutanix), it is possible to force a Direct NFS data mover on the same host using the following registry key:
 
 -   Path: `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication`
@@ -289,7 +289,7 @@ We highly recommend you to use one of these 2 backup modes to avoid problems.
  Overall HCI solutions should use 1 or 2 (recommended)
  “1” should be used with HCI solutions only if the “EnableSameHostHotAddMode” was set to “2”.
 
- _This reg key is not used for the Veeam Cisco HyperFlex integration._-->
+ _This reg key is not used for the Veeam Cisco HyperFlex integration._
 
 
 If for what ever reason Direct NFS processing can not be used and HotAdd
