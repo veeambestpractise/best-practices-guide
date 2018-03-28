@@ -5,7 +5,7 @@ Protecting Veeam Backup & Replication Configuration
 
 As recommended by best practice for disaster recovery you can place
 Veeam Backup & Replication installation on a virtual machine but do not protect
-it with backups or replicas, it can have issues with disconnections and corruption during the snapshot process so it is not recommended. Out-of-the box Veeam automatically creates a configuration backups on the default backup repository, the favored approach is point the configuration backups to a remote repository or if possible another machine designated as a managed server acting as a repository to only hold the config backup file.
+it with backups or replicas, it can have issues with disconnections and corruption during the snapshot process so it is not recommended. Out-of-the box Veeam automatically creates a configuration backup on the default backup repository, the favored approach is point the configuration backup to a remote repository or if possible another machine designated as a managed server acting as a repository to only hold the config backup file.
 
 These configuration backups contain all the information about Veeam Backup & Replication, like Backup Infrastructure components and objects, Backup jobs (passwords are not stored by default), Sessions and Tape setup. The configuration backup can be used to automatically rebuild the Veeam Backup & Replication server with all objects, sessions and jobs.
 
