@@ -34,6 +34,8 @@ Also check the location of the configuration database, when the database is exte
 
 **Note:** Backup copy jobs do not process configuration backups. Remember that configuration backups are not processed with backup to tape jobs; if you want to store configuration backups on tape use file to tape jobs instead.
 
+**Note:** Although it is supported, writing configuration backups on block repositories like DD Boost or Catalyst store is not recommended. This kind of repositories can not be accessed without a backup server installed. Using a regular SMB share, to save configuration backups, can really make things easier when it comes to rebuild completely a failed backup server: .BCO files can be accessed directly as soon as the new server is up and running and they can be copied locally to be imported without configuring anything first on the backup server.
+
 
 
 ### Antivirus on Veeam Servers
