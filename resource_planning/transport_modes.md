@@ -53,5 +53,7 @@ bandwidth available on the corresponding VMkernel interfaces. If NBD-SSL is
 enabled, the throughput is typically 10% slower than regular NBD. NBD-SSL is
 _enforced_ for ESXi 6.5 hosts. Read more about this in
 [Virtual Appliance Mode section - vSphere 6.5 and encryption](./virtual_appliance_mode.md#vsphere-65-and-encryption).
+Starting from vSphere 6.5b (EXSi build 5146846) unencrypted is available again and encrypted VMs can be backed up using regular NBD mode.
+[More info regarding the content of the update can be found here.](http://pubs.vmware.com/Release_Notes/en/developer/vddk/65/vsphere-vddk-650b-release-notes.html)
 
 _The following sections explain transport modes in detail._
