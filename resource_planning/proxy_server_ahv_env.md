@@ -1,4 +1,4 @@
-#Proxy Server - AHV
+# Proxy Server in Nutanix AHV environment
 
 To back up Nutanix AHV VMs, Veeam Backup & Replication uses the agentless approach. The solution works at the hypervisor level. It creates image-based backups of VMs, capturing the whole VM data at a specific point in time, including OS, system state data, application data and so on. Backups of Nutanix AHV VMs are stored on Veeam backup repositories in the native Veeam format. You can use the resulting backup files for different restore scenarios:
 -     Entire VM restore
@@ -10,14 +10,15 @@ To back up Nutanix AHV VMs, Veeam Backup & Replication uses the agentless approa
 
 ![AHV Proxy](./ahv_proxy1.png)
 
-###How It Works: Integration Details
+### How It Works: Integration Details
 The core component that enables Veeam integration with the Nutanix AHV platform is a backup proxy. The backup proxy is a Linux-based virtual module that acts as a broker, or coordinator between the Nutanix AHV platform on one side and the Veeam backup server on the other side.
 The backup proxy in the Nutanix integration scheme is an all-in-one box that is responsible for backup, entire VM restore and VM disk restore operations. The backup proxy communicates with the AHV platform over Nutanix RESTful API, assigns necessary resources for backup and restore operations, reads/writes data from/to AHV datastores and transports VM data to/from target Veeam backup repositories. The backup proxy is also responsible for job management and scheduling, data compression and deduplication, applying retention policy settings to backup chains, as well as performing other backup- and restore-related activities.
-[comment]:The backup proxy is installed as a VM on a Nutanix AHV cluster. For one Nutanix AHV cluster, one backup proxy is required. That is, to back up a restore VMs on two clusters, you will need to deploy two Veeam proxies, one per cluster. *AB: not sure about this statement*
+
+A proxy deployed in one cluster can server only that cluster. That is, if to backup and restore VMs from another cluster you will need to deploy another proxy that runs on that cluster.
 
 ![AHV Proxy](./ahv_proxy2.png)
 
-backup proxy comes with a web-based portal that allows users to perform the following tasks:
+Backup proxy comes with a web-based portal that allows users to perform the following tasks:
 -     Configure connections to components in the Veeam backup infrastructure.
 -     Configure and run backup jobs for Nutanix AHV VMs.
 -     Restore VMs back to Nutanix AHV clusters.
