@@ -53,3 +53,19 @@ net start "Lotus Domino Server (DominoData)"
 
 Copy the scripts to Veeam Backup Server, and configure the job to run pre-freeze and post-thaw scripts. Please click on the link for more information about backup scripts (https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95) 
 
+## Restores:
+Restores is the integrated part of IBM Lotus Domaino protection, Veeam offers followings option to restore IBM Lotus Domino Server:
+1.	Instant Server Restore – Instant VM Recovery.
+2.	Instant Individual Emails Restore. 	
+
+###### Instant Server Restore – Instant VM Recovery:
+In case of complete server failure, you can use Veeam Instant VM Restore to bring back the Domino server in less than 15 mints*
+###### Instant Individual Emails Restore:
+In order to recover the individual emails, please follow the steps below:
+1.	Install a Note Client. (User should have full access to production database)
+2.	Start Instant File Level Restore.
+3.	Access NSF files under the c:\VeeamFLR path and subfolders (All Domino Server Disks are mounted on this path).
+4.	Select the emails and copy back to production mailbox.
+5.	If DAOS enabled on the Domino Server, You can search the missing file and restore with Veeam Instant File Level Restore.  For more information (https://www-10.lotus.com/ldd/dominowiki.nsf/dx/Archiving_and_recovering_IBM_Lotus_DAOS-enabled_databases) 
+Note:
+Currently, there is no option to work with Domino Logfiles, you may consider changing transaction logging to circular logging follow the steps to change the transaction logging option: (https://www.ibm.com/support/knowledgecenter/en/SSKTMJ_9.0.1/admin/admn_settingupadominoserverfortransactionlogging_t.html) 
