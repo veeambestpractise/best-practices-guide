@@ -67,5 +67,7 @@ In order to recover the individual emails, please follow the steps below:
 3.	Access NSF files under the c:\VeeamFLR path and subfolders (All Domino Server Disks are mounted on this path).
 4.	Select the emails and copy back to production mailbox.
 5.	If DAOS enabled on the Domino Server, You can search the missing file and restore with Veeam Instant File Level Restore.  For more information (https://www-10.lotus.com/ldd/dominowiki.nsf/dx/Archiving_and_recovering_IBM_Lotus_DAOS-enabled_databases) 
-Note:
-Currently, there is no option to work with Domino Logfiles, you may consider changing transaction logging to circular logging follow the steps to change the transaction logging option: (https://www.ibm.com/support/knowledgecenter/en/SSKTMJ_9.0.1/admin/admn_settingupadominoserverfortransactionlogging_t.html) 
+
+
+>Note:
+>Currently, there is no option to work with Domino Logfiles, you may consider changing transaction logging to circular logging follow >the steps to change the transaction logging option: (https://www.ibm.com/support/knowledgecenter/en/SSKTMJ_9.0.1/admin/admn_settingupadominoserverfortransactionlogging_t.html) 
