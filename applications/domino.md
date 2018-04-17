@@ -1,4 +1,4 @@
-Domino
+# IBM Lotus Domino
 Veeam supports the backup and restores of IBM Lotus Domino.
 ## Background
 To protect the Lotus Domino following files and folder are required to be backup:
