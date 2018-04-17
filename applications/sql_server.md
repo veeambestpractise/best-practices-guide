@@ -104,10 +104,13 @@ For the list of all registry keys responsible to fine-tuning MS SQL server backu
 ## Restore 
 
 Restore is integrated part of SQL Server protection, Veeam provides following options to restore SQL Server:
-1.	Full VM or Physical Server Restore.
+1.	VM or Physical Server Restore.
+      - Instant VM or Server Restore.
+      - BMR Restore for Physical.
+      - Full VM Restore.
 2.	SQL Application Item Level Restore.
-
-Veeam uses specially designed Veeam Explorer for SQL to perform application item level restore, to optimize the restore of SQL database install Veeam Management console on SQL server locally to perform the restore.
+      
+Veeam uses specially designed Veeam Explorer for SQL to perform application item level restore, to optimize the restore of SQL database install Veeam Management console on SQL server locally to perform the restores.
 
 ## SQL Failover Cluster Database Restore: (Applicable to agent based cluster backup only)
 
