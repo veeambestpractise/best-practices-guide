@@ -4,15 +4,12 @@ Protecting Veeam Backup & Replication Configuration
 ### Protecting the Veeam Backup Server
 
 As recommended by best practice for disaster recovery you can place
-Veeam Backup & Replication installation on a virtual machine and protect
-it with backups or replicas. Out-of-the box Veeam automatically creates
-configuration backups on the default backup repository.
+Veeam Backup & Replication installation on a virtual machine but do not protect
+it with backups or replicas, it can have issues with disconnections and corruption during the snapshot process so it is not recommended. Out-of-the box Veeam automatically creates a configuration backup on the default backup repository, the favored approach is point the configuration backup to a remote repository or if possible another machine designated as a managed server acting as a repository to only hold the config backup file.
 
-These configuration backups contain all the information about Veeam Backup & Replication, like Backup Infrastructure components and objects, Backup jobs (passwords are not stored by default), Sessions and Tape setup. The configuration backup can be used to automatically rebuild the Veeam Backup & Replication server with all objects, sessions and jobs.
+These configuration backups contain all the information about Veeam Backup & Replication such as Backup Infrastructure components plus objects, Backup jobs (passwords are not stored by default), Sessions and Tape setup. The configuration backup can be used to automatically rebuild the Veeam Backup & Replication server with all objects, sessions and jobs.
 
-To restore all jobs and their metadata (you will be asked for all required passwords during the restore process). Please refer to the
-Veeam Backup & Replication User Guide for further details:
-<https://helpcenter.veeam.com/docs/backup/vsphere/vbr_config.html?ver=95>
+To restore all jobs and their metadata (you will be asked for all required passwords during the restore process if they are not stored in the configuration backup encrypted). Please refer to the Veeam Backup & Replication User Guide for further details: <https://helpcenter.veeam.com/docs/backup/vsphere/vbr_config.html?ver=95>
 
 **Tip:** If encryption is enabled for configuration backup the passwords
 are also stored in the configuration backup files.
@@ -29,12 +26,7 @@ Having a solid disaster recovery strategy for your availability components, like
 
 By default, Veeam Backup & Replication is configured to create a daily configuration backup. The resulting configuration backup file is stored in the `\VeeamConfigBackup\%BackupServer%` folder on the default backup repository. However, for security’s sake, it is recommended that you do **not** store configuration backups on the **default backup repository** or in any other folder on the backup server. In this case, if the backup server fails, its configuration data will remain, and you will be able to recover the failed backup server.
 
-When the backup server is in the primary site it is recommended to replicate the Veeam backup server VM to the secondary site (verify network and IP mapping settings before you begin; refer to <https://helpcenter.veeam.com/docs/backup/vsphere/replica_job.html?ver=95>
-for details).
-
-**Note** you cannot IP map a replica Veeam backup server if the control of the replica is by the same server being replicated, it can only be done using another VBR server to control that replica)
-
-Also check the location of the configuration database, when the database is external ensure this server is also replicated to the secondary site. If the server is replicated successfully, in the event of a disaster, you may start its replica in the secondary location without having to reinstall Veeam Backup & Replication. This will help to lower overall Recovery Time Objective (RTO).
+Also check the location of the configuration database, when the database is external ensure this server is replicated to the secondary site. If the server is rebuilt in the event of a disaster, you may start the secondary location Veeam Backup & Replication server and connect to the configuration backup. This will help to lower overall Recovery Time Objective (RTO).
 
 **Tip** Use Veeam's `File Copy Job` to place a copy of the configuration backup at the DR site. You can configure another repository for that purpose.
 

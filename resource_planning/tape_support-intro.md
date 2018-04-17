@@ -44,7 +44,6 @@ While the system requirements dictate what tape devices are technically supporte
 -	Older Tape drives like DLT or AIT
 
 ##### Drivers
--	IBM drivers: use “non-exclusive” driver setup and start it with administrative rights.
 -	HP drivers: these are not installable with the downloaded install .exe file on a VM (for example, to use with VTL). As a solution, run the install .exe and choose Extract. Use Device Manager –> Update driver and select the drivers for tape drives and (if you use HP/HP emulation tape library) for media changer.
 
 

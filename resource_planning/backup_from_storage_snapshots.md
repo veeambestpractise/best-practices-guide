@@ -103,7 +103,7 @@ are subsequently handled via this connection.
 **Backup proxy servers** must be
 able to directly access the storage array via the same protocol used for
 connecting the production datastore (FibreChannel, iSCSI or NFS). As opposed
-to using [Direct Storage Access](./direct_storage_access.md),
+to using [Direct Storage Access](./direct_san.md),
 it is not a requirement for the proxy server
 to have access to the production datastore itself, as it reads data blocks
 directly from the cloned storage snapshot.
