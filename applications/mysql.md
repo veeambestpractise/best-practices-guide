@@ -1,3 +1,227 @@
-# MySQL/MariaDB
+*MySQL
+Veeam supports backup and restore of MySQL databases.
 
-Backup and restore of MySQL and MariaDB is covered in this whitepaper: https://www.veeam.com/wp-consistent-protection-mysql-mariadb.html.
+**Backup Options:
+
+The following options are supported to backup MySQL databases:
+-	HotBackup Database Online Dump.
+o	Online Dump to the same server.
+o	Online Dump to Staging server
+-	HotBackup Database Freeze.
+-	ColdBackup Database Shutdown.
+
+**HotBackup Database Online Dump:
+
+There are multiple options available regarding Database Online Dump, one of the option is to use Veeam [Pre & Post Thaw Scripts]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95) to dump the database during the backup operations and other option to dump the database to another staging server and protect the staging server from Veeam.
+
+Let’s go through each option one by one in the details:
+
+***Database Online Dump During Backup Operations:
+
+In this option the pre-freeze script will dump all databases hosted on the guest to a single file under the /tmp directory. Before the VM snapshot creation, the mysql dump native command will dump a copy of the database while service will remain available.
+
+The dump will be deleted by post-thaw script after the guest snapshot has been successful.
+Pre Freeze Sciprt:
+
+1.	Use Editor
+2.	Copy the content in the editor.
+‘’’’
+!/bin/bash
+# config:
+# when running on debian we can use existing debian-sys-maint account using defaults file
+# otherwise, specify username and password below using use_credentials
+#use_credentials="-uroot -p"
+defaults_file="/etc/my.cnf"
+dump_file="/tmp/mysql_dump.sql"
+database="--all-databases"
+if [ -f $defaults_file ]
+then
+opts="--defaults-file=$defaults_file"
+elif [ -n $use_credentials ]
+then
+opts="$opts $use_credentials"
+else
+echo "$0 : error, no mysql authentication method set" | logger
+exit 1
+fi
+opts="$opts $database"
+echo "$0 executing mysqldump" | logger
+mysqldump $opts >$dump_file 2>/dev/null
+if [ $? -ne 0 ]
+then
+echo "$0 : mysqldump failed" | logger
+exit 2
+else
+echo "$0 : mysqldump suceeded" | logger
+sync;sync
+fi
+‘’’’
+3.	Save script as PreFreeze.sh
+4.	Use script as [pre-freeze script]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)  in Veeam backup job
+
+Post-Thaw Scripts
+1.	 Use Editor
+2.	Copy the below in the editor:
+‘’’’
+#!/bin/bash
+dump_file="/tmp/mysql_dump.sql"
+if [ -f $dump_file ]
+then
+echo "$0 deleting mysql dump file $dump_file" | logger
+rm -f $dump_file > /dev/null 2>&1
+exit 0
+else
+echo "$0 could not locate mysql dump file $dump
+‘’’’
+3.	Save file as PostThaw.sh.
+4.	Use script as [Post-Thaw script]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)  in the backupjob
+
+**Online Dump to Staging server
+
+Another option is to dump the MySQL database to staging server and protect staging server from backup job.
+
+1.	Create new server or use any existing server as NFS Share.
+2.	Create Script to dump the MySQL database to Staging server
+3.	Use Editor
+4.	Copy below sample code in the editor:
+'''
+#!/bin/bash
+# Shell script to backup MySQL database
+
+# Set these variables
+MyUSER=""	# DB_USERNAME
+MyPASS=""	# DB_PASSWORD
+MyHOST=""	# DB_HOSTNAME
+
+# Backup Dest directory
+DEST="" # /home/username/backups/DB
+
+# Email for notifications
+EMAIL=""
+
+# How many days old files must be to be removed
+DAYS=3
+
+# Linux bin paths
+MYSQL="$(which mysql)"
+MYSQLDUMP="$(which mysqldump)"
+GZIP="$(which gzip)"
+
+# Get date in dd-mm-yyyy format
+NOW="$(date +"%d-%m-%Y_%s")"
+
+# Create Backup sub-directories
+MBD="$DEST/$NOW/mysql"
+install -d $MBD
+
+# DB skip list
+SKIP="information_schema
+another_one_db"
+
+# Get all databases
+DBS="$($MYSQL -h $MyHOST -u $MyUSER -p$MyPASS -Bse 'show databases')"
+
+# Archive database dumps
+for db in $DBS
+do
+    skipdb=-1
+    if [ "$SKIP" != "" ];
+    then
+		for i in $SKIP
+		do
+			[ "$db" == "$i" ] && skipdb=1 || :
+		done
+    fi
+ 
+    if [ "$skipdb" == "-1" ] ; then
+    	FILE="$MBD/$db.sql"
+	$MYSQLDUMP -h $MyHOST -u $MyUSER -p$MyPASS $db > $FILE
+    fi
+done
+
+# Archive the directory, send mail and cleanup
+cd $DEST
+tar -cf $NOW.tar $NOW
+$GZIP -9 $NOW.tar
+
+echo "MySQL backup is completed! Backup name is $NOW.tar.gz" | mail -s "MySQL backup" $EMAIL
+rm -rf $NOW
+
+# Remove old files
+find $DEST -mtime +$DAYS -exec rm -f {} \;
+'''
+5.	Save file as DB_Backup.sh.
+6.	Use Linux Scheduler to run the script on desired time for the backup.
+7.	Configure the backup of staging VM.
+
+***HotBackup Database Freeze.
+
+In this option, Veeam will freeze the database during pre-freeze script and release the database in post-thaw, MySQL table will be flashed to disk into read-only state and writable once the VM snapshot has
+been created.
+
+1.	Use editor 
+2.	Copy the sample code
+'''
+#!/bin/bash
+# config:
+# when running on debian we can use existing debian-sys-maint account using defaults file
+# otherwise, specify username and password below using use_credentials
+#use_credentials="-uroot -p"
+defaults_file="/etc/my.cnf"
+timeout=300
+lock_file=/tmp/mysql_tables_read_lock
+###
+if [ -f $defaults_file ]; then
+opts="--defaults-file=$defaults_file"
+fi
+if [ -n $use_credentials ]; then
+opts="$opts $use_credentials"
+fi
+sleep_time=$((timeout+10))
+rm -f $lock_file
+echo "$0 executing FLUSH TABLES WITH READ LOCK" | logger
+mysql $opts -e "FLUSH TABLES WITH READ LOCK; system touch $lock_file; system nohup sleep
+$sleep_time; system echo\ lock released|logger; " > /dev/null &
+mysql_pid=$!
+echo "$0 child pid $mysql_pid" | logger
+c=0
+while [ ! -f $lock_file ]
+do
+# check if mysql is running
+if ! ps -p $mysql_pid 1>/dev/null ; then
+echo "$0 mysql command has failed (bad credentials?)" | logger
+exit 1
+fi
+sleep 1
+c=$((c+1))
+if [ $c -gt $timeout ]; then
+echo "$0 timed out waiting for lock" | logger
+touch $lock_file
+kill $mysql_pid
+fi
+done
+echo $mysql_pid > $lock_file
+exit 0
+'''
+3.	Save as PreFreeze.sh.
+4.	Configure the script as prefreeze script in the backup job.
+
+Post-Thaw Script:
+1.	Use Editor
+2.	Copy the sample code
+'''
+#!/bin/bash
+lock_file=/tmp/mysql_tables_read_lock
+###
+mysql_pid=$(cat $lock_file)
+echo "$0 sending sigterm to $mysql_pid" | logger
+pkill -9 -P $mysql_pid
+rm -f $lock_file
+exit 0
+'''
+3.	Save code as Post-Thaw.sh 
+4.	Configure post-thaw script in the backup job.
+
+*Tip* Adjust the timeout according to database size, in the sample script we have set 300 seconds for timeout.
+
+**Cold Backup Database Shutdown:
