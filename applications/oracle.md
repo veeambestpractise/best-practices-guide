@@ -1,5 +1,7 @@
-#Oracle 
+# Oracle 
+
 Veeam supports backup and restore of Oracle databases.
+
 Unsupported Configuration:
 -	32-bit Oracle running on 64-bit operating systems is not supported.
 -	Oracle XE on Linux is not supported.
