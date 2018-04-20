@@ -17,8 +17,8 @@ Unsupported Configuration:
 
 -	SQL Server Failover Cluster Instances 
 
-Note:
-Read the whitepaper on benefits of using Always-on Availability Groups for Virtual Environment. (https://www.veeam.com/wp-sql-alwayson-availability-groups-virtual-environment.html) 
+*Note:*
+Please read the whitepaper on benefits of using [SQL Always-on Availability Groups for Virtual Environment](https://www.veeam.com/wp-sql-alwayson-availability-groups-virtual-environment.html) 
 
 
 ## Veeam Agent Based Backup for SQL Servers:
@@ -60,8 +60,7 @@ To verify the SQL Server Health:
              c. Under the Physical Disk object, add the counters: Avg. Disk Sec/Read and Avg. Disk Sec/Write (All Instances)
              d.	Under the Paging File object, add the counter: %Usage (Instance: Total)
              
-Check Microsoft document to validate the health status of SQL Server: https://docs.microsoft.com/en-us/sql/relational-databases/performance-monitor/monitor-memory-usage?view=sql-server-2017 
-
+Check [Microsoft KB](https://docs.microsoft.com/en-us/sql/relational-databases/performance-monitor/monitor-memory-usage?view=sql-server-2017) to validate the health status of SQL Server.
 
 ## Job Configuration 
 
@@ -70,12 +69,14 @@ Check Microsoft document to validate the health status of SQL Server: https://do
 ###### Standalone SQL Server:
 
 No additional configuration is required to backup the standalone SQL server, you can configure the backup with application aware processing to take the backup of SQL server with the databases.
-Check the Veeam User’s Guide sections to get the more information about configuring the SQL Backup: https://helpcenter.veeam.com/docs/backup/explorers/vesql_bu_job_settings.html?ver=95 
+
+Please check the Veeam User’s Guide sections to get the more information about [SQL backup configuration](https://helpcenter.veeam.com/docs/backup/explorers/vesql_bu_job_settings.html?ver=95) 
 
 ###### SQL Always-on Availability Group:
 
 When backing up AlwaysOn availability group make sure all cluster nodes are processed by the same backup job for transaction logs processing and restores to work properly. Consider increasing cluster timeouts in case failover occurs during the backup, similar to Exchange DAG as per KB1744.
-Users can also use https://www.veeam.com/kb2110 to excluded specify database from Application aware processing.
+
+You can also use [KB2110](https://www.veeam.com/kb2110) to excluded specify database from application aware processing.
 
 ###### Transactions Logs Backup:
 
@@ -88,7 +89,7 @@ To change temporary folder use SqlTempLogPath (STRING) registry value as describ
 •	Type: REG_SZ
 •	Default value: undefined
 
-As best practices it's highly recommended to periodically shrink the SQL log file https://technet.microsoft.com/en-us/library/ms190757(v=sql.110).aspx 
+As best practices it's highly recommended to periodically shrink the SQL log file, Please follow [Microsoft KB](https://technet.microsoft.com/en-us/library/ms190757(v=sql.110).aspx) for more information.
 
 ## Veeam Agent Based Backup:
 
