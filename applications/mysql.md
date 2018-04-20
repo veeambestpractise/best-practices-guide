@@ -227,3 +227,89 @@ exit 0
 > Adjust the timeout according to database size, in the sample script we have set 300 seconds for timeout
 
 ## Cold Backup Database Shutdown:
+
+In this option, Veeam will use pre and post-thaw script to stop and start the MySQL service using init.d or systemctl commands, depending on the database packages during the snapshot operations.
+
+#### Pre-Freeze Script
+
+1.	Use Editor
+2.	Copy the sample code below
+```
+#!/bin/bash
+timeout=300
+if [ -f /var/run/mysqld/mysqld.pid ]
+then
+mysql_pid=$(cat /var/run/mysqld/mysqld.pid) >/dev/null 2>&1
+else
+echo "$0 : Mysql not started or bad mysql pid file location" | logger
+exit 1
+fi
+echo "$0 : Processing pre-freeze backup script" | logger
+/etc/init.d/mysqld stop mysql & > /dev/null 2>&1
+c=0
+while [ true ]
+do
+if [ $c -gt $timeout ]
+then
+echo "$0 : timed out, mysql shutdown failed" | logger
+exit 2
+fi
+
+# check if mysql is running
+if [ -f /var/run/mysqld/mysqld.pid ]
+then
+echo "$0 : Waiting 5 more seconds for mysql shutdown" | logger
+sleep 5
+c=$((c+5))
+else
+echo "$0 : Mysql stopped" | logger
+sync;sync
+break
+
+fi
+done
+```
+3.	Save code as Pre-Freeze.sh
+4.	Configure the script to run with backup job as pre-freeze script.
+
+#### Post-Thaw Script:
+
+1.	Use Editor
+2.	Copy the sample code below
+```
+#!/bin/bash
+timeout=300
+echo "$0 : processing post-thaw backup script" | logger
+if [ -f /var/run/mysqld/mysqld.pid ]
+then
+mysql_pid=$(cat /var/run/mysqld/mysqld.pid) >/dev/null 2>&1
+echo "$0 : Mysql already started with PID $mysql_pid" | logger
+exit 1
+fi
+/etc/init.d/mysqld start mysql & > /dev/null 2>&1
+c=0
+while [ true ]
+do
+if [ $c -gt $timeout ]
+then
+echo "$0 : timed out, mysql startup failed" | logger
+exit 2
+fi
+# check if mysql is running
+if [ -f /var/run/mysqld/mysqld.pid ]
+then
+mysql_pid=$(cat /var/run/mysqld/mysqld.pid) >/dev/null 2>&1
+echo "$0 : MySQL started with pid $mysql_pid" | logger
+break
+else
+echo "$0 : Waiting 5 more seconds for mysql startup"
+sleep 5
+c=$((c+5))
+fi
+done
+```
+3.	Save code as Postthaw.sh 
+4.	Configure the backup job to run the script as Post Thaw Script.
+
+
+
