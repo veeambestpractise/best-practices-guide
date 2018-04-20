@@ -1,6 +1,6 @@
 # Oracle
 
-Veeam supports following options for backup and restore of Oracle database servers
+Veeam supports following options to backup and restore of Oracle database servers
 
    - Virtual Machine Application Aware Image Level Backup.
    - Veeam Agent based Backup.
