@@ -1,7 +1,8 @@
-*MySQL
+# MySQL
+
 Veeam supports backup and restore of MySQL databases.
 
-**Backup Options:
+## Backup Options:
 
 The following options are supported to backup MySQL databases:
 -	HotBackup Database Online Dump.
@@ -10,13 +11,13 @@ o	Online Dump to Staging server
 -	HotBackup Database Freeze.
 -	ColdBackup Database Shutdown.
 
-**HotBackup Database Online Dump:
+## HotBackup Database Online Dump:
 
 There are multiple options available regarding Database Online Dump, one of the option is to use Veeam [Pre & Post Thaw Scripts]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95) to dump the database during the backup operations and other option to dump the database to another staging server and protect the staging server from Veeam.
 
 Let’s go through each option one by one in the details:
 
-***Database Online Dump During Backup Operations:
+### Database Online Dump During Backup Operations:
 
 In this option the pre-freeze script will dump all databases hosted on the guest to a single file under the /tmp directory. Before the VM snapshot creation, the mysql dump native command will dump a copy of the database while service will remain available.
 
@@ -25,12 +26,12 @@ Pre Freeze Sciprt:
 
 1.	Use Editor
 2.	Copy the content in the editor.
-‘’’’
+'''
 !/bin/bash
-# config:
-# when running on debian we can use existing debian-sys-maint account using defaults file
-# otherwise, specify username and password below using use_credentials
-#use_credentials="-uroot -p"
+''' # config:
+''' # when running on debian we can use existing debian-sys-maint account using defaults file
+''' # otherwise, specify username and password below using use_credentials
+''' #use_credentials="-uroot -p"
 defaults_file="/etc/my.cnf"
 dump_file="/tmp/mysql_dump.sql"
 database="--all-databases"
@@ -55,7 +56,7 @@ else
 echo "$0 : mysqldump suceeded" | logger
 sync;sync
 fi
-‘’’’
+'''
 3.	Save script as PreFreeze.sh
 4.	Use script as [pre-freeze script]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)  in Veeam backup job
 
