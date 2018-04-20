@@ -312,4 +312,10 @@ done
 4.	Configure the backup job to run the script as Post Thaw Script.
 
 
+| Failure   | Restore Option |
+| ------------- | ------------- |
+| Server Failed | Instant Server Restore  |
+| Database failed or corrupt  | Guest File Level Restore  |
+|Table Level Restore             | Veeam Universal Application Item Restore         |
+
 
