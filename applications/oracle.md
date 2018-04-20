@@ -19,7 +19,7 @@ To backup Oracle Database Server with Virtual Image Applicate Aware Backup, simp
 
 To learn more about archived logs or change the archived logs modes, Please follow [Oracle KB]( https://docs.oracle.com/cd/B19306_01/server.102/b14231/archredo.htm#i1006184) 
 
-*Note*
+**_Note:_**
 > Oracle database can run in one of the two modes, by default, Oracle database is created in NOARCHIVELOG mode. You can query to see archievelog mode:
 ```
 SQL> connect sys/xxx as sysdba;
