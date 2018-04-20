@@ -17,7 +17,7 @@ The following options are available to backup Oracle Databases
 Veeam natively supports backup of virtualized Oracle database servers.
 To backup Oracle Database Server with Virtual Image Applicate Aware Backup, simply enable [application aware processing]( https://helpcenter.veeam.com/docs/backup/vsphere/application_aware_processing.html?ver=95) on Oracle Database server. In addition to Image Level Backup Veeam can backup database archived logs created by the Oracle system if archive logging mode is turned on, archived logs backup improves the RPO and provides [point in time recovery]( https://helpcenter.veeam.com/docs/backup/explorers/veo_rest_scenario_2_pt_time.html?ver=95) 
 
-To learn more about archived log or change the archived logs modes, Please follow [Oracle KB]( https://docs.oracle.com/cd/B19306_01/server.102/b14231/archredo.htm#i1006184) 
+To learn more about archived logs or change the archived logs modes, Please follow [Oracle KB]( https://docs.oracle.com/cd/B19306_01/server.102/b14231/archredo.htm#i1006184) 
 
 *Note*
 > Oracle database can run in one of the two modes, by default, Oracle database is created in NOARCHIVELOG mode. You can query to see archievelog mode:
