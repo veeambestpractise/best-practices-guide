@@ -203,14 +203,14 @@ fi
 done
 echo $mysql_pid > $lock_file
 exit 0
-'''
+```
 3.	Save as PreFreeze.sh.
 4.	Configure the script as prefreeze script in the backup job.
 
 Post-Thaw Script:
 1.	Use Editor
 2.	Copy the sample code
-'''
+```
 #!/bin/bash
 lock_file=/tmp/mysql_tables_read_lock
 ###
