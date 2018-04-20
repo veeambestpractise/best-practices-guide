@@ -224,6 +224,6 @@ exit 0
 4.	Configure post-thaw script in the backup job.
 
 *Tip* 
-* * Adjust the timeout according to database size, in the sample script we have set 300 seconds for timeout.* *
+> Adjust the timeout according to database size, in the sample script we have set 300 seconds for timeout
 
 ## Cold Backup Database Shutdown:
