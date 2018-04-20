@@ -1,6 +1,9 @@
 # Oracle
 
-Veeam Backup and Replication natively supports backup of Oracle database servers and allows for image level and granular Oracle databases restore.
+Veeam supports following options for backup and restore of Oracle database servers
+
+   - Virtual Machine Application Aware Image Level Backup.
+   - Veeam Agent based Backup.
 
 **Note:** 32-bit Oracle instances on 64-bit Linux, and Oracle RAC are not supported.
 
