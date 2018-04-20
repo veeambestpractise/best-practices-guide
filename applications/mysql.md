@@ -6,8 +6,8 @@ Veeam supports backup and restore of MySQL databases.
 
 The following options are supported to backup MySQL databases:
 -	HotBackup Database Online Dump.
-o	Online Dump to the same server.
-o	Online Dump to Staging server
+         o Online Dump to the same server.
+         o Online Dump to Staging server
 -	HotBackup Database Freeze.
 -	ColdBackup Database Shutdown.
 
@@ -26,12 +26,12 @@ Pre Freeze Sciprt:
 
 1.	Use Editor
 2.	Copy the content in the editor.
-'''
+```
 !/bin/bash
-''' # config:
-''' # when running on debian we can use existing debian-sys-maint account using defaults file
-''' # otherwise, specify username and password below using use_credentials
-''' #use_credentials="-uroot -p"
+# config:
+# when running on debian we can use existing debian-sys-maint account using defaults file
+# otherwise, specify username and password below using use_credentials
+#use_credentials="-uroot -p"
 defaults_file="/etc/my.cnf"
 dump_file="/tmp/mysql_dump.sql"
 database="--all-databases"
@@ -56,14 +56,14 @@ else
 echo "$0 : mysqldump suceeded" | logger
 sync;sync
 fi
-'''
+```
 3.	Save script as PreFreeze.sh
-4.	Use script as [pre-freeze script]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)  in Veeam backup job
+4.	Use script as [pre-freeze script]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)  in a backup job.
 
 Post-Thaw Scripts
 1.	 Use Editor
 2.	Copy the below in the editor:
-‘’’’
+```
 #!/bin/bash
 dump_file="/tmp/mysql_dump.sql"
 if [ -f $dump_file ]
@@ -73,7 +73,7 @@ rm -f $dump_file > /dev/null 2>&1
 exit 0
 else
 echo "$0 could not locate mysql dump file $dump
-‘’’’
+```
 3.	Save file as PostThaw.sh.
 4.	Use script as [Post-Thaw script]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)  in the backupjob
 
@@ -85,7 +85,7 @@ Another option is to dump the MySQL database to staging server and protect stagi
 2.	Create Script to dump the MySQL database to Staging server
 3.	Use Editor
 4.	Copy below sample code in the editor:
-'''
+```
 #!/bin/bash
 # Shell script to backup MySQL database
 
@@ -150,7 +150,7 @@ rm -rf $NOW
 
 # Remove old files
 find $DEST -mtime +$DAYS -exec rm -f {} \;
-'''
+```
 5.	Save file as DB_Backup.sh.
 6.	Use Linux Scheduler to run the script on desired time for the backup.
 7.	Configure the backup of staging VM.
@@ -162,7 +162,7 @@ been created.
 
 1.	Use editor 
 2.	Copy the sample code
-'''
+```
 #!/bin/bash
 # config:
 # when running on debian we can use existing debian-sys-maint account using defaults file
@@ -219,10 +219,10 @@ echo "$0 sending sigterm to $mysql_pid" | logger
 pkill -9 -P $mysql_pid
 rm -f $lock_file
 exit 0
-'''
+```
 3.	Save code as Post-Thaw.sh 
 4.	Configure post-thaw script in the backup job.
 
 *Tip* Adjust the timeout according to database size, in the sample script we have set 300 seconds for timeout.
 
-**Cold Backup Database Shutdown:
+## Cold Backup Database Shutdown:
