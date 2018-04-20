@@ -318,36 +318,40 @@ Let’s go through the option for each backup method.
 
 ### Database Online Dump During Backup Operations:
 For this backup option, Veeam provides following restore options depends on the failure:
+
 | Failure   | Restore Option |
 | ------------- | ------------- |
 | Server Failed | Instant Server Restore  |
 | Database or Application Level Failure | Guest File Level Restore  |
-|Database Item Level Restore             | Veeam Universal Application Item Restore         
+| Database Item Level Restore             | Veeam Universal Application Item Restore         
 
 
 ### Online Dump to Staging server
 In this backup job, Veeam provides following restore options 
+
 | Failure   | Restore Option |
 | ------------- | ------------- |
-|Database Restore             | Instant File Level Restore         
+| Database Restore             | Instant File Level Restore |        
 
 *Tip*
 > In addition to online dump to staging server, take crash-consistency backup of mysql server and in case of server failure restore the mysql server from crach-consistency backup and use database dump from staging server to restore the database.
 
 ### HotBackup Database Freeze.
 For this backup option, Veeam provides following restore options depends on the failure:
+
 | Failure   | Restore Option |
 | ------------- | ------------- |
 | Server Failed | Instant Server Restore  |
 | Database or Application Level Failure | Guest File Level Restore  |
-|Database Item Level Restore             | Veeam Universal Application Item Restore         
+| Database Item Level Restore             | Veeam Universal Application Item Restore         
 
 ### ColdBackup Database Shutdown.
 For this backup option, Veeam provides following restore options depends on the failure:
+
 | Failure   | Restore Option |
 | ------------- | ------------- |
 | Server Failed | Instant Server Restore  |
 | Database or Application Level Failure | Guest File Level Restore  |
-|Database Item Level Restore             | Veeam Universal Application Item Restore         
+| Database Item Level Restore             | Veeam Universal Application Item Restore         
 
 For more details about protection and restore use [MySQL Protection Whitepaper]( https://www.veeam.com/consistent-protection-mysql-mariadb_wpp.pdf)  
