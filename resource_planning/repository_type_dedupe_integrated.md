@@ -94,7 +94,9 @@ As a rule of thumb, the "landing zone" (which is the zone that will hold most re
 
 ### Exagrid and Scale Out Backup repository
 
-When an exagrid appliance is configured as part of a grid and as a Scale Out Backup Repository extent, the difference between the landing zone and the global deduplication area should be considered. As a matter of fact, the deduplication engine will run asynchronously and deduplicate the landing zone into a global retention zone for each grid member. Whenever a deduplicated block is already hosted on a member of the grid, it will not be treated by the local grid member.
+Starting with Exagrid software 5, an exagrid appliance can be configured as part of a grid and as a Scale Out Backup Repository extent. The difference between the landing zone and the global deduplication area should then be considered.
+
+As a matter of fact, the deduplication engine will run asynchronously and deduplicate the landing zone into a global retention zone for each grid member. Whenever a deduplicated block is already hosted on a member of the grid, it will not be treated by the local grid member.
 
 As a consequence, each member of the grid will be considered as a unique extent holding its own data by the Veeam Scale Out Backup Repository engine, while the deduplicated data effectively used by the extent could reside on a different member of the grid.
 
