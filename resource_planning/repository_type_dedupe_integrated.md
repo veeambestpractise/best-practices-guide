@@ -92,6 +92,10 @@ See [ExaGrid Storage Best Practices](https://www.veeam.com/kb2056) for more info
 
 As a rule of thumb, the "landing zone" (which is the zone that will hold most recent set of data) should have sufficient capacity to keep at least an uncompressed full backup and one incremental as computed on the online repository sizer, so that each backup can fully be written there and processed. This ensures Backup copy, SureBackup, Instant VM Recovery and item-level restores will be usable for the latest restore point without rehydration overhead.
 
+### Exagrid Best Practice guide
+
+You can refer to [Veeam KB 2056](https://www.veeam.com/kb2056) for a precise configuration guide. The official Exagrid configuration guide is directly available in the Exagrid appliance Help section (Help/Named VM backup applications/Using Veeam Backup and Replication software with an Exagrid system).
+
 ### Exagrid and Scale Out Backup repository
 
 Starting with Exagrid software 5, an exagrid appliance can be configured as part of a grid and as a Scale Out Backup Repository extent. The difference between the landing zone and the global deduplication area should then be considered.
