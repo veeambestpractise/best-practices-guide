@@ -6,9 +6,13 @@ arrays are currently supported:
 * HPE StoreVirtual (LeftHand)
 * HPE StoreServ (3PAR)
 * NetApp Data ONTAP (FAS, V-Series and IBM N series)
-* EMC VNX, VNXe and Unity[^1]
-* Nimble Storage[^2]
-* Cisco HyperFlex[^3]
+* EMC VNX, VNXe and Unity
+* Nimble Storage
+* Cisco HyperFlex
+* IBM Spectrum Virtualize
+* INFINIDAT InfiniBox Storage
+* PURE Storage
+
 
 Licensing and system requirements are described in the Veeam User Guide:
 [Backup from Storage Snapshots](https://helpcenter.veeam.com/docs/backup/vsphere/backup_from_storage_snapshots.html?ver=95).
@@ -134,6 +138,6 @@ VMs with either virtual or physical Raw Device Mapping (RDM)
 are not supported with BfSS. Such VMs will failover to backing up via
 standard methods if allowed in the job settings.
 
-[^1]: EMC Unity is supported starting Veeam Backup & Replication 9.0 Update 2 ([KB2147](https://www.veeam.com/kb2147))
-[^2]: Nimble Storage is supported starting Veeam Backup & Replication 9.5
-[^3]: Cisco HyperFlex is supported starting Veeam Backup & Replication 9.5 Update 2. Cisco HX utilizes VAAI offloaded storage snapshots, so restores using Veeam Explorer for Storage Snapshots are not supported.
+Functionality/ Storage type
+
+![Backup from Storage Snapshots - Functionality/](./backup_from_storage_snapshots_7.png)
