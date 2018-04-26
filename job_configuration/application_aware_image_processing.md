@@ -64,8 +64,8 @@ For details on network configuration refer to the section "Required ports" below
 | Path  | `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication` |
 | Key   | `InverseVssProtocolOrder` |
 | Type  | REG_DWORD (32-bit) |
-| Value  | **0** $\to$ _try connection through RPC, failover to VIX (default)_ |
-| Value | **1** $\to$ _try connection through VIX, failover to RPC_ |
+| Value  | **0** = _try connection through RPC, failover to VIX (default)_ |
+| Value | **1** = _try connection through VIX, failover to RPC_ |
 |       |     |
 
 RPC connection means injecting the file via the "ADMIN$" share on the target VM. See Veeam Knowledge Base article at <http://www.veeam.com/kb1230> for more information. Consider that this is a global setting that will be applied on the Veeam backup server level and affects all jobs with application-aware image processing.
@@ -81,7 +81,7 @@ Depending on the VM guest OS processing options selected (enabled or disabled ap
 | Application-Aware Image Processing (AAIP) | VMware Tools Quiescence | Veeam via VIX | Veeam via RPC | Disabled (crash-consistent) |
 | -- | -- | -- | -- | -- | -- |
 | Membership in the local Administrators group | User account not needed | No | Yes | Not needed |
-| Enter username as *&lt;servername&gt;\\ Administrator*[^3] or *&lt;domain&gt;\\Administrator* | No | Yes[^1] | No | No |
+| Enter username as *&lt;servername&gt;\\ Administrator* [^3] or *&lt;domain&gt;\\Administrator* | No | Yes[^1] | No | No |
 | UAC can be enabled | Yes | Yes[^2] | Yes | Yes |
 | VMware Tools must be installed and up to date | Yes | Yes | Yes | No |
 
@@ -141,11 +141,11 @@ unless the user account is the local administrator account
 
 [^3]: Local administrator accounts other than the built-in Administrator account may not have rights to manage a server remotely, even if remote management is enabled. The remote User Account Control (UAC) `LocalAccountTokenFilterPolicy` registry setting must be configured on the VM guest to allow local accounts of the Administrators group other than the built-in administrator account to remotely manage the server:
 
-> |       |     |
-> | ----: | --- |
-> | Path  | `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System` |
-> | Key   | `LocalAccountTokenFilterPolicy` |
-> | Type  | REG_DWORD (32-bit) |
-> | Value | **1** $\to$ _disable token filter and **allow** remote management by local administrative accounts_
-> |       | **0** (default) $\to$ _enable token filter and **do not allow** remote management by local accounts_|
-> |       |     |
+|       |     |
+| ----: | --- |
+| Path  | `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System` |
+| Key   | `LocalAccountTokenFilterPolicy` |
+| Type  | REG_DWORD (32-bit) |
+| Value | **1** = _disable token filter and **allow** remote management by local administrative accounts_
+|       | **0** (default) = _enable token filter and **do not allow** remote management by local accounts_|
+|       |     |
