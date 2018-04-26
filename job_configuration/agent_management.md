@@ -45,7 +45,7 @@ As a best practice it is recommended to carefully review and uncheck these optio
 ## Agent Support for Microsoft Failover Clusters
 Veeam Agent for Windows supports backup and restore of Microsoft Failover Clusters which can be targeted by selecting the type "Failover cluster" on the "Job Mode" page of the agent backup job configuration dialog.
 
-![cluster-job](.\agent_management_image_jobmode_cluster.png)
+![cluster-job](./agent_management_image_jobmode_cluster.png)
 
 As shown in the screenshot above, a backup job of type "Failover cluster" cannot be configured to be "Managed by agent". This is due to the fact that only the lightweight agent version is supported on failover clusters. Additionally, a Protection Group assigned to a backup job of type "Failover cluster" must be of type "Active Directory objects" and the desired cluster object from Active Directory needs to be added to it, either directly or via an object which contains the cluster object (i.e. group or organizational unit). This also allows processing of more than one failover cluster in a single backup job.
 
