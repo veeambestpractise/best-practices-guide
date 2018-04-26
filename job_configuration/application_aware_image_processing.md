@@ -59,13 +59,16 @@ For details on network configuration refer to the section "Required ports" below
 
 **Tip:** If the backup server has no network connection to the VMs and deploying additional guest interaction proxies is not practical/possible (for example, service provider environments), order in which backup server or guest interaction proxy tries to communicate to a VM can be changed using the following registry key:
 
--   Path: `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication`
--   Key: `InverseVssProtocolOrder`
--   Type: REG_DWORD
--   Value: **0** - try connection through RPC, failover to VIX (default)
--   Value: **1** - try connection through VIX, failover to RPC
+|       |     |
+| ----: | --- |
+| Path  | `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication` |
+| Key   | `InverseVssProtocolOrder` |
+| Type  | REG_DWORD (32-bit) |
+| Value  | **0** $\to$ _try connection through RPC, failover to VIX (default)_ |
+| Value | **1** $\to$ _try connection through VIX, failover to RPC_ |
+|       |     |
 
-RPC connections means injecting the file via the "ADMIN$" share on the target VM. See Veeam Knowledge Base article at <http://www.veeam.com/kb1230> for more information. Consider that this is a global setting that will be applied on the Veeam backup server level and affects all jobs with application-aware image processing.
+RPC connection means injecting the file via the "ADMIN$" share on the target VM. See Veeam Knowledge Base article at <http://www.veeam.com/kb1230> for more information. Consider that this is a global setting that will be applied on the Veeam backup server level and affects all jobs with application-aware image processing.
 
 ## Guest Access Credentials
 
@@ -78,7 +81,7 @@ Depending on the VM guest OS processing options selected (enabled or disabled ap
 | Application-Aware Image Processing (AAIP) | VMware Tools Quiescence | Veeam via VIX | Veeam via RPC | Disabled (crash-consistent) |
 | -- | -- | -- | -- | -- | -- |
 | Membership in the local Administrators group | User account not needed | No | Yes | Not needed |
-| Enter username as *&lt;servername&gt;\\ Administrator* or *&lt;domain&gt;\\Administrator* | No | Yes[^1] | No | No |
+| Enter username as *&lt;servername&gt;\\ Administrator*[^3] or *&lt;domain&gt;\\Administrator* | No | Yes[^1] | No | No |
 | UAC can be enabled | Yes | Yes[^2] | Yes | Yes |
 | VMware Tools must be installed and up to date | Yes | Yes | Yes | No |
 
@@ -96,7 +99,7 @@ Depending on the VM guest OS processing options selected (enabled or disabled ap
 
 The following ports should be open between the Veeam backup server and VM for guest OS processing:
 
--   For Windows VMs - remote RPC ports, including Dynamic Port Range (TCP ports 1025 to 5000 - for Microsoft Windows 2003, 49152-65535 - for Microsoft Windows 2008 and newer); TCP\\UDP ports 135, 137-139, 445.
+-   For Windows VMs - remote RPC ports, including Dynamic Port Range (TCP ports 1025 to 5000 - for Microsoft Windows 2003, 49152-65535 - for Microsoft Windows 2008 and newer); TCP/UDP ports 135, 137-139, 445.
 -   For Linux VMs – SSH port (default is TCP port 22)
 
 For details, refer to the Veeam Backup & Replication User Guide (https://helpcenter.veeam.com/docs/backup/vsphere/used_ports.html?ver=95).
@@ -123,13 +126,26 @@ For each VM in a job that has exclusions enabled Veeam Backup and Replication pe
 2. When sending data blocks to target repository data is read both from the VM snapshot and memory cache on the backup proxy. Target repository reconstructs VM disks without excluded VM blocks.
 3. Virtual machine NTFS is modified using the data in the cache on the proxy and information about excluded data blocks is saved in the backup file or replica metadata. This information is necessary as CBT is not aware of which blocks were excluded and is used to determine which blocks should be processed during the next backup session.
 
+---
 
-[^1] Only this account is able to
+<!-- footnotes -->
+[^1]: Only this account is able to
 bypass the UAC prompt for launching processes
 with administrative privileges. If not applicable,
 see [^2].
 
-[^2] When performing application-aware image processing on
+[^2]: When performing application-aware image processing on
 Windows via VIX, UAC must be entirely disabled,
 unless the user account is the local administrator account
 (SID S-...-500).
+
+[^3]: Local administrator accounts other than the built-in Administrator account may not have rights to manage a server remotely, even if remote management is enabled. The remote User Account Control (UAC) `LocalAccountTokenFilterPolicy` registry setting must be configured on the VM guest to allow local accounts of the Administrators group other than the built-in administrator account to remotely manage the server:
+
+> |       |     |
+> | ----: | --- |
+> | Path  | `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System` |
+> | Key   | `LocalAccountTokenFilterPolicy` |
+> | Type  | REG_DWORD (32-bit) |
+> | Value | **1** $\to$ _disable token filter and **allow** remote management by local administrative accounts_
+> |       | **0** (default) $\to$ _enable token filter and **do not allow** remote management by local accounts_|
+> |       |     |

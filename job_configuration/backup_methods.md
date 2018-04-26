@@ -10,14 +10,15 @@ For a graphical representation of the mentioned backup modes in this section, pl
 
 As a generic overview for I/O impact of the backup modes, please see this table:
 
-| Method                                     | I/O impact on destination storage                      |
-|--------------------------------------------|--------------------------------------------------------|
-| Forward incremental                        | 1x write I/O for incremental backup size               |
-| Forward incremental, active full           | 1x write I/O for total full backup size                |
-| Forward incremental, transform             | 2x I/O (1x read, 1x write) for incremental backup size |
-| Forward incremental, synthetic full        | 2x I/O (1x read, 1x write) for entire backup chain     |
-| Reversed incremental                       | 3x I/O (1x read, 2x write) for incremental backup size |
-| Synthetic full with transform to rollbacks | 4x I/O (2x read, 2x write) for entire backup chain     |
+| Method                                     | I/O impact on destination storage                             |
+| ------------------------------------------ | ------------------------------------------------------------- |
+| Forward incremental                        | 1$\times$ write I/O for incremental backup size               |
+| Forward incremental, active full           | 1$\times$ write I/O for total full backup size                |
+| Forward incremental, transform             | 2$\times$ I/O (1x read, 1x write) for incremental backup size |
+| Forward incremental, synthetic full        | 2$\times$ I/O (1x read, 1x write) for entire backup chain     |
+| Reversed incremental                       | 3$\times$ I/O (1x read, 2x write) for incremental backup size |
+| Synthetic full with transform to rollbacks | 4$\times$ I/O (2x read, 2x write) for entire backup chain     |
+| | |
 
 While changing backup mode is one way of reducing amount of I/O on backup repository it is also possible to leverage features of the filesystem to avoid extra I/O. Currently Veeam Backup and Replication supports advanced features of one filesystem, Microsoft ReFS 3.1 (available in Windows Server 2016), to completely eliminate unnecessary read/write operations in certain configurations. For more details refer to the corresponding section of this guide. *[ReFS chapter is working in progress]*
 
@@ -43,10 +44,10 @@ When creating an active full, the I/O pattern on the backup storage is mainly se
 
 Forward incremental backup provides good performance with almost any storage and the highest level of backup chain consistency since each new chain is populated by re-reading VM source data. Incremental backups are still processed using Changed Block Tracking (CBT) thus data reduction is still possible. Active Full can be used in any case where plenty of repository space is available, the backup window allows enough time and network bandwidth is sufficient to support reading the source data in full.
 
-| Use | Don't Use |
-|--------|--------|
-| Recommended for deduplication appliances that use SMB or NFS protocols. |When backup window does not allow enough time for re-reading all of the source VM data.|
-|On storage systems that use software or non-caching RAID hardware such as many low-end NAS devices.|For large or performance sensitive VMs where re-reading the data can have a negative impact on the VMs performance.|
+| Use                                                                                                 | Don't Use                                                                                                           |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Recommended for deduplication appliances that use SMB or NFS protocols.                             | When backup window does not allow enough time for re-reading all of the source VM data.                             |
+| On storage systems that use software or non-caching RAID hardware such as many low-end NAS devices. | For large or performance sensitive VMs where re-reading the data can have a negative impact on the VMs performance. |
 
 ### Synthetic Full
 
@@ -68,10 +69,10 @@ Synthetic full I/O patterns need to be split into two different operation: the c
 
 Due to the way synthetic full works, having many smaller backups jobs with fewer VMs will allow for faster synthetic full operations. Keep this in mind when setting up jobs that will use this method or choose to use [Per VM Backup Files](../resource_planning/repository_planning_pervm.md).
 
-| Use | Don’t Use |
-|--------|--------|
-| When repository storage uses fast disks with caching RAID controllers and large stripes. |   Small NAS boxes with limited spindles that depend on software RAID. |
-| Deduplication appliances that support offloading synthetic operations (DataDomain, StoreOnce and ExaGrid)  |  Deduplication appliances that use SMB or NFS protocols. |
+| Use                                                                                                       | Don’t Use                                                          |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| When repository storage uses fast disks with caching RAID controllers and large stripes.                  | Small NAS boxes with limited spindles that depend on software RAID. |
+| Deduplication appliances that support offloading synthetic operations (DataDomain, StoreOnce and ExaGrid) | Deduplication appliances that use SMB or NFS protocols.             |
 
 ## Forever Forward Incremental
 
@@ -89,10 +90,10 @@ The primary advantage of using forever forward incremental backup method is spac
 
 Like with synthetic full, it is recommended to have many smaller jobs with a limited number of VMs, as this can significantly increase the performance of synthetic merge process. Very large jobs can experience significant increase in time due to extra metadata processing. This may be remediated by combining forever forward incremental mode with [per VM backup files](../resource_planning/repository_planning_pervm.md).
 
-| Use | Don’t Use |
-|--------|--------|
-| Repositories with good performance | Smaller backup repositories or NAS devices with limited spindles and cache|
-| Ideal for VMs with low change rate | Jobs with significant change rate may take a long time to merge |
+| Use                                | Don't Use                                                                  |
+| ---------------------------------- | -------------------------------------------------------------------------- |
+| Repositories with good performance | Smaller backup repositories or NAS devices with limited spindles and cache |
+| Ideal for VMs with low change rate | Jobs with significant change rate may take a long time to merge            |
 
 ## Reverse Incremental
 
@@ -118,8 +119,8 @@ This can be especially noticeable for VMs with a high change rate, or when runni
 
 ### Recommendations on Usage
 
-| Use | Don’t Use |
-|--------|--------|
-|When repository storage uses fast disk with caching RAID controllers and large stripe sizes | Small NAS boxes with limited I/O performance |
-|VMs with low change rate | Deduplication appliances due to random I/O pattern |
-| | High change rate VMs, as VM snapshot may be open for a long time |
+| Use                                                                                         | Don’t Use                                                       |
+| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| When repository storage uses fast disk with caching RAID controllers and large stripe sizes | Small NAS boxes with limited I/O performance                     |
+| VMs with low change rate                                                                    | Deduplication appliances due to random I/O pattern               |
+|                                                                                             | High change rate VMs, as VM snapshot may be open for a long time |
