@@ -196,8 +196,7 @@ consumption and speed:
     replication jobs) where another is not mentioned in the
     documentation or this guide for specific cases.
 
--   **Antivirus** - see the corresponding section of
-    this document.
+-   **Antivirus** - see the corresponding [KB](https://www.veeam.com/kb1999) for the complete list of paths that need to be excluded from antivirus scanning
 
 -   **3rd party applications** – it is not recommended to use an
     application server as a backup proxy.
