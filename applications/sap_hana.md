@@ -26,7 +26,7 @@ With the file backup option, customer can backup data and logs to file system.
 -	SQL Commands.
 -	DBA cockpit.
 
-![SAPFILEBACKUP](.\SAP-File-Backup.png) 
+![SAPFILEBACKUP](best-practices-guide/applications/HANA-BACKUP-VAL-SAP.png) 
 
 
 ## Backint API:
