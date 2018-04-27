@@ -66,7 +66,12 @@ The Pre & Post Thaw scripts can be download from [VeeamHub](https://github.com/V
 
 ## Configure Backup:
 
-[Create Backup Job](https://helpcenter.veeam.com/docs/backup/vsphere/backup_job.html),select SAP HANA DB Virtual Machine and select [Pre-Freeze and Post-Thaw Scripts](https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)  to configure backup.
+1. [Create Backup Job](https://helpcenter.veeam.com/docs/backup/vsphere/backup_job.html)
+2. Select SAP HANA VM to Backup.
+3. At the **Guest Processing step**, click **Applications**.
+4. Click the **Scripts tab**.
+5. In the **Linux Scripts** section, specify paths to **SAP HANA BACKUP [Pre-Freeze and Post-Thaw Scripts]
+(https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)**.
 
 ## SAP HANA Backup Process: 
 
@@ -179,19 +184,23 @@ For more information about keystore use please refer to the [SAP HANA documentat
 ## Verify Veeam HANA Backup via SAP HANA Studio:
 
 You can verify the Veeam HANA Database backup from [SAP HANA Studio]( https://help.sap.com/viewer/a2a49126a5c546a9864aae22c05c3d0e/2.0.01/en-US) as shown in the figure below:
-![HANA Studio](.\HANA-Studio.png)
+![HANA Studio](./HANA-Studio.png)
 
 # Restore:
+
 Restore is the integrated part of SAP HANA protection, Veeam provides various restore option to restore SAP HANA environment.
+
 -	Virtual SAP HANA Restore.
 -	Physical SAP HANA Restore.
 
 ## Virtual Machine running SAP HANA Database Restore:
 Veeam provides following options to restore Virtual SAP HANA Environment:
+
 -	Entire VM Restore (with Quick Rollback to restore only disk blocks with changes)
 -	Instant VM Recovery.
 
 ## Entire VM Restore (Quick RollBack to restore only disk blocks with changes)
+
 In event of database corruption or revert back the changes in the database, use the option to restore disk, below is the SAP HANA database restore process: Figure 1.0
 
 1. The Virtual machine is turned off through the disk recovery of Veeam Backup & Replication. 
@@ -201,15 +210,14 @@ In event of database corruption or revert back the changes in the database, use 
 5. HANA Studio will show the restored database point with a green point and will recover the database to it. Figure 1.2
 6. HANA Will apply all log files to the point selected in the HANA studio restore wizard
 
-![Entire VM Restore](.\SAPHANA-DBRestore.png)
-*Figure 1.0
+![Figure 1.0](./SAPHANA_DBRestore.png)
 
-![HANA Studio Restore Method](.\Hana-Studio1.png) 
 
-*Figure 1.1
+![Figure 1.1](./HANA_Studio1.png) 
 
-![HANA Studio Restored Database Point](.\Hana-Studio.png) 
-*Figure 1.2
+
+![Figure 1.2](./HANA_Studio2.png) 
+
 
 ## Instant VM Recovery
 
@@ -219,9 +227,7 @@ In the event of complete disaster, you can use [Instant VM Recovery]( https://he
 
 2.	Data is then migrated online without affecting the SAP services directly to the production storage. Therefore, in less than 15 minutes SAP HANA will be able to provide services again in case of disaster.
 
-![Instant VM Recovery SAP}(.\IVR_SAP_01) 
-
-
+![Instant VM Recovery SAP](./IVR_SAP_1.png) 
 
 
 ## Physical Server running SAP HANA DB Restore.
@@ -240,7 +246,7 @@ Please follow the restore procedure explained in [Veeam Agent for Linux Guide]( 
 2.	Recover disk volume, files or logs if necessary 
 3.	Recovery process in SAP HANA Studio as explained in section Entire VM Restore.
 
-[Recovery Disk Or Files](.\VAL_SAP_Restore.png)
+![Recovery Disk Or Files](./VAL_SAP_Restore.png)
 
 ## Bare-Metal Restore:
 
