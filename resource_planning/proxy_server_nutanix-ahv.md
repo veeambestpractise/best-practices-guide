@@ -1,4 +1,4 @@
-# Proxy Server in Nutanix AHV environment
+# Proxy Server - Nutanix AHV
 
 To back up Nutanix AHV VMs, Veeam Backup & Replication uses the agentless approach. The solution works at the hypervisor level. It creates image-based backups of VMs, capturing the whole VM data at a specific point in time, including OS, system state data, application data and so on. Backups of Nutanix AHV VMs are stored on Veeam backup repositories in the native Veeam format. You can use the resulting backup files for different restore scenarios:
 -     Entire VM restore
