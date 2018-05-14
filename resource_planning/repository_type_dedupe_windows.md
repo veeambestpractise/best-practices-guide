@@ -1,9 +1,8 @@
-<!--- This was last Changed 03-05-17 by PS --->
-# Windows Server 2012 Deduplication
+# Windows Server Deduplication
 
 Follow the recommendations provided in the configuration guidelines above; here is the summary:
 
-1.  Use **Windows 2012 R2** and apply all patches (some roll-ups contain improvements to deduplication).
+1.  Use **Windows 2012 R2** or **Windows 2016** and apply all patches (some roll-ups contain improvements to deduplication). Having most up to date system is critical for ensuring data safety.
 2.  Format the disk using the command line "**/L**" option (for "large size file records") and **64KB** cluster size (use parameters `/Q /L /A:64K`)
 3.  Follow [compression and deduplication guidelines](./repository_type_dedupe.md#best-practices) for non-integrated deduplication storage in previous chapter.
 4.  Modify garbage collection schedule to run daily rather than weekly.
