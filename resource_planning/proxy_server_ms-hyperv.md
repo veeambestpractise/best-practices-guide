@@ -16,10 +16,9 @@ Veeam Backup & Replication uses three method to prepare Hyper-V VMs for backup:
 If you do not want to produce a crash-consistent backup, you can instruct Veeam Backup & Replication to use the offline backup method.
 
 ### On-host backup
-This is the default and **recommended** backup method because it works out of the box.
-During on-host backup process, VMs data are processed by the source Microsoft Hyper-V host where the VM runs.
-
-The role of the backup proxy is assigned to the Hyper-V host who owns the CSV (Cluster Shared Volume) according the following rules:
+This is the default and **recommended** backup method as it works out of the box.
+On-host backup mode uses the native Microsoft Hyper-V VSS provider which is proven to be stable and reliable.
+During on-host backup process, VMs data are processed by the source Microsoft Hyper-V host where the VMs run and the role of the backup proxy is assigned to the Hyper-V host who owns the CSV (Cluster Shared Volume) according the following rules:
 
   - If you back up or replicate VMs whose disks are located on a CSV in Microsoft Hyper-V Server 2012 or 2012 R2, and Microsoft CSV Software Shadow Copy Provider is used for snapshot creating, Veeam Backup & Replication assigns the role of an on-host backup proxy to the host owning the CSV. If VM disks are located on different CSV's, Veeam Backup & Replication may use several on-host backup proxies, which are the corresponding hosts owning CSV's.
 
@@ -31,8 +30,6 @@ The on-host backup process works in the following way:
   3. Once the operation is complete, the volume snapshot is deleted
 
   ![On-host backup mode](./onhost_backup_mode.png)
-
-On-host backup mode uses the native Microsoft Hyper-V VSS provider which is proven to be stable and reliable. On the other hand this backup mode could take more resources (CPU and memory) on the underlying hosts, that is why when protection large infrastructure is worth considering to add to the cluster an empty host to be used as dedicated on-host proxy.
 
 ### Off-host backup
 In this backup mode, backup operations are moved from the Hyper-V hosts to one ore more dedicated physical server.
