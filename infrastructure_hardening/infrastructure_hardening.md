@@ -6,7 +6,7 @@ Hardening is about securing the infrastructure against attacks, by reducing its 
 But also, creating visibility in what goes on in the infrastructure is part of hardening your infrastructure. Making sure you will notice when an attack is/or has taken place and then making sure logs and traces are saved for law-enforcement and security specialists when needed.
 
 ## Protect
-Protecting your infrastructure successfully is all about understanding what and whom you are protecting, your Veeam infrastructure, against. If you know what and whom you are protecting against, makes it easier to take the correct countermeasures. One of those countermeasures is hardening.
+Protecting your infrastructure successfully is all about understanding the current attack vectors; what and whom you are protecting, your Veeam infrastructure, against. If you know what and whom you are protecting against, makes it easier to take the correct countermeasures. One of those countermeasures is hardening.
 
 Looking at the different Veeam Backup & Replication components you have to protect the following components:
 * Veeam Backup server
@@ -20,25 +20,25 @@ Consider the Veeam Backup & Replication server to be the **Number 1** target on 
 Within the hardening process of your Veeam infrastructure there are a few steps everyone should always consider and act upon, namely:
 
 
-1. [Secure by Design](#Secure by Design)
+1. [Secure by Design](#secure-by-design)
 
-2. [Remove Unused Components](#Remove Unused Components)
+2. [Remove Unused Components](#remove-unused-components)
 
-3. [Console Access](#Console Access)
+3. [Console Access](#console-access)
 
-4. [Roles and Users](#Roles and Users)
+4. [Roles and Users](#roles-and-users)
 
-5. [Required Permissions](#Required Permissions)
+5. [Required Permissions](#required-permissions)
 
-6. [Encryption](#Encryption)
+6. [Encryption](#encryption)
 
-7. [Backup & Replication Database](#Backup & Replication Database)
+7. [Backup & Replication Database](#backup-&-replication-database)
 
-8. [Segmentation](#Segmentation)
+8. [Segmentation](#segmentation)
 
-9. [Visibility](#Visibility)
+9. [Visibility](#visibility)
 
-10. [Recovery Strategy](#Recovery Strategy)
+10. [Recovery Strategy](#recovery-strategy)
 
 
 
