@@ -13,10 +13,10 @@ Recommended Veeam backup server resource configuration is:
 
 ##### Minimum Resources
 * The minimum Compute is 2 CPU cores.
-* Minimum memory, 10 GB RAM.
+* Minimum memory, 8 GB RAM.
 * Minimum HDD space is 60GB (inclusive of Logs, vPowerNFS, VBR software)
 Recommendations for sizing.
-* 1 CPU core (physical or virtual) and 5 GB RAM per 10 concurrently running jobs.
+* 1 CPU core (physical or virtual) and 4 GB RAM per 10 concurrently running jobs.
 * For per job backup files: 30 VMs per job
 * For per VM backup files: 300 VMs per job
 * Base HDD is 40GB for software install location

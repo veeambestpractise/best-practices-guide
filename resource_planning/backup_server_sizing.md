@@ -5,11 +5,11 @@ In this section, we will describe how to configure and size the Veeam backup ser
 Sizing with Veeam is cumulative in respect to configurations, if you want to create an all-in-one appliance (Appliance Model) add all the resource requirements together (CPU + Memory) to understand what in total you will need, the same goes if you only wish to have proxy and repository in one host.
 
 ## Compute requirements
-Recommended Veeam backup server configuration is **1 CPU core (physical or virtual) and 5 GB RAM per 10 concurrently running jobs**. Concurrent jobs include any running backup or replication jobs as well as any job with a continuous schedule such as backup copy jobs and tape jobs. (Concurrent job – a job that processes a single VM with a single virtual disk)
+Recommended Veeam backup server configuration is **1 CPU core (physical or virtual) and 4 GB RAM per 10 concurrently running jobs**. Concurrent jobs include any running backup or replication jobs as well as any job with a continuous schedule such as backup copy jobs and tape jobs.
 
 The minimum recommendation is 2 CPU cores and 8 GB RAM.
 
-It is recommended to group multiple virtual machines into a single job for better efficiency and resource usage. With default configuration it is recommended to configure at minimal a VM with a single disk up to around 30 VMs per job. The recommendation can be increased by over 10x (300+ VMs) by leveraging additional features such as [per VM backup files](./repository_planning_pervm.md). Please refer to the [Job Configuration](../job_configuration/backup_job.md) section of this guide to learn more about job design.
+It is recommended to group multiple virtual machines into a single job for better efficiency and resource usage. With default configuration it is recommended to configure around 30 VMs per job. The recommendation can be increased by over 10x (300+ VMs) by leveraging additional features such as [per VM backup files](./repository_planning_pervm.md). Please refer to the [Job Configuration](../job_configuration/backup_job.md) section of this guide to learn more about job design.
 
 All configuration and session information is stored in the configuration database. In larger environments the load on the SQL Server hosting the configuration database may be significant and is highly dependent on the amount of concurrently running jobs. For more information please see the [Backup Server Database](./backup_server_database.md) section of this guide.
 

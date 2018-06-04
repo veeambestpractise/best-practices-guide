@@ -42,10 +42,22 @@ If the [Virtual Appliance](https://helpcenter.veeam.com/docs/backup/vsphere/virt
 
 If the backup proxy is deployed on a physical server, or the Virtual Appliance or Direct NFS mode cannot be used for other reasons, Veeam Backup & Replication will use the [Network](https://helpcenter.veeam.com/docs/backup/vsphere/network_mode.html?ver=95) transport mode to populate replica disk files. For information on the Network mode, see <https://helpcenter.veeam.com/docs/backup/vsphere/network_mode.html?ver=95>.
 
+<<<<<<< HEAD
 The Direct SAN mode (as part of Direct Storage Access) can only be used together with replication targets in case of transferring thick-provisioned VM disks at the first replication run. As replication restore points are based on VMware snapshots, that are thin provisioned by definition, Veeam will fail-back to Virtual Appliance (HotAdd) mode or Network mode, if configured at proxy transport settings. Direct SAN mode or backup from storage snapshots can be used on the source side in any scenario.
 
 **Note:** Veeam Backup and Replication supports replicating VMs residing on VVOLs but VVOLs are not supported as a replication target datastore.
 Replication of encrypted VMs is supported but comes with requirements and limitations outlined in the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/encrypted_vms_replication.html?ver=95) of the User Guide. Replication of encrypted VMs is NOT supported when the target is Veeam Cloud Connect.
+=======
+If the [Virtual Appliance](https://helpcenter.veeam.com/backup/vsphere/virtual_appliance.html?ver=95) mode is applicable, replica virtual disks are mounted to the backup proxy and populated through the ESX I/O stack. This results in increased writing speed and fail-safe replication to ESXi targets. For information on Virtual Appliance mode, see <https://helpcenter.veeam.com/backup/vsphere/virtual_appliance.html?ver=95>.
+
+If the backup proxy is deployed on a physical server, or the Virtual Appliance or Direct NFS mode cannot be used for other reasons, Veeam Backup & Replication will use the [Network](https://helpcenter.veeam.com/backup/vsphere/network_mode.html?ver=95) transport mode to populate replica disk files. For information on the Network mode, see <https://helpcenter.veeam.com/backup/vsphere/network_mode.html?ver=95>.
+
+The Direct SAN mode (as part of Direct Storage Access) can only be used together with replication targets in case of transferring thick-provisioned VM disks at the first replication run. As replication restore points are based on VMware snapshots, that are thin provisioned by definition, Veeam will failback to Virtual Appliance (HotAdd) mode or Network mode, if configured at proxy transport settings. Direct SAN mode or backup from storage snapshots can be used on the source side in any scenario.
+
+**Note:** Veeam Backup and Replication supports replicating VMs residing on VVOLs but VVOLs are not supported as replication target datastore.
+
+**Note:** Replication of encrypted VMs is supported but comes with requirements and limitations outlined in the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/encrypted_vms_replication.html?ver=95) of the User Guide. Replication of encrypted VMs is NOT supported when the target is Veeam Cloud Connect.
+>>>>>>> parent of 2492291... Merge branch 'master' into dev
 
 ### Onsite Replication
 
@@ -91,7 +103,14 @@ Replication bandwidth estimation has always been a challenge, because it depends
 
 Also, when replicating VMs to a remote DR site, you can manage network traffic by applying traffic throttling rules or limiting the number of data transfer connections. See Veeam Backup & Replication User Guide for more information: <https://helpcenter.veeam.com/docs/backup/vsphere/setting_network_traffic_throttling.html?ver=95>.
 
+<<<<<<< HEAD
 **Tip:** Replication can leverage WAN acceleration allowing a more effective use of the link between the source and remote sites. For more information, see the User Guide <https://helpcenter.veeam.com/docs/backup/vsphere/wan_acceleration.html?ver=95> or the present document (the [WAN Acceleration](../resource_planning/wan_acceleration.md) section above).
+=======
+Also, when replicating VMs to a remote DR site, you can manage network traffic by applying traffic throttling rules or limiting the number of data transfer connections. See Veeam Backup & Replication User Guide for more information: <https://helpcenter.veeam.com/backup/vsphere/setting_network_traffic_throttling.html?ver=95>.
+
+
+**Tip:** Replication can leverage WAN acceleration allowing a more effective use of the link between the source and remote sites. For more information, see the User Guide <https://helpcenter.veeam.com/docs/backup/vsphere/wan_acceleration.html?ver=95> or the present document (the “WAN Acceleration“ section above).
+>>>>>>> parent of 2492291... Merge branch 'master' into dev
 
 ### Replication from Backups
 
@@ -103,7 +122,11 @@ In this case, the data communication link should be mostly used for the critical
 
 ![](replication_job_from_backups.png)
 
+<<<<<<< HEAD
+You can find additional information about replica from backup in the appropriate section of the Veeam Backup & Replication User Guide: <https://helpcenter.veeam.com/docs/backup/vsphere/replica_from_backup.html?ver=95>
+=======
 You can find additional information about replica from backup in the appropriate section of the Veeam Backup & Replication User Guide: <https://helpcenter.veeam.com/backup/vsphere/replica_from_backup.html?ver=95>
+>>>>>>> dev
 
 **Tip:** This feature is sometimes named and used as proactive restore. Together with SureReplica, it is a powerful feature for availability.
 
