@@ -43,7 +43,9 @@ Within the hardening process of your Veeam infrastructure there are a few steps 
 
 
 ## Secure by Design
-Overly complex designs become harder for the IT team to manage and overlook and it makes it easier for an attacker to exploit and stay in the shadows. Simpler designs that can be easily overviewed are in basis more secure. Adding security to an already existing infrastructure is much harder and costly than thinking about it while designing a new or refreshing an existing infrastructure. In a virtual infrastructure, it is good use to build up a Master image which has been hardened from the start. Removing all known attack vectors and only open up access when Veeam components are added and needs specific (port) openings or extra software to function properly. This way all builds are consistent and kept up-to-date which makes it secure in the basis.
+Overly complex designs become harder for the IT team to manage and overlook and it makes it easier for an attacker to exploit and stay in the shadows. Simpler designs that can be easily overviewed are in basis more secure. Use the K.I.S.S.[^1] (Keep It Simple and Straightforward) principle for your designs.
+
+Adding security to an already existing infrastructure is much harder and costly than thinking about it while designing a new or refreshing an existing infrastructure. In a virtual infrastructure, it is good use to build up a Master image which has been hardened from the start. Removing all known attack vectors and only open up access when Veeam components are added and needs specific (port) openings or extra software to function properly. This way all builds are consistent and kept up-to-date which makes it secure in the basis.
 
 Consider the Veeam Backup & Replication server to be the **Number 1** target on your infrastructure and it should have very restricted access. As a general rule the backup server is the single greatest target a hacker can claim on your network.
 
@@ -194,3 +196,6 @@ Veeam Backup & Replication™ can help you to fulfill all 3-2-1-0 backup rule re
 
 ### Educate your Staff
 By deploying an employee awareness training you make sure that your employees are aware of strange behavior and of their critical roles in protecting the organization’s services and data. This is not only for the IT department, but for everyone within the organization, because every organization is becoming an IT company rapidly.
+
+
+[^1]: KISS is an acronym for "Keep it simple, stupid" as a design principle noted by the U.S. Navy in 1960. The KISS principle states that most systems work best if they are kept simple rather than made complicated; therefore simplicity should be a key goal in design and unnecessary complexity should be avoided. A simple design is easier to overview and to secure as a whole. [Wikipedia](https://en.wikipedia.org/wiki/KISS_principle)
