@@ -151,7 +151,7 @@ To secure the Backup & Replication configuration database, follow these guidelin
 
 
 ## Segmentation
-Add local protection mechanics, in addition to the border firewalls, intrusion detection, patching and such. You can make use of local mechanisms, like up-to-date anti-malware, firewalls and network segmentation. This way you create different rings-of-defense slowing an attacker down.
+Add local protection mechanics, in addition to the border firewalls, intrusion detection, patching and such. You can make use of local mechanisms, like up-to-date anti-malware, firewalls and network segmentation. This way you create different rings-of-defense slowing an attacker down. A great way to strategically use segmentation is by implementing [Zones](./hardening-zones.md).
 
 A good practice is to place the backup repositories in a special segment not accessible by any user. Like for instance the production storage is only available to the virtual infrastructure components and application servers. Not directly accessible by any user!
 
