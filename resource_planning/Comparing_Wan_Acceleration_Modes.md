@@ -20,6 +20,8 @@ backup repository is high, it is recommended that you change the backup mode in 
 
 ## Configuration
 
+_Thanks to our friends at PernixData for helping with I/O analysis using [PernixData Architect](https://www.pernixdata.com/pernixdata-architect-software)._
+
 When configuring the WAN accelerator, not all configuration parameters affect both source and target WAN accelerators. In this section we will highlight what settings should be considered on each side.
 
 ### Source WAN Accelerator

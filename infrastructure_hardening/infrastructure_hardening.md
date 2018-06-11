@@ -6,7 +6,7 @@ Hardening is about securing the infrastructure against attacks, by reducing its 
 But also, creating visibility in what goes on in the infrastructure is part of hardening your infrastructure. Making sure you will notice when an attack is/or has taken place and then making sure logs and traces are saved for law-enforcement and security specialists when needed.
 
 ## Protect
-Protecting your infrastructure successfully is all about understanding what and whom you are protecting, your Veeam infrastructure, against. If you know what and whom you are protecting against, makes it easier to take the correct countermeasures. One of those countermeasures is hardening.
+Protecting your infrastructure successfully is all about understanding the current attack vectors; what and whom you are protecting, your Veeam infrastructure, against. If you know what and whom you are protecting against, makes it easier to take the correct countermeasures. One of those countermeasures is hardening.
 
 Looking at the different Veeam Backup & Replication components you have to protect the following components:
 * Veeam Backup server
@@ -20,30 +20,32 @@ Consider the Veeam Backup & Replication server to be the **Number 1** target on 
 Within the hardening process of your Veeam infrastructure there are a few steps everyone should always consider and act upon, namely:
 
 
-1. [Secure by Design](#Secure by Design)
+1. [Secure by Design](#secure-by-design)
 
-2. [Remove Unused Components](#Remove Unused Components)
+2. [Remove Unused Components](#remove-unused-components)
 
-3. [Console Access](#Console Access)
+3. [Console Access](#console-access)
 
-4. [Roles and Users](#Roles and Users)
+4. [Roles and Users](#roles-and-users)
 
-5. [Required Permissions](#Required Permissions)
+5. [Required Permissions](#required-permissions)
 
-6. [Encryption](#Encryption)
+6. [Encryption](#encryption)
 
-7. [Backup & Replication Database](#Backup & Replication Database)
+7. [Backup & Replication Database](#backup-&-replication-database)
 
-8. [Segmentation](#Segmentation)
+8. [Segmentation](#segmentation)
 
-9. [Visibility](#Visibility)
+9. [Visibility](#visibility)
 
-10. [Recovery Strategy](#Recovery Strategy)
+10. [Recovery Strategy](#recovery-strategy)
 
 
 
 ## Secure by Design
-Overly complex designs become harder for the IT team to manage and overlook and it makes it easier for an attacker to exploit and stay in the shadows. Simpler designs that can be easily overviewed are in basis more secure. Adding security to an already existing infrastructure is much harder and costly than thinking about it while designing a new or refreshing an existing infrastructure. In a virtual infrastructure, it is good use to build up a Master image which has been hardened from the start. Removing all known attack vectors and only open up access when Veeam components are added and needs specific (port) openings or extra software to function properly. This way all builds are consistent and kept up-to-date which makes it secure in the basis.
+Overly complex designs become harder for the IT team to manage and overlook and it makes it easier for an attacker to exploit and stay in the shadows. Simpler designs that can be easily overviewed are in basis more secure. Use the K.I.S.S.[^1] (Keep It Simple and Straightforward) principle for your designs.
+
+Adding security to an already existing infrastructure is much harder and costly than thinking about it while designing a new or refreshing an existing infrastructure. In a virtual infrastructure, it is good use to build up a Master image which has been hardened from the start. Removing all known attack vectors and only open up access when Veeam components are added and needs specific (port) openings or extra software to function properly. This way all builds are consistent and kept up-to-date which makes it secure in the basis.
 
 Consider the Veeam Backup & Replication server to be the **Number 1** target on your infrastructure and it should have very restricted access. As a general rule the backup server is the single greatest target a hacker can claim on your network.
 
@@ -149,7 +151,7 @@ To secure the Backup & Replication configuration database, follow these guidelin
 
 
 ## Segmentation
-Add local protection mechanics, in addition to the border firewalls, intrusion detection, patching and such. You can make use of local mechanisms, like up-to-date anti-malware, firewalls and network segmentation. This way you create different rings-of-defense slowing an attacker down.
+Add local protection mechanics, in addition to the border firewalls, intrusion detection, patching and such. You can make use of local mechanisms, like up-to-date anti-malware, firewalls and network segmentation. This way you create different rings-of-defense slowing an attacker down. A great way to strategically use segmentation is by implementing [Zones](./hardening-zones.md).
 
 A good practice is to place the backup repositories in a special segment not accessible by any user. Like for instance the production storage is only available to the virtual infrastructure components and application servers. Not directly accessible by any user!
 
@@ -194,3 +196,6 @@ Veeam Backup & Replication™ can help you to fulfill all 3-2-1-0 backup rule re
 
 ### Educate your Staff
 By deploying an employee awareness training you make sure that your employees are aware of strange behavior and of their critical roles in protecting the organization’s services and data. This is not only for the IT department, but for everyone within the organization, because every organization is becoming an IT company rapidly.
+
+
+[^1]: KISS is an acronym for "Keep it simple, stupid" as a design principle noted by the U.S. Navy in 1960. The KISS principle states that most systems work best if they are kept simple rather than made complicated; therefore simplicity should be a key goal in design and unnecessary complexity should be avoided. A simple design is easier to overview and to secure as a whole. [Wikipedia](https://en.wikipedia.org/wiki/KISS_principle)

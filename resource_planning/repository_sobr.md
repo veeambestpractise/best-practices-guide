@@ -1,4 +1,3 @@
-<!--- This was last Changed 03-05-17 by PS --->
 # Scale Out Backup Repository
 
 Veeam Scale-out Backup Repository is a logical entity made of multiple “simple” repositories, grouped together into a single abstracted object, that can be used as a target for any backup and backup copy job operation.
@@ -28,9 +27,7 @@ Performance policy places dependent incremental backup files on a different exte
 
 ![SOBR-image02.png](..\media\SOBR-image04.png)
 
-**Important**: When using integrated deduplication devices, virtual synthetic
-operations may not work, if the full and incremental backup files are placed
-on separate extents. Please use Data Locality mode instead.
+**Important**: When using integrated deduplication devices, virtual synthetic operations may not work, if the full and incremental backup files are placed on separate extents. Please use Data Locality mode instead.
 
 Users can configure each repository of the group to accept full backups, incremental backups or both. As soon as a new backup chain is stored into a performance Scale-out Backup Repository, the different files are place in accordance to the policy itself.
 
