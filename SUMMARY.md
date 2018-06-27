@@ -29,7 +29,7 @@
  * [SMB](resource_planning/repository_type_smb.md)
  * [Deduplication Appliances](resource_planning/repository_type_dedupe.md)
  * [Integration specifics](resource_planning/repository_type_dedupe_integrated.md)
- * [Windows Server Deduplication](resource_planning/repository_type_dedupe_windows.md
+ * [Windows Server Deduplication](resource_planning/repository_type_dedupe_windows.md)
 * [Repository Planning](resource_planning/repository_planning.md)
   * [Sizing](resource_planning/repository_planning_sizing.md)
   * [Per VM Backup Files](resource_planning/repository_planning_pervm.md)
