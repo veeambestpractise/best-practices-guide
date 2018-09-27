@@ -20,7 +20,7 @@ This is the default and **recommended** backup method as it works out of the box
 On-host backup mode uses the native Microsoft Hyper-V VSS provider which is proven to be stable and reliable.
 During on-host backup process, VMs data are processed by the source Microsoft Hyper-V host where the VMs run and the role of the backup proxy is assigned to the Hyper-V host who owns the CSV (Cluster Shared Volume) according the following rules:
 
-  - If you back up or replicate VMs whose disks are located on a CSV in Microsoft Hyper-V Server 2012 or 2012 R2, and Microsoft CSV Software Shadow Copy Provider is used for snapshot creating, Veeam Backup & Replication assigns the role of an on-host backup proxy to the host owning the CSV. If VM disks are located on different CSV's, Veeam Backup & Replication may use several on-host backup proxies, which are the corresponding hosts owning CSV's.
+  - If you back up or replicate VMs whose disks are located on a CSV in Microsoft Hyper-V Server 2012R2 or 2016, and Microsoft CSV Software Shadow Copy Provider is used for snapshot creating, Veeam Backup & Replication assigns the role of an on-host backup proxy to the host owning the CSV. If VM disks are located on different CSV's, Veeam Backup & Replication may use several on-host backup proxies, which are the corresponding hosts owning CSV's.
 
   - In case you perform backup or replication of VMs whose disks are located on a CSV in Microsoft Hyper-V 2008 R2, and a VSS software or hardware provider is used for snapshot creation, Veeam Backup & Replication assigns the role of an on-host backup proxy to the host on which the processed VM is registered.
 
@@ -35,7 +35,7 @@ The on-host backup process works in the following way:
 In this backup mode, backup operations are moved from the Hyper-V hosts to one ore more dedicated physical server.
 The Veeam Data Mover service running on a dedicated machine, called off-host proxy, retrieves VMs data from the source volume using the transportable shadow copies. This technology allows Veeam Backup & Replication to create a snapshot of the CSV (Cluster shared volume) on which VM disks are saved, import and mount this snapshot onto a different server part of the same SAN (Storage Area Network).
 
-Off-host backup mode requires also third-party components that are not shipped with Veeam Backup & Replication: the so called **VSS hardware Provider**, that are usually distributed as part of client components supplied by the storage vendor.
+Off-host backup mode requires also third-party components that are not shipped with Veeam Backup & Replication: the so called **VSS Hardware Provider**, that are usually distributed as part of client components supplied by the storage vendor. These VSS providers must be tested in your dedicated environement in e.g. a MS Cluster and multi Off-Host Proxy environment. Please also check the storage snapshot logs after backup. 
 
 For more information regarding the off-proxy requirements, refer to the official documentation [page](https://helpcenter.veeam.com/docs/backup/hyperv/offhost_backup_proxy.html?ver=95).
 
