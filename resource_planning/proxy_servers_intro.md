@@ -15,7 +15,7 @@ based on the organization demands:
 
 Backup proxies can be deployed both
 in the primary site, where the backup server is located, or in a remote site
-where additional infrastructure needs being backed up. A proxy server is
+where additional infrastructure needs being backed up. A proxy server can be
 installed on any managed Microsoft Windows server added to the backup
 infrastructure. Depending on whether the proxy server is installed on a
 physical or virtual machine, different transport modes are available.
@@ -33,7 +33,7 @@ Backup proxy operations include the following:
 
 -   In-line source side data deduplication to skip whitespace and redundant
     blocks reported by vSphere Change Block Tracking (CBT), Veeam File
-    Change Tracking (FCT) for Hyper-V versions from 2008 R2 to 2012 R2 Resilient Change Tracking (RCT) for Hyper-V 2016.
+    Change Tracking (FCT) for Hyper-V versions from 2008 R2 to 2012 R2 or Resilient Change Tracking (RCT) for Hyper-V 2016.
 
 -   Performing in-line compression and deduplication before sending
     it to the backup repository (for backup) or another backup
@@ -49,14 +49,13 @@ Veeam backup management console assigning the proxy role to it,
 Backup & Replication installs the necessary components, and starts the
 required services on that server. Any host in a Hyper-V cluster is automatically
 enabled as proxy server, when it is added to the infrastructure.
-When a job is started the backup server manages dispatch of
+When a job is started, the backup server manages the dispatching of
 tasks to proxy servers using its built-in [Intelligent Load Balancer](#intelligent-load-balancing) (ILB).
 
 ### Intelligent Load Balancing
 
 To specify the threshold for proxy load an administrator uses the **Max
-concurrent tasks** proxy setting (where a task stands for a single VM
-disk), Backup & Replication uses a unique load balancing
+concurrent tasks** proxy setting (one task will be consumed for processing a single VM disk), Backup & Replication uses a unique load balancing
 algorithm to automatically spread the load across multiple proxies. This
 feature allows you to increase backup performance, minimize backup time
 window and optimize data flow.
@@ -86,7 +85,7 @@ via the built-in Real-time Scheduler (RTS):
 **Tip:** At the repository, which writes the backup data, only one
 thread is writing to the backup storage _per running job_. If few jobs
 with a high number of VMs are processed simultaneously, you may experience
-that these threads are cannot fully utilize the available backup storage
+that these threads cannot fully utilize the available backup storage
 performance. If throughput per I/O stream is a bottleneck, consider
 enabling [per VM backup files](./repository_planning_pervm.md).
 

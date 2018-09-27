@@ -20,7 +20,7 @@ orchestration of snapshot creation and replication between Nimble Storage arrays
 
   Nimble configuration will not allow empty scheduling. Therefore you can choose
   **Weeks** or **Repeat Every Week** and **Replicate to** set to "2" as the
-  minimum — or any desired configuration, as these configurations will not be
+  minimum - or any desired configuration, as these configurations will not be
   used by Veeam.
   6. Associate the desired volume for replication on the Volumes Tab
 
@@ -42,9 +42,9 @@ the [3-2-1 rule](https://www.veeam.com/blog/how-to-follow-the-3-2-1-backup-rule-
 lower RPO, in case the primary storage array is still available, when a restore
 is needed.
 
-##### Note.  
+**Note:**
 It is recommended by the vendor that volumes should be in individual Volume Collections.
-  Please verify Nimble Volume Collections configuration before running the snapshot-only job, otherwise it may not operate properly- for example, replicate more data than expected.
+  Please verify Nimble Volume Collections configuration before running the snapshot-only job, otherwise it may not operate properly - for example, replicate more data than expected.
 
 ## Snapshot replication
 
@@ -55,7 +55,7 @@ a secondary Nimble Storage array by checking the
 
 ![Nimble Storage secondary destination](./backup_from_storage_snapshots_nimble_2.png)
 
-By clicking **Add** -- **Nimble Snapshot Replicated Copy**, it is possible to
+By clicking **Add** / **Nimble Snapshot Replicated Copy**, it is possible to
 configure how many snapshots should be retained at the target Nimble Storage array.
 During the job run, Veeam will search for replication settings configured on the
 Volume Collection for the source volume being snapshotted. Please see the initial
@@ -66,8 +66,3 @@ paragraph of this chapter for details on configuring Volume Collections.
 When performing backups to a backup repository, it is possible to configure using the replicated copy at the target Nimble Storage array as the source for the repository based backup.
 
 ![Nimble Storage secondary source](./backup_from_storage_snapshots_nimble_3.png)
-
-By clicking **Add** -- **Nimble Snapshot Replicated Copy**, it is possible to
-configure how many snapshots should be retained at the target Nimble Storage array, and
-furthermore use the checkbox "Use as the data source". This will instruct the backup
-proxy to using the secondary Nimble Storage array as the data source for backups.

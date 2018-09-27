@@ -101,17 +101,17 @@ leading to downtime. To mitigate the issue, Veeam implemented the following func
 
 -   To avoid some VMware issues related to NFS datastore and hot-add
     processing (described at
-    <http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2010953>
-    ) enable a specific setting that will process VM backups only on
+    <http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2010953>),
+     enable a specific setting that will process VM backups only on
     backup proxies that run on the same host. For details see
-    <http://www.veeam.com/kb1681> .
-    To avoid this completely we highly recommend you to use the Direct
+    <http://www.veeam.com/kb1681>.
+    To avoid this completely, it is recommended to use the Direct
     NFS backup mode for backup and restore of NFS datastore based VMs.
 
-**Note:** For additional tips refer to the “Impact of Snapshot
-Operations” section of this guide.
+**Note:** For additional tips refer to the [Impact of Snapshot
+Operations](./interaction_with_vsphere.md#Impact-of-Snapshot-Operations) section of this guide.
 
-## vSphere 6.5 and encryption
+## vSphere 6.5 and Encryption
 
 Virtual appliance mode is typically the best choice to ensure data
 availability for vSphere 6.5 clusters with encrypted virtual machines.
@@ -120,10 +120,8 @@ machines, the virtual backup proxy must be encrypted within the same encryption
 domain (using the same KMIP server).
 
 Backup modes Direct Storage Access and Backup from Storage Snapshots
-are unavailable for encrypted virtual machines, and NBD will not be as performant.
-vSphere 6.5 also enforces SSL/TLS encryption for
-network mode (NBD), rendering virtual appliance mode a much more performant
-alternative, and will reduce host CPU usage.
+are unavailable for encrypted virtual machines. NBD will be slower as virtual appliance mode as vSphere 6.5 also enforces SSL/TLS encryption for
+network mode (NBD). Thus, virtual appliance mode will be the best performing choice, and it reduces host CPU load.
 
 ## Recommendations
 
