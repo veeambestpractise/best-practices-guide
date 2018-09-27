@@ -14,6 +14,8 @@ To restore all jobs and their metadata (you will be asked for all required passw
 Veeam Backup & Replication User Guide for further details:
 <https://helpcenter.veeam.com/docs/backup/vsphere/vbr_config.html?ver=95>
 
+If restoring the backup configuration to a newly provisioned server, it is highly recommended that the replacement server has the same DNS name, VBR version and patch level as the original backup server, this is especially true if using Veeam Agents for Windows or Linux.  
+
 **Tip:** If encryption is enabled for configuration backup the passwords
 are also stored in the configuration backup files.
 
@@ -48,66 +50,7 @@ Also check the location of the configuration database, when the database is exte
 
 ### Antivirus on Veeam Servers
 
-Antivirus software monitors all 'write' operations on the operating system and this also extends to Veeam backup files. Data that is processed by a backup proxy and repository can overload the antivirus system so that it blocks the backup files, this can slow down the backup process or even lead to backup file corruption. To avoid this it is recommended to add the following items to the list of antivirus exclusions on all Veeam servers including Veeam backup server, proxy server, repository server, WAN accelerator server, tape server, and others.
-
-#### Folders on the Veeam Server
-
--   *C:\Program Files\Veeam *
-
--   *C:\Program Files(x86)\Veeam *
-
--   *C:\Program Files\Common Files\Veeam *
-
--   *C:\Program Files(x86)\Common Files\Veeam *
-
--   *VBRCatalog* (\[`HKLM\SOFTWARE\Veeam\Veeam Backup Catalog\`]
-    `CatalogPath` value)
-
--   *NFS* (Configured in each repository, stored in
-    `[HKLM\SOFTWARE\Wow6432Node\Veeam\Veeam NFS\]`
-    `RootFolder`value)
-
--   *C:\VeeamFLR\\**
-
--   *C:\Windows\Veeam *
-
-#### Folder on Guest OS for VSS
-
--   *C:\Windows\VeeamVssSupport *
-
--   *C:\Windows\VeeamLogShipper *
-
-#### Folder on VMware Backup Proxies and CIFS Repository Gateway
-
--   *C:\Program Files(x86)\Veeam *
-
--   *C:\Windows\Veeam *
-
-#### Folders on Windows Repositories
-
--   *C:\Program Files(x86)\Veeam *
-
--   *C:\Windows\Veeam *
-
--   *All Veeam repository folders *
-
-#### Folders on WAN accelerator
-
--   *C:\Program Files(x86)\Veeam *
-
--   *C:\Windows\Veeam *
-
--   *All WAN cache folders *
-
-
-#### Files
-
--   *VeeamAgent.exe *
-
--   *VeeamAgent64.exe *
-
--   .vmdk  .vbk .vlb .vib .vrb .vbm .vbo
-
+Antivirus software monitors all 'write' operations on the operating system and this also extends to Veeam backup files. Data that is processed by a backup proxy and repository can overload the antivirus system so that it blocks the backup files, this can slow down the backup process or even lead to backup file corruption. To avoid this it is recommended the following exclusions specified in KB1999 <https://www.veeam.com/kb1999>, are added on all Veeam servers including Veeam backup server, proxy server, repository server, WAN accelerator server, tape server, and others.
 
 **Tip:** Due to the complex nature of antivirus software some additional exclusions may be needed. If the antivirus has a logging or history system you can review its logs to detect whether it has taken any actions that might affected Veeam Backup & Replication operations.
 

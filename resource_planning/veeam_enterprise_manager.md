@@ -67,7 +67,7 @@ store indexing data replicated from the backup catalog on Veeam
 backup server(s). For more information about the process, refer to the
 [Enterprise Manager User Guide](https://helpcenter.veeam.com/docs/backup/em/veeam_backup_catalog.html?ver=95).
 To learn more about Veeam Backup Catalog sizing refer to the
-“[Search Server and Indexing](search_server_and_indexing.md)” section of this document.
+“[Indexing](search_server_and_indexing.md)” section of this document.
 
 ### 1-Click Application Item-level Restore
 You can restore items from Microsoft Exchange, Microsoft
