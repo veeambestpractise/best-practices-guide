@@ -9,21 +9,24 @@
 
 ### Automated Drive Cleaning
 You can instruct Veeam Backup & Replication to automatically clean the tape library drives. Assigning the automated cleaning to Veeam Backup & Replication prevents possible overlapping of cleaning tasks and tape jobs. Such overlapping may cause tape jobs failures. To instruct Veeam Backup & Replication to automatically clean the drives:
-1. Open the Tape Infrastructure view.
-2. Expand the Libraries node and select the needed library. Click Properties on the ribbon. You can also right-click the necessary library in the working area and select Properties.
-3. In the Properties window, select the Perform drive cleaning automatically option.
+
+1.  Open the Tape Infrastructure view.
+2.  Expand the Libraries node and select the needed library. Click Properties on the ribbon. You can also right-click the necessary library in the working area and select Properties.
+3.  In the Properties window, select the Perform drive cleaning automatically option.
 
 ![](selfclean.png)
+
 
 If you enable the automated drive cleaning option in Veeam Backup & Replication, make sure that you disabled the drive cleaning tasks on your tape library device.
 
 Veeam Backup & Replication cleans the drives at the beginning of backup to tape jobs or file to tape job run. The cleaning is not performed during other tape operations such as, for example, cataloging or export. To clean the drives automatically, Veeam Backup & Replication performs the following actions:  
-1. The tape library alerts Veeam Backup & Replication on a drive that requires cleaning.
-2. Veeam Backup & Replication waits for a tape job to start.
-3. When the tape job locks necessary drives for writing data, Veeam Backup & Replication checks which of them requires cleaning.
-4. Veeam Backup & Replication ejects the tape from the drive, inserts a cleaning tape and performs the cleaning.
-5. Veeam Backup & Replication ejects the cleaning tape and inserts the tape that was reserved for the tape job.
-6. The tape job writes the data on tape.
+
+1.  The tape library alerts Veeam Backup & Replication on a drive that requires cleaning.
+2.  Veeam Backup & Replication waits for a tape job to start.
+3.  When the tape job locks necessary drives for writing data, Veeam Backup & Replication checks which of them requires cleaning.
+4.  Veeam Backup & Replication ejects the tape from the drive, inserts a cleaning tape and performs the cleaning.
+5.  Veeam Backup & Replication ejects the cleaning tape and inserts the tape that was reserved for the tape job.
+6.  The tape job writes the data on tape.
 
 The cleaning process usually takes several minutes.
 
@@ -33,23 +36,21 @@ If a tape job locks multiple drives simultaneously for parallel processing, and 
 
 The automated drive cleaning does not affect creation of media sets.
 
-##### Limitations for Automated Drive Cleaning
-
-You cannot enable the automated drive cleaning on standalone tape drives. You cannot start the drive cleaning manually with Veeam Backup & Replication. The drive cleaning is fully automated.
+**Limitations for Automated Drive Cleaning:** You cannot enable the automated drive cleaning on standalone tape drives. You cannot start the drive cleaning manually with Veeam Backup & Replication. The drive cleaning is fully automated.
 
 ### Working with Tape Libraries
 All tape libraries managed by Veeam Backup & Replication are shown as a list of devices under the Libraries node in the Tape Infrastructure view. All connected devices are discovered automatically during the rescan procedure. When you add a new tape device to the tape server, it appears in your console after rescan. To view properties of a tape library:
-- Open the Tape Infrastructure view
-- Expand the Libraries node and select the needed library.
-- Click Properties on the ribbon. (You can also right-click the necessary library in the working area and select Properties).
-- Select the Perform drive cleaning automatically check box if you want Veeam Backup & Replication to manage the tape drives cleaning.
+1)  Open the Tape Infrastructure view
+2)  Expand the Libraries node and select the needed library.
+3)  Click Properties on the ribbon. (You can also right-click the necessary library in the working area and select Properties).
+4)  Select the Perform drive cleaning automatically check box if you want Veeam Backup & Replication to manage the tape drives cleaning.
 
 For more information about automated drives cleaning, see Automated Drive Cleaning. Select the Use native SCSI commands instead of Windows driver check box if your library is an unknown media changer.
 
 ### Media Information
-Veeam Backup Database Veeam Backup & Replication catalogues information about all archived data and stores this information in the Veeam backup database. The registered tapes stay in the database until you remove the information about them. You can always view details for each tape, for example, information about backups written to it, even if the tape is not inserted in the library. The catalogue lets quickly detect location of the required items on tape. The catalogue correlates the archived files and the restore points to the names of the corresponding tapes, both online or offline and the names of the media sets within which the data was written.
+Veeam Backup Database Veeam Backup & Replication catalogues information of all archived data and stores this information in the Veeam backup database. The registered tapes stay in the database until you remove the information about them. You can always view details for each tape, for example, information about backups written to it, even if the tape is not inserted in the library. The catalogue lets quickly detect location of the required items on tape. The catalogue correlates the archived files and the restore points to the names of the corresponding tapes. Both online or offline, and the names of the media sets within were the data was written.
 
-When you start restore, Veeam Backup & Replication prompts for the tapes you need to bring online. As a result, you can restore data from tape much quicker when necessary. Veeam Backup & Replication uses the following catalogues for storing the tape-related data:
+When you start restore, Veeam Backup & Replication prompts for the tapes you need to bring online. As a result, you can restore data from tape much quicker. Veeam Backup & Replication uses the following catalogues for storing the tape-related data:
 -	Tape Catalogue stores information about files/folders archived to tape media with file to tape jobs, as well as backup files produced by backup to tape jobs. The content of the Tape catalogue can be examined in the Files view.
 
 -	Backup catalogue stores information about VMs whose backups are archived to tape media with backup to tape jobs. The content of the Backup catalogue can be examined under the Backups > Tape node in the Backup & Replication view
@@ -57,8 +58,7 @@ When you start restore, Veeam Backup & Replication prompts for the tapes you nee
 
 ### Media Pool
 
-A media pool simply defines a group of tapes managed by Veeam Veeam
-Backup & Replication. There are three types of media pools:
+A media pool simply defines a group of tapes managed by Veeam Veeam Backup & Replication. There are three types of media pools:
 
 -   **Service media pools**. Created and managed automatically. It is not possible to modify their settings. They contains:
 

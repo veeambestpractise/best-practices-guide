@@ -1,7 +1,7 @@
 <!--- This was last Changed 03-05-17 by PS --->
 # Veeam Explorers
 
-Veeam Explorers are tools included in all editions for item-level recovery from several application. As of v9, following Explorers are available:
+Veeam Explorers are tools included in all editions for item-level recovery from several application. As of v9.5, following Explorers are available:
 
 * Veeam Explorer for Active Directory
 * Veeam Explorer for SQL Server
@@ -30,7 +30,7 @@ When opening VESS, the following workflow kicks off:
 1.  Creating a Clone of the Snapshot to make it writeable
 
 2.  In case of Block access (iSCSI, FC, FCoE) mount the new LUN to a
-    proxy ESXi and register a temporary datastore, in case of NFS access
+    an ESXi and register a temporary datastore, in case of NFS access
     the existing NFS datastore and look for the cloned VM
 
 3.  Register the temporary VM within the VMware inventory
