@@ -58,7 +58,7 @@ Please follow these guidelines:
 
 **Note:** Concurrently running jobs include any job type with a continuous schedule such as Backup Copy Jobs.
 
-When running more than 100 jobs concurrently increase compute resources in line with the table above to meet the resource need of the workload.
+When running more than 100 jobs concurrently increase the amount of resources by 2 CPU cores and 4GB of RAM for every 25 concurrently running Jobs.
 
 It is recommended to place the configuration database on fast, resilient storage subsystem. Performant storage for backing the configuration database will result in overall increased processing performance. Jobs with a lot of metadata such as very large SharePoint farms with thousands of sites, SQL Server instances with many databases or Files to Tape jobs may increase
 the I/O requirements for the configuration database.
@@ -79,7 +79,7 @@ If you plan to restore encrypted databases with Veeam Explorer for
 Microsoft SQL Server or SharePoint you will need a
 valid encryption certificate on the staging Microsoft SQL Server[^3].
 
-Follow Microsoft general recommendations for optimal SQL performance, for example, place the SQL `tempdb` on the fastest disks for best performance[^5].
+Follow Microsoft general recommendations for optimal SQL performance, for example, place the SQL `tempdb` on the fastest disks for best performance.
 
 ## Modifying Database Connection Settings
 To modify database connection settings or connect to another Veeam
@@ -95,7 +95,7 @@ To migrate Veeam configuration database to another SQL Server follow
 the recommendations provided in these Veeam Knowledge Base articles:
 
 -   <http://www.veeam.com/kb1250>
--   <http://www.veeam.com/kb1448>
+-   <https://www.veeam.com/kb1889>
 
 
 [^1]: Features Supported by the Editions of SQL Server 2012 <https://msdn.microsoft.com/en-us/library/cc645993(v=SQL.110).aspx#CrossBoxScale>
@@ -103,5 +103,3 @@ the recommendations provided in these Veeam Knowledge Base articles:
 [^2]: Generic requirements for SQL Server can be found here: <https://helpcenter.veeam.com/docs/backup/vsphere/system_requirements.html?ver=95>
 
 [^3]: For restoring encrypted databases, please see: <http://www.veeam.com/kb2006>
-
-[^5]: SQL Server `tempdb` Best Practices: <http://blogs.msdn.com/b/cindygross/archive/2009/11/20/compilation-of-sql-server-tempdb-io-best-practices.aspx>

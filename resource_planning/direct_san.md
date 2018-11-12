@@ -13,10 +13,9 @@ the same "host group" on the storage as the existing ESXi hosts, in order to
 ensure all LUNs are masked correctly.
 
 To use Direct NFS backup mode, the proxies need access to the NFS network
-and must be a configured in the NFS server's "exports" for read and/or write
+and must be configured in the NFS server's "exports" for read and/or write
 access. As NFS based storage uses IP, the real-time scheduler (RTS) will ensure
-to always use the backup proxy with fewest network "hops". This is especially useful,
-if the NFS network happens to be routable.
+to always use the nearest backup proxy (by means of the fewest network "hops"). This is especially useful if the NFS network traffic has to cross IP routing devices.
 
 If write access is provided, Veeam will automatically perform full VM restore
 via Direct Storage Access for thick provisioned VMs.
@@ -24,12 +23,12 @@ via Direct Storage Access for thick provisioned VMs.
 ## Pros
 
 -   Direct Storage Access mode provides very fast and the most reliable
-    predictable backup performance (typically, using 8 Gb Fibre Channel
+    predictable backup performance (typically using 8 Gb Fibre Channel
     or 10 GbE for iSCSI and NFS).
 
 -   Produces zero impact on vSphere hosts and VM production networks for backup data transport.
 
--   It is possible to perform full VM restore using Direct Storage Access. This mode will be used automatically if eligible backup proxies are available in the backup infrastructure, and the VM disks are thick provisioned.
+-   It is possible to perform full VM restore using Direct Storage Access. This mode will be used automatically if eligible backup proxies are available in the backup infrastructure and if the VM disks are thick provisioned.
 
 -	Direct Storage Access is the fastest backup and restore mode for NFS datastores. It uses multiple concurrent read and write streams with an increased queue depth via ADF.
 
@@ -62,7 +61,7 @@ using Fibre Channel, FCoE or iSCSI, you may add a backup proxy as a member to
 that shared storage using LUN masking. This will allow for accessing
 the storage system for backup and restore.
 
-Ensure that a connection between the storage and backup proxy can be established. Verify FC HBAs, zoning, multipath, driver software and iSCSI configurations including any network changes. To test the connection, you may review volumes visible in Windows Disk Management, adding one disk per storage system at a time. Once the initial connection has been verified, add the remaining volumes for that storage array.
+Ensure that a connection between the storage and backup proxy can be established. Verify FC HBAs, zoning, multipath, driver software and iSCSI configurations including any network changes. To test the connection, you may review volumes visible in Windows Disk Management (as offline), adding one disk per storage system at a time. Once the initial connection has been verified, add the remaining volumes for that storage array.
 
 ## Recommendations
 
@@ -83,12 +82,12 @@ Ensure that a connection between the storage and backup proxy can be established
   -   Path: `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication`
   -   Key: `VDDKLogLevel`
   -   Type: REG_DWORD
-  -   Value: 0
+  -   Value: 0 (to disable)
   -   Default: 1
 
   **Note**: As this reduces the amount of information in debug logs,
 	remember to enable it again when working with Veeam support (to
-	facilitate debugging of the Direct Storage Access related challenges).
+	facilitate debugging of Direct Storage Access related challenges).
 
 -   To achieve performance/cost optimum, consider using fewer proxies with
     more CPU cores available. This will help to fully utilize the HBA or
@@ -100,7 +99,7 @@ Ensure that a connection between the storage and backup proxy can be established
 During deployment of the proxy role to a Windows VM, Backup &
 Replication uses the following security mechanisms to protect them:
 
--   Changes the Windows SAN Policy to "Offline (shared)". This prevents
+-   Windows SAN Policy is changed to "Offline (shared)". This prevents
     Windows from automatically bringing the attached volumes online and
     also prevents Windows write operations to the volumes. During Direct
     SAN restore, if the disks are offline, the proxy will attempt bringing the
@@ -111,7 +110,7 @@ Replication uses the following security mechanisms to protect them:
     cases, VDDK coordinates read and write operations (Direct SAN restore) with VMware vSphere allowing VMware's Software to control
     the read and write streams in a reliable manner.
 
-If necessary you can take additional measures as follows:
+If necessary, you can take additional measures as follows:
 
 - 	Disable automount. Open an elevated command prompt
     and disable automount using the following commands:
@@ -123,7 +122,7 @@ automount disable
 
 -   Disable Disk Management snap-in with:
 
-    **Group Policy\User Configuration > Administrative Templates > Window >  Components > Microsoft Management Console > Restricted/Permitted snap-ins > Disk Management**.
+    **Group Policy\User Configuration > Administrative Templates > Windows Components > Microsoft Management Console > Restricted/Permitted snap-ins > Disk Management**.
 
 -   Restrict the amount of users with administrative access to proxy servers.
 
@@ -140,6 +139,6 @@ and VMware datastores please refer to [VMware KB1002168: Unable to access the VM
 
 ## Summary
 
-Use Direct Storage Access whenever possible for fast backups reduced load on the ESXi hosts. Consider using hot-add proxies, as these typically restore faster than Direct SAN restores. Direct SAN uses VDDK, which can cause excessive metadata updates while hot-add restore bypasses VDDK.
+Use Direct Storage Access whenever possible for fast backups and reduced load on the ESXi hosts. Consider using hot-add proxies, as these typically restore faster than Direct SAN restores. Direct SAN uses VDDK, which can cause excessive metadata updates while hot-add restores bypass VDDK.
 
 For NFS datastores, Direct NFS is the best choice for both backup and restore. It delivers the highest possible throughput, without any negative side effects. You can use it for virtual and physical proxy deployments.

@@ -18,36 +18,37 @@ Backup & Replication:
 - All connection types require driver installation
 -	You can use generic drivers from Microsoft Windows, but they may not provide as high performance as the vendor’s
 -	Separate drivers for tape drives and for tape media libraries should be installed
--	StorageTek ACSLS is not supported while a direct connection to the library is
+-	StorageTek ACSLS is not supported while a direct connection to the library is needed
 -	Dynamic Drive Sharing is not supported
 -	Library Partitioning is supported
 -	Multiple control paths are supported only when control path failover and MPIO is configured correctly. Please contact the vendor for more information.
 
-#### Connection Type	Compatibility
+#### Connection Type Compatibility
 
-- FC/SAS/SCSI/FCoE/Infiniband/iSCSI or other block technology to physical Tape Proxy	Supported with Windows driver as long as the tape vendor supports the connection. (“Unknown media changer” support for FC/SAS and VTLs)
-- FC/SAS redirect to VMware VM	Unsupported
-- FC/SAS redirect to Hyper-V VM	Unsupported
-- FC/SAS to iSCSI Converter/Bridge	Supported
-- Starwind Tape Redirector	Supported
+- FC/SAS/SCSI/FCoE/Infiniband/iSCSI or other block technology to physical Tape Proxy are supported with Windows driver as long as the tape vendor supports the connection. (“Unknown media changer” support for FC/SAS and VTLs)
+- FC/SAS redirect to VMware VM is unsupported
+- FC/SAS redirect to Hyper-V VM	is unsupported
+- FC/SAS to iSCSI Converter/Bridge is supported
+- Starwind Tape Redirector is supported
 
 #### Tape device support
-While the system requirements dictate what tape devices are technically supported, there is a community validated list available on the Veeam forums: Unofficial tape device compatibility list
+The Veeam Ready database provides a list of all partner solutions that have successfully passed Veeam’s testing criteria. Solutions are grouped by company name, Veeam Ready classification, and more. [Veeam Ready Database](https://www.veeam.com/ready.html)
 
-##### Supported
+#### Supported
 - LTO-3 or higher
 - For VTLs, see the corresponding section under Deduplication Storage
 
 #### Not supported
 - IBM "Jaguar" TS11x0 Enterprise tape drives
--	StorageTek T10000 tape drives
--	Older Tape drives like DLT or AIT
+- StorageTek T10000 tape drives
+- Older Tape drives like DLT or AIT
 
-##### Drivers
+#### Drivers
+-	IBM drivers: use “non-exclusive” driver setup and start installation with administrative rights.
 -	HP drivers: these are not installable with the downloaded install .exe file on a VM (for example, to use with VTL). As a solution, run the install .exe and choose Extract. Use Device Manager –> Update driver and select the drivers for tape drives and (if you use HP/HP emulation tape library) for media changer.
 
 
-##### Unknown Medium Changers:
+#### Unknown Medium Changers
 
 Veeam supports medium changers that have no Microsoft Windows drivers available. Make sure that such device is recognized as an unknown medium changer in the Microsoft Device Manager list.
 
@@ -56,5 +57,5 @@ It is recommended that you use tape devices with original equipment manufacturer
 For more details and recommendations on configuring vendor-supported tape drives and media changers on ESX/ESXi, refer to VMware documentation at http://kb.vmware.com/kb/1016407.
 
 
-##### Note: Veeam Backup & Replication uses the MTF (Microsoft Tape Format) industry format to write data to tape. Veeam Backup & Replication does not support using WORM (Write Once Read Many) tapes.
+**Note**:  Veeam Backup & Replication uses the MTF (Microsoft Tape Format) industry format to write data to tape. Veeam Backup & Replication does not support using WORM (Write Once Read Many) tapes.
  

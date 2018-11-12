@@ -24,7 +24,7 @@ On the other hand, if the backup files are encrypted, unauthorized users cannot 
 
 ### How does it work?
 
-For encryption functionality to work backup encryption keys have to be generated. Those keys use mathematical symmetric cryptography and are not used to encrypt the data itself to avoid impacting backup performance. Instead for each backup session unique session symmetric encryption key is generated automatically and then stored in the backup file encrypted with the backup encryption key. Then each data block (compressed or not depending on the job configuration) is encrypted with the session key generated for current job session and stored in the backup file. In case Password Loss Protection functionality is enabled an additional copy of session keys is stored in the backup file encrypted with the Enterprise Manager encryption keys.
+For encryption functionality to work backup encryption keys have to be generated. Those keys use mathematical symmetric cryptography and are not used to encrypt the data itself to avoid impacting backup performance. Instead, for each backup session a unique session symmetric encryption key is generated automatically and then stored in the backup file encrypted with the backup encryption key. Then each data block (compressed or not depending on the job configuration) is encrypted using the session key previously generated for the current job session and stored in the backup file. In case Password Loss Protection functionality is enabled an additional copy of session keys is stored in the backup file encrypted with the Enterprise Manager encryption keys.
 
 This approach provides a method for encrypting backups without compromising backup performance.
 
@@ -63,7 +63,7 @@ Similar to encryption for backups on disk, a session encryption key is used to e
 
 ### When to use it?
 
-Tape job encryption should be used any time you want to protect the data stored on tape from unauthorized access by a 3<sup>rd</sup> party. Tapes are commonly transported offsite and thus have a higher chance of being lost and turning up in unexpected places. Encrypting tapes can provide an added layer of protection if tapes are lost.
+Tape job encryption should be used any time you want to protect the data stored on tape from unauthorized access by a 3<sup>rd</sup> party. Tapes are commonly transported offsite and thus have a higher chance of being lost and turning up in unexpected places. Encrypting tapes can provide an additional layer of protection if tapes are lost.
 
 If tape jobs are writing already encrypted data to tape (for example, Veeam data from backup jobs that already have encryption enabled), you may find it acceptable to not use tape-level encryption. However, be aware that a user who gets access to the tape will be able to restore the backup files. Although this user will not be able to access the backup data in those files, some valuable information, for example, job names used for backup files, may leak.
 
@@ -94,7 +94,7 @@ Whenever two backup infrastructure components need to communicate with each othe
 
 Network transport encryption should be used if the network between two backup infrastructure components is untrusted or if the user desires to protect Veeam traffic across the network from potential network sniffing or "man in the middle" attacks.
 
-By default, Veeam Backup & Replication automatically encrypts communication between two nodes if either one or both has an interface configured (if used or not) that is not within the RFC1918 private address space (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 169.254.0.0/16). Veeam also automatically uses network-level encryption for any connection with Veeam Cloud Connect service providers, however Cloud Connect establishes a TLS 1.2 encrypted tunnel to the service provider in a different way. To learn more about specific Cloud Connect encryption mechanism, watch this YouTube video:  [How Veeam Cloud Connect Encryption works](https://www.youtube.com/watch?v=yGuw37PxRHU).
+By default, Veeam Backup & Replication automatically encrypts communication between two nodes if either one or both has an interface configured (if used or not) that is not within the RFC1918 private address space (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 169.254.0.0/16). Veeam also automatically uses network-level encryption for any connection with Veeam Cloud Connect service providers. However, Cloud Connect establishes a TLS 1.2 encrypted tunnel to the service provider in a different way. To learn more about specific Cloud Connect encryption mechanism, watch this YouTube video:  [How Veeam Cloud Connect Encryption works](https://www.youtube.com/watch?v=yGuw37PxRHU).
 
 ### Best Practices
 

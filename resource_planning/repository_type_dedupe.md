@@ -49,10 +49,6 @@ Integrated appliances are:
 * EMC DataDomain - via DDBoost API
 * ExaGrid - via integrated Veeam datamover
 
-Limitations:
-- [Limitations for EMC Data Domain](https://helpcenter.veeam.com/docs/backup/vsphere/emc_dd.html?ver=95)
-- [Limitations for HPE StoreOnce](https://helpcenter.veeam.com/docs/backup/vsphere/deduplicating_appliance_storeonce.html?ver=95)
-
 If the mentioned integration API is unavailable due to licensing restrictions, or if any other deduplication appliance is used, the appliance should be considered *non-integrated*.
 
 One special case of deduplication appliance is Quantum DXi. Quantum features integrated data mover service that is able to assist Veeam Backup and Replication without need to add an appliance as a special type of repository (see [Quantum and Veeam new integration](https://www.veeam.com/blog/dxi-deduplication-appliance-integration-with-data-mover-service.html) for more details and [KB2155](https://www.veeam.com/kb2155) for specifics of job configuration).

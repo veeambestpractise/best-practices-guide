@@ -1,7 +1,9 @@
 # Repository Sizing
 In mid-sized or enterprise environments, the recommended amount of CPU for a repository is 1 core per concurrent job that processes data on a repository server. At least 2 cores allow for the Operating System to be more responsive.
 
-It is recommended to configure 4 GB RAM per core. The same amount of resources are needed for SMB gateway servers. Also, consider that VM recovery processes (Instant Recovery, FLR and others) require sufficient resources (as described [here](https://helpcenter.veeam.com/docs/backup/vsphere/system_requirements.html?ver=95#repo).
+**Note**: When using ReFS add additional 1GB RAM for each 1TB backup stored on the repository.
+
+It is recommended to configure 4 GB RAM per core plus 8 GB for basic OS operations. The same amount of resources are needed for SMB gateway servers. Also, consider that VM recovery processes (Instant Recovery, FLR and others) require sufficient resources (as described [here](https://helpcenter.veeam.com/docs/backup/vsphere/system_requirements.html?ver=95#repo).
 
 ## Estimating Repository Capacity
 When estimating the amount of required disk space, you should know the following:

@@ -5,7 +5,7 @@ services faster, strengthen security and control, and lower operational costs.
 While building modern data centers, organizations invest in server virtualization,
 modern storage applications and cloud-based services. However, businesses are
 facing new demands from end users including access to data and applications 24/7,
-no patience for downtime or data loss, and exponential data growth at 30-50% per
+no patience for downtime or data loss, and exponential data growth at more than 50% per
 year.
 
 This opens a gap—an availability gap—between the requirements
@@ -22,6 +22,6 @@ meet new demands of the always-on business.
 
 ![The Availability Gap](../media/image39.png)
 
-This section of the document will demonstrate how Veeam solution can be used throughout an entire datacenter availability project, beginning with the first assessment phase to the project implementation from the technical perspective.
+This section of the document will demonstrate how Veeam solutions can be used throughout an entire datacenter availability project, beginning with the first assessment phase, to the project implementation from a technical perspective.
 
 **Note:**	While these guidelines focus on enterprise customers with more than 100 hosts or 1,000 virtual machines, Veeam Availability Suite is applicable to any infrastructure size.

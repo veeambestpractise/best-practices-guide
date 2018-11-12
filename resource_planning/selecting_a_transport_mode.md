@@ -8,9 +8,9 @@ Depending on the size of the environment, there are different recommendations fo
 | Small | 2-4 hosts with shared storage. Typical ROBO configuration or small datacenter |
 | Medium | 4-20 hosts with shared storage|
 | Large | 20-100 hosts with shared storage |
-| Enterprise | Over 100 hosts |
+| Enterprise | More than 100 hosts |
 
-Keep in mind that within larger datacenters, multiple definitions may apply. As an example, it is possible that a separate management or DMZ cluster without shared storage could benefit from using the "Very small" or "Small" recommendations, while the main production environment is leveraging recommendations based on "Medium" to "Enterprise" datacenter size.
+Keep in mind that within larger datacenters, multiple definitions may apply. As an example, it is possible that a separate management or DMZ cluster without shared storage could benefit from using the "Very small" or "Small" recommendations, while the main production environment is leveraging recommendations based on "Medium" to "Enterprise" datacenter sizes.
 
 ##  Very small
 
@@ -60,7 +60,7 @@ Keep in mind that within larger datacenters, multiple definitions may apply. As 
 In addition to the above considerations for Small and Medium, please see the
 following guidelines:
 
-- 	When Direct Storage Access, or Backup from Storage Snapshots are unavailable,
+- 	When Direct Storage Access or Backup from Storage Snapshots are unavailable,
     and when virtual proxy servers are disallowed, Network Mode (NBD) is the
     only choice. In such cases, 10GbE interfaces are a must.
 

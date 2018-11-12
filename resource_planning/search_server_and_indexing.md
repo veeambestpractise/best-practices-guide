@@ -158,13 +158,13 @@ Follow these recommendations when setting up Veeam indexing:
     Linux systems to be indexed, make sure they have **mlocate** or
     another compatible **locate** package installed.
 
--   It is possible to lower the retention of indexes for offline media (e.g.
-    tape archives) in order to reduce space requirements. The retention
-    is configurable in Veeam Backup Enterprise Manager, and it is recommended
-    to configure it for the minimum necessary to meet the IT policy requirements.
-    Index retention setting is available in the Enterprise Manager web console
+-   Configure index retention in Veeam Backup Enterprise Manager to the
+    minimum necessary to meet the IT policy requirements. Index
+    retention setting is available in the Enterprise Manager web console
     under **Configuration &gt; Settings &gt; Guest File System
     Catalog**.
+
+
 
 -   To enhance search performance, SSDs can be used. If you plan to
     index a very large number of VMs it is recommended to limit the
