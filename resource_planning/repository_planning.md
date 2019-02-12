@@ -24,7 +24,7 @@ The Veeam block size of 512KB is going to be written in the underlying filesytem
 
 Then, below the filesytem there is the storage array. Even on some low-end storage systems, the block size (also called stripe size) can be configured. If possible, again, set the stripe size as close as possible to the expected Veeam block size. It's important that each layer is aligned with the others, either by using the same value (if possible) or a value that is a division of the bigger one. This limits to a minimum the so called **write overhead**: with a 128KB block size at the storage layer, a Veeam block requires 4 I/O operations to be written. This is a 2x improvement compared for example with a 64KB stripe size.
 
-**Tip:** As can be seen from the field, optimal value for the stripe size is often between 256 KB and 512 KB; however. It is highly recommended to test this prior to deployment whenever possible.
+**Tip:** As can be seen from the field, optimal value for the stripe size is often between 128 KB and 256 KB; however. It is highly recommended to test this prior to deployment whenever possible.
 
 For more information, refer to this blog post: <http://www.virtualtothecore.com/en/veeam-backups-slow-check-stripe-size/>
 
