@@ -220,7 +220,7 @@ recommendations:
 -   **Watch for low disk space warnings.**
     Veeam Backup & Replication warns you when there is not enough space
     for snapshots. The default threshold value for production datastores
-    is 10 GB. Keep in mind that you must increase this value
+    is 10% . Keep in mind that you must increase this value
     significantly if using very large datastores (up to 62 TB).
     You can increase the warning threshold in the backup server options,
     of the Veeam Backup & Replication UI.
@@ -230,7 +230,7 @@ recommendations:
     -   Path: `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication`
     -   Key: `BlockSnapshotThreshold`
     -   Type: REG_DWORD
-    -   Default value (in GB): 2
+    -   Default value (in GB): 10
 
     **Tip:** Use the [Veeam ONE Configuration Assessment Report](https://helpcenter.veeam.com/docs/one/reporter/vm_configuration_assessment.html?ver=95) to detect datastores with less than 10% of free disk space available for snapshot processing.
 
