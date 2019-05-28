@@ -6,14 +6,14 @@ A repository can be configured to limit the amount of parallel tasks it can proc
 
 **Note:** Consider tasks for read operations on backup repositories (like backup copy jobs).
 
-### General guidelines virtual repositories
+### General guidelines for virtual repositories
 To right sizing a backup repository, consider the following:
 
 - Each cpu should have no more than 2 concurrent tasks loaded into it
 - For each cpu, you need to count 4 gb of memory
 - With bigger machines, also network limits come into play , and that’s another reason to build many smaller repositories
 
-Suppose you have a VM with 8 cpu. You need 32Gb of memory, and this repository could be able to handle up to 16 concurrent tasks (we can go higher, but that’s a good starting point). Now, in general we say that one task doing incremental backups runs at about 25 MB/s, that is 200 MB/s. If the VM has the usual vmxnet3 link, that’s 10Gb and divided by 200 MB/s it gives you a bottleneck at around 50 tasks, that would be 25 cpu. So, It is not recommended to go above this size or you may end up to overload the network.
+Suppose you have a VM with 8 cpu. You need 32Gb of memory, and this repository could be able to handle up to 16 concurrent tasks (we can go higher, but that’s a good starting point). Now, in general we say that one task doing incremental backups runs at about 25 MBs, that is 200 Mbs. If the VM has the usual vmxnet3 link, that’s 10Gb and divided by 200 Mbs it gives you a bottleneck at around 50 tasks, that would be 25 cpu. So, It is not recommended to go above this size or you may end up to overload the network.
 
 This is true if the VM is using some sort of networkless link to storage (vmdk, fiber RDM), BUT if the same link is also needed to send then data to the final storage (say in-guest iscsi for example); then the same data has to enter the VM (from the proxy) and then leave the vm, thus you may need to cut this number in half. So, you end up with 12.5 cpu, or 25 tasks per vm.
 
