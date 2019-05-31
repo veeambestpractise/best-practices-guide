@@ -3,8 +3,6 @@
 
 Before you start planning for the repository, go through Veeam Backup & Replication online documentation at <https://www.veeam.com/documentation-guides-datasheets.html> to get basic understanding of repositories.
 
-A backup repository is a storage location used by Veeam Backup & Replication jobs to store backup files, copies of VMs and metadata for replicated VMs. Technically, a backup repository is a server that runs the Veeam Transport Service and provides a destination folder on the backup storage. Each job can use only one repository as its destination storage, but one repository can be used by multiple jobs.
-
 You can balance the load across the backup infrastructure by setting up several repositories in the environment and limiting the number of concurrent jobs for each repository, or if you have a proper license you can leverage Scale-out Backup Repository as explained later on in this section.
 
 ## The 3-2-1 rule
