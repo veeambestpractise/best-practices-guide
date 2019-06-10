@@ -48,15 +48,25 @@ found in [User Guide in Veeam Helpcenter](https://www.veeam.com/documentation-gu
 
 Service providers delivering BaaS and DRaaS with Veeam Cloud Connect should
 refer to the corresponding
-[Veeam Cloud Connect Reference Architecture](https://www.veeam.com/wp-cloud-connect-reference-architecture-v9.html).
+[Veeam Cloud Connect Book](https://www.vccbook.io/) or [Veeam Cloud Connect Book](https://www.veeam.com/wp-cloud-connect-reference-architecture-v9.html).
 
 ## Authors
+### Current maintainers:
 
+* Ali Salman
+* Andrea Borella ([@AndreBore](https://twitter.com/andrebore))
+* Bram De Laat
+* Edwin Weijdema ([@viperian](https://twitter.com/viperian))
+* Luca Dell'Oca ([@dellock6](https://twitter.com/dellock6))
+* Matthias Mehrtens
+* Pascal di Marco
+* Paul Szelesi ([@PSzelesi](https://twitter.com/PSzelesi))
+* Phillip Moore
+* Stanislav Simakov
+* Stefan Zimmermann
+
+
+### Old contributors:
 * Preben Berg ([@poulpreben](https://twitter.com/poulpreben))
 * Andreas Neufert ([@AndyandtheVMs](https://twitter.com/AndyandtheVMs))
 * Tom Sightler
-* Pascal di Marco
-* Stanislav Simakov ([@ssimakov](https://twitter.com/AndyandtheVMs))
-* Paul Szelesi ([@PSzelesi](https://twitter.com/PSzelesi))
-* Luca Dell'Oca ([@dellock6](https://twitter.com/dellock6))
-* Edwin Weijdema ([@viperian](https://twitter.com/viperian))
