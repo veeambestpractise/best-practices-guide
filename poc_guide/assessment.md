@@ -1,13 +1,13 @@
 # Assessment
 
-Before starting a project, it is very important to understand customers’ needs, vision and the IT environment. While the first two can be the outcome of an initial project meeting, the IT environment can be analyzed with Veeam ONE, which is a part of the Veeam Availability Suite.
+Before starting a project, it is very important to understand customers’ needs, vision and the IT environment. While the first two can be the outcome of an initial project meeting, the IT environment can be analyzed with Veeam ONE, which is part of the Veeam Availability Suite.
 
 The following information is very important and can help to streamline the project and proactively prevent situations that impact the environment:
 
 ## Veeam ONE Monitor
 ### Alerts tab
-Check in the Alerts tab of Veeam ONE Monitor if there are specific errors that need to be addressed before you bring extra load to the environment with backup processing that can cause business critical situations.
-Use "All Deployment Projects" area in the Reporter tool when planning to add extra resource into the environment, this will give a good indicator of the effect the new systems will make to the current setup
+Check the Alerts tab of Veeam ONE Monitor if there are specific errors that need to be addressed **before** you bring extra load to the environment with backup processing that can cause business critical situations.
+Use "All Deployment Projects" area in the Reporter tool when planning to add extra resource into the environment, this will give a good indicator of the effect the new systems will make to the current setup.
 
 ## Veeam ONE Reporter
 ### Storage Latency
@@ -42,7 +42,7 @@ VMware snapshots are often done to save a specific state of the VM for some time
 
 ![Veeam ONE Reporter - Orphaned Snapshots](../media/image45.png)
 
-This report detects VM snapshots that are still active on datastores but do not show up in the VMware Snapshot Manager. Veeam Backup & Replication and its Snapshot Hunter will correct this situation by consolidating these snapshots, which can bring extra load at the first backup POC. We strongly recommend that you tune the VMware environment and consolidate all orphaned snapshots before you start a Backup & Replication project.
+This report detects VM snapshots that are still active on data stores but do not show up in the VMware Snapshot Manager. Veeam Backup & Replication and its Snapshot Hunter will correct this situation by consolidating these snapshots, which can bring extra load at the first backup POC. We strongly recommend that you tune the VMware environment and consolidate all orphaned snapshots before you start a Backup & Replication project.
 
 ### Infrastructure Changes by User
 
@@ -58,4 +58,4 @@ This report provides the most complete and up-to-date configuration information 
 
 There are many additional interesting reports in the Veeam Availability Suite.
 
-Check out the [VMware Optimization](https://helpcenter.veeam.com/docs/one/reporter/vmware_optimization.html?ver=95) or [Hyper-V Optimization](https://helpcenter.veeam.com/docs/one/reporter/hyperv_optimization.html?ver=95) sections of Veeam ONE Reporter. A good example is the Garbage Files Report that can identify possible wasted space on datastores. In some cases, it helped to free up 10 TB+ of space on the tier 1 storage.
+Check out the [VMware Optimization](https://helpcenter.veeam.com/docs/one/reporter/vmware_optimization.html?ver=95) or [Hyper-V Optimization](https://helpcenter.veeam.com/docs/one/reporter/hyperv_optimization.html?ver=95) sections of Veeam ONE Reporter. A good example is the Garbage Files Report that can identify possible wasted space on data stores. In some cases, it helped to free up 10 TB+ of space on the tier 1 storage.

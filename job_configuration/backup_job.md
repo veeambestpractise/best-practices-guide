@@ -64,18 +64,18 @@ The second objection is **silent storage corruption**. If ever a file or block i
 To address both objections, following features are available under the "Maintenance" tab, in the Advanced settings of a backup job.
 
 ### Full backup file maintenance - "Defragment and compacting"
-Full backup file maintenance will address two issues: VBK file fragmentation caused by transforms (forward incremental forever, or reverse incremental), and left over whitespace from deleted data blocks. These issues are mitigated by synthesizing a new full backup file on the backup repository i.e. copy blocks from the existing VBK file into a new VBK file, and subsequently deleting the original file. This process may also be referred to as "compacting".
+Full backup file maintenance will address two issues: VBK file fragmentation caused by transforms (forward incremental forever or reverse incremental) and left over whitespace from deleted data blocks. These issues are mitigated by synthesizing a new full backup file on the backup repository, i.e. copying blocks from the existing VBK file into a new VBK file, and subsequently deleting the original file. This process may also be referred to as "compacting".
 
 **How does it work?** During VBK compacting, a new VBK file is created. Existing blocks are copied from the previous VBK, requiring free space equivalent to the size of an additional full backup in the repository. In the [Restore Point Simulator](http://vee.am/rps), this space is part of the "Work space" parameter. When using Scale-out Backup Repository in Performance Mode, the compacting process may utilize multiple extents and significantly speed up the compacting process.
 
-**When to use?** For every backup job with full transforms. Defragmentation will benefit the most jobs that are configured to generate a single chain per job, keeping files smaller and restore speed optimal over time.
+**When to use?** For every backup job with full transforms. Defragmentation will benefit most jobs that are configured to generate a single chain per job, keeping files smaller and restore optimal speed over time.
 
-**When to avoid?** When using deduplication storage, it is recommended to disable the "Defragment and compact". As deduplication appliances are fragmented by their very nature, and have very poor support for random I/O workloads, the compacting feature will not enhance backup or restore performance.
+**When to avoid?** When using deduplication storage, it is recommended to disable the "Defragment and compact" option. As deduplication appliances are fragmented by their very nature and also have very poor support for random I/O workloads, the compacting feature will not enhance backup or restore performance.
 
 ### Storage-level corruption guard
 In addition to using SureBackup for restore validation, storage-level corruption guard was introduced to provide a greater level of confidence in integrity of the backups.
 
-**How does it work?** When a job has finished, storage-level corruption guard will perform a CRC verification for the most recent restore point. It will validate whether the content of the backup chain blocks match the content described within the backup file metadata. If a mismatch is discovered, it will attempt to repair the data block from production storage, assuming the block still exists and has not been overwritten. If it exists, the backup file will be repaired. If not, storage-level corruption guard will fail and make the user aware that a new full backup is required, and that the backup chain must be recovered from a secondary copy of the backup.
+**How does it work?** When a job has finished, storage-level corruption guard will perform a CRC verification for the most recent restore point. It will validate whether the contents of the backup chain blocks match the content described within the backup file metadata. If a mismatch is discovered, it will attempt to repair the data block from production storage, assuming the block still exists and has not been overwritten. If it exists, the backup file will be repaired. If not, storage-level corruption guard will fail and make the user aware that a new full backup is required, and that the backup chain must be recovered from a secondary copy of the backup.
 
 **When to use?** It is recommended to use storage-level corruption guard for any backup job with no active full backups scheduled. Synthetic full backups are still "incremental forever" and may suffer from corruption over time.
 
@@ -85,12 +85,12 @@ For more information, please see Veeam Helpcenter: [Health Check for Backup File
 
 ## Job Chaining
 
-Chaining backup jobs is convenient in certain circumstances, but should be used with caution. For example, if a job in such chain fails or stops responding, the entire job chain delivers poor backup success rate.
+Chaining backup jobs is convenient in certain circumstances, but should be used with caution. For example, if a job as part of a chain fails or stops responding, the entire job chain delivers poor backup success rate.
 
-A common way to handle multiple jobs is to let the built-in Intelligent Load Balancing (ILB) handle the proxy/repository resources by starting multiple jobs in parallel by using all available proxy/repository resources. This allows optimal task scheduling and provides the shortest backup window.
+A common way to handle multiple jobs is to let the built-in Intelligent Load Balancing (ILB) handle the proxy/repository resources by starting multiple jobs in parallel and consequently using all available proxy/repository resources. This allows optimal task scheduling and provides the shortest backup window.
 
 ## Load Balancing
-When planning jobs schedule, you should consider balancing the load on source and target disks. Too many jobs accessing the same disk will load the storage significantly; this makes the job run slower or may have a negative impact on the VMs performance. To mitigate this problem, you can utilize [Storage Latency Control](../resource_planning/interaction_with_vsphere.md#storage-latency-control) (or Backup I/O Control) settings.
+When planning job schedules, you should consider balancing the load on source and target disks. Too many jobs accessing the same disk will load the storage significantly; this makes the job run slower or may have a negative impact on the VMs performance. To mitigate this problem, you can utilize [Storage Latency Control](../resource_planning/interaction_with_vsphere.md#storage-latency-control) (or Backup I/O Control) settings.
 
 Veeam has a load balancing method that automatically allocates proxy resources making a choice between all proxies managed by Veeam Backup & Replication that are available at the moment.
 
@@ -100,11 +100,11 @@ For more details on load balancing, refer to the Veeam Backup & Replication User
 
 Refer to the User Guide in order to examine the advanced deployment scenario with multiple proxies: [Advanced deployments](https://helpcenter.veeam.com/docs/backup/vsphere/advanced.html?ver=95).
 
-While configuring a backup job, you can disable the automatic proxy selection. Instead, you can select particular proxies from the list of proxies managed by Veeam backup server, and appoint them to the job. This is a very good way to manage distributed infrastructures; also it helps you to keep performance under control.
+While configuring a backup job, you can disable the automatic proxy selection. Instead, you can select particular proxies from the list of proxies managed by Veeam backup server, and assign them to the job. This is a very good way to manage distributed infrastructures; also it helps you to keep performance under control.
 
-For example, you can back up a cluster residing on multiple blade chassis. In this case, if you use virtual proxies, keep the proxies load well-balanced and optimize the network traffic.
+For example, you can back up a cluster residing on a multiple blade chassis. In this case, if using virtual proxies, keep the proxies' load well-balanced and optimize the network traffic.
 
-Dedicated proxies can be also very helpful if you use a stretched cluster and do not want proxy traffic to go across inter-switch link.
+Dedicated proxies can be also very helpful if you use a stretched cluster and do not want proxy traffic to cross over inter-switch links.
 
 See the illustration below as a good starting point to reach and keep control on high backup throughput. In this example, administrator wants to keep network traffic as much as possible inside the chassis; only the proxy-to-repository traffic goes via an external link.
 
@@ -112,4 +112,4 @@ See the illustration below as a good starting point to reach and keep control on
 
 You can use [Proxy Affinity](https://helpcenter.veeam.com/docs/backup/vsphere/proxy_affinity.html?ver=95) to allow only specific proxies to interact with a given repository.
 
-**Tip:** To optimize load balancing in a distributed environment where backup proxies are rolled out to multiple sites, it is recommended to select all proxies from the same site in the job.
+**Tip:** To optimize load balancing in a distributed environment where backup proxies are located in multiple sites, it is recommended to select all proxies from the same site in the corresponding job.

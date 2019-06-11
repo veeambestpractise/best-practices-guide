@@ -1,4 +1,3 @@
-<!--- This was last Changed 03-05-17 by PS --->
 ## Configuration Guidelines
 
 ### Parallel Processing
@@ -40,7 +39,7 @@ Let's use a quick example:
 
 ![Layers of block sizes](block-sizes-layers.png)
 
-The Veeam block size of 512KB is going to be written in the underlying filesytem, which has a block size of 64k. It means that one block will consume 8 blocks at the filesytem lavel, but no block will be wasted, as the two are aligned. If possible, set the block size at the filesytem layer as close as possible to the expected Veeam block size.
+The Veeam block size of 512KB is going to be written in the underlying filesytem, which has a block size of 64k. It means that one block will consume 8 blocks at the filesytem level, but no block will be wasted, as the two are aligned. If possible, set the block size at the filesytem layer as close as possible to the expected Veeam block size.
 
 Then, below the filesytem there is the storage array. Even on some low-end storage systems, the block size (also called stripe size) can be configured. If possible, again, set the stripe size as close as possible to the expected Veeam block size. It's important that each layer is aligned with the others, either by using the same value (if possible) or a value that is a division of the bigger one. This limits to a minimum the so called **write overhead**: with a 128KB block size at the storage layer, a Veeam block requires 4 I/O operations to be written. This is a 2x improvement compared for example with a 64KB stripe size.
 
@@ -54,7 +53,7 @@ In addition to the storage stripe size alignment, as explained in the previous p
 It is also recommended to use a journaling file systems (this makes exFAT a less reliable option than NTFS).
 
 ### Using "Large File" Switch for NTFS
-A file size limitation can be occasionally reached on NTFS, especially on Windows 2012 R2 with deduplication enabled. This happens due to a hard limit reached on the file records size because of the  high level of file fragmentation. To mitigate the issue, we recommend to format Windows NTFS repositories with the "**/L**" (large files) option.
+A file size limitation can be occasionally reached on NTFS, especially on Windows Server with deduplication enabled. This happens due to a hard limit reached on the file records size because of the  high level of file fragmentation. To mitigate the issue, we recommend to format Windows NTFS repositories with the "**/L**" (large files) option.
 
 ### Keeping File Size Under Control
 Try to avoid backup chains growing too much. Remember that very big objects can become hardly manageable. Since Veeam allows a backup chain to be moved from one repository to another with nothing more than a copy/paste operation of the files themselves, it is recommended to keep backup chain size (the sum of a single full and linked Incrementals) under 10 TB per job (\~16TB of source data). This will allow for a smooth, simple and effortless repository storage migration.

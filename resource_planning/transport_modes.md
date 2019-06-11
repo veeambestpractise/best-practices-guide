@@ -47,7 +47,7 @@ protocols used (including local storage, VMware Virtual Volumes or VMware vSAN).
 reason NBD is used as the fallback method, in case Backup from Storage Snapshots,
 Direct Storage Access or Virtual Appliance backup modes fail.
 
-The only requirement is for the proxy to be able to access ESXi hosts on port
+The only requirement is the proxy being able to access ESXi hosts on port
 902/tcp. NBD backup throughput is typically limited to using up to 40% of the
 bandwidth available on the corresponding VMkernel interfaces. If NBD-SSL is
 enabled, the throughput is typically 10% slower than regular NBD. NBD-SSL is

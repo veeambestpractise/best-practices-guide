@@ -2,7 +2,7 @@
 
 # Sizing a Backup Proxy
 
-Getting the right amount of processing power is essential to achieving the RTPO defined by the business. In this section, we will outline the recommendations to follow for appropriate sizing.
+Getting the right amount of processing power is essential to achieving the RTO/RPO defined by the business. In this section, we will outline the recommendations to follow for appropriate sizing.
 
 ## Processing Resources
 
@@ -34,7 +34,7 @@ $$ D = \text{Source data in MB} $$
 
 $$ W = \text{Backup window in seconds} $$
 
-$$ T = \text{Throughput} = \frac{D}{W} $$
+$$ T = \text{Throughput in MB/s} = \frac{D}{W} $$
 
 $$ CR = \text{Change rate} $$
 
@@ -127,18 +127,17 @@ all virtualization resources.
 * For per VM backup files: 300 VMs per job
 
 Consider that some tasks within a job are still
-sequential processes. For example, a merge process that write the oldest
-incremental file into the full file is started after the last VM finishes
+sequential processes. For example, a merge process writing the oldest
+incremental file into the full backup file is started after the last VM finishes
 backup processing. If you split the VMs into multiple jobs these background
 processes are parallelized and overall backup window can be lower.
 Be as well careful with big jobs when you use Storage Snapshots at Backup
 from Storage Snapshots. Guest processing and Scheduling of jobs that contain
-multiple snapshots can lead into difficult scheduling situation and Jobs
-that spend time waiting for (free) resources. A good size for jobs that
+multiple snapshots can lead into difficult scheduling situation and jobs
+spending time waiting for (free) resources. A good size for jobs that
 write to per VM chain enabled repositories is 50-200 VMs per Job.
 
-Also, remember that the number of running backup jobs should not exceed
-100 jobs concurrently running (not overall). Veeam can handle more, but
+Also, remember that the number of concurrently running backup jobs should not exceed 100. Veeam can handle more, but
 a “sweet spot” for database load, load balancing and overall processing
 is about 80-100 concurrently running jobs.
 
@@ -148,19 +147,17 @@ Typically, in a virtual environment, proxy servers use 4, 6 or 8 vCPUs,
 while in physical environments you can use a server with a single quad
 core CPU for small sites, while more powerful systems (dual 10-16 core CPU)
 are typically deployed at the main datacenter with the Direct SAN Access
-mode processing.
+processing mode.
 
 **Note**: Parallel processing may also be limited by max concurrent
 tasks at the repository level.
 
 So, in a virtual-only environment you will have slightly more proxies
-with less proxy task slot count, while in physical infrastructure with
+with a smaller proxy task slot count, while in a physical infrastructure with
 good storage connection you will have a very high parallel proxy task
 count per proxy.
 
-The “sweet spot” in a physical environment is about 20 processing tasks
-2x10 Core CPU with 48GB RAM and 2x 16 Gbps FC cards for read + 1-2 10GbE
-Network cards.
+The “sweet spot” in a physical environment is about 20 processing tasks on a 2x10 Core CPU proxy with 48GB RAM and two 16 Gbps FC cards for read, plus one or two 10GbE network cards.
 
 Depending on the primary storage system and backup target storage
 system, any of the following methods can be recommended to reach the
@@ -173,7 +170,7 @@ best backup performance:
 
 As performance depends on multiple factors like storage load,
 connection, firmware level, raid configuration, access methods and
-others, it is recommended to do a Proof of Concept to define optimal
+more, it is recommended to do a Proof of Concept to define optimal
 configuration and the best possible processing mode.
 
 ## Considerations and Limitations
@@ -181,20 +178,14 @@ configuration and the best possible processing mode.
 Remember that several factors can negatively affect backup resource
 consumption and speed:
 
--   **Compression level**: It is not recommended to set it up to *High*
+-   **Compression level** - It is not recommended to set it to *"High"*
     (as it needs 2 CPU Cores per proxy task) or to *Extreme* (which
-    needs much CPU power but provides only 2-10% additional
-    space saving). However if you have a lot of free CPU ressources
-    at the backup time window, you can consider to use *High* compression
+    needs a lot of CPU power but provides only 2-10% additional
+    space saving). However, if you have a lot of free CPU ressources
+    during the backup time window, you can consider to use *"High"* compression
     mode.
 
--   **Block Size**: the smaller the blocks size is, the more RAM is
-    needed for deduplication. For example, you will see a RAM increase
-    when using LAN mode if compared to Local target, and even greater
-    (2-4 times) when using WAN. Best practice for most environments is
-    to use default job settings (*Local* for backup jobs and *LAN* for
-    replication jobs) where another is not mentioned in the
-    documentation or this guide for specific cases.
+-   **Block Size** - The smaller the block size, the more RAM is needed for deduplication. For example, you will see a increase in RAM consumption when using *"LAN"* mode compared to Local target, and even higher RAM load (2-4 times) when using *"WAN"*. Best practice for most environments is to use default job settings (*"Local"* for backup jobs and *"LAN"* for replication jobs) where another is not mentioned in the documentation or this guide for specific cases.
 
 -   **Antivirus** - see the corresponding [KB](https://www.veeam.com/kb1999) for the complete list of paths that need to be excluded from antivirus scanning
 

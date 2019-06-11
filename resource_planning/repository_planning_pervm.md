@@ -1,10 +1,9 @@
-<!--- This was last Changed 03-05-17 by PS --->
 # Per VM backup files
 It is possible to write one backup file chain per each VM on a repository, compared to the regular chain holding data for all the VMs of a given job. This option greatly eases job management, allowing to create jobs containing much more VMs than jobs with single chains, and also enhances performance thanks to more simultaneous write streams towards a repository, even when running a single job.
 
 In addition to optimizing write performance with additional streams to multiple files, there are other positive side effects as well. When using the forward incremental forever backup mode, you may experience improved merge performance. When backup file compacting is enabled, per VM backup files require less free space: instead of requiring sufficient space to temporarily accommodate an additional entire full backup file, only free space equivalent to the largest backup file in the job is required. Parallel processing to tape will also have increased performance, as multiple files can be written to separate tape devices simultaneously.
 
-![Per VM backup files](./repository_planning_pervm_1.png)
+![Per VM backup files](../media/repository_planning_pervm_1.png)
 
 Per VM backup files is an advanced option available for backup repositories, and it is disabled by default for new backup repositories. If enabled on an existing repository, an active full backup is required after the option has been enabled.
 

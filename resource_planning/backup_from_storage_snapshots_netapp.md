@@ -7,7 +7,7 @@ capabilities.
 
 ![Backup from Storage Snapshots - backup from secondary](./backup_from_storage_snapshots_5.png)
 
-Backup from Secondary Snapshots. In case you use NetApp SnapVault or
+In case you use NetApp SnapVault or
 SnapMirror, Veeam can create a primary snapshot, update the secondary
 (SV/SM) Snapshot and backup the CBT changes to the backup file. It is
 configured with a job setting in the "Advanced" section if Veeam should allow
@@ -45,8 +45,8 @@ SnapShot only"
 ![](./backup_from_storage_snapshots_netapp_2.png)
 
 The retention policy defines the number of storage snapshots to keep.
-To store 5 snapshots a day for 1 week, configure the retention to 35 restore
-points with a daily schedule. If the job is configured with a high or lower
+To store 2 snapshots a day for 1 week, configure the retention to 14 restore
+points with a schedule set to _"periodically every 12 hours"_. If the job is configured with a high or lower
 schedule frequency, adjust the number of restore points accordingly.
 
 If you use a secondary NetApp ONTAP system with SnapMirror and/or
@@ -67,6 +67,5 @@ VMs that ends in 3 Snapshots for one run. It is recommended to not set
 the value higher than 3 or disable the automatic retry to avoid a high
 number of Snapshots being created during every run.
 
-One of the big benefits is that you are still able to use all Veeam
-restore capabilities from storage snapshots. For more please refer to
+All Veeam restore capabilities are also available from storage snapshots. For more please refer to
 the [Veeam Explorer for Storage Snapshots](./veeam_explorers.md#explorer-for-storage-snapshots) section.

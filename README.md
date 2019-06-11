@@ -1,9 +1,9 @@
 Veeam Backup & Replication Best Practices
 =======
 
-Version 9.5 [Update 1](https://www.veeam.com/kb2222)
+Version 9.5 [Update 3](https://www.veeam.com/kb2353)
 
-Build 9.5.0.823.
+Build 9.5.0.1536.
 
 Book generation time: {{ gitbook.time }}
 

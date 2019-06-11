@@ -220,7 +220,7 @@ recommendations:
 -   **Watch for low disk space warnings.**
     Veeam Backup & Replication warns you when there is not enough space
     for snapshots. The default threshold value for production datastores
-    is 10 GB. Keep in mind that you must increase this value
+    is 10% . Keep in mind that you must increase this value
     significantly if using very large datastores (up to 62 TB).
     You can increase the warning threshold in the backup server options,
     of the Veeam Backup & Replication UI.
@@ -230,7 +230,7 @@ recommendations:
     -   Path: `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication`
     -   Key: `BlockSnapshotThreshold`
     -   Type: REG_DWORD
-    -   Default value (in GB): 2
+    -   Default value (in GB): 10
 
     **Tip:** Use the [Veeam ONE Configuration Assessment Report](https://helpcenter.veeam.com/docs/one/reporter/vm_configuration_assessment.html?ver=95) to detect datastores with less than 10% of free disk space available for snapshot processing.
 
@@ -271,26 +271,19 @@ The issue is recognized by VMware and documented in
 processing modes and Veeam Backup from Storage Snapshots on NetApp NFS datastores.
 We highly recommend you to use one of these 2 backup modes to avoid problems.
 
-
 In hyperconverged infrastructures (HCI), it is preferred to keep the datamover
- close the  backed up VM to avoid stressing the storage replication network with backup traffic. If the HCI is providing storage via the NFS protocol (such as Nutanix), it is possible to force a Direct NFS data mover on the same host using the following registry key:
+close the  backed up VM to avoid stressing the storage replication network with backup traffic. If the HCI is providing storage via the NFS protocol (such as Nutanix), it is possible to force a Direct NFS data mover on the same host using the following registry key:
 
 -   Path: `HKEY_LOCAL_MACHINE\SOFTWARE\Veeam\Veeam Backup and Replication`
 -   Key: `EnableSameHostDirectNFSMode`
 -   Type: REG_DWORD
 -   Default value: 0 _(disabled)_
 
-    **0** (default) – Disabled
-
-    **1** – “Preferred same Host” If DirectNFS proxy on same host exist it will wait for a free task slot there. If a proxy on same host do not exist it will use another DirectNFS proxy (on another host or physical server) or fallback to Virtual Appliance(HotAdd) and then to Network(NBD) mode.
-
-    **2** – If there is no DirectNFS proxy on same host as VM, it will fallback to Network mode (NBD)
-
- Overall HCI solutions should use 1 or 2 (recommended)
- “1” should be used with HCI solutions only if the “EnableSameHostHotAddMode” was set to “2”.
-
- _This reg key is not used for the Veeam Cisco HyperFlex integration._
-
+    **Value = 1** - when a proxy is available on the same host, Veeam Backup &
+    Replication will leverage it. If the proxy is busy, Veeam Backup &
+    Replication will wait for its availability; if it becomes
+    unavailable, Veeam Backup & Replication will switch
+    to NBD mode.
 
 If for what ever reason Direct NFS processing can not be used and HotAdd
 is configured, ensure that proxies running in the Virtual
