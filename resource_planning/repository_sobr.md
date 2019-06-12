@@ -4,6 +4,8 @@ Veeam Scale-out Backup Repository is a logical entity made of multiple “simple
 
 Scale-out Backup Repository is an extremely easy way for both medium and large customers to extend repositories when they run out of space. Instead of facing the long and cumbersome relocation of backup chains, users will be able to add a new extent (that is any of the “simple” backup repositories supported by Veeam Backup & Replication) to the existing Scale-out Repository — or group multiple repositories to create a new one.
 
+As of version 9.5 U4 one Capacity Tier extent can be added per SOBR. The Capacity Tier extent can only be backed by an object storage repository and is meant to extend the SOBR with a cheap long-term storage tier for older backup files. Backup files are moved to the Capacity Tier based on age when all other requirements are fulfilled. 
+
 The only requirement is the ownership of a proper license, and that at least two simple repositories have been added to Veeam Backup & Replication already. As per default settings, it is recommended to enable "per VM backup files" on the Scale-out Backup Repository for optimal balancing of disk usage.
 
 **NOTE**: the default backup repository created during the installation cannot be used in a Scale-out Backup Repository as long as it’s the target of Configuration Backup, as this type of job is not supported by Scale-out Backup Repository. If the default repository needs to be added to a  Scale-out Backup Repository, consider first to change the target of Configuration Backup.
