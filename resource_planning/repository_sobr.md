@@ -8,7 +8,7 @@ The only requirement is the ownership of a proper license, and that at least two
 
 **NOTE**: the default backup repository created during the installation cannot be used in a Scale-out Backup Repository as long as it’s the target of Configuration Backup, as this type of job is not supported by Scale-out Backup Repository. If the default repository needs to be added to a  Scale-out Backup Repository, consider first to change the target of Configuration Backup.
 
-For additional technical information, the online documentation is available here : [Helpcenter SoBR](https://helpcenter.veeam.com/docs/backup/vsphere/backup_repository_sobr.html?ver=95).
+For additional technical information, the online documentation is available here : [Helpcenter SoBR](https://helpcenter.veeam.com/docs/backup/vsphere/backup_repository_sobr.html?ver=95u4).
 
 ## File placement policies
 
@@ -18,14 +18,14 @@ Scale-out Backup Repository has two different options for file placement.
 
 This is the default policy, and it works by placing all the dependent files of a backup chain into the same extent. Every extent grouped with this policy has the same chances of receiving a backup chain as the algorithm treats them equally, and the major parameter for the initial placement is the free space value.
 
-![SOBR-image02.png](..\media\SOBR-image03.png)
+![SOBR Data Locality Mode](..\media\SOBR-image03.png)
 
 The failure domain is a single extent, as the loss of a given extent impacts only the backup chains stored into that extent. Policy can be violated by Veeam itself if, for example, one of the extents has no free space left, and the additional incremental is stored in a different extent. This because the priority is always to complete a backup or backup copy.
 
 ### Performance
 Performance policy places dependent incremental backup files on a different extent from the corresponding fulls. In order to choose which extent will hold the different files when using the performance policy, for each extent users are able to assign it a “role”.
 
-![SOBR-image02.png](..\media\SOBR-image04.png)
+![SOBR Performance Mode](..\media\SOBR-image04.png)
 
 **Important**: When using integrated deduplication devices, virtual synthetic operations may not work, if the full and incremental backup files are placed on separate extents. Please use Data Locality mode instead.
 
@@ -40,7 +40,7 @@ Scale-out Backup Repository is, as the name implies, a scale out architecture, b
 
 During backups, the master datamover is always started where the write is happening. During restore, the master is always started where the VBK is located, as most blocks are likely retrieved from this location.
 
-![SOBR-image02.png](..\media\SOBR-image02.png)
+![SOBR Data Mover](..\media\SOBR-image02.png)
 
 A master datamover is the only repository datamover receiving data from a source datamover (a proxy in a backup job or a source repository in a backup copy job). A master datamover is able to communicate if needed with other slave datamovers to retrieve their data.
 
