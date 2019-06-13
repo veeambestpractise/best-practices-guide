@@ -36,6 +36,7 @@
     * [Sizing](resource_planning/repository_planning_sizing.md)
     * [Per VM Backup Files](resource_planning/repository_planning_pervm.md)
     * [Scale-out Backup Repository](resource_planning/repository_sobr.md)
+      * [Capacity Tier](resource_planning/repository_sobr_capacity_tier.md)
 * [WAN Acceleration](resource_planning/wan_acceleration.md)
   * [Analyzing Wan Acceleration Workload](resource_planning/Analysing_Wan_Acceleration_Workload.md)
   * [Comparing WAN Acceleration Modes](resource_planning/Comparing_Wan_Acceleration_Modes.md)
