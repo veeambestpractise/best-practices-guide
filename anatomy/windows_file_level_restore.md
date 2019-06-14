@@ -16,7 +16,7 @@ The backup files remain on the backup repository. Guest files inside the backup 
 
 To restore guest files back to the original VM, Veeam Backup & Replication establishes a connection with the VM Guest OS. It obtains information about the guest IP address from currently running VMware Tools. Veeam uses this IP address to connect to the guest OS and perform in-guest file recovery.
 
-If the guest has been protected using any kind of guest interaction option, the user specified at the time of the backup will be automatically invoked. In any other situation, the restore operator will be asked to input a valid set of credentials necessary to connect to the VM as specified in the [user's guide required permissions section](https://helpcenter.veeam.com/docs/backup/vsphere/required_permissions.html?ver=95). 
+If the guest has been protected using any kind of guest interaction option, the user specified at the time of the backup will be automatically invoked. In any other situation, the restore operator will be asked to input a valid set of credentials necessary to connect to the VM as specified in the [user's guide required permissions section](https://helpcenter.veeam.com/archive/backup/95/vsphere/required_permissions.html). 
 
 ![](./WinFLR_1.png)
 

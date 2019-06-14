@@ -65,10 +65,10 @@ the I/O requirements for the configuration database.
 
 ## SQL Server Configuration Tips
 Veeam Backup & Replication does not require any specific settings[^2] on the SQL Server in order to utilize the capabilities of Veeam Explorer for SharePoint or SQL. Both local and remote SQL Servers can be used for staging purposes, the corresponding requirements are detailed on
-[Veeam Helpcenter](https://helpcenter.veeam.com) and can be found through the following links:
+[Veeam Helpcenter](https://www.veeam.com/documentation-guides-datasheets.html) and can be found through the following links:
 
--   [Veeam Explorer for Microsoft SharePoint](https://helpcenter.veeam.com/docs/backup/explorers/vesp_staging_microsoft_sql_server.html?ver=95)
--   [Veeam Explorer for Microsoft SQL Server](https://helpcenter.veeam.com/docs/backup/explorers/vesql_systemreqs.html?ver=95)
+-   [Veeam Explorer for Microsoft SharePoint](https://www.veeam.com/documentation-guides-datasheets.html/docs/backup/explorers/vesp_staging_microsoft_sql_server.html?ver=95)
+-   [Veeam Explorer for Microsoft SQL Server](https://www.veeam.com/documentation-guides-datasheets.html/docs/backup/explorers/vesql_systemreqs.html?ver=95)
 
 **Tip:**
 - Enable and configure all features used by production databases.
@@ -85,7 +85,7 @@ Follow Microsoft general recommendations for optimal SQL performance, for exampl
 To modify database connection settings or connect to another Veeam
 configuration database use the `DBConfig` utility as described in
 the product documentation at
-<https://helpcenter.veeam.com/docs/backup/vsphere/dbconfig_utility.html?ver=95>.
+<https://www.veeam.com/documentation-guides-datasheets.html/docs/backup/vsphere/dbconfig_utility.html?ver=95>.
 
 If using SQL authentication consider that all Veeam UI and Veeam
 PowerShell changes are communicated using this authentication.
@@ -94,12 +94,12 @@ PowerShell changes are communicated using this authentication.
 To migrate Veeam configuration database to another SQL Server follow
 the recommendations provided in these Veeam Knowledge Base articles:
 
--   <http://www.veeam.com/kb1250>
+-   <https://www.veeam.com/kb1250>
 -   <https://www.veeam.com/kb1889>
 
 
-[^1]: Features Supported by the Editions of SQL Server 2012 <https://msdn.microsoft.com/en-us/library/cc645993(v=SQL.110).aspx#CrossBoxScale>
+[^1]: Features Supported by the Editions of SQL Server 2012 <https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2012/cc645993(v=sql.110)>
 
-[^2]: Generic requirements for SQL Server can be found here: <https://helpcenter.veeam.com/docs/backup/vsphere/system_requirements.html?ver=95>
+[^2]: Generic requirements for SQL Server can be found here: <https://www.veeam.com/documentation-guides-datasheets.html/docs/backup/vsphere/system_requirements.html?ver=95>
 
-[^3]: For restoring encrypted databases, please see: <http://www.veeam.com/kb2006>
+[^3]: For restoring encrypted databases, please see: <https://www.veeam.com/kb2006>

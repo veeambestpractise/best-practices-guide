@@ -85,7 +85,7 @@ To change this behavior, it is possible to use the `BackupCopyLookForward` regis
 -   Type: REG_DWORD
 -   Value: 1
 
-The following forum thread provides a very good explanation of the backup copy scheduler and the LookForward registry key > [Veeam Community Forums - Backup Copy Intervals](http://forums.veeam.com/veeam-backup-replication-f2/backup-copy-intervals-t24238.html)
+The following forum thread provides a very good explanation of the backup copy scheduler and the LookForward registry key > [Veeam Community Forums - Backup Copy Intervals](https://forums.veeam.com/veeam-backup-replication-f2/backup-copy-intervals-t24238.html)
 
 ### Backup Copy from Backup Copy
 

@@ -150,7 +150,7 @@ rules apply:
     backup schedule can be configured on the "Backup to Tape" job.
 
 For more
-		information about virtual full to tape, please see [Veeam Help Center](https://helpcenter.veeam.com/docs/backup/vsphere/virtual_full_backup.html?ver=95
+		information about virtual full to tape, please see [Veeam Help Center](https://helpcenter.veeam.com/archive/backup/95/vsphere/virtual_full_backup.html
 
 
 If the source backup job contains multiple chains, and the checkbox
@@ -160,11 +160,11 @@ choose to either only the last backup chain or all existing restore points.
 
 ## Sizing
 
-For the highest throughput, enabling [parallel processing for the Backup to Tape](https://helpcenter.veeam.com/docs/backup/vsphere/parallel_processing.html?ver=95)
+For the highest throughput, enabling [parallel processing for the Backup to Tape](https://helpcenter.veeam.com/archive/backup/95/vsphere/parallel_processing.html)
 is recommended. You need to size the servers
 and storage connection accordingly. It can be helpful to create multiple
 partitions with 2-4 tape drives and add these partitions
-to different tape servers. Adding these libraries to the [media pool](https://helpcenter.veeam.com/docs/backup/vsphere/add_media_pool_tapes.html?ver=95)
+to different tape servers. Adding these libraries to the [media pool](https://helpcenter.veeam.com/archive/backup/95/vsphere/add_media_pool_tapes.html)
 and enabling parallel processing will distribute the load across multiple
 drives and tape servers.
 
@@ -192,7 +192,7 @@ the number of restore points for the source job, the Backups to Tape job will
 not be terminated by the merge process. However, please note this will increase
 the transform time significantly once the setting is reverted and is highly
 discouraged for large jobs. An example of this implementation can be found here:
-[v9 GFS job - No more continuous?](https://forums.veeam.com/tape-f29/v9-gfs-job-no-more-continuous-t32336-15.html)
+[v9 GFS job - No more continuous?](https://forums.veeam.com/tape-f29/v9-gfs-job-no-more-continuous-t32336.html)
 
 ## Using 3<sup>rd</sup> party tape software
 
@@ -230,7 +230,7 @@ by the tape library vendor.
 When archiving data, Veeam generates a user key which is stored with
 data on tape. If you restore data using another Veeam backup server,
 provide the password or utilize the Password Loss Protection
-in Enterprise Manager. See the [User Guide](https://helpcenter.veeam.com/docs/backup/vsphere/encryption_tape.html?ver=95)
+in Enterprise Manager. See the [User Guide](https://helpcenter.veeam.com/archive/backup/95/vsphere/encryption_tape.html)
 for more information.
 
 If the hardware encryption option is used, and you archive to tape Veeam

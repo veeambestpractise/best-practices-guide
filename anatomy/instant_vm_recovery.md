@@ -37,7 +37,7 @@ supports for regular VMs.
 To migrate VM disk data to a production datastore, use VMware Storage
 vMotion or Veeam Quick Migration. For details, see [Veeam Backup &
 Replication User
-Guide](https://helpcenter.veeam.com/docs/backup/vsphere/migration_job.html?ver=95).
+Guide](https://helpcenter.veeam.com/archive/backup/95/vsphere/migration_job.html).
 
 ## Performance concerns
 

@@ -65,8 +65,8 @@ As Veeam Backup & Replication leverages the snapshot technology for
 performing backups, you should ensure it is possible to snapshot the
 virtual machine disks, since there are certain configurations that do
 not support snapshots. To identify VMs that do not support snapshots,
-see [VMware KB article 1025279](http://kb.vmware.com/kb/1025279) ; you
-can also use [Veeam ONE assessment reports](https://helpcenter.veeam.com/docs/one/reporter/vm_configuration_assessment.html?ver=95)
+see [VMware KB article 1025279](https://kb.vmware.com/s/article/1025279) ; you
+can also use [Veeam ONE assessment reports](https://helpcenter.veeam.com/archive/one/95/reporter/vm_configuration_assessment.html)
 to automatically detect them before starting Veeam Availability project.
 
 As with many things in technology, although the concept is simple, the
@@ -87,7 +87,7 @@ limitations. Keep in mind, that the maximum file size include all snapshot
 files and the data disk in total. For example if you have an old VMFS
 version 3 the maximum file size (including snapshots) is 2TB and so your
 data disk should not be sized over 1.98TB to still be able to create snapshots.
-For details, see [VMware KB article 1012384](http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1012384).
+For details, see [VMware KB article 1012384](https://kb.vmware.com/s/article/1012384).
 
 The default number of concurrently open snapshots per datastore in Veeam
 Backup & Replication is 4. This behavior can be changed by creating
@@ -114,7 +114,7 @@ the datastore. This is generally more noted on systems with significant
 write I/O load.
 
 **Note**: Refer to VMware Knowledge Base article at
-[www.kb.vmware.com/kb/1035550](https://kb.vmware.com/kb/1035550) for information on vMotion and Storage vMotion processes performed with open snapshots.
+[www.kb.vmware.com/kb/1035550](https://kb.vmware.com/s/article/1035550) for information on vMotion and Storage vMotion processes performed with open snapshots.
 
 ### Snapshot Removal
 Snapshot removal is the step with the highest impact from the
@@ -154,7 +154,7 @@ very sensitive to delays may experience issues with this short period of
 unresponsiveness.
 
 For explanation of snapshot removal issues, see [VMware KB article
-1002836](https://kb.vmware.com/kb/1002836).
+1002836](https://kb.vmware.com/s/article/1002836).
 
 ## How to Mitigate?
 To mitigate the impact of snapshots, consider the following
@@ -201,7 +201,7 @@ recommendations:
     factored in the overall design. 
 
     **Note:** This is the default behavior that can be changed, as explained
-    in the VMware Knowledge Base: <http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1002929>
+    in the VMware Knowledge Base: <https://kb.vmware.com/s/article/1002929>
 
 -   **Allocate enough space for snapshots.**
     VMware vSphere 5.x puts the snapshot VMDK on the same datastore with
@@ -215,7 +215,7 @@ recommendations:
     server, and others).
 
     **Note:** This is the default behavior that can be changed, as explained
-    in the VMware Knowledge Base: <http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1002929>
+    in the VMware Knowledge Base: <https://kb.vmware.com/s/article/1002929>
 
 -   **Watch for low disk space warnings.**
     Veeam Backup & Replication warns you when there is not enough space
@@ -232,7 +232,7 @@ recommendations:
     -   Type: REG_DWORD
     -   Default value (in GB): 10
 
-    **Tip:** Use the [Veeam ONE Configuration Assessment Report](https://helpcenter.veeam.com/docs/one/reporter/vm_configuration_assessment.html?ver=95) to detect datastores with less than 10% of free disk space available for snapshot processing.
+    **Tip:** Use the [Veeam ONE Configuration Assessment Report](https://helpcenter.veeam.com/archive/one/95/reporter/vm_configuration_assessment.html) to detect datastores with less than 10% of free disk space available for snapshot processing.
 
 -   **Enable parallel processing.**
     Parallel processing tries to backup multiple VM disks that belong to
@@ -246,7 +246,7 @@ recommendations:
     processes as failure of the cluster member and failover to other
     cluster members. Coordinate with the application owner and increase
     the cluster heartbeat thresholds. A good example is Exchange
-    DAG heartbeat. For details, see [Veeam KB Article     1744](http://www.veeam.com/kb1744).
+    DAG heartbeat. For details, see [Veeam KB Article     1744](https://www.veeam.com/kb1744).
 
 ## Considerations for NFS Datastores
 Backup from NFS datastores involves some additional consideration, when
@@ -265,7 +265,7 @@ will temporarily take ownership of the VM by changing the contents of
 the LCK file. This may cause significant additional "stuns" to the VM.
 Under certain circumstances, the VM may even end up being unresponsive.
 The issue is recognized by VMware and documented in
-<http://kb.vmware.com/kb/2010953>.
+<https://kb.vmware.com/s/article/2010953>.
 
 **Note**: This issue does not affect Veeam Direct NFS as part of Veeam Direct Storage Access
 processing modes and Veeam Backup from Storage Snapshots on NetApp NFS datastores.
@@ -327,7 +327,7 @@ discovered when a backup failed.
 If not monitored appropriately, VMware orphaned snapshots can cause many
 unexpected problems. The most common problems are overfilled VM
 datastores, or snapshots growing so large they are impossible to commit.
-This is a well-known VMware vSphere issue described in [VMware KB article 1007814](http://kb.vmware.com/kb/1007814).
+This is a well-known VMware vSphere issue described in [VMware KB article 1007814](https://kb.vmware.com/s/article/1007814).
 The only way to
 manually remediate this issue is cloning the VM and performing a new
 full VM backup.
@@ -338,7 +338,7 @@ Veeam Snapshot Hunter automatically detects any VM with the configuration
 issue “Virtual machine disks consolidation needed”. Prior to performing
 backup of such VMs, Veeam Backup & Replication will trigger disk
 consolidation (provided that the datastore performance threshold
-specified in the [Storage Latency Control](https://helpcenter.veeam.com/docs/backup/vsphere/options_parallel_processing.html?ver=95)
+specified in the [Storage Latency Control](https://helpcenter.veeam.com/archive/backup/95/vsphere/options_parallel_processing.html)
 settings is not exceeded).
 
 Snapshot Hunter will attempt consolidation eight (8) times. If
@@ -356,7 +356,7 @@ excluded from backup or replication jobs until the orphaned snapshots
 are manually removed.
 
 If you are evaluating Veeam Backup & Replication, use the
-[Infrastructure Assessment Reports](https://helpcenter.veeam.com/docs/one/reporter/vmware_infrastructure_dashboard.html?ver=95)
+[Infrastructure Assessment Reports](https://helpcenter.veeam.com/archive/one/95/reporter/vmware_infrastructure_dashboard.html)
 included in Veeam Availability Suite to identify VMs with snapshots that
 can be affected by automatic snapshot consolidation.
 
@@ -444,7 +444,7 @@ If you try to back up thousands of VMs in a very short time frame, you
 can run into the SOAP session count limitation. For example, in vSphere
 5.1 the default maximum number of sessions is 500. If you hit this
 limitation, you can increase the vCenter Server SOAP connection limit
-from 500 to 1000. For details, see <http://kb.vmware.com/kb/2004663>.
+from 500 to 1000. For details, see <https://kb.vmware.com/s/article/2004663>.
 
 Veeam’s scheduling component does not keep track
 of the connection count. For this reason, it is recommended to
@@ -455,7 +455,7 @@ future, and increase the limit values on demand only.
 You can also optimize the ESXi network (NBD) performance by increasing
 the NFC buffer size from 16384 to 32768 MB (or conservatively higher)
 and reducing the cache flush interval from 30s to 20s.
-For details how to do this, see [VMware KB article 2052302](http://kb.vmware.com/kb/2052302).
+For details how to do this, see [VMware KB article 2052302](https://kb.vmware.com/s/article/2052302).
 After increaing NFC buffer setting, you can increase the following Veeam
 Registry setting to add addition Veeam NBD connections:
 

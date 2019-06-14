@@ -10,7 +10,7 @@ Veeam Explorers are tools included in all editions for item-level recovery from 
 * Veeam Explorer for Oracle
 * Veeam Explorer for Storage Snapshots
 
-Each Explorer has a corresponding user guide available in Helpcenter: [Veeam Backup Explorers User Guide](https://helpcenter.veeam.com/docs/backup/explorers/introduction.html?ver=95). For specifics of performing granular restore of certain applications refer to the Applications section of this guide.
+Each Explorer has a corresponding user guide available in Helpcenter: [Veeam Backup Explorers User Guide](https://helpcenter.veeam.com/archive/backup/95/explorers/introduction.html). For specifics of performing granular restore of certain applications refer to the Applications section of this guide.
 
 ## Explorer for Storage Snapshots
 Veeam Explorer for Storage Snapshots (VESS) is included, but it is

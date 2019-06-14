@@ -54,7 +54,7 @@ Veeam supports medium changers that have no Microsoft Windows drivers available.
 
 It is recommended that you use tape devices with original equipment manufacturer (OEM) drivers. Limitations VMware does not support tape drives connected directly to ESX(i) 4.x and later. For more information, see VMware vSphere Release Notes.  
 
-For more details and recommendations on configuring vendor-supported tape drives and media changers on ESX/ESXi, refer to VMware documentation at http://kb.vmware.com/kb/1016407.
+For more details and recommendations on configuring vendor-supported tape drives and media changers on ESX/ESXi, refer to VMware documentation at https://kb.vmware.com/s/article/1016407.
 
 
 **Note**:  Veeam Backup & Replication uses the MTF (Microsoft Tape Format) industry format to write data to tape. Veeam Backup & Replication does not support using WORM (Write Once Read Many) tapes.

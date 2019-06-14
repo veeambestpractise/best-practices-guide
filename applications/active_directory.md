@@ -4,11 +4,11 @@ Veeam Backup and Replication natively supports backup of Microsoft Active Direct
 
 ## Preparation
 
-For Microsoft Active Directory, check the tombstone lifetime settings, as described in Veeam Explorers User Guide at Veeam Help Center (https://helpcenter.veeam.com/docs/backup/explorers/vead_recommendations.html?ver=95).
+For Microsoft Active Directory, check the tombstone lifetime settings, as described in Veeam Explorers User Guide at Veeam Help Center (https://helpcenter.veeam.com/archive/backup/95/explorers/vead_recommendations.html).
 
 ## Job configuration
 
-For backup and restore of domain controllers to work properly application aware image processing opption has to be enabled in the job properties. For more details refer to the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_vm.html?ver=95) of the User Guide.
+For backup and restore of domain controllers to work properly application aware image processing opption has to be enabled in the job properties. For more details refer to the [corresponding section](https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_vm.html) of the User Guide.
 
 ## Restore and failover
 

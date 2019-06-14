@@ -24,8 +24,8 @@ When restoring VMs on a 3PAR based infrastructure, force the restore in thick (l
 
 [Why the right architecture matters with vSphere](https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/techpaper/HP-3PAR-StoreServ-Why-the-right-architecture-matters-with-vSphere.pdf)
 
-[HPE 3PAR StoreServ Storage and VMware vSphere 6.5 best practices](http://h20195.www2.hpe.com/V2/getpdf.aspx/4AA4-3286ENW.pdf)
+[HPE 3PAR StoreServ Storage and VMware vSphere 6.5 best practices](https://h20195.www2.hpe.com/V2/getpdf.aspx/4AA4-3286ENW.pdf)
 
 [HPE 3PAR VMware ESX/ESXi Implementation Guide](https://support.hpe.com/hpsc/doc/public/display?docId=c03290624)
 
-[HPE 3PAR StoreServ Architecture](https://www.hpe.com/h20195/v2/getpdf.aspx/4aa3-3516enw.pdf)
+[HPE 3PAR StoreServ Architecture](https://h20195.www2.hpe.com/v2/getpdf.aspx/4aa3-3516enw.pdf)

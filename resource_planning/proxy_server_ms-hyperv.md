@@ -4,11 +4,11 @@ In Microsoft Hyper-V environments VMs usually reside on local storage and CSV (C
 
 The backup process, in Microsoft Hyper-V environments, expects the VM to be quiesced before taking the snapshot of the volume to make sure that there are no incomplete transactions in a database or no open files.
 Veeam Backup & Replication uses three methods to prepare Hyper-V VMs for backup:
- - [Online backup](https://helpcenter.veeam.com/docs/backup/hyperv/online_backup.html?ver=95) - the native Microsoft Hyper-V method for creating application-consistent backup without any downtime.
+ - [Online backup](https://helpcenter.veeam.com/archive/backup/95/hyperv/online_backup.html) - the native Microsoft Hyper-V method for creating application-consistent backup without any downtime.
 
- - [Offline backup](https://helpcenter.veeam.com/docs/backup/hyperv/offline_backup.html?ver=95) - an alternative native method to obtain consistent backup. It requires a little downtime: Hyper-V uses the OS hibernation to freeze the VM's I/O.
+ - [Offline backup](https://helpcenter.veeam.com/archive/backup/95/hyperv/offline_backup.html) - an alternative native method to obtain consistent backup. It requires a little downtime: Hyper-V uses the OS hibernation to freeze the VM's I/O.
 
- - [Crash-consistent backup](https://helpcenter.veeam.com/docs/backup/hyperv/crash_consistent_backup.html?ver=95) - Veeam's proprietary method that allows the creation of crash-consistent backup without hibernating nor suspending the VM (no downtime required).
+ - [Crash-consistent backup](https://helpcenter.veeam.com/archive/backup/95/hyperv/crash_consistent_backup.html) - Veeam's proprietary method that allows the creation of crash-consistent backup without hibernating nor suspending the VM (no downtime required).
 
  Whenever possible, Veeam Backup & Replication uses online backup to quiesce VMs. If online backup cannot be performed, Veeam Backup & Replication uses one of the other two methods to prepare a VM for backup.
 
@@ -37,7 +37,7 @@ The Veeam Data Mover service running on a dedicated machine, called *"off-host p
 
 Off-host backup mode requires third-party components that are not shipped with Veeam Backup & Replication: the so called **VSS Hardware Provider**, which are usually distributed as part of client components supplied by the storage vendor. These VSS providers must be tested in your dedicated environment (e.g. a MS Cluster and multi Off-Host Proxy environment). Please also check the storage snapshot logs after backup.
 
-For more information regarding the off-proxy requirements, refer to the [official documentation page](https://helpcenter.veeam.com/docs/backup/hyperv/offhost_backup_proxy.html?ver=95).
+For more information regarding the off-proxy requirements, refer to the [official documentation page](https://helpcenter.veeam.com/archive/backup/95/hyperv/offhost_backup_proxy.html).
 
 The off-host backup process works in the following way:
   1. Veeam Backup & Replication triggers a snapshot of the required volume on the Microsoft Hyper-V host.

@@ -37,7 +37,7 @@ On the source WAN accelerator there are the VM disk digests that take up disk sp
 
 **Note:** Although the Digest folder is created on the target accelerator no data is stored on the target normally, however it must be sized into the target in case the digest on the source becomes corrupt or is missing. In this case the target will calculate its own digests in this location until the source WAN Accelerator comes back online.
 
- Traffic throttling rules should be created in both directions. See [Network Traffic Throttling and Multithreaded Data Transfer](https://helpcenter.veeam.com/docs/backup/vsphere/setting_network_traffic_throttling.html?ver=95) for more information.
+ Traffic throttling rules should be created in both directions. See [Network Traffic Throttling and Multithreaded Data Transfer](https://helpcenter.veeam.com/archive/backup/95/vsphere/setting_network_traffic_throttling.html) for more information.
 
 ### Target WAN Accelerator
 
@@ -47,7 +47,7 @@ The following recommendations apply to configuring a target WAN accelerator:
 
 -   It is recommended to configure the cache size at 10 GB for each operating system[^2] processed by the WAN accelerator. 
 
--   Once the target WAN accelerator is deployed, it is recommended to use the cache population feature (see [this section](https://helpcenter.veeam.com/docs/backup/vsphere/wan_population.html?ver=95) of the User Guide for details). When using this feature, the WAN accelerator service will scan through selected repositories for protected operating system types.
+-   Once the target WAN accelerator is deployed, it is recommended to use the cache population feature (see [this section](https://helpcenter.veeam.com/archive/backup/95/vsphere/wan_population.html) of the User Guide for details). When using this feature, the WAN accelerator service will scan through selected repositories for protected operating system types.
 
 -   It is also possible to seed the initial copy of data to the target repository to further reduce the amount of data that needs to be transferred during the first run.
 

@@ -24,7 +24,7 @@ While consuming production resources for backup purpose the On-Host backup mode 
 
 ![alt text](./Hyper-V-01.jpg "Setting concurrent tasks for on-host transport mode")
 
-- **Leveraging storage latency control**. This feature allows to protect the volumes (globally for enterprise edition, and individually for enterprise plus edition) from high latency, by monitoring and adjusting backup load accordingly. Please refer to [user guide](https://helpcenter.veeam.com/docs/backup/hyperv/options_parallel_processing.html?ver=95) proper section for further information.
+- **Leveraging storage latency control**. This feature allows to protect the volumes (globally for enterprise edition, and individually for enterprise plus edition) from high latency, by monitoring and adjusting backup load accordingly. Please refer to [user guide](https://helpcenter.veeam.com/archive/backup/95/hyperv/options_parallel_processing.html) proper section for further information.
 
 # Change block tracking on Hyper-V #
 Depending on the combination of Hyper-V OS version and the primary storage type, the mechanism for tracking changes may differ.
@@ -74,11 +74,11 @@ PowerShell Direct can be easily tested on the host, using the following command.
 ## Linux Integration Services and application awareness issue##
 It has sometimes been observed that some Built-in Linux Integration Services  versions failed to communicate the guest IP address to the Hypervisor, causing the Veeam application aware processing to fail.
 
-Please refer to the following Technet [blogpost](https://blogs.technet.microsoft.com/virtualization/2016/07/12/which-linux-integration-services-should-i-use-in-my-linux-vms/) for further explanations on where to find and how to install LIS.
+Please refer to the following Technet [blogpost](https://techcommunity.microsoft.com/t5/Virtualization/bg-p/Virtualization) for further explanations on where to find and how to install LIS.
 
 # Guest restoration #
 ## Instant VM recovery storage requirement ##
-When performing [Instant VM recovery](https://helpcenter.veeam.com/docs/backup/hyperv/instant_recovery.html?ver=95), Veeam will immediately pre-allocate the necessary amount of storage on the target infrastructure, even though the guest image used is residing on the backup repository.
+When performing [Instant VM recovery](https://helpcenter.veeam.com/archive/backup/95/hyperv/instant_recovery.html), Veeam will immediately pre-allocate the necessary amount of storage on the target infrastructure, even though the guest image used is residing on the backup repository.
 
 **Note :** this pre-allocation is performed only for Instant VM Recovery Usage. Sure Backup processing will use a thin provisioning mechanism instead, preserving resources on the infrastructure.
 

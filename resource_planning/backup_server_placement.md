@@ -200,7 +200,7 @@ ensure that the same patch/update/version level is used for the entire
 Veeam backup infrastructure.
 
 [^1]: In very large or extremely distributed environments, it is possible to extend the schedule frequency by altering registry key `VolumesDiscover_Periodically_Hours` (REG_DWORD, default: 4)
-[^2]: Storage rescan procedure > [Re-Scanning Storage Systems](https://helpcenter.veeam.com/docs/backup/vsphere/storage_rescan.html?ver=95)
-[^3]: More information about guest file system indexing in Veeam Helpcenter > [Guest file system indexing](https://helpcenter.veeam.com/docs/backup/vsphere/indexing.html?ver=95)
+[^2]: Storage rescan procedure > [Re-Scanning Storage Systems](https://helpcenter.veeam.com/archive/backup/95/vsphere/storage_rescan.html)
+[^3]: More information about guest file system indexing in Veeam Helpcenter > [Guest file system indexing](https://helpcenter.veeam.com/archive/backup/95/vsphere/indexing.html)
 [^4]: VMware Distributed Resource Scheduler > [VM-Host Affinity Rules](https://pubs.vmware.com/vsphere-60/topic/com.vmware.vsphere.resmgmt.doc/GUID-2FB90EF5-7733-4095-8B66-F10D6C57B820.html)
 [^5]: Remember to add sufficient resources if all three roles can run on the remote backup server.

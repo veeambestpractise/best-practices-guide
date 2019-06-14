@@ -45,7 +45,7 @@ Then, below the filesytem there is the storage array. Even on some low-end stora
 
 **Tip:** As can be seen from the field, optimal value for the stripe size is often between 128 KB and 256 KB; however. It is highly recommended to test this prior to deployment whenever possible.
 
-For more information, refer to this blog post: <http://www.virtualtothecore.com/en/veeam-backups-slow-check-stripe-size/>
+For more information, refer to this blog post: <https://www.virtualtothecore.com/veeam-backups-slow-check-stripe-size/>
 
 ### File System Formats
 In addition to the storage stripe size alignment, as explained in the previous paragraph, the file system may also benefit from using a larger cluster size (or Allocation Unit Size). For example, during formatting of NTFS volumes, Allocation Unit Size is set to 4KB by default. To mitigate fragmentation issues, configure to 64 KB whenever possible.
