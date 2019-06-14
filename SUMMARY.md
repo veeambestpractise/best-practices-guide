@@ -24,6 +24,9 @@
     * [Sizing a Backup Proxy](resource_planning/sizing_a_backup_proxy.md)
   * [Proxy - Microsoft Hyper-V](resource_planning/proxy_server_ms-hyperv.md)
   * [Proxy - Nutanix AHV](resource_planning/proxy_server_nutanix-ahv.md)
+* [Primary and secondary Storage BPs](README.md)
+  * [HPE 3PAR VMs disks considerations](storage_bps/3par_vs_thin-disks.md)
+  * [DellEMC Data Domain advanced scalability](storage_bps/datadomain_adv-scalability.md)
   
 * [Backup Repository](resource_planning/repository_server.md)
   * [Repository Types](resource_planning/repository_types.md)
