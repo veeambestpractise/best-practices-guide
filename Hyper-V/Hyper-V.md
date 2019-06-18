@@ -8,7 +8,7 @@ Backup mode availability is heavily depending on the underlying virtualization i
 
 Performance wise, since both backup modes are using the exact same Veeam transport services, the only differentiating factors will be the additional time requested to manage transportable snapshots (in favor of On-Host mode) and the balance between compute and backup resources consumption during backup windows (in favor of Off-Host mode).
 
-When using Windows Server 2016 On-Host proxy mode is very fast and will reduce the amount of included components. The Veeam Agent will then allocate the performance for deduplication and compression on the hosts systems. Consider that when planning the Veeam Job Desing. Please be aware that you will need up to 2GB of RAM on the Hyper-V Host per running task (one task = backup of one virtualdisk). This Memory must be free during Backup, instead the Hyper-V Host will start paging, what will end up in a slow system at all. 
+When using Windows Server 2016 On-Host proxy mode is very fast and will reduce the amount of included components. The Veeam Agent will then allocate the performance for deduplication and compression on the hosts systems. Consider that when planning the Veeam Job design. Please be aware that you will need up to 2GB of RAM on the Hyper-V Host per running task (one task = backup of one virtual disk). This memory must be free during Backup, otherwise the Hyper-V Host will start paging, what will end up in a slow system at all. 
 
 **Backup modes selection matrix**
 
@@ -82,5 +82,5 @@ When performing [Instant VM recovery](https://helpcenter.veeam.com/docs/backup/h
 
 **Note :** this pre-allocation is performed only for Instant VM Recovery Usage. Sure Backup processing will use a thin provisioning mechanism instead, preserving resources on the infrastructure.
 
-**Note :**  Instant VM recovery, will send Data over the production (DNS aware) network. During "recover to production" the preffered network are not used for data traffic. The recommonation based on fast Instant VM recovery and reover to production will be in a fast netowork for the Hyper-V parent partition. 
+**Note :**  Instant VM recovery, will send Data over the production (DNS aware) network. During "recover to production" the prefered network are not used for data traffic. The recommonation based on fast Instant VM recovery and reover to production will be in a fast netowork for the Hyper-V parent partition. 
   
