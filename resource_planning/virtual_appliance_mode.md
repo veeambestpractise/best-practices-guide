@@ -4,7 +4,7 @@
 As the default setting, virtual appliance mode (`hot-add`) has become quite
 popular for all-in-one deployments of Veeam Backup & Replication within virtual
 machines (for details, see the
-[Deployment Scenarios](https://helpcenter.veeam.com/docs/backup/vsphere/deployment_scenarios.html?ver=95)
+[Deployment Scenarios](https://helpcenter.veeam.com/archive/backup/95/vsphere/deployment_scenarios.html)
 section of the User Guide). It is also often used, when Veeam is deployed in
 branch office configurations (ROBO).
 
@@ -17,7 +17,7 @@ disks are unmounted from the proxy server, and the VM snapshot is committed.
 
 **Note:** For more information on how it works, refer to the section
 "[Data Backup and Restore in Virtual Appliance
-Mode](https://helpcenter.veeam.com/docs/backup/vsphere/virtual_appliance_hiw.html?ver=95)"
+Mode](https://helpcenter.veeam.com/archive/backup/95/vsphere/virtual_appliance_hiw.html)"
 in Veeam Help Center.
 
 As an example, virtual appliance mode is a good choice for
@@ -101,10 +101,10 @@ leading to downtime. To mitigate the issue, Veeam implemented the following func
 
 -   To avoid some VMware issues related to NFS datastore and hot-add
     processing (described at
-    <http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2010953>),
+    <https://kb.vmware.com/s/article/2010953>),
      enable a specific setting that will process VM backups only on
     backup proxies that run on the same host. For details see
-    <http://www.veeam.com/kb1681>.
+    <https://www.veeam.com/kb1681>.
     To avoid this completely, it is recommended to use the Direct
     NFS backup mode for backup and restore of NFS datastore based VMs.
 
@@ -155,7 +155,7 @@ network mode (NBD). Thus, virtual appliance mode will be the best performing cho
 
 ### Useful links
   * Specific client OS limitations for Hot-Add processing are documented in
-  [Veeam Backup & Replication Release Notes](https://www.veeam.com/veeam_backup_9_5_release_notes_en_rn.pdf),
+  [Veeam Backup & Replication Release Notes](https://www.veeam.com/veeam_backup_9_5_u4_release_notes_rn.pdf),
   *
 [Appliance Mode (Hotadd) Requirements and Troubleshooting](https://www.veeam.com/kb1054)
   * [How to test hotadd manually](https://www.veeam.com/kb1184)

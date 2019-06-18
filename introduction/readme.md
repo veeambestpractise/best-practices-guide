@@ -16,21 +16,21 @@ to external resources for additional information.
 
 The e-book is optimized for
 digital consumption, and the most recent copy is always available at:
-### [bp.veeam.expert](http://bp.veeam.expert)
+### [bp.veeam.expert](https://bp.veeam.expert/)
 
 {% else %}
 
 Keep in mind this book is optimized for digital consumption, and the most recent version is always
-available on [bp.veeam.expert](http://bp.veeam.expert).
+available on [bp.veeam.expert](https://bp.veeam.expert/).
 
 The book is available in different formats here:
 
 
 | Format | Link |
 | -------|------|
-| PDF    | [click here](https://www.gitbook.com/download/pdf/book/veeam/veeam-backup-replication-best-practices) |
-| ePub   | [click here](https://www.gitbook.com/download/epub/book/veeam/veeam-backup-replication-best-practices) |
-| Mobi   | [click here](https://www.gitbook.com/download/mobi/book/veeam/veeam-backup-replication-best-practices) |
+| PDF    | [click here](https://bp.veeam.expert/) |
+| ePub   | [click here](https://bp.veeam.expert/) |
+| Mobi   | [click here](https://bp.veeam.expert/) |
 
 
 {% endif %}

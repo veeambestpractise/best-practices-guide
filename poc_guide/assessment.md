@@ -58,4 +58,4 @@ This report provides the most complete and up-to-date configuration information 
 
 There are many additional interesting reports in the Veeam Availability Suite.
 
-Check out the [VMware Optimization](https://helpcenter.veeam.com/docs/one/reporter/vmware_optimization.html?ver=95) or [Hyper-V Optimization](https://helpcenter.veeam.com/docs/one/reporter/hyperv_optimization.html?ver=95) sections of Veeam ONE Reporter. A good example is the Garbage Files Report that can identify possible wasted space on data stores. In some cases, it helped to free up 10 TB+ of space on the tier 1 storage.
+Check out the [VMware Optimization](https://helpcenter.veeam.com/docs/one/reporter/vmware_optimization.html?ver=95) or [Hyper-V Optimization](https://helpcenter.veeam.com/archive/one/95/reporter/hyperv_optimization.html) sections of Veeam ONE Reporter. A good example is the Garbage Files Report that can identify possible wasted space on data stores. In some cases, it helped to free up 10 TB+ of space on the tier 1 storage.

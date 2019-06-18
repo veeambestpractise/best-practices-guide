@@ -13,7 +13,7 @@ The following options are supported to backup MySQL databases:
 
 ## HotBackup Database Online Dump:
 
-There are multiple options available regarding Database Online Dump, one of the option is to use Veeam [Pre & Post Thaw Scripts]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95) to dump the database during the backup operations and other option to dump the database to another staging server and protect the staging server from Veeam.
+There are multiple options available regarding Database Online Dump, one of the option is to use Veeam [Pre & Post Thaw Scripts]( https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html) to dump the database during the backup operations and other option to dump the database to another staging server and protect the staging server from Veeam.
 
 Let’s go through each option one by one in the details:
 
@@ -58,7 +58,7 @@ sync;sync
 fi
 ```
 3.	Save script as PreFreeze.sh
-4.	Use script as [pre-freeze script]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)  in a backup job.
+4.	Use script as [pre-freeze script]( https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html)  in a backup job.
 
 Post-Thaw Scripts
 1.	 Use Editor
@@ -75,7 +75,7 @@ else
 echo "$0 could not locate mysql dump file $dump
 ```
 3.	Save file as PostThaw.sh.
-4.	Use script as [Post-Thaw script]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)  in the backupjob
+4.	Use script as [Post-Thaw script]( https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html)  in the backupjob
 
 **Online Dump to Staging server
 
@@ -354,4 +354,4 @@ For this backup option, Veeam provides following restore options depends on the 
 | Database or Application Level Failure | Guest File Level Restore  |
 | Database Item Level Restore             | Veeam Universal Application Item Restore         
 
-For more details about protection and restore use [MySQL Protection Whitepaper]( https://www.veeam.com/consistent-protection-mysql-mariadb_wpp.pdf)  
+For more details about protection and restore use [MySQL Protection Whitepaper]( https://login.veeam.com/auth/realms/veeamsso/protocol/openid-connect/auth/?scope=profilehttps://www.veeam.com/consistent-protection-mysql-mariadb_wpp.pdfresponse_type=codehttps://www.veeam.com/consistent-protection-mysql-mariadb_wpp.pdfredirect_uri=https%3A%2F%2Fwww.veeam.com%2Fservices%2Fauthentication%2Fredirect_urlhttps://www.veeam.com/consistent-protection-mysql-mariadb_wpp.pdfstate=eyJmaW5hbFJlZGlyZWN0TG9jYXRpb24iOiJodHRwczovL3d3dy52ZWVhbS5jb20vY29uc2lzdGVudC1wcm90ZWN0aW9uLW15c3FsLW1hcmlhZGJfd3BwLnBkZiJ9https://www.veeam.com/consistent-protection-mysql-mariadb_wpp.pdfclient_id=aemhttps://www.veeam.com/consistent-protection-mysql-mariadb_wpp.pdfrestarted=true)  

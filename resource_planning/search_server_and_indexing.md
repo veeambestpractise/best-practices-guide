@@ -59,7 +59,7 @@ During the VM backup job run the following operations are performed If configure
 
 These operations take place in parallel with the backup and do not
 increase the duration of the process. For more details on the indexing
-process refer to the [Veeam Backup Enterprise Manager User Guide](https://helpcenter.veeam.com/docs/backup/em/introduction.html?ver=95).
+process refer to the [Veeam Backup Enterprise Manager User Guide](https://helpcenter.veeam.com/archive/backup/95/em/introduction.html).
 
 1.  Veeam Backup & Replication creates a catalog (index) of the VM guest
     OS files and stores index files on the Veeam backup server in the
@@ -77,7 +77,7 @@ process refer to the [Veeam Backup Enterprise Manager User Guide](https://helpce
 **Important To Note!**
 - To search within the index catalog it is necessary to
 deploy Veeam Backup Enterprise Manager, this component is in charge
-of catalog data replication and retention (see [this section](https://helpcenter.veeam.com/docs/backup/em/veeam_backup_catalog.html?ver=95) of the User Guide for more details).
+of catalog data replication and retention (see [this section](https://helpcenter.veeam.com/archive/backup/95/em/veeam_backup_catalog.html) of the User Guide for more details).
 - If you enable indexing without configuring Enterprise Manager the indexes in the *VBRCatalog* folder of the backup server will never be collected or deleted and will eventually fill up the disk drive.
 
 
@@ -142,7 +142,7 @@ Follow these recommendations when setting up Veeam indexing:
 
 -   Place the catalog on a dedicated volume of high performance disk. To
     change the default Veeam Catalog folder location refer to this
-    Veeam Knowledge Base article: <http://www.veeam.com/kb1453.>
+    Veeam Knowledge Base article: <https://www.veeam.com/kb1453.>
 
 -   You can enable NTFS compression on the catalog folder. This can reduce the space requirements by well
     over 50%. For very large catalogs (with 100s of VMs and
@@ -174,7 +174,7 @@ Follow these recommendations when setting up Veeam indexing:
     **Notes:**
 
     To take advantage of indexing on SUSE Linux Enterprise Server (SLES) you must be running version 12 or above. In lower versions that do not contain by default the mlocate package you may try this OpenSUSE package
-    http://software.opensuse.org/package/mlocate
+    https://software.opensuse.org/package/mlocate
 
     Veeam Backup Enterprise Manager SQL database
     (*VeeamBackupReporting*) will not grow much while using indexing
@@ -202,7 +202,7 @@ If you need to use that Veeam Backup Search component (and Microsoft Search Serv
     shared *VBRCatalog* folder on the Veeam Backup Enterprise Manager
     server and to create a content index on the Search Server; this
     content index is used to process search queries. For more details,
-    refer to the [Veeam Backup   Search](https://helpcenter.veeam.com/docs/backup/em/em_appendix_b_install_search.html?ver=95)
+    refer to the [Veeam Backup   Search](https://helpcenter.veeam.com/archive/backup/95/em/em_appendix_b_install_search.html)
     section of the User Guide.
 
 **Note**: Though using content index streamlines the search process the

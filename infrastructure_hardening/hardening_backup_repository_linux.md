@@ -1,6 +1,6 @@
 # Hardening Backup Repository - Linux
 
-Veeam Backup & Replication, even if it’s mainly Windows based software, can also consume Linux servers as its backup repositories. The requirements are bash shell, SSH and Perl. Please check the full list of required Perl modules here: http://www.veeam.com/kb2216.
+Veeam Backup & Replication, even if it’s mainly Windows based software, can also consume Linux servers as its backup repositories. The requirements are bash shell, SSH and Perl. Please check the full list of required Perl modules here: https://www.veeam.com/kb2216.
 
 **Important:** 64-bit edition of Linux must be able to run 32-bit programs. Pure 64-bit Linux editions are not supported (Perl installation must support 32-bit variables).
 

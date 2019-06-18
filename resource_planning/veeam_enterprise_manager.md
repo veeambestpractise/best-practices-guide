@@ -14,7 +14,7 @@ the following scenarios:
 
 -   It is recommended to deploy Enterprise Manager if you are using
     encryption for backup or backup copy jobs. If you have enabled
-    password loss protection (https://helpcenter.veeam.com/docs/backup/em/em_manage_keys.html?ver=95)
+    password loss protection (https://helpcenter.veeam.com/archive/backup/95/em/em_manage_keys.html)
     for the connected backup servers backup files will be
     encrypted with an additional private key which is unique for each
     instance of Enterprise Manager. This will allow Enterprise Manager
@@ -65,7 +65,7 @@ restore operator must type in guest OS credentials during a file-level restore.
 The backup catalog on the Enterprise Manager server will be used to
 store indexing data replicated from the backup catalog on Veeam
 backup server(s). For more information about the process, refer to the
-[Enterprise Manager User Guide](https://helpcenter.veeam.com/docs/backup/em/veeam_backup_catalog.html?ver=95).
+[Enterprise Manager User Guide](https://helpcenter.veeam.com/archive/backup/95/em/veeam_backup_catalog.html).
 To learn more about Veeam Backup Catalog sizing refer to the
 “[Indexing](search_server_and_indexing.md)” section of this document.
 
@@ -80,7 +80,7 @@ Microsoft SQL Server and/or Oracle databases without addressing the backup team.
 
 #### Microsoft Exchange Mailbox Items Restore
 The process of restoring an Exchange mailbox is described in the
-[Backup and Restore of Microsoft Exchange Items](https://helpcenter.veeam.com/docs/backup/em/em_exchange_items_restore.html?ver=95)
+[Backup and Restore of Microsoft Exchange Items](https://helpcenter.veeam.com/archive/backup/95/em/em_exchange_items_restore.html)
 section of the Veeam Backup Enterprise Manager User Guide.
 
 To create an application-aware image backup of Microsoft Exchange
@@ -91,7 +91,7 @@ necessary). A server holding the CAS role is used to discover the
 mailbox location for the corresponding user. You should supply
 credentials for authentication with the CAS server on the
 **Configuration** > **Settings** page as described
-[here](https://helpcenter.veeam.com/docs/backup/em/em_providing_access_rights_exch.html?ver=95).
+[here](https://helpcenter.veeam.com/archive/backup/95/em/em_providing_access_rights_exch.html).
 
 #### Microsoft SQL Server Database Restore
 To perform database level restores of SQL Server databases using
@@ -99,13 +99,13 @@ Enterprise Manager ensure you enable application-aware image processing
 for the corresponding backup job. To use point-in-time recovery enable
 log file backups of the Microsoft SQL Server VM. For more details refer
 to the [Backup and Restore of Microsoft SQL Server
-Databases](https://helpcenter.veeam.com/docs/backup/em/em_sql_db_restore.html?ver=95)
+Databases](https://helpcenter.veeam.com/archive/backup/95/em/em_sql_db_restore.html)
 section of the Veeam Backup Enterprise Manager User Guide.
 
 #### Oracle Database Restore
-To perform database level, restore of Oracle databases using Enterprise Manager ensure you enable application-aware image processing for the corresponding backup job. To use point-in-time recovery, enable log file backups of the Oracle VM. For more details refer to the [Backup and Restore of Oracle Database](https://helpcenter.veeam.com/docs/backup/em/em_oracle_bu_restore.html?ver=95) section of the Veeam Backup Enterprise Manager User Guide.
+To perform database level, restore of Oracle databases using Enterprise Manager ensure you enable application-aware image processing for the corresponding backup job. To use point-in-time recovery, enable log file backups of the Oracle VM. For more details refer to the [Backup and Restore of Oracle Database](https://helpcenter.veeam.com/archive/backup/95/em/em_oracle_bu_restore.html) section of the Veeam Backup Enterprise Manager User Guide.
 
-You have two options to restore through Enterprise Manager: 1-Click Restore to Original Location or Restore with Custom Settings. When restoring with custom settings make sure that the restore operator is enabled to also restore Oracle Databases. For more information see [providing access rights](https://helpcenter.veeam.com/docs/backup/em/em_providing_access_rights_sql.html?ver=95)
+You have two options to restore through Enterprise Manager: 1-Click Restore to Original Location or Restore with Custom Settings. When restoring with custom settings make sure that the restore operator is enabled to also restore Oracle Databases. For more information see [providing access rights](https://helpcenter.veeam.com/archive/backup/95/em/em_providing_access_rights_sql.html)
 
 
 **Note:** Database restore from storage snapshots via Enterprise Manager is **not** supported.
@@ -141,7 +141,7 @@ The process goes as follows:
 
 **Note:** This feature also works for backups from Veeam Agents for Windows stored on a Veeam Backup & Replication repository.
 
-For more information on using this feature refer to the [Self-Restore of VM Guest Files](https://helpcenter.veeam.com/docs/backup/em/em_self_restore.html?ver=95)
+For more information on using this feature refer to the [Self-Restore of VM Guest Files](https://helpcenter.veeam.com/archive/backup/95/em/em_self_restore.html)
 section of the Veeam Backup Enterprise Manager User Guide.
 
 ### Self-Service Backup Portal for vCloud Director
@@ -155,5 +155,5 @@ take place through Enterprise Manager. Enterprise Manager user role
 assignments (**Portal User**, **Restore Operator**, **Portal
 Administrator**) and their access scopes access will be inherited by the
 RESTful API service. For more information on role assignment see the
-[Configuring Security Settings](https://helpcenter.veeam.com/docs/backup/em/configuring_security_settings.html?ver=95)
+[Configuring Security Settings](https://helpcenter.veeam.com/archive/backup/95/em/configuring_security_settings.html)
 section of the Veeam Backup Enterprise Manager User Guide.

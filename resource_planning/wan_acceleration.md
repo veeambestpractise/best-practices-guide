@@ -8,7 +8,7 @@ To determine whether WAN acceleration is necessary in an environment, it is impo
 
 ## Determining Required Bandwidth
 
-When using WAN acceleration on links with low bandwidth, you may have to manually seed the initial copy to the target. For more information, refer to the [WAN Acceleration](https://helpcenter.veeam.com/docs/backup/vsphere/wan_acceleration.html?ver=95) section of the Veeam Backup & Replication User Guide.
+When using WAN acceleration on links with low bandwidth, you may have to manually seed the initial copy to the target. For more information, refer to the [WAN Acceleration](https://helpcenter.veeam.com/archive/backup/95/vsphere/wan_acceleration.html) section of the Veeam Backup & Replication User Guide.
 
 The WAN accelerator uses its own digests based on the hashes of the blocks inside a VM disk, which means that it reads data from the backup files and re-hydrating them on the fly, or it reads directly from the source VM in case of replication. The WAN accelerator
 component will then process those data blocks with much more efficient data deduplication and compression algorithms. This is the reason why the WAN

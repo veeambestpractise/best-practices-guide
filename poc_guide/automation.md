@@ -4,8 +4,8 @@ The bigger the environment, the more automation is needed to reduce the administ
 ## Command line
 Following operations are managed through the Windows command line:
 
-* Installation - [Link to Help Center](https://helpcenter.veeam.com/docs/backup/vsphere/silent_mode.html?ver=95)
-* Updates - [Link to Help Center](https://helpcenter.veeam.com/docs/backup/vsphere/update_unattended.html?ver=95)
+* Installation - [Link to Help Center](https://helpcenter.veeam.com/archive/backup/95/vsphere/silent_mode.html)
+* Updates - [Link to Help Center](https://helpcenter.veeam.com/archive/backup/95/vsphere/update_unattended.html)
 
 ## PowerShell
 Operations in Veeam Backup & Replication can be automated with Veeam PowerShell snap-in in the following areas:
@@ -19,11 +19,11 @@ Operations in Veeam Backup & Replication can be automated with Veeam PowerShell 
 
 The PowerShell plugin is available with all commercial versions of the product.
 
-**Note:**	PowerShell plugin is also available with Veeam Backup FREE, although limited: http://www.veeam.com/blog/veeam-backup-free-edition-now-with-powershell.html
+**Note:**	PowerShell plugin is also available with Veeam Backup FREE, although limited: https://www.veeam.com/blog/veeam-backup-free-edition-now-with-powershell.html
 
 Our customers and partners use this functionality to scale out backup infrastructure environments to nearly 100,000 VMs under a single Veeam Backup Enterprise Manager instance with multiple backup servers located in different datacenters.
 
-The best starting point to get in touch with the Veeam PowerShell plugin is to read the Veeam PowerShell User Guide > [Veeam Help Center - PowerShell Reference](https://helpcenter.veeam.com/docs/backup/powershell/getting_started.html?ver=95).
+The best starting point to get in touch with the Veeam PowerShell plugin is to read the Veeam PowerShell User Guide > [Veeam Help Center - PowerShell Reference](https://helpcenter.veeam.com/archive/backup/95/powershell/getting_started.html).
 
 You can find help for the scripts in the [Veeam Community Forums - PowerShell](http://forums.veeam.com/powershell-f26/) section. If you need some examples, refer to the following thread: [Getting Started and Code Examples](https://forums.veeam.com/powershell-f26/getting-started-and-code-examples-t13372.html)
 
@@ -31,9 +31,9 @@ You can find help for the scripts in the [Veeam Community Forums - PowerShell](h
 In the Veeam Enterprise Manager, there is as well RESTful API that allows you to create workflows in orchestration tools or to integrate Veeam Backup Enterprise Manager (self-services) in your own “cloud” portal. Specifically, this is an option that comes with Enterprise Plus Editions and is focused on the hosting business.
 
 Here is a list of external resources:
-* [Veeam Help Center - RESTful API Reference ](https://helpcenter.veeam.com/docs/backup/rest/overview.html?ver=95)
-* [Veeam Community Forums](http://forums.veeam.com/restful-api-f30/)
-* [Veeam Help Center - Beginner Example](https://helpcenter.veeam.com/docs/backup/rest/beginner_example.html?ver=95)
+* [Veeam Help Center - RESTful API Reference ](https://helpcenter.veeam.com/archive/backup/95/rest/overview.html)
+* [Veeam Community Forums](https://forums.veeam.com/restful-api-f30/)
+* [Veeam Help Center - Beginner Example](https://helpcenter.veeam.com/archive/backup/95/rest/beginner_example.html)
 
 ## A simple RESTful API example - adding a guest to a backup job
 
@@ -47,7 +47,7 @@ From the client browser, connect to the URL http://EM:9399/web/#/api/ and enter 
 
 Once logged in, knowing the vCenter Name where the VM we want to add resides, we need to get the vCenter UID.
 
-Refering to the REST API guide https://helpcenter.veeam.com/docs/backup/rest/get_managedservers_id.html?ver=95 we can gather necessary informations to build a query.
+Refering to the REST API guide https://helpcenter.veeam.com/archive/backup/95/rest/get_managedservers_id.html we can gather necessary informations to build a query.
 * Object type is “ManagedServer”
 * Property to filter is “ManagedServerType” from which “VC” corresponds to vCenter
 * Property to filter is “Name” equal to “vc.democenter.int” in this example
@@ -100,7 +100,7 @@ The required reference for further use is the UID “urn:veeam:HierarchyRoot:93f
 
 ###	Building a lookup to retrieve the virtual machine ID
 
-Knowing the UID of the “Host” (vCenter), and the name of the guest we want to add to a job, we can build the lookup URL using the name of the VM as a selection criteria. The rules to build the lookup request are detailed in the REST API guide : https://helpcenter.veeam.com/docs/backup/rest/lookup_query.html?ver=95#params.
+Knowing the UID of the “Host” (vCenter), and the name of the guest we want to add to a job, we can build the lookup URL using the name of the VM as a selection criteria. The rules to build the lookup request are detailed in the REST API guide : https://helpcenter.veeam.com/archive/backup/95/rest/lookup_query.html.
 
 http://hq-vbrem1.democenter.int:9399/web/#/api/lookup?host=urn:veeam:HierarchyRoot:93fe5565-0ae7-4574-abb5-0f4ea8c5e9bd&name=demo-win1&type=Vm
 
@@ -147,7 +147,7 @@ The URL to access the job resource representation is directly given by the link 
 
 ### Adding the VM to the job
 
-Knowing the “Jobs” resource representation structure, the resource to be called to add the VM to the job is "/jobs/{ID}/includes" with a POST verb. In case of any doubt about the resource to call, the REST reference guide offers a precise representation of the resource tree: https://helpcenter.veeam.com/docs/backup/rest/post_jobs_id_includes.html?ver=95
+Knowing the “Jobs” resource representation structure, the resource to be called to add the VM to the job is "/jobs/{ID}/includes" with a POST verb. In case of any doubt about the resource to call, the REST reference guide offers a precise representation of the resource tree: https://helpcenter.veeam.com/archive/backup/95/rest/post_jobs_id_includes.html
 
 As stated by the “Min/Max” column, the only mandatory parameters to add in the request body are the container reference (a VM in our example) and name “HierarchyObjRef” and “HierarchyObjName”.
 

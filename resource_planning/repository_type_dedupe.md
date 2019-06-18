@@ -31,7 +31,7 @@ If a deduplication appliance is used in Virtual Tape Library (VTL) mode, it is r
 The repository used for staging should be configured with "Decompress before storing" advanced option enabled, which ensures previously applied compression at the job level is ignored.
 
 Also, ensure that the appliance meets Veeam tape requirements described [in the User
-Guide](https://helpcenter.veeam.com/docs/backup/vsphere/system_requirements.html?ver=95#tape).
+Guide](https://helpcenter.veeam.com/archive/backup/95/vsphere/system_requirements.html).
 
 ## File-Level Recovery and Veeam Explorers
 

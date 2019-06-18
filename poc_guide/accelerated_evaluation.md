@@ -25,5 +25,5 @@ Even for a small POC, a plan is essential, a write up can be as simple as:
 We all know Veeam will protect virtual machines, the aim of your POC should be to see how well it lives up to your expectation at doing specific types of protection and recovery.
 
 See Veeam HelpCenter for Evaluator's Guides:
-* [VMware vSphere environments](http://helpcenter.veeam.com/evaluation/backup/vsphere/en/)
-* [Microsoft Hyper-V environments](http://helpcenter.veeam.com/evaluation/backup/hyperv/en/)
+* [VMware vSphere environments](https://helpcenter.veeam.com/evaluation/backup/vsphere/en/index.html)
+* [Microsoft Hyper-V environments](https://helpcenter.veeam.com/evaluation/backup/hyperv/en/index.html)

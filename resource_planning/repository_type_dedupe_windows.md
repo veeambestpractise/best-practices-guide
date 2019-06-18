@@ -8,8 +8,8 @@ Follow the recommendations provided in the configuration guidelines above; here 
 4.  Modify garbage collection schedule to run daily rather than weekly.
 5.  Use backup jobs configured to perform Active full with Incrementals.
 6.  If possible, spread active full backups over the entire week.
-7.  Try to keep the .VBK files **below 1TB** in size (there is no official support from Microsoft for files bigger than this; see <https://msdn.microsoft.com/en-us/library/hh769303(v=vs.85).aspx>). Large files take a long time to deduplicate and will have to be fully reprocessed if the process is interrupted.
-8.  Where possible, use multiple volumes. Windows deduplication can process multiple volumes using multi-core CPU – one CPU core per volume; see <http://blogs.technet.com/b/filecab/archive/2014/12/04/sizing-volumes-for-data-deduplication-in-windows-server.aspx> for details.)
+7.  Try to keep the .VBK files **below 1TB** in size (there is no official support from Microsoft for files bigger than this; see <https://docs.microsoft.com/en-us/previous-versions/windows/desktop/dedup/about-data-deduplication>). Large files take a long time to deduplicate and will have to be fully reprocessed if the process is interrupted.
+8.  Where possible, use multiple volumes. Windows deduplication can process multiple volumes using multi-core CPU – one CPU core per volume; see <https://techcommunity.microsoft.com/t5/Storage-at-Microsoft/bg-p/FileCAB> for details.)
 9.  Configure deduplication process to run once a day, and for as long as possible.
 
-More information can be found here: <http://forums.veeam.com/veeam-backup-replication-f2/best-practice-for-ms-server-2012-dedup-repo-t14002-135.html>.
+More information can be found here: <https://forums.veeam.com/veeam-backup-replication-f2/best-practice-for-ms-server-2012-dedup-repo-t14002-120.html>.

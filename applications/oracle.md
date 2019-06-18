@@ -12,11 +12,11 @@ Logs are stored temporarily on the guest filesystem before they are shipped for 
 
 When backing up Oracle on Linux, the backup server is used for initiating connections, whereas a Guest Interaction Proxy will be selected for Oracle on Windows.
 
-As restore is integral part of Oracle protection, special attention should be paid to planning Veeam Explorer for Oracle configuration, specifically network connectivity between mount server and staging servers in restricted environments. Ports used for communication between them are listed in the corresponding section of the User Guide (https://helpcenter.veeam.com/docs/backup/vsphere/used_ports.html?ver=95#explorers).
+As restore is integral part of Oracle protection, special attention should be paid to planning Veeam Explorer for Oracle configuration, specifically network connectivity between mount server and staging servers in restricted environments. Ports used for communication between them are listed in the corresponding section of the User Guide (https://helpcenter.veeam.com/archive/backup/95/vsphere/used_ports.html).
 
 ### Permissions
 
-Certain level of access is expected from the user account configured for performing Oracle backup. Refer to the corresponding section of the User Guide for details (https://helpcenter.veeam.com/docs/backup/explorers/veo_connection_to_source_server.html?ver=95).
+Certain level of access is expected from the user account configured for performing Oracle backup. Refer to the corresponding section of the User Guide for details (https://helpcenter.veeam.com/archive/backup/95/explorers/veo_connection_to_source_server.html).
 
 When processing Linux instances, the same user account specified for application awareness is used to process the Oracle backup. For Windows instances, you may specify two separate accounts.
 
@@ -40,7 +40,7 @@ In addition this account or separate Oracle account in case it is different shou
 
 ## Job configuration
 
-Refer to the corresponding section of the User Guide (https://helpcenter.veeam.com/docs/backup/vsphere/replica_vss_transaction_oracle_vm.html?ver=95) for details on configuring Oracle database backup and transaction logs processing.
+Refer to the corresponding section of the User Guide (https://helpcenter.veeam.com/archive/backup/95/vsphere/replica_vss_transaction_oracle_vm.html) for details on configuring Oracle database backup and transaction logs processing.
 
 Avoid using aggressive logs truncation settings for databases protected with Data Guard as it may affect logs synchronization to secondary server. Data Guard should have enough time to transport logs remotely before they are truncated thus generally having "Delete logs older than" option less than 24 hours is not recommended.
 
@@ -79,7 +79,7 @@ Before the backup the database (in ARCHIVELOG mode only) is put into backup mode
 
 Oracle restore using Veeam Explorer for Oracle uses a combination of executing commands via SSH or RPC depending on the platform, and using the RMAN client. VM disks are mounted to target server using iSCSI (Windows) or FUSE and loop device (Linux). Only database files will be restored, not instance files. Instance files may be recovered through file-level recovery if needed.
 
-Ensure the account used to connect to target/staging server has enough permissions on operating system and database as described in the corresponding section of [User Guide](https://helpcenter.veeam.com/docs/backup/explorers/veo_connection_to_target_server.html?ver=95) or earlier in this guide.
+Ensure the account used to connect to target/staging server has enough permissions on operating system and database as described in the corresponding section of [User Guide](https://helpcenter.veeam.com/archive/backup/95/explorers/veo_connection_to_target_server.html) or earlier in this guide.
 
 **Note:** When restoring to Linux ensure that account used to connect to restore target server has valid shell.
 

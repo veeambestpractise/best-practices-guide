@@ -19,9 +19,9 @@ To avoid network reconfiguration of physical components, place the backup server
 
 Check Veeam Backup & Replication documentation for configuration details:
 
-- [vPower Users Guide](https://www.veeam.com/veeam_backup_9_0_evaluators_guide_vpower_vsphere_en_pg.pdf)
+- [vPower Users Guide](https://www.veeam.com/veeam_backup_9_0_evaluators_guide_vpower_vsphere_pg.pdf)
 
-- [Recovery Verification help ](https://helpcenter.veeam.com/docs/backup/vsphere/recovery_verification_overview.html?ver=95)
+- [Recovery Verification help ](https://helpcenter.veeam.com/archive/backup/95/vsphere/recovery_verification_overview.html)
 
 ## How SureBackup Job Works
 SureBackup leverages the capabilities of the Virtual Lab appliance to create an isolated environment where different tests can be executed against VMs. These VMs are powered on directly from the backup files using the vPower technology.
@@ -80,7 +80,7 @@ Tools on a verified VM.
 	In this case the script will only use SQL type credentials making useless to specify Windows credentials as the script argument. 
 
 
-If [Linked Jobs](https://helpcenter.veeam.com/docs/backup/vsphere/surebackup_job_joblink_vm.html?ver=95) are configured for the SureBackup job,
+If [Linked Jobs](https://helpcenter.veeam.com/archive/backup/95/vsphere/surebackup_job_joblink_vm.html) are configured for the SureBackup job,
 linked VMs will start booting once all virtual machines explicitly defined within the Application Group have been successfully booted
 and verified. Remember that by default 3 VMs are tested at the same time in a Linked Job. There may be more than 3 VMs linked,
 but the following ones will stay in the testing queue. The limit can be adjusted in the SureBackup job configuration wizard,
@@ -141,7 +141,7 @@ SSH private key, you should connect manually (one time) to the VM via SSH using 
 
 Another option for testing service availability with
 `Veeam.Backup.ConnectionTester.exe` is described in
-<http://www.veeam.com/kb1312>.
+<https://www.veeam.com/kb1312>.
 
 ### Common Issues
 When performing SureBackup, there are few common issues you may come across. Most of these issues are described
@@ -153,7 +153,7 @@ in Veeam knowledge base articles:
 
 * When using DHCP with leases bound to MAC addresses, ensure that the vNIC MAC address is configured as `static`.
   Otherwise the VM will boot with a MAC in the Virtual Lab, and the VM may get a different IP address >
-  [Setting a static MAC address for a virtual NIC](https://kb.vmware.com/kb/219)
+  [Setting a static MAC address for a virtual NIC](https://kb.vmware.com/s/article/219)
 
 * Some Linux distributions use `udev` for assigning names to NICs. If the MAC address changes during
   replication or Instant VM Recovery, the NIC's configuration file may not be applied. For more
@@ -193,7 +193,7 @@ across multiple hosts within a cluster once they are started.
 
 **Important!** Please check the following help article and the links at the
 bottom of the webpage before you configure Virtual Labs for Distributed vSwitch:
-[Advanced Multi-Host Virtual Labs](https://helpcenter.veeam.com/docs/backup/vsphere/surereplica_advanced_mutihost.html?ver=95).
+[Advanced Multi-Host Virtual Labs](https://helpcenter.veeam.com/archive/backup/95/vsphere/surereplica_advanced_mutihost.html).
 
 Even in environments where Distributed vSwitch is available, make sure that the
 Veeam backup server and the Virtual Lab proxy appliance are placed in the same
@@ -209,7 +209,7 @@ section of this guide.
 ![](../media/image18.png)
 
 [^1]: For more information about Domain Controller restore, please see the corresponding thread in Veeam
-Community Forums > [Veeam B&R v5 recovery of a domain controller](https://forums.veeam.com/veeam-backup-replication-f2/veeam-b-r-v5-recovery-of-a-domain-controller-t7000-105.html#p83808)
+Community Forums > [Veeam B&R v5 recovery of a domain controller](https://forums.veeam.com/veeam-backup-replication-f2/veeam-b-r-v5-recovery-of-a-domain-controller-t7000-90.html)
 
 ## Scaling out SureBackup jobs
 

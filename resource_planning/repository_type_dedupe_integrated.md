@@ -28,7 +28,7 @@ As specified in the user's guide, DDBoost API is is leveraged on the gateway ser
 
 ### Chain Length Limitation
 
-Consider that DataDomain can support only up to 60 incremental restore points for a single full backup. For details, refer to the Veeam Backup & Replication User Guide: [Limitations for EMC Data Domain](https://helpcenter.veeam.com/docs/backup/vsphere/emc_dd.html?ver=95)
+Consider that DataDomain can support only up to 60 incremental restore points for a single full backup. For details, refer to the Veeam Backup & Replication User Guide: [Limitations for EMC Data Domain](https://helpcenter.veeam.com/archive/backup/95/vsphere/emc_dd.html)
 
 ### Configuring DDBoost over FC device set
 
@@ -129,7 +129,7 @@ Same considerations as per DataDomain should be taken into account.
 
 ### Chain Length Limitation
 
-HPE StoreOnce has a limit on the number of concurrently opened files, this limit is important when restoring VM's. The maximum length of a backup chain (Full backup file plus all incremental backup files) depends on which HPE StoreOnce model is used. Lookup your HPE StoreOnce model in: [Limitations for HPE StoreOnce](https://helpcenter.veeam.com/docs/backup/vsphere/deduplicating_appliance_storeonce_limitations.html?ver=95) to find the maximum limit.  
+HPE StoreOnce has a limit on the number of concurrently opened files, this limit is important when restoring VM's. The maximum length of a backup chain (Full backup file plus all incremental backup files) depends on which HPE StoreOnce model is used. Lookup your HPE StoreOnce model in: [Limitations for HPE StoreOnce](https://helpcenter.veeam.com/docs/backup/vsphere/deduplicating_appliance_storeonce.html?ver=95u4) to find the maximum limit.  
 
 ### Backup copy job and Catalyst feature
 A backup copy job is by definition a forever forward incremental job.

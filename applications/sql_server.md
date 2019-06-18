@@ -70,7 +70,7 @@ Check [Microsoft KB](https://docs.microsoft.com/en-us/sql/relational-databases/p
 
 No additional configuration is required to backup the standalone SQL server, you can configure the backup with application aware processing to take the backup of SQL server with the databases.
 
-Please check the Veeam User’s Guide sections to get the more information about [SQL backup configuration](https://helpcenter.veeam.com/docs/backup/explorers/vesql_bu_job_settings.html?ver=95) 
+Please check the Veeam User’s Guide sections to get the more information about [SQL backup configuration](https://helpcenter.veeam.com/archive/backup/95/explorers/vesql_bu_job_settings.html) 
 
 ###### SQL Always-on Availability Group:
 
@@ -89,7 +89,7 @@ To change temporary folder use SqlTempLogPath (STRING) registry value as describ
 •	Type: REG_SZ
 •	Default value: undefined
 
-As best practices it's highly recommended to periodically shrink the SQL log file, Please follow [Microsoft KB](https://technet.microsoft.com/en-us/library/ms190757(v=sql.110).aspx) for more information.
+As best practices it's highly recommended to periodically shrink the SQL log file, Please follow [Microsoft KB](https://docs.microsoft.com/en-us/previous-versions/sql/sql-server-2012/ms190757(v=sql.110)) for more information.
 
 ## Veeam Agent Based Backup:
 
@@ -100,7 +100,7 @@ Veeam Agent is requiring to backup following configuration of SQL Servers:
  
 To backup the SQL Failover cluster, the backup need to be configured and manage by Veeam Backup Server.
 
-For the list of all registry keys responsible to fine-tuning MS SQL server backup (for example excluding certain databases from processing) refer to [KB2182](https://www.veeam.com/kb2182) 
+For the list of all registry keys responsible to fine-tuning MS SQL server backup (for example excluding certain databases from processing) refer to [KB2182](https://www.veeam.com/kb_search_results.html) 
 
 ## Restore 
 

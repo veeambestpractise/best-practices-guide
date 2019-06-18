@@ -58,10 +58,10 @@ When an Agent backup job targeting a failover cluster is executed, all cluster n
 
 
 <!-- referenced links -->
-[Veeam Agent Management Guide]: https://helpcenter.veeam.com/docs/backup/agents/
+[Veeam Agent Management Guide]: https://helpcenter.veeam.com/docs/backup/agents/index.html
 
-[Cluster-Support]: https://helpcenter.veeam.com/docs/backup/agents/cluster_support.html
+[Cluster-Support]: https://helpcenter.veeam.com/docs/backup/agents/index.htmlcluster_support.html
 
-[Disable Protection Group]: https://helpcenter.veeam.com/docs/backup/agents/protection_group_disable.html
+[Disable Protection Group]: https://helpcenter.veeam.com/docs/backup/agents/index.htmlprotection_group_disable.html
 
 [Sizing Summary]: ../resource_planning/Appendix_A_Sizing.md

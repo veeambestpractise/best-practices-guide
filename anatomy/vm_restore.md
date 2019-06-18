@@ -43,7 +43,7 @@ initiate a VM snapshot creation on the restored VM.
 
 **Important!** A snapshot is not taken if a VM is restored to a VVOL
 datastore due to vSphere VDDK limitations (see
-<http://pubs.vmware.com/Release_Notes/en/developer/vddk/65/vsphere-vddk-650b-release-notes.html>).
+<https://pubs.vmware.com/Release_Notes/en/developer/vddk/65/vsphere-vddk-650b-release-notes.html>).
 
 ![](../media/image59.png)
 
@@ -63,7 +63,7 @@ Replication can use one of the 3 transport modes:
 
 For more information about each transport mode, see [Veeam Backup &
 Replication User
-Guide](https://helpcenter.veeam.com/docs/backup/vsphere/transport_modes.html?ver=95)
+Guide](https://helpcenter.veeam.com/archive/backup/95/vsphere/transport_modes.html)
 and the corresponding sections of this document.
 
 ### 4a. Direct SAN Access Data Transport Mode

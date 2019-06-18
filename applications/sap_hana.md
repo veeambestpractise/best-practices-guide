@@ -57,9 +57,9 @@ A storage snapshot created in three steps:
 
 # Virtual Machine running SAP HANA Database Backup:
 
-Veeam uses HANA database snapshot backup method by using Veeam guest processing [Pre & Post Thaw Scripts]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95) 
+Veeam uses HANA database snapshot backup method by using Veeam guest processing [Pre & Post Thaw Scripts]( https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html) 
 Virtual HANA Backup with Agentless Image Level Backup:
-Veeam Backup & Replication uses the scripts [Pre & Post Thaw Scripts]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95) 
+Veeam Backup & Replication uses the scripts [Pre & Post Thaw Scripts]( https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html) 
  which allow the execution of the backups via HANA Snapshot and also provide option to purge the transactions logs. 
 
 The Pre & Post Thaw scripts can be download from [VeeamHub](https://github.com/VeeamHub/applications/tree/master/sap-hana)
@@ -71,7 +71,7 @@ The Pre & Post Thaw scripts can be download from [VeeamHub](https://github.com/V
 3. At the **Guest Processing step**, click **Applications**.
 4. Click the **Scripts tab**.
 5. In the **Linux Scripts** section, specify paths to **SAP HANA BACKUP [Pre-Freeze and Post-Thaw Scripts]
-(https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)**.
+(https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html)**.
 
 ## SAP HANA Backup Process: 
 
@@ -90,11 +90,11 @@ Please find below the process to backup Virtual Machine with SAP HANA DB:
 
 # SAP HANA Backup with Veeam Agent for Linux:
 
-Similar to agentless virtual machine image based backup, Veeam Agent for Linux will uses the same [Pre & Post-Thaw Scripts] (https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95) scripts. 
+Similar to agentless virtual machine image based backup, Veeam Agent for Linux will uses the same [Pre & Post-Thaw Scripts] (https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html) scripts. 
 
 ## Configure SAP HANA Physical Server Backup:
 
-Install Veeam Agent for Linux to SAP HANA Physical Server, configure the [backup job] https://helpcenter.veeam.com/docs/agentforlinux/userguide/backup_job_create.html?ver=20 and use [script settings](https://helpcenter.veeam.com/docs/agentforlinux/userguide/backup_job_scripts.html?ver=20) select Snapshot scripts to configure [Pre Freeze & Post-Thaw Script](https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)
+Install Veeam Agent for Linux to SAP HANA Physical Server, configure the [backup job] https://helpcenter.veeam.com/docs/agentforlinux/userguide/backup_job_create.html?ver=20 and use [script settings](https://helpcenter.veeam.com/docs/agentforlinux/userguide/backup_job_scripts.html?ver=20) select Snapshot scripts to configure [Pre Freeze & Post-Thaw Script](https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html)
 
 ## SAP HANA Backup Process: 
 
@@ -234,13 +234,13 @@ In the event of complete disaster, you can use [Instant VM Recovery]( https://he
 
 Veeam provides following option to recover Physical Server running SAP HANA database:
 
--	[Recover Disk or Files]( https://helpcenter.veeam.com/docs/agentforlinux/userguide/baremetal_files_restore.html?ver=20) 
--	[Bare-Metal Recovery]( https://helpcenter.veeam.com/docs/agentforwindows/userguide/howto_baremetal_recovery.html?ver=21) 
+-	[Recover Disk or Files]( https://helpcenter.veeam.com/archive/agentforlinux/20/userguide/baremetal_files_restore.html) 
+-	[Bare-Metal Recovery]( https://helpcenter.veeam.com/archive/agentforwindows/21/userguide/howto_baremetal_recovery.html) 
 
 
 ## Restore Disk or Files:
 
-Please follow the restore procedure explained in [Veeam Agent for Linux Guide]( https://helpcenter.veeam.com/docs/agentforlinux/userguide/baremetal_files_restore.html?ver=20) 
+Please follow the restore procedure explained in [Veeam Agent for Linux Guide]( https://helpcenter.veeam.com/archive/agentforlinux/20/userguide/baremetal_files_restore.html) 
 
 1.	Stop SAP HANA services 
 2.	Recover disk volume, files or logs if necessary 
@@ -250,5 +250,5 @@ Please follow the restore procedure explained in [Veeam Agent for Linux Guide]( 
 
 ## Bare-Metal Restore:
 
-Please follow the restore procedure explained in [Veeam Agent for Linux guide]( https://helpcenter.veeam.com/docs/agentforwindows/userguide/howto_baremetal_recovery.html?ver=21) 
+Please follow the restore procedure explained in [Veeam Agent for Linux guide]( https://helpcenter.veeam.com/archive/agentforwindows/21/userguide/howto_baremetal_recovery.html) 
 

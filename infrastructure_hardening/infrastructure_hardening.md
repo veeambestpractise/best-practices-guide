@@ -95,7 +95,7 @@ Containment to keep the attackers from moving around too easily. Some standard m
 * Monitor your accounts for suspicious activity
 
 A role assigned to the user defines the user activity scope: what operations in Veeam Backup & Replication the user can perform. Role security settings affect the following [operations](
-https://helpcenter.veeam.com/docs/backup/vsphere/users_roles.html?ver=95)
+https://helpcenter.veeam.com/archive/backup/95/vsphere/users_roles.html)
 
 ### Password management policy
 Use a clever Password management policy, which works for your organization. Enforcing the use of strong passwords across your infrastructure is a valuable control. It’s more challenging for attackers to guess passwords/crack hashes to gain unauthorized access to critical systems.
@@ -112,7 +112,7 @@ Use a Lockout policy that complements a clever password management policy. Accou
 
 ## Required Permissions
 Use the _**principle of least privilege**_. Provide the minimal required permissions needed for the accounts to run. The accounts used for installing and using Veeam Backup & Replication must have the following [permissions](
-https://helpcenter.veeam.com/docs/backup/vsphere/required_permissions.html?ver=95).
+https://helpcenter.veeam.com/archive/backup/95/vsphere/required_permissions.html).
 
 If VMware vCenter Server is added to the backup infrastructure, an account that has administrator permissions is required. Instead of granting administrator permissions to the account, you can configure more granular permissions. Veeam has identified the minimum permissions required for the various software functions. Review the ["Required Permissions" document](https://www.veeam.com/veeam_backup_9_0_permissions_pg.pdf) (not changed since V9.0) and configure the accounts used by Veeam Backup & Replication to meet these requirements.
 
@@ -132,14 +132,14 @@ Backup and replica data is a highly potential source of vulnerability. To secure
 
 * **Restrict user access to backups and replicas**. Check that only authorized users have permissions to access backups and replicas on target servers.
 
-* **Encrypt data in backups**. Use Veeam Backup & Replication inbuilt encryption to protect data in backups. To guarantee security of data in backups, follow [Encryption Best Practices](https://helpcenter.veeam.com/docs/backup/vsphere/encryption_best_practices.html?ver=95).
+* **Encrypt data in backups**. Use Veeam Backup & Replication inbuilt encryption to protect data in backups. To guarantee security of data in backups, follow [Encryption Best Practices](https://helpcenter.veeam.com/archive/backup/95/vsphere/encryption_best_practices.html).
 
 
 Backup and replica data can be intercepted in-transit, when it is communicated from source to target over a network. To secure the communication channel for backup traffic, consider these guidelines:
 
 * **Isolate backup traffic**. Use an isolated network to transport data between backup infrastructure components — backup server, backup proxies, repositories and so on. (also see segmentation)
 
-* **Encrypt network traffic**. By default, Veeam Backup & Replication encrypts network traffic traveling between public networks. To ensure secure communication of sensitive data within the boundaries of the same network, you can also encrypt backup traffic in private networks. For details, see [Enabling Network Data Encryption](https://helpcenter.veeam.com/docs/backup/vsphere/enable_network_encryption.html?ver=95).
+* **Encrypt network traffic**. By default, Veeam Backup & Replication encrypts network traffic traveling between public networks. To ensure secure communication of sensitive data within the boundaries of the same network, you can also encrypt backup traffic in private networks. For details, see [Enabling Network Data Encryption](https://helpcenter.veeam.com/archive/backup/95/vsphere/enable_network_encryption.html).
 
 ## Backup & Replication Database
 The Backup & Replication configuration database stores credentials to connect to virtual servers and other systems in the backup & replication infrastructure. All passwords stored in the database are encrypted. However, a user with administrator privileges on the backup server can decrypt the passwords, which presents a potential threat.
@@ -147,7 +147,7 @@ The Backup & Replication configuration database stores credentials to connect to
 To secure the Backup & Replication configuration database, follow these guidelines:
 
 * **Restrict user access to the database**. Check that only authorized users can access the backup server and the server that hosts the Veeam Backup & Replication configuration database (if the database runs on a remote server).
-* **Encrypt data in configuration backups**. Enable data encryption for configuration backup to secure sensitive data stored in the configuration database. For details, see [Creating Encrypted Configuration Backups](https://helpcenter.veeam.com/docs/backup/vsphere/config_backup_encrypted.html?ver=95).
+* **Encrypt data in configuration backups**. Enable data encryption for configuration backup to secure sensitive data stored in the configuration database. For details, see [Creating Encrypted Configuration Backups](https://helpcenter.veeam.com/archive/backup/95/vsphere/config_backup_encrypted.html).
 
 
 ## Segmentation
@@ -155,7 +155,7 @@ Add local protection mechanics, in addition to the border firewalls, intrusion d
 
 A good practice is to place the backup repositories in a special segment not accessible by any user. Like for instance the production storage is only available to the virtual infrastructure components and application servers. Not directly accessible by any user!
 
-To segment your infrastructure and Veeam Backup & Replication components, make sure the firewalls on the local server installations have the correct [Ports](https://helpcenter.veeam.com/docs/backup/vsphere/used_ports.html?ver=95) opened.   
+To segment your infrastructure and Veeam Backup & Replication components, make sure the firewalls on the local server installations have the correct [Ports](https://helpcenter.veeam.com/archive/backup/95/vsphere/used_ports.html) opened.   
 
 You can also deploy [VMware NSX](https://blogs.vmware.com/networkvirtualization/2016/06/micro-segmentation-defined-nsx-securing-anywhere.html/) as a counter measure with micro-segmentation to make sure the attack surface is as narrow as possible without blocking everyone to use the services. Visibility into the network and all data flows is crucial to help you protect all different rings/cells within your infrastructure. You can add the Veeam components to NSX policies to make sure they can communicate with each other without opening it up to any user.
 

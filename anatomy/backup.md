@@ -122,7 +122,7 @@ Replication can use one of the following transport modes:
 
 For more information about each transport mode, see [Veeam Backup &
 Replication User
-Guide](https://helpcenter.veeam.com/docs/backup/vsphere/transport_modes.html?ver=95)
+Guide](https://helpcenter.veeam.com/archive/backup/95/vsphere/transport_modes.html)
 or a corresponding section below.
 
 ### 5a. Direct SAN Access Data Transport Mode

@@ -52,7 +52,7 @@ via Direct Storage Access for thick provisioned VMs.
 
 For more information about configuring Direct Storage Access refer to FAQ
 at [Veeam Community Forums: Direct Storage Access
-Mode](http://forums.veeam.com/vmware-vsphere-f24/vmware-frequently-asked-questions-t9329.html#p39948)
+Mode](https://forums.veeam.com/vmware-vsphere-f24/vmware-frequently-asked-questions-t9329.html)
 
 ## Example
 
@@ -135,7 +135,7 @@ If a VMFS datastore is manually brought online in Windows Disk Management by
 mistake, and disk resignaturing is initiated, the datastore will become unavailable,
 and VMs will stop. Please contact VMware Support for assistance with recreating
 the VMFS disk signature. For more information on Windows re-signaturing process
-and VMware datastores please refer to [VMware KB1002168: Unable to access the VMware virtual machine file system datastore when the partition is missing or is not set to type fb](http://kb.vmware.com/kb/1002168)
+and VMware datastores please refer to [VMware KB1002168: Unable to access the VMware virtual machine file system datastore when the partition is missing or is not set to type fb](https://kb.vmware.com/s/article/1002168)
 
 ## Summary
 
