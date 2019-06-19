@@ -46,14 +46,14 @@ MTrees allow granular management of snapshots and quotas. Quotas apply only to l
 
 There is a fixed amount of MTrees that can be create on a Data Domain system and it depends by the model and DD OS version.
 
-| DataDomain system  | DD OS version | Configurable MTree's | Concurrently Active MTree's
+| DataDomain system  | DD OS version | Configurable MTree's | Concurrently Active MTree's |
 | -- | -- | -- | -- |
-DD9800| 6.0+ | 256 |256
+| DD9800 | 6.0+ | 256 |256 |
 DD9500 | 5.7+ | 256 | 256
 DD6800, DD9300 | 6.0+ | 128 | 128
 DD6300 | 6.0+ | 100 | 32
 DD990, DD4200, DD4500, DD7200 | 5.7+ | 128 | 128
-All other DD systems | 5.7+ | 100 | up to 32
+All other DD systems | 5.7+ | 100 | up to 32 |
 
 ### MTree attributes and statistics
 
