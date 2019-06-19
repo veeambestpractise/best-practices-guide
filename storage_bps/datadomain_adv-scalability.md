@@ -25,11 +25,11 @@ In the backup infrastructure, a gateway server hosts the target Veeam Data Mover
 
 | Tye of job | Gateway server | Synthetic operations |
 | -- | -- | -- |
-Backup job | Backup proxy that was assigned the first to process VM data for a backup job. | Synthetic operations are performed on the mount server associated with the backup repository. If the mount server is not accessible, Veeam Backup & Replication fails over to the backup server.
-Backup copy job | Direct data path: mount server associated with the backup repository. If the mount server is not accessible, Veeam Backup & Replication fails over to the backup server. Over WAN accelerators: source and/or target WAN accelerator (depending on the shared folder backup repository location). | Synthetic operations are performed on the mount server associated with the backup repository. If the mount server is not accessible, Veeam Backup & Replication fails over to the backup server. These rules are applied to the direct data path and processing over WAN accelerators.
-Tape job|If there is a direct connection between a backup repository and tape device, the role of a gateway server is assigned to the tape server. Otherwise the role of a gateway server is assigned to the backup server.|Synthetic operations are performed on the mount server associated with the backup repository. If the mount server is not accessible, Veeam Backup & Replication fails over to the backup server.
-Restore operations|Backup proxy used for a restore operation| -
-Replication from backup|Target backup proxy assigned for a replication operation| -
+| Backup job | Backup proxy that was assigned the first to process VM data for a backup job. | Synthetic operations are performed on the mount server associated with the backup repository. If the mount server is not accessible, Veeam Backup & Replication fails over to the backup server. |
+| Backup copy job | Direct data path: mount server associated with the backup repository. If the mount server is not accessible, Veeam Backup & Replication fails over to the backup server. Over WAN accelerators: source and/or target WAN accelerator (depending on the shared folder backup repository location). | Synthetic operations are performed on the mount server associated with the backup repository. If the mount server is not accessible, Veeam Backup & Replication fails over to the backup server. These rules are applied to the direct data path and processing over WAN accelerators. |
+| Tape job | If there is a direct connection between a backup repository and tape device, the role of a gateway server is assigned to the tape server. Otherwise the role of a gateway server is assigned to the backup server. | Synthetic operations are performed on the mount server associated with the backup repository. If the mount server is not accessible, Veeam Backup & Replication fails over to the backup server. |
+| Restore operations |Backup proxy used for a restore operation| - |
+| Replication from backup|Target backup proxy assigned for a replication operation | - |
 
 ## DataDomain MTree
 
@@ -49,26 +49,26 @@ There is a fixed amount of MTrees that can be create on a Data Domain system and
 | DataDomain system  | DD OS version | Configurable MTree's | Concurrently Active MTree's |
 | -- | -- | -- | -- |
 | DD9800 | 6.0+ | 256 |256 |
-DD9500 | 5.7+ | 256 | 256
-DD6800, DD9300 | 6.0+ | 128 | 128
-DD6300 | 6.0+ | 100 | 32
-DD990, DD4200, DD4500, DD7200 | 5.7+ | 128 | 128
-All other DD systems | 5.7+ | 100 | up to 32 |
+| DD9500 | 5.7+ | 256 | 256 |
+| DD6800, DD9300 | 6.0+ | 128 | 128 |
+| DD6300 | 6.0+ | 100 | 32 |
+| DD990, DD4200, DD4500, DD7200 | 5.7+ | 128 | 128 |
+| All other DD systems | 5.7+ | 100 | up to 32 |
 
 ### MTree attributes and statistics
 
 | Item  | Description |
 | -- | -- |
-MTree Name | The pathname of the MTree (/data/col1/mtree-name).
-Quota Hard Limit | Percentage of hard limit quota used.
-Quota Soft Limit| Percentage of soft limit quota used.
-Last 24 Hr Pre-Comp | Amount of raw data from the backup application that has been written in the last 24 hours.
-Last 24 Hr Post-Comp | Amount of storage used after compression in the last 24 hours.
-Last 24 Hr Comp Ratio | The compression ratio for the last 24 hours.
-Weekly Avg Post-Comp | Average amount of compressed storage used in the last five weeks.
-Last Week Post-Comp | Average amount of compressed storage used in the last seven days.
-Weekly Avg Comp Ratio | The average compression ratio for the last five weeks.
-Last Week Comp Ratio | The average compression ratio for the last seven days.
+| MTree Name | The pathname of the MTree (/data/col1/mtree-name). |
+| Quota Hard Limit | Percentage of hard limit quota used. |
+| Quota Soft Limit | Percentage of soft limit quota used. |
+| Last 24 Hr Pre-Comp | Amount of raw data from the backup application that has been written in the last 24 hours. |
+| Last 24 Hr Post-Comp | Amount of storage used after compression in the last 24 hours. |
+| Last 24 Hr Comp Ratio | The compression ratio for the last 24 hours. |
+| Weekly Avg Post-Comp | Average amount of compressed storage used in the last five weeks. |
+| Last Week Post-Comp | Average amount of compressed storage used in the last seven days. |
+| Weekly Avg Comp Ratio | The average compression ratio for the last five weeks. |
+|Last Week Comp Ratio | The average compression ratio for the last seven days. |
 
 ## DataDomain replication overview
 
@@ -140,11 +140,13 @@ As soon as the MTree is created, note the path that it has on the Data Domain fi
 
 Every proxy will have its own sub-folder within the MTree (the folder will be created during the repository creation wizard in VBR):
 
+```
 /data/col1/su-itlabvbr01-ddboost/proxy_01
 
 /data/col1/su-itlabvbr01-ddboost/proxy_02
 
 /data/col1/su-itlabvbr01-ddboost/proxy_n
+```
 
 **This is key to maintain backup file separated and to not create any kind of inconsistences in VBR database**.
 
