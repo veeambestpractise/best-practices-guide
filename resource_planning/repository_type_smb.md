@@ -7,7 +7,7 @@ While an SMB repository is often considered to provide less performance than dir
 
 When you set up an SMB share as a repository, the following options are available:
 -   Automatic selection of the server as the SMB gateway proxy (that is, the server that will host the target-side transport component and thus perform the role of “data writer” towards the SMB share itself).
--   Specify a specific server (among the available managed Windows servers in Veeam Backup & Replication) as a SMB gateway proxy.
+-   Specify a specific server (among the available managed Windows servers in Veeam Backup & Replication) as an SMB gateway proxy.
 
 The second option is very helpful in situations where the SMB share is located on a remote location, since it avoids that the automatic selection uses a server that is not local to the SMB share, thus having all synthetic operations or backup copy jobs occurring over the WAN link (which is usually slower than the local link). It is always recommended to use an SMB gateway server as close as possible to the SMB storage. By specifying the SMB gateway you have a better chance of keeping the data flow under control and avoid data crossing the WAN links unnecessarily.
 
@@ -19,7 +19,7 @@ be configured by selecting **Automatic** from the drop-down list.
 
 **Tip**: Gateway servers must be properly sized as regular Windows repositories.
 If you are using Automatic mode, remember that the same machine could be elected
-backup proxy and gateway server simultaneously. Apply sizing it accordingly.
+backup proxy and gateway server simultaneously. Apply sizing accordingly.
 
 Another option for increasing the number of streams is using per VM backup
 files. Please see the corresponding section of this guide for more information >
