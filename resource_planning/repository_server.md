@@ -1,7 +1,7 @@
 <!--- This was last Changed 03-05-17 by PS --->
 # Backup Repository
 
-Before you start planning for the repository, go through Veeam Backup & Replication online documentation at <https://www.veeam.com/documentation-guides-datasheets.html> to get basic understanding of repositories.
+Before you start planning for the repository, go through Veeam Backup & Replication online documentation at <https://helpcenter.veeam.com> to get basic understanding of repositories.
 
 You can balance the load across the backup infrastructure by setting up several repositories in the environment and limiting the number of concurrent jobs for each repository, or if you have a proper license you can leverage Scale-out Backup Repository as explained later on in this section.
 
