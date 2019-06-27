@@ -13,7 +13,7 @@ The following options are supported to backup MySQL databases:
 
 ## HotBackup Database Online Dump:
 
-There are multiple options available regarding Database Online Dump, one of the option is to use Veeam [Pre & Post Thaw Scripts]( https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html) to dump the database during the backup operations and other option to dump the database to another staging server and protect the staging server from Veeam.
+There are multiple options available regarding Database Online Dump, one of the option is to use Veeam [Pre & Post Thaw Scripts]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95) to dump the database during the backup operations and other option to dump the database to another staging server and protect the staging server from Veeam.
 
 Let’s go through each option one by one in the details:
 
@@ -58,7 +58,7 @@ sync;sync
 fi
 ```
 3.	Save script as PreFreeze.sh
-4.	Use script as [pre-freeze script]( https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html)  in a backup job.
+4.	Use script as [pre-freeze script]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)  in a backup job.
 
 Post-Thaw Scripts
 1.	 Use Editor
@@ -75,7 +75,7 @@ else
 echo "$0 could not locate mysql dump file $dump
 ```
 3.	Save file as PostThaw.sh.
-4.	Use script as [Post-Thaw script]( https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html)  in the backupjob
+4.	Use script as [Post-Thaw script]( https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95)  in the backupjob
 
 **Online Dump to Staging server
 

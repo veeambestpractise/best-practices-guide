@@ -6,9 +6,9 @@
 
 The encryption technology in Veeam Backup & Replication allows you to protect data both while it is in transfer between backup components and at rest, when it is stored at its final destination. This can be disk, tape or a cloud repository. Customers can use one of the encryption methods or a combination of both to protect against unauthorized access to important data through all the steps in the data protection process.
 
-Veeam Backup Enterprise Manager additionally provides Password Loss Protection option that allows authorized Veeam users to recover data from the backup even if the encryption password is lost. If the password gets lost, the backup server will provide a challenge key for Enterprise Manager. Using asymmetric encryption with a public/private key pair, Enterprise Manager generates a response which the backup server can use for unlocking the backup file without having the password available. For more details on this feature refer to the [corresponding section ](https://helpcenter.veeam.com/archive/backup/95/vsphere/decrypt_without_pass.html) of the User Guide.
+Veeam Backup Enterprise Manager additionally provides Password Loss Protection option that allows authorized Veeam users to recover data from the backup even if the encryption password is lost. If the password gets lost, the backup server will provide a challenge key for Enterprise Manager. Using asymmetric encryption with a public/private key pair, Enterprise Manager generates a response which the backup server can use for unlocking the backup file without having the password available. For more details on this feature refer to the [corresponding section ](https://helpcenter.veeam.com/docs/backup/vsphere/decrypt_without_pass.html?ver=95) of the User Guide.
 
-The encryption algorithms used are industry standard in all cases, leveraging AES-256 and public key encryption methods. [Data Encryption](https://helpcenter.veeam.com/archive/backup/95/vsphere/data_encryption.html) section of the User Guide provides detailed information on the encryption algorithms and standards used by the product.
+The encryption algorithms used are industry standard in all cases, leveraging AES-256 and public key encryption methods. [Data Encryption](https://helpcenter.veeam.com/docs/backup/vsphere/data_encryption.html?ver=95) section of the User Guide provides detailed information on the encryption algorithms and standards used by the product.
 
 The following sections describe encryption options available in the product, what they protect, when they should be used and best practices for their use.
 
@@ -46,7 +46,7 @@ Active full backup is required for enabling encryption to take effect if it was 
 -   Use strong passwords for job encryption and develop a policy for changing them regularly. Veeam Backup & Replication helps with this, as it tracks passwords’ age.
 -   Store passwords in a secure location.
 -   Obtain Enterprise or a higher level license for Veeam Backup & Replication, configure Veeam Backup Enterprise Manager and connect backup servers to it to enable Password Loss Protection.
--   Export a copy of the active keyset from Enterprise Manager (see [User Guide](https://helpcenter.veeam.com/archive/backup/95/em/em_export_import_keys.html) for more information).
+-   Export a copy of the active keyset from Enterprise Manager (see [User Guide](https://helpcenter.veeam.com/docs/backup/em/em_export_import_keys.html?ver=95) for more information).
 -   Back up the Veeam Backup Enterprise Manager configuration database and create an image-level backup of the Veeam Backup Enterprise Manager server. If these backups are also encrypted, make sure that passwords are not lost as there will be no Password Loss Protection for these backups.
 
 ## Tape Job Encryption

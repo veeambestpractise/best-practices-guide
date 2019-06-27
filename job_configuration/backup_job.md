@@ -13,7 +13,7 @@ This screen also provides an advanced object exclusion tool that allows you to s
 
 More guidelines on object selection are listed below.
 
-**Important:** Veeam Backup and Replication supports encrypted VMs (in vSphere 6.5) but the resulting backups will contain unencrypted data. Thus it is strongly recommended to enable in transit and at rest job level encryption to ensure safety of the data. For more details on requirements and limitations of the backup of encrypted VMs refer to the [corresponding section](https://helpcenter.veeam.com/archive/backup/95/vsphere/encrypted_vms_backup.html) of the User Guide.
+**Important:** Veeam Backup and Replication supports encrypted VMs (in vSphere 6.5) but the resulting backups will contain unencrypted data. Thus it is strongly recommended to enable in transit and at rest job level encryption to ensure safety of the data. For more details on requirements and limitations of the backup of encrypted VMs refer to the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/encrypted_vms_backup.html?ver=95) of the User Guide.
 
 ### Increasing Deduplication Rate
 
@@ -36,7 +36,7 @@ Tags are very convenient for a policy driven approach to data protection. Howeve
 -   Veeam ONE Business View (OBV) is a very convenient tool for managing vSphere Tags. OBV allows for creating classification rules and update corresponding tags in vCenter. Classifications can be defined from CPU, RAM, VM naming convention, folder, resource pool, datastore etc. OBV can also import VM/host/datastore descriptions from a CSV file. This feature can be useful when refreshing VMware tags, for example, to update a CMDB.
 
 #### Exclusions
-It is recommended to limit the number of exclusions in backup jobs. While exclusions can be very useful, the virtual infrastructure is dynamic and changes rapidly. It is quite possible that a VM gets moved to a folder or resource pool that is excluded which makes it unprotected. Monitoring [Protected VMs](https://helpcenter.veeam.com/archive/one/95/reporter/protected_vms.html) with Veeam ONE is highly recommended.
+It is recommended to limit the number of exclusions in backup jobs. While exclusions can be very useful, the virtual infrastructure is dynamic and changes rapidly. It is quite possible that a VM gets moved to a folder or resource pool that is excluded which makes it unprotected. Monitoring [Protected VMs](https://helpcenter.veeam.com/docs/one/reporter/protected_vms.html?ver=95) with Veeam ONE is highly recommended.
 
 Also remember that exclusions have higher priority over inclusions in Veeam Backup & Replication.
 
@@ -81,7 +81,7 @@ In addition to using SureBackup for restore validation, storage-level corruption
 
 **When to avoid?** It is highly discouraged to use storage-level corruption guard on any storage that performs native "scrubbing" to detect silent data corruptions. Such storage will automatically heal silent data corruptions from parity disks or using erasure coding. This is the case for most deduplication appliances.
 
-For more information, please see Veeam Helpcenter: [Health Check for Backup Files](https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_health_check.html).
+For more information, please see Veeam Helpcenter: [Health Check for Backup Files](https://helpcenter.veeam.com/docs/backup/vsphere/backup_health_check.html?ver=95).
 
 ## Job Chaining
 
@@ -94,11 +94,11 @@ When planning job schedules, you should consider balancing the load on source an
 
 Veeam has a load balancing method that automatically allocates proxy resources making a choice between all proxies managed by Veeam Backup & Replication that are available at the moment.
 
-For more details on load balancing, refer to the Veeam Backup & Replication User Guide at [Resource scheduling](https://helpcenter.veeam.com/archive/backup/95/vsphere/resource_scheduling.html).
+For more details on load balancing, refer to the Veeam Backup & Replication User Guide at [Resource scheduling](https://helpcenter.veeam.com/docs/backup/vsphere/resource_scheduling.html?ver=95).
 
 ## Binding Jobs to Specific Proxies
 
-Refer to the User Guide in order to examine the advanced deployment scenario with multiple proxies: [Advanced deployments](https://helpcenter.veeam.com/archive/backup/95/vsphere/advanced.html).
+Refer to the User Guide in order to examine the advanced deployment scenario with multiple proxies: [Advanced deployments](https://helpcenter.veeam.com/docs/backup/vsphere/advanced.html?ver=95).
 
 While configuring a backup job, you can disable the automatic proxy selection. Instead, you can select particular proxies from the list of proxies managed by Veeam backup server, and assign them to the job. This is a very good way to manage distributed infrastructures; also it helps you to keep performance under control.
 
@@ -110,6 +110,6 @@ See the illustration below as a good starting point to reach and keep control on
 
 ![](backup_job_1.png)
 
-You can use [Proxy Affinity](https://helpcenter.veeam.com/archive/backup/95/vsphere/proxy_affinity.html) to allow only specific proxies to interact with a given repository.
+You can use [Proxy Affinity](https://helpcenter.veeam.com/docs/backup/vsphere/proxy_affinity.html?ver=95) to allow only specific proxies to interact with a given repository.
 
 **Tip:** To optimize load balancing in a distributed environment where backup proxies are located in multiple sites, it is recommended to select all proxies from the same site in the corresponding job.
