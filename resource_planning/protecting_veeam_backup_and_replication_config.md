@@ -12,7 +12,7 @@ These configuration backups contain all the information about Veeam Backup & Rep
 
 To restore all jobs and their metadata (you will be asked for all required passwords during the restore process). Please refer to the
 Veeam Backup & Replication User Guide for further details:
-<https://helpcenter.veeam.com/archive/backup/95/vsphere/vbr_config.html>
+<https://helpcenter.veeam.com/docs/backup/vsphere/vbr_config.html?ver=95>
 
 If restoring the backup configuration to a newly provisioned server, it is highly recommended that the replacement server has the same DNS name, VBR version and patch level as the original backup server, this is especially true if using Veeam Agents for Windows or Linux.  
 
@@ -31,7 +31,7 @@ Having a solid disaster recovery strategy for your availability components, like
 
 By default, Veeam Backup & Replication is configured to create a daily configuration backup. The resulting configuration backup file is stored in the `\VeeamConfigBackup\%BackupServer%` folder on the default backup repository. However, for security’s sake, it is recommended that you do **not** store configuration backups on the **default backup repository** or in any other folder on the backup server. In this case, if the backup server fails, its configuration data will remain, and you will be able to recover the failed backup server.
 
-When the backup server is in the primary site it is recommended to replicate the Veeam backup server VM to the secondary site (verify network and IP mapping settings before you begin; refer to <https://helpcenter.veeam.com/archive/backup/95/vsphere/replica_job.html>
+When the backup server is in the primary site it is recommended to replicate the Veeam backup server VM to the secondary site (verify network and IP mapping settings before you begin; refer to <https://helpcenter.veeam.com/docs/backup/vsphere/replica_job.html?ver=95>
 for details).
 
 **Note** you cannot IP map a replica Veeam backup server if the control of the replica is by the same server being replicated, it can only be done using another VBR server to control that replica)

@@ -74,7 +74,7 @@ The backup infrastructure for this sample scenario would look as follows:
 
 ## Veeam ONE
 
-Veeam ONE components should be placed next to the vCenter Server and should be able to read from the backup server and ESXi hosts (over the CIM protocol) as well. See Veeam ONE documentation for more information: [Veeam ONE Deployment Guide](https://helpcenter.veeam.com/archive/one/95/deployment/about.html).
+Veeam ONE components should be placed next to the vCenter Server and should be able to read from the backup server and ESXi hosts (over the CIM protocol) as well. See Veeam ONE documentation for more information: [Veeam ONE Deployment Guide](https://helpcenter.veeam.com/docs/one/deployment/about.html?ver=95).
 
 ## Enterprise Manager
 

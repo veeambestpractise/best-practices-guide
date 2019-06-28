@@ -70,7 +70,7 @@ Check [Microsoft KB](https://docs.microsoft.com/en-us/sql/relational-databases/p
 
 No additional configuration is required to backup the standalone SQL server, you can configure the backup with application aware processing to take the backup of SQL server with the databases.
 
-Please check the Veeam User’s Guide sections to get the more information about [SQL backup configuration](https://helpcenter.veeam.com/archive/backup/95/explorers/vesql_bu_job_settings.html) 
+Please check the Veeam User’s Guide sections to get the more information about [SQL backup configuration](https://helpcenter.veeam.com/docs/backup/explorers/vesql_bu_job_settings.html?ver=95) 
 
 ###### SQL Always-on Availability Group:
 

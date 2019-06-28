@@ -78,9 +78,8 @@ Please refer to the following Technet [blogpost](https://techcommunity.microsoft
 
 # Guest restoration #
 ## Instant VM recovery storage requirement ##
-When performing [Instant VM recovery](https://helpcenter.veeam.com/archive/backup/95/hyperv/instant_recovery.html), Veeam will immediately pre-allocate the necessary amount of storage on the target infrastructure, even though the guest image used is residing on the backup repository.
+When performing [Instant VM recovery](https://helpcenter.veeam.com/docs/backup/hyperv/instant_recovery.html?ver=95), Veeam will immediately pre-allocate the necessary amount of storage on the target infrastructure, even though the guest image used is residing on the backup repository.
 
 **Note :** this pre-allocation is performed only for Instant VM Recovery Usage. Sure Backup processing will use a thin provisioning mechanism instead, preserving resources on the infrastructure.
 
-**Note :**  Instant VM recovery, will send Data over the production (DNS aware) network. During "recover to production" the prefered network are not used for data traffic. The recommonation based on fast Instant VM recovery and reover to production will be in a fast netowork for the Hyper-V parent partition. 
-  
+**Note :**  Instant VM recovery, will send Data over the production (DNS aware) network. During "recover to production" the prefered network are not used for data traffic. The recommonation based on fast Instant VM recovery and reover to production will be in a fast netowork for the Hyper-V parent partition.
