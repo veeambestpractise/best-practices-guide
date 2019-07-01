@@ -28,7 +28,7 @@ timeout /t 30 /nobreak
 ‘’’’
 3.	Save the file as “OnlineBackup.bat”
 
-Copy the script to Veeam Backup Server, and configure the job to run it as pre-freeze . Please click on the link for more information about [VSS Scripts](https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html) 
+Copy the script to Veeam Backup Server, and configure the job to run it as pre-freeze . Please click on the link for more information about [VSS Scripts](https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95) 
 
 
 ### Domino Service Shutdown & Start:
@@ -51,7 +51,7 @@ net start "Lotus Domino Server (DominoData)"
 ‘’’
 3.	Save the file as “post-thaw.bat”
 
-Copy the scripts to Veeam Backup Server, and configure the job to run pre-freeze and post-thaw scripts. Please click on the link for more information about [VSS Scripts](https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_scripts_vm.html) 
+Copy the scripts to Veeam Backup Server, and configure the job to run pre-freeze and post-thaw scripts. Please click on the link for more information about [VSS Scripts](https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_scripts_vm.html?ver=95) 
 
 ## Restores:
 Restores is the integrated part of IBM Lotus Domaino protection, Veeam offers followings option to restore IBM Lotus Domino Server:

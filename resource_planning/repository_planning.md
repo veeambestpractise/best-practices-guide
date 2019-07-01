@@ -8,28 +8,26 @@ A repository can be configured to limit the amount of parallel tasks it can proc
 ### General guidelines for virtual repositories
 To right sizing a backup repository, consider the following:
 
-- Each cpu should have no more than 2 concurrent tasks loaded into it
-- For each cpu, you need to count 4 gb of memory
+- Each vCPU core should have no more than 2 concurrent tasks loaded into it
+- For each vCPU, you need to count 4 GB of memory
 - With bigger machines, also network limits come into play , and that’s another reason to build many smaller repositories
 
-Suppose you have a VM with 8 cpu. You need 32Gb of memory, and this repository could be able to handle up to 16 concurrent tasks (we can go higher, but that’s a good starting point). Now, in general we say that one task doing incremental backups runs at about 25 MBs, that is 200 Mbs. If the VM has the usual vmxnet3 link, that’s 10Gb and divided by 200 Mbs it gives you a bottleneck at around 50 tasks, that would be 25 cpu. So, It is not recommended to go above this size or you may end up to overload the network.
+Suppose you have a VM with 8 vCPU. You need 32Gb of memory, and this repository could be able to handle up to 16 concurrent tasks (we can go higher, but that’s a good starting point). Now, in general we say that one task doing incremental backups runs at about 25 MB/s, that is 200 Mbit/s. If the VM has the usual vmxnet3 link, that’s 10Gb and divided by 200 Mbit/s it gives you a bottleneck at around 50 tasks, that would be 25 vCPU. So, it is not recommended to go above this size or you may end up to overload the network.
 
-This is true if the VM is using some sort of networkless link to storage (vmdk, fiber RDM), BUT if the same link is also needed to send then data to the final storage (say in-guest iscsi for example); then the same data has to enter the VM (from the proxy) and then leave the vm, thus you may need to cut this number in half. So, you end up with 12.5 cpu, or 25 tasks per vm.
-
-Also need to take into account that multiple virtual repos may be running over the same physical ESXi and its links, so you also need to be careful about using anti-affinity rules to keep those repos away from each other.
+Also take into account that multiple virtual repos may be running over the same physical ESXi and its links, so you also need to consider using anti-affinity rules to keep those repos away from each other.
 
 ### SOBR
 For any type of extent, and also for ReFS, we tend to suggest 200TB as the biggest size. Even though some customer go even bigger where a physical server is involved, we recommend to not go too big to avoid potential failures (read also downtime, not just damages). Smaller server equal to smaller failure domains.
 This goes into combination with what written above, so if you need for example 600TB of usable space, then you know you need  3 extents. Sometime this number is bigger, since for example people using SAN as the source for their volumes can only create up to 64TB volumes, so this becomes the biggest size of a single extent. This is also true for virtual repositories when a VMDK is used,unless you want to use RDM (which we are fine with).
 
 When using SOBR along with ReFS extents make sure you select data locality policy to enable block cloning.
-With performance policy the backup chain gets splitted, incrementals and fulls are placed on different extents. ReFS requires all the restore points to be on the same extent.
+With performance policy the backup chain gets split, incrementals and fulls are placed on different extents. ReFS requires all the restore points to be on the same extent.
 
 ### Blocks sizes
 
 During the backup process data blocks are processed in chunks and stored inside backup files in the backup repository. You can customize the block size during the [Job Configuration](../job_configuration/deduplication_and_compression.html#deduplication) using the **Storage Optimization** setting of the backup job.
 
-By default block size is set to **Local target**, which is 1 MB before compression. Since compression ratio is very often around 2x, with this block size Veeam will write around 512 KB or less to the repository per each block.
+By default block size is set to **Local target**, which is 1 MB before compression. Since compression ratio is very often around 2x, with this block size Veeam will write around 512 KB or less to the repository per block.
 
 This value can be used to better configure storage arrays; especially low-end storage systems can greatly benefit from an optimized stripe size.
 

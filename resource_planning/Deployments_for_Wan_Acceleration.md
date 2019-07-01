@@ -3,13 +3,13 @@
 ## How Many WAN Accelerators to Deploy?
 As the source WAN accelerator can only process one task at a time (one VM disk in a backup copy job or replication job), you may need to deploy multiple WAN accelerator pairs to meet the performance demands.
 
-As the target WAN accelerator can handle multiple incoming streams (as described in the [Many-to-One WAN Acceleration](https://helpcenter.veeam.com/archive/backup/95/vsphere/wan_acceleration_many.html) section of the User Guide), it is recommended to maintain a 4:1 ratio
+As the target WAN accelerator can handle multiple incoming streams (as described in the [Many-to-One WAN Acceleration](https://helpcenter.veeam.com/docs/backup/vsphere/wan_acceleration_many.html?ver=95) section of the User Guide), it is recommended to maintain a 4:1 ratio
 between the number of source WAN accelerators per target WAN accelerator.
 
 This guideline is very much dependent on the WAN link speed. Many source sites with low bandwidth will create little pressure on the target WAN accelerator. So, for instance, in multiple ROBO configurations a 10:1 ratio can be considered.
 
 If there are sites with very high bandwidth (such as
-datacenter-to-datacenter replication), they will produce a much more significant load on both the target WAN accelerator and the target repository due to the second data block lookup (for more information, refer to the [User Guide](https://helpcenter.veeam.com/archive/backup/95/vsphere/wan_acceleration_sources.html)).
+datacenter-to-datacenter replication), they will produce a much more significant load on both the target WAN accelerator and the target repository due to the second data block lookup (for more information, refer to the [User Guide](https://helpcenter.veeam.com/docs/backup/vsphere/wan_acceleration_sources.html?ver=95)).
 
 **Note:** The secondary data block lookup is used, when a data block is not available in the WAN accelerator cache. When there is a WAN cache “miss”, the secondary lookup for the same data block is performed on the target repository. If it is found here, it is read back to the WAN accelerator instead of re-transmitting over WAN.
 

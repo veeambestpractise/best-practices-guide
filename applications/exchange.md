@@ -8,7 +8,7 @@ DAG clustered configurations may require adjusting cluster timeouts to avoid fai
 
 ## Job configuration
 
-For backup and restore of Exchange servers to work properly application aware image processing opption has to be enabled in the job properties. For more details refer to the [corresponding section](https://helpcenter.veeam.com/archive/backup/95/vsphere/backup_job_vss_vm.html) of the User Guide.
+For backup and restore of Exchange servers to work properly application aware image processing opption has to be enabled in the job properties. For more details refer to the [corresponding section](https://helpcenter.veeam.com/docs/backup/vsphere/backup_job_vss_vm.html?ver=95) of the User Guide.
 
 ## Granular item restore
 

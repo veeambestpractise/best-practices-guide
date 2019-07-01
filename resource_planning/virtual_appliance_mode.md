@@ -4,7 +4,7 @@
 As the default setting, virtual appliance mode (`hot-add`) has become quite
 popular for all-in-one deployments of Veeam Backup & Replication within virtual
 machines (for details, see the
-[Deployment Scenarios](https://helpcenter.veeam.com/archive/backup/95/vsphere/deployment_scenarios.html)
+[Deployment Scenarios](https://helpcenter.veeam.com/docs/backup/vsphere/deployment_scenarios.html?ver=95)
 section of the User Guide). It is also often used, when Veeam is deployed in
 branch office configurations (ROBO).
 
@@ -17,7 +17,7 @@ disks are unmounted from the proxy server, and the VM snapshot is committed.
 
 **Note:** For more information on how it works, refer to the section
 "[Data Backup and Restore in Virtual Appliance
-Mode](https://helpcenter.veeam.com/archive/backup/95/vsphere/virtual_appliance_hiw.html)"
+Mode](https://helpcenter.veeam.com/docs/backup/vsphere/virtual_appliance_hiw.html?ver=95)"
 in Veeam Help Center.
 
 As an example, virtual appliance mode is a good choice for

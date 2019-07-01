@@ -66,7 +66,7 @@ performing backups, you should ensure it is possible to snapshot the
 virtual machine disks, since there are certain configurations that do
 not support snapshots. To identify VMs that do not support snapshots,
 see [VMware KB article 1025279](https://kb.vmware.com/s/article/1025279) ; you
-can also use [Veeam ONE assessment reports](https://helpcenter.veeam.com/archive/one/95/reporter/vm_configuration_assessment.html)
+can also use [Veeam ONE assessment reports](https://helpcenter.veeam.com/docs/one/reporter/vm_configuration_assessment.html?ver=95)
 to automatically detect them before starting Veeam Availability project.
 
 As with many things in technology, although the concept is simple, the
@@ -232,7 +232,7 @@ recommendations:
     -   Type: REG_DWORD
     -   Default value (in GB): 10
 
-    **Tip:** Use the [Veeam ONE Configuration Assessment Report](https://helpcenter.veeam.com/archive/one/95/reporter/vm_configuration_assessment.html) to detect datastores with less than 10% of free disk space available for snapshot processing.
+    **Tip:** Use the [Veeam ONE Configuration Assessment Report](https://helpcenter.veeam.com/docs/one/reporter/vm_configuration_assessment.html?ver=95) to detect datastores with less than 10% of free disk space available for snapshot processing.
 
 -   **Enable parallel processing.**
     Parallel processing tries to backup multiple VM disks that belong to
@@ -338,7 +338,7 @@ Veeam Snapshot Hunter automatically detects any VM with the configuration
 issue “Virtual machine disks consolidation needed”. Prior to performing
 backup of such VMs, Veeam Backup & Replication will trigger disk
 consolidation (provided that the datastore performance threshold
-specified in the [Storage Latency Control](https://helpcenter.veeam.com/archive/backup/95/vsphere/options_parallel_processing.html)
+specified in the [Storage Latency Control](https://helpcenter.veeam.com/docs/backup/vsphere/options_parallel_processing.html?ver=95)
 settings is not exceeded).
 
 Snapshot Hunter will attempt consolidation eight (8) times. If
@@ -356,7 +356,7 @@ excluded from backup or replication jobs until the orphaned snapshots
 are manually removed.
 
 If you are evaluating Veeam Backup & Replication, use the
-[Infrastructure Assessment Reports](https://helpcenter.veeam.com/archive/one/95/reporter/vmware_infrastructure_dashboard.html)
+[Infrastructure Assessment Reports](https://helpcenter.veeam.com/docs/one/reporter/vmware_infrastructure_dashboard.html?ver=95)
 included in Veeam Availability Suite to identify VMs with snapshots that
 can be affected by automatic snapshot consolidation.
 
