@@ -1,14 +1,12 @@
 # Introduction
 
-The following document explains the use of Windows Storage Replica along with Veeam Backup & Replication, to build a high available backup repository based on Windows Server 2016 and ReFS filesystem.
-
-The idea behind this architecture comes after a request of a customer who loved the idea of backup appliances that have native replication logic.
+The following page explains the use of Windows Storage Replica along with Veeam Backup & Replication, to build a high available backup repository based on Windows Server 2016 and ReFS filesystem.
 
 Windows Storage Replica can transparently replicate an entire volume to a secondary server placed at DR site, providing customers with geographical redundancy. Replication process is also ReFS aware: all synthetic-created full backups do not need to be entirely replicated, only changes will be transferred to the replica destination.
 
 In case of failure of the source volume, replication process can be inversed allowing Veeam Backup & Replication to continue the existing backup chains on the target (that has become the new source). As soon as the source has been brought back online, the failback process will be the same as the failover.
 
-As every storage-based replica, Windows Storage Replica does not protect the volume content from logic corruption. Should something happen on the source, it will be replicated to the destination too. Veeam Backup & Replication has its native tool, the Backup Copy Job, that can be used to copy restore points between different backup repositories and it checks files CRC to guarantee data consistency.
+**As every storage-based replica, Windows Storage Replica does not protect the volume content from logic corruption**. If a corruption happens on the soruce, it will be replicated to the destination as well. Veeam Backup & Replication has its native tool, the Backup Copy Job, that can be used to copy restore points between different backup repositories and meet the [3-2-1 rule.](/infrastructure_hardening/infrastructure_hardening.md#the-3-2-1-rule)
 
 ## Windows Storage Replica concepts
 
